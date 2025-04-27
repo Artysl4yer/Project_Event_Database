@@ -35,30 +35,7 @@ Body{
     animation: fadein 1s;
 }
 
-.tab-container{
-    display: flex;
-    flex-direction: column;
-    background-color: #1E4F2A;
-    color: white;
-    width: 60px; 
-    transition: width 0.3s ease;
-    height: 500vh;
-    max-height: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    padding: 40px 0px;
-    padding-left: 3px;
-    margin-top: 79px;
-    box-sizing: border-box;
-    animation: fadein 2s;
-}
 
-.tab-container:hover {
-    width: 170px; 
-}
 
 .event-details{
     display: grid;
@@ -67,10 +44,10 @@ Body{
     margin-right: auto;
     padding-left: 100px;
     padding-right: 100px;
+    gap: 15px;
     height: auto;
     max-height: max-content;
     max-width:70%;
-    background-color: red;
 }
 
 .event-attendance-top{
@@ -81,9 +58,7 @@ Body{
     padding-right: 50px;
     flex: 1;
     gap: 50px;
-    background-color: green;
     animation: fadein 2.5s;
-    flex-wrap: wrap;
 }
 
 .event-attendance-top button{
@@ -98,13 +73,16 @@ Body{
     font-weight:bolder;
     border: 0;
     transition: transform 0.3s ease-in-out;
-   
+    cursor: pointer;
+}
 
+.event-attendance-top button{
+    background-color: #3284ed;
+    color: white;
 }
 
 .event-attendance-top button:hover{
     transform: scale(1.1);
-
 }
 
 /*Contains the search container */
@@ -153,6 +131,33 @@ Body{
 .label {
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+/* Tab container containing the navigation*/
+
+.tab-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #1E4F2A;
+    color: white;
+    width: 60px; 
+    transition: width 0.3s ease;
+    height: 500vh;
+    max-height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding: 40px 0px;
+    padding-left: 3px;
+    margin-top: 79px;
+    box-sizing: border-box;
+    animation: fadein 2s;
+}
+
+.tab-container:hover {
+    width: 170px; 
 }
 
 .tab-container:hover .label {

@@ -1,0 +1,94 @@
+/*for popups*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.header{
+    background-color: #104911;
+    padding: 20px 20px;
+}
+
+.header h3{
+    color: white;
+}
+.modal-content{
+    background-color: white;
+    margin: 10% auto;
+    padding: 0px;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+
+.modal-content .controls{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.modal-content .controls button{
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.modal-content form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 50px;
+}
+
+form .input-box{
+    width: 100%;
+}
+
+form .input-box input[type="date"]{
+    width: 100%;
+}
+
+form label{
+    
+}
+
+form .input-box input[type="text"]{
+    height: 20px;
+    width: 100%;
+}
+
+form .input-box textarea{
+    width: 100%;
+    height: 50px;
+}
+
+
+
+
+
+.modal-content .controls .btn-close{
+    background: transparent;
+    color: #3284ed;
+}
+.modal-content .controls .btn-close:hover{
+    cursor: pointer;
+}
+.modal-content .controls .btn-submit{
+    background: #3284ed;
+    color: white;
+}
+
+.modal-content .controls .btn-submit:hover{
+    cursor: pointer;
+}
+
+
