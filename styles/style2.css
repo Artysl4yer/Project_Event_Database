@@ -19,7 +19,7 @@
 }
 .modal-content{
     background-color: white;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 0px;
     width: 90%;
     max-width: 1000px;
@@ -32,6 +32,7 @@
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    padding: 50px;
 }
 
 .modal-content .controls button{
@@ -41,12 +42,15 @@
     font-size: 15px;
 }
 
-.modal-content form{
+.modal-content form .user-details{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 50px;
+    gap: 15px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
 }
 
 form .input-box{
@@ -57,8 +61,14 @@ form .input-box input[type="date"]{
     width: 100%;
 }
 
-form label{
-    
+form  .date-box{
+    display: flex;
+    justify-content:flex-start;
+    gap: 50px;
+}
+
+form .date-box input{
+    width: 100%;
 }
 
 form .input-box input[type="text"]{
@@ -70,10 +80,6 @@ form .input-box textarea{
     width: 100%;
     height: 50px;
 }
-
-
-
-
 
 .modal-content .controls .btn-close{
     background: transparent;

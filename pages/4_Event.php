@@ -51,33 +51,61 @@
                     <p> Fill out the information below to get started </p>
                 </div> 
                 <form action="../php/event-sub.php" method="GET">
-                    <div class="input-box">
-                        <label for="event-title"> Event Title: </label>
-                        <input type="text" name="event-title" required> 
-                    </div>
-                    <div class="input-box">
-                        <label for="event-date"> Location: </label>
-                        <input type="text" name="event-location" required> 
-                    </div>
-                    <div class="input-box">
-                        <label for="event-orgs"> Organization: </label>
-                        <input type="text" name="event-orgs" required> 
-                    </div>
-                    
-                    <div class="input-box">
-                        <label for="event-description"> Decription: </label>
-                        <textarea id="description" name="event-description"></textarea>
-                    </div>
-                    <div class="input-box">
-                        <label for="option"> 
-                            <input type="checkbox" name="option"> 
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option"> 
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option"> 
-                        </label>
+                    <div class="user-details">
+                        <div class="input-box">
+                            <label for="event-title"> Event Title: </label>
+                            <input type="text" name="event-title" required> 
+                        </div>
+                        <div class="input-box">
+                            <label for="event-date"> Location: </label>
+                            <input type="text" name="event-location" required> 
+                        </div>
+                        <div class="date-box">
+                            <label for="event-date-start"> Start Time </label>
+                            <input type="text" name="event-date" placeholder="00/00/0000" required> 
+                            <input type="text" name="event-time-start" placeholder="00:00" required> 
+                            <select name="timezone" id="timezone">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                            </select>
+                        </div>
+                        <div class="date-box">
+                            <label for="event-date-end"> End Time </label>
+                            <input type="text" name="event-date-end" placeholder="00/00/0000" required> 
+                            <input type="text" name="event-time-end" placeholder="00:00" required> 
+                            <select name="timezone" id="timezone">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                            </select>
+                            </div>
+                        <div class="input-box">
+                            <label for="event-orgs"> Organization: </label>
+                            <input type="text" name="event-orgs" required> 
+                        </div>
+                        <div class="input-box">
+                            <label for="event-description"> Decription: </label>
+                            <textarea id="description" name="event-description"></textarea>
+                        </div>
+                        <div class="input-box">
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option"> 
+                            </label>
+                        </div>
                     </div>
                     <div class="controls">
                         <button class="btn-submit" type="submit">Submit</button>
