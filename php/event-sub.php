@@ -16,9 +16,11 @@ $organization = $_POST["event-orgs"];
 
 
 
-$sql = "INSERT INTO event_table SET event_title='$event_title', event_location='$event_location', date_start='$date_start', event_start='$event_start', date_end='$date_end', event_end='$event_end', event_description='$event_description', organization='$organization' ";
-
-
+$sql = "INSERT INTO event_table (
+    event_title, event_location, date_start, event_start, date_end, event_end, event_description, organization
+) VALUES (
+    '$event_title', '$event_location', '$date_start', '$event_start', '$date_end', '$event_end', '$event_description', '$organization'
+)";
 
 if(mysqli_query($conn, $sql)){
     header("Location: ../pages/4_Event.php");
