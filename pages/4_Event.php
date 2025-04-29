@@ -38,19 +38,31 @@
             <div class="event-list">
                 <table>
                     <tr class="event-list-sets">
-                        <th> Events: </th>
+                        <th>Events</th>
+                        <th>Descriptions</th>
+                        <th>Location</th>
                     </tr>
-                    <tr>
+                
                     <?php
                         include '../php/conn.php';
 
                         $result = $conn->query("SELECT * FROM event_table"); 
 
+<<<<<<< HEAD
                         while($row = $result->fetch_assoc()) {
                             echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
                             echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
+=======
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr class='event'>";
+                            echo "<td data-label='Events'>" . htmlspecialchars($row['event_title']) . "</td>";
+                            echo "<td data-label='Descriptions'>" . htmlspecialchars($row['event_description']) . "</td>";
+                            echo "<td data-label='Location'>" . htmlspecialchars($row['event_location']) . "</td>";
+                            echo "</tr>";
+>>>>>>> a994c266e906725a595ee340016ab202f051edbb
                         }
+                        
                         ?>
                     </tr>
                 </table>
