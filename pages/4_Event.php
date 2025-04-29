@@ -47,11 +47,9 @@
                         $result = $conn->query("SELECT * FROM event_table"); 
 
                         while($row = $result->fetch_assoc()) {
-                            echo "<div class='event'>";
                             echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
                             echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
-                            echo "</div>";
                         }
                         ?>
                     </tr>
@@ -102,7 +100,7 @@
                             <textarea id="description" name="event-description"></textarea>
                         </div>
                         <input type="hidden" name="code" id="codeField">
-                        <div class="input-box">
+                        <div class="input-box-options">
                             <div class="option-title-box">
                                 <label for="option-box">
                                     Options:

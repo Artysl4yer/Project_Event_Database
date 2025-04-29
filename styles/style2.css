@@ -57,6 +57,12 @@ form .input-box{
     width: 100%;
 }
 
+form .input-box-option{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
 form .input-box input[type="date"]{
     width: 100%;
 }
