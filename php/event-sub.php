@@ -8,7 +8,12 @@ if($conn == false){
 $event_title = $_POST["event-title"];
 $even_location = $_POST["event-location"];
 $date_start = $_POST["date-start"];
+$event_start = $_POST["event-start"];
+$date_end = $_POST["date-end"];
+$event_end = $_POST["event-end"];
 $event_description = $_POST["event-description"];
+$organization = $_POST["organization"];
+
 
 
 $sql = "INSERT INTO event_table SET event-title=''";
