@@ -38,20 +38,22 @@
             <div class="event-list">
                 <table>
                     <tr class="event-list-sets">
-                        <th> Events: </th>
+                        <th>Events</th>
+                        <th>Descriptions</th>
+                        <th>Location</th>
                     </tr>
-                    <tr>
+                
                     <?php
                         include '../php/conn.php';
 
                         $result = $conn->query("SELECT * FROM event_table"); 
 
-                        while($row = $result->fetch_assoc()) {
-                            echo "<div class='event'>";
-                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr class='event'>";
+                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
-                            echo "</div>";
+                            echo "</tr>";
                         }
                         ?>
                     </tr>
