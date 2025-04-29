@@ -20,8 +20,6 @@ $sql = "INSERT INTO event_table SET event_title='$event_title', event_location='
 
 
 
-
-
 if(mysqli_query($conn, $sql)){
     header("Location: ../pages/4_Event.php");
 } else {

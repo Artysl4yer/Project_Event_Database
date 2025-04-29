@@ -40,6 +40,21 @@
                     <tr class="event-list-sets">
                         <th> Events: </th>
                     </tr>
+                    <tr>
+                    <?php
+                        include '../php/conn.php';
+
+                        $result = $conn->query("SELECT * FROM event_table"); 
+
+                        while($row = $result->fetch_assoc()) {
+                            echo "<div class='event'>";
+                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
+                            echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
+                            echo "</div>";
+                        }
+                        ?>
+                    </tr>
                 </table>
             </div>
         </div>
