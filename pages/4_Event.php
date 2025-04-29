@@ -62,7 +62,7 @@
                         </div>
                         <div class="date-box">
                             <label for="event-date-start"> Start Time </label>
-                            <input type="text" name="event-date" placeholder="00/00/0000" required> 
+                            <input type="text" name="event-date-start" placeholder="00/00/0000" required> 
                             <input type="text" name="event-time-start" placeholder="00:00" required> 
                             <select name="timezone" id="timezone">
                                     <option value="AM">AM</option>
