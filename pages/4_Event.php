@@ -50,7 +50,7 @@
                     <h3> Create New Event </h3>
                     <p> Fill out the information below to get started </p>
                 </div> 
-                <form action="../php/event-sub.php" method="GET">
+                <form action="../php/event-sub.php" method="POST">
                     <div class="user-details">
                         <div class="input-box">
                             <label for="event-title"> Event Title: </label>
@@ -87,23 +87,34 @@
                             <textarea id="description" name="event-description"></textarea>
                         </div>
                         <div class="input-box">
+                            <div class="option-title-box">
+                                <label for="option-box">
+                                    Options:
+                                </label>
+                            </div>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="StudentID"> StudentID
                             </label>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="Gender"> Gender 
                             </label>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="Section"> Section
                             </label>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="Section"> Year
                             </label>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="Age"> Age
                             </label>
                             <label for="option"> 
-                                <input type="checkbox" name="option"> 
+                                <input type="checkbox" name="option" value="Parents"> Parents
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option" value="ContactNo"> Contact No
+                            </label>
+                            <label for="option"> 
+                                <input type="checkbox" name="option" value="Email"> Email
                             </label>
                         </div>
                     </div>

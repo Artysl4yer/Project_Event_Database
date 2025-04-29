@@ -81,6 +81,9 @@ form .input-box textarea{
     height: 50px;
 }
 
+form .input-box .option-title-box{
+    margin: 15px;
+}
 .modal-content .controls .btn-close{
     background: transparent;
     color: #3284ed;
@@ -96,5 +99,6 @@ form .input-box textarea{
 .modal-content .controls .btn-submit:hover{
     cursor: pointer;
 }
+
 
 
