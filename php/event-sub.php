@@ -6,7 +6,7 @@ if($conn == false){
 }
 
 $event_title = $_POST["event-title"];
-$even_location = $_POST["event-location"];
+$event_location = $_POST["event-location"];
 $date_start = $_POST["date-start"];
 $event_start = $_POST["event-start"];
 $date_end = $_POST["date-end"];
@@ -16,7 +16,10 @@ $organization = $_POST["organization"];
 
 
 
-$sql = "INSERT INTO event_table SET event-title=''";
+$sql = "INSERT INTO event_table SET event_title='$event_title', event_location='$event_location', date_start='$date_start', event_start='$event_start', date_end='$date_end', event_end='$event_end', event_description='$event_description', organization='$organization' ";
+
+
+
 
 
 if(mysqli_query($conn, $sql)){
