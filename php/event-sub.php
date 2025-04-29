@@ -7,12 +7,12 @@ if($conn == false){
 
 $event_title = $_POST["event-title"];
 $event_location = $_POST["event-location"];
-$date_start = $_POST["date-start"];
-$event_start = $_POST["event-start"];
-$date_end = $_POST["date-end"];
-$event_end = $_POST["event-end"];
+$date_start = $_POST["event-date-start"];
+$event_start = $_POST["event-time-start"];
+$date_end = $_POST["event-date-end"];
+$event_end = $_POST["event-time-end"];
 $event_description = $_POST["event-description"];
-$organization = $_POST["organization"];
+$organization = $_POST["event-orgs"];
 
 
 
