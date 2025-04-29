@@ -120,7 +120,7 @@
                     </div>
                     <div class="controls">
                         <button class="btn-submit" type="submit">Submit</button>
-                        <button class="btn-close"> Close </button>
+                        <button class="btn-close" type="button"> Close </button>
                     </div>
                 </form>
             </div>
