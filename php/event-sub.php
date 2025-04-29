@@ -22,8 +22,6 @@ $sql = "INSERT INTO event_table (
     '$event_title', '$event_location', '$date_start', '$event_start', '$date_end', '$event_end', '$event_description', '$organization'
 )";
 
-
-
 if(mysqli_query($conn, $sql)){
     header("Location: ../pages/4_Event.php");
     exit();
