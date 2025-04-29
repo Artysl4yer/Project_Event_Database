@@ -50,11 +50,12 @@
 
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr class='event'>";
-                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
+                            echo "<td data-label='Events'>" . htmlspecialchars($row['event_title']) . "</td>";
+                            echo "<td data-label='Descriptions'>" . htmlspecialchars($row['event_description']) . "</td>";
+                            echo "<td data-label='Location'>" . htmlspecialchars($row['event_location']) . "</td>";
                             echo "</tr>";
                         }
+                        
                         ?>
                     </tr>
                 </table>
