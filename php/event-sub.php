@@ -28,9 +28,11 @@ $sql = "INSERT INTO event_table (
 
 if(mysqli_query($conn, $sql)){
     header("Location: ../pages/4_Event.php");
+    exit();
 } else {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
 }
 
 mysqli_close($conn);
+
 ?>
