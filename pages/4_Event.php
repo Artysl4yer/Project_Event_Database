@@ -65,7 +65,7 @@
                     <h3> Create New Event </h3>
                     <p> Fill out the information below to get started </p>
                 </div> 
-                <form action="../php/event-sub.php" method="POST">
+                <form id="evetForm" action="../php/event-sub.php" method="POST">
                     <div class="user-details">
                         <div class="input-box">
                             <label for="event-title"> Event Title: </label>
@@ -101,6 +101,7 @@
                             <label for="event-description"> Decription: </label>
                             <textarea id="description" name="event-description"></textarea>
                         </div>
+                        <input type="hidden" name="code" id="codeField">
                         <div class="input-box">
                             <div class="option-title-box">
                                 <label for="option-box">
