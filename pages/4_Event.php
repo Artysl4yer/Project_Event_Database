@@ -25,7 +25,7 @@
         <div class="event-details">
             <div class="event-attendance-top">
                 <p> Event List </p>
-                <button class="btn-import" id="openModal"> Import Event</button>
+                
                 <div class="search-container">
                     <form class="example" actiion="action_page.php">
                         <label for="search"> </label>
@@ -34,38 +34,47 @@
                     </form>
                 </div>
             </div>
-          
             <div class="event-list">
-                <table>
-                    <tr class="event-list-sets">
-                        <th>Events</th>
-                        <th>Descriptions</th>
-                        <th>Location</th>
-                    </tr>
-                
                     <?php
                         include '../php/conn.php';
 
                         $result = $conn->query("SELECT * FROM event_table"); 
 
-<<<<<<< HEAD
-                        while($row = $result->fetch_assoc()) {
-                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
-                            echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
-=======
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr class='event'>";
-                            echo "<td data-label='Events'>" . htmlspecialchars($row['event_title']) . "</td>";
-                            echo "<td data-label='Descriptions'>" . htmlspecialchars($row['event_description']) . "</td>";
-                            echo "<td data-label='Location'>" . htmlspecialchars($row['event_location']) . "</td>";
-                            echo "</tr>";
->>>>>>> a994c266e906725a595ee340016ab202f051edbb
+                            echo "<div class='event-box-details'>";
+                            echo "  <div class='floating-card'>";
+                            echo "      <div class='event-date'>";
+                            echo "          <p class='day'>" .$row['date_start']. "</p>";
+                            echo "          <p class='time'>" .$row['event_start']. "</p>";
+                            echo "      </div>";
+                            echo "      <div class='event-description'>";
+                            echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
+                            echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                            echo "      </div>";
+                            echo "      <div class='date'>";
+                            echo "          <p>" . $row['date_start'] . "</p>"; 
+                            echo "      </div>";
+                            echo "  </div>";
+                            echo "  <div class='even-more-details'>";
+                            echo "      <div class='event-box-row' id='box1'>";
+                            echo "          <div class='event-box-column'>";
+                            echo "              <p> Location:</p>";
+                            echo "              <p> Organization:</p>";
+                            echo "              <p> </p>";
+                            echo "              <p> Location:</p>";
+                            echo "          </div>";
+                            echo "          <div class='event-controls' id='box2'>";
+                            echo "              <button class='edit'> Edit </button>";
+                            echo "              <button class='delete'> Delete </button>";
+                            echo "          </div>";
+                            echo "      </div>";
+                            echo "  </div>";
+                            echo "</div>";
                         }
-                        
-                        ?>
-                    </tr>
-                </table>
+                    ?>
+                <div class="add-button">
+                    <button class="btn-import" id="openModal"> <i class="fa-solid fa-plus"></i> </button>
+                </div>
             </div>
         </div>
 
@@ -82,12 +91,12 @@
                             <input type="text" name="event-title" required> 
                         </div>
                         <div class="input-box">
-                            <label for="event-date"> Location: </label>
+                            <label for="event-location"> Location: </label>
                             <input type="text" name="event-location" required> 
                         </div>
                         <div class="date-box">
                             <label for="event-date-start"> Start Time </label>
-                            <input type="text" name="event-date-start" placeholder="00/00/0000" required> 
+                            <input type="date" name="event-date-start" placeholder="00/00/0000" required> 
                             <input type="text" name="event-time-start" placeholder="00:00" required> 
                             <select name="timezone" id="timezone">
                                     <option value="AM">AM</option>
@@ -96,7 +105,7 @@
                         </div>
                         <div class="date-box">
                             <label for="event-date-end"> End Time </label>
-                            <input type="text" name="event-date-end" placeholder="00/00/0000" required> 
+                            <input type="date" name="event-date-end" placeholder="00/00/0000" required> 
                             <input type="text" name="event-time-end" placeholder="00:00" required> 
                             <select name="timezone" id="timezone">
                                     <option value="AM">AM</option>
@@ -151,6 +160,9 @@
                 </form>
             </div>
         </div>
+        <div class='are-you-sure'>
+        </div>
         <script src="../Javascript/popup.js"></script>
+        <script src="../Javascript/RandomCodeGenerator.js"></script>
     </body>
 </html>

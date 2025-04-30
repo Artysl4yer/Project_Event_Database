@@ -65,13 +65,13 @@ Body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50px;
     height: 45px;
     max-width: 200px;
     flex: 1;
     padding: 10px;
     font-weight:bolder;
     border: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -118,7 +118,6 @@ Body{
     width: fit-content;
     font-size: 16px;
     margin-left: 10px;
-    flex: 1;
     background: transparent;
     color: #333;
 }
@@ -132,6 +131,131 @@ Body{
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
+
+
+.floating-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.floating-card .event-date {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    min-width: 80px;
+    margin-right: 20px;
+}
+
+.floating-card .event-date .day {
+    font-weight: bold;
+}
+
+.floating-card .event-date .time {
+    font-size: 14px;
+}
+
+.floating-card .event-description {
+    flex: 1;
+}
+
+.floating-card .event-description h3 {
+    margin: 0 0 5px;
+    font-weight: bold;
+}
+
+.floating-card .event-description p {
+    margin: 0;
+    color: #555;
+}
+
+/* Extra section (right-aligned text or date) */
+.floating-card .event-extra {
+    white-space: nowrap;
+    margin-left: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.event-list .add-button{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+}
+
+.event-list .add-button button{
+    padding: 25px;
+    background-color: transparent;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.event-list .add-button button:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+.event-list .add-button button{
+    width: 100%;
+}
+
+.event-box-details{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
+    max-height: 100px;
+}
+
+.event-box-details:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+    max-height: 300px;
+    overflow: visible;
+}
+
+.even-more-details .event-controls{
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.even-more-details .event-controls button{
+    padding: 8px 16px;
+    max-width: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.even-more-details .even-controls .edit{
+    background-color: red;
+}
+
+
+.event-box-details:hover .event-box-row p{
+    opacity: 1;    
+}
+
+
+
+.event-box-row{
+
+}
+
+
 
 /* Tab container containing the navigation*/
 
@@ -233,7 +357,7 @@ Body{
     border-collapse: collapse;
     margin-top: 20px;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #1E4F2A;
+    background-color: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     border-radius: 10px;
     overflow: hidden;
@@ -271,35 +395,3 @@ Body{
 }
 
 
-@media screen and (max-width: 768px) {
-    .event-list table, 
-    .event-list thead, 
-    .event-list tbody, 
-    .event-list th, 
-    .event-list td, 
-    .event-list tr {
-        display: block;
-        width: 100%;
-    }
-
-    .event-list-sets {
-        display: none; 
-    }
-
-    .event-list .event td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    .event-list .event td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: bold;
-        text-align: left;
-    }
-}

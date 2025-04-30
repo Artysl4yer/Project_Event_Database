@@ -55,6 +55,7 @@
 
 form .input-box{
     width: 100%;
+    margin: auto;
 }
 
 form .input-box-option{
@@ -69,17 +70,23 @@ form .input-box input[type="date"]{
 
 form  .date-box{
     display: flex;
-    justify-content:flex-start;
+    justify-content: space-around;
     gap: 50px;
+    width: 50%;
 }
 
 form .date-box input{
     width: 100%;
 }
 
+form .date-box input[type="date"]{
+    text-align: center;
+}
+
 form .input-box input[type="text"]{
     height: 20px;
     width: 100%;
+    border: 1px solid ;
 }
 
 form .input-box textarea{
@@ -105,6 +112,15 @@ form .input-box .option-title-box{
 .modal-content .controls .btn-submit:hover{
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
 
 
 
