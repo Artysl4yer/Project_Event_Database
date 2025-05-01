@@ -3,7 +3,6 @@
     <head>
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
-        <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
@@ -23,20 +22,16 @@
                 </div>
             </div>
         </div>
-        <div class="main-content">
-            <div class="first-page">
-            <!-- The Event List. The compilation of events, sort to newest to latest -->
-            <div class="event-details">
-                <div class="event-attendance-top">
-                    <p> Event List </p>
-                    
-                    <div class="search-container">
-                        <form class="example" actiion="action_page.php">
-                            <label for="search"> </label>
-                            <input type="text" id="search" name="fname" placeholder="Search...">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
+        <div class="event-details">
+            <div class="event-attendance-top">
+                <p> Event List </p>
+                <button class="btn-import" id="openModal"> Import Event</button>
+                <div class="search-container">
+                    <form class="example" actiion="action_page.php">
+                        <label for="search"> </label>
+                        <input type="text" id="search" name="fname" placeholder="Search...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
                     <div class="event-list">
                          <?php
@@ -263,7 +258,5 @@
 
        
         <script src="../Javascript/popup.js"></script>
-        <script src="../Javascript/RandomCodeGenerator.js"></script>
-    
     </body>
 </html>
