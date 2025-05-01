@@ -178,11 +178,83 @@ Body{
     color: #333;
 }
 
+
+.event-box-details{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
+    max-height: 100px;
+}
+
+.event-box-details:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+    max-height: 300px;
+}
+
+.even-box-details:active{
+    height: 300px;
+}
+
+.even-more-details .event-controls{
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.even-more-details .event-controls button{
+    padding: 8px 16px;
+    max-width: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.edit{
+    background-color: #969393;
+    color: white;
+}
+
+.edit:hover{
+    background-color: #104911;
+    cursor: pointer;
+}
+
+.delete{
+    background-color: #969393;
+    color: white;
+}
+
+.delete:hover{
+    background-color: #104911;
+    cursor: pointer;
+}
+
+
+.event-box-row .event-box-column p{
+    transition: opacity 0.3s ease-in-out;
+    color:#969393;   
+}
+
+.even-box-details:hover .event-box-column p{
+    opacity: 1;
+    visibility: hidden;
+    
+}
+
+.event-box-column b{
+    color: black;
+}
 .event-list .add-button{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-
 }
 
 .event-list .add-button button{
@@ -205,54 +277,8 @@ Body{
     width: 100%;
 }
 
-.event-box-details{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
-    max-height: 100px;
-}
-
-.event-box-details:hover {
-    transform: scale(1.01);
-    cursor: pointer;
-    max-height: 300px;
-    overflow: visible;
-}
-
-.even-more-details .event-controls{
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-}
-
-.even-more-details .event-controls button{
-    padding: 8px 16px;
-    max-width: 50%;
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-
-
-.even-more-details .even-controls .edit{
-    background-color: red;
-}
-
-
-.event-box-details:hover .event-box-row p{
-    opacity: 1;    
-}
-
-
-
-.event-box-row{
-
+.event-list{
+    animation: fadein 1s;
 }
 
 

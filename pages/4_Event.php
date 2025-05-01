@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
+        <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
@@ -22,6 +23,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- The Event List. The compilation of events, sort to newest to latest -->
         <div class="event-details">
             <div class="event-attendance-top">
                 <p> Event List </p>
@@ -38,7 +41,7 @@
                     <?php
                         include '../php/conn.php';
 
-                        $result = $conn->query("SELECT * FROM event_table"); 
+                        $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
 
                         while ($row = $result->fetch_assoc()) {
                             echo "<div class='event-box-details'>";
@@ -58,10 +61,10 @@
                             echo "  <div class='even-more-details'>";
                             echo "      <div class='event-box-row' id='box1'>";
                             echo "          <div class='event-box-column'>";
-                            echo "              <p> Location:</p>";
-                            echo "              <p> Organization:</p>";
+                            echo "              <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
+                            echo "              <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
                             echo "              <p> </p>";
-                            echo "              <p> Location:</p>";
+                            echo "              <p> </p>";
                             echo "          </div>";
                             echo "          <div class='event-controls' id='box2'>";
                             echo "              <button class='edit'> Edit </button>";
@@ -78,6 +81,8 @@
             </div>
         </div>
 
+
+        <!-- This is the popup box for the import of Event System that includes the Event title, Event location, Date, time and Organization-->
         <div id="importModal" class="modal">
             <div class="modal-content">
                 <div class="header">
@@ -160,7 +165,15 @@
                 </form>
             </div>
         </div>
-        <div class='are-you-sure'>
+
+        <!-- Popup for the registration list of attendies -->
+        <div class="registration-table-box">
+            <div class="registration-modal-content">
+                <div class="header">
+                </div>
+                <form>
+                </form>
+            </div>
         </div>
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/RandomCodeGenerator.js"></script>
