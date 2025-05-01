@@ -22,37 +22,49 @@ Body{
     overflow-x: hidden;
 }
 
-.main-cont{
-    display: conten;
-    transition: all 0.3s ease;
+.main-content{
+    display: flex;
     max-width: 100%;
+    transition: all 0.3s ease-in-out;
 }
 
 .first-page{
-    flex: 1;
-    margin: auto;
+    flex-grow: 1;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .second-page{
-    max-width: 100%;
-    transition: all 0.3 ease;
+    margin: 5% auto;
+    transform: translateX(1000px);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    padding: 0;
+    top: 0;
+    right: 0;
+}
+
+.second-page.active {
+    transform: translateX(0%);
+    max-width: 1000px;
+    padding: 20px;
 }
 
 
 
-.title-container{
+.title-container {
     color: white;
     background-color: #104911;
     padding: 30px;
-    margin: 0px;
-    size: 10px;
-    overflow: hidden;
+    margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1000; /* ensure it stays above other content */
     animation: fadein 1s;
 }
-
 
 
 .event-details{
