@@ -23,6 +23,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="main-content">
             <div class="first-page">
             <!-- The Event List. The compilation of events, sort to newest to latest -->
@@ -256,6 +257,19 @@
                             <button class="btn-submit" type="submit">Submit</button>
                             <button class="btn-close" type="button" id="btn-click" onclick="closeModal()"> Close </button>
                         </div>
+=======
+
+        <!-- The Event List. The compilation of events, sort to newest to latest -->
+        <div class="event-details">
+            <div class="event-attendance-top">
+                <p> Event List </p>
+                
+                <div class="search-container">
+                    <form class="example" actiion="action_page.php">
+                        <label for="search"> </label>
+                        <input type="text" id="search" name="fname" placeholder="Search...">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+>>>>>>> cd24452 (Version 1.12)
                     </form>
                 </div>
             </div>
