@@ -1,0 +1,19 @@
+.registration-table-box{
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.registration-modal-content{
+    background-color: white;
+    margin: 5% auto;
+    padding: 0px;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
