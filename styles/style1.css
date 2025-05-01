@@ -22,6 +22,24 @@ Body{
     overflow-x: hidden;
 }
 
+.main-cont{
+    display: conten;
+    transition: all 0.3s ease;
+    max-width: 100%;
+}
+
+.first-page{
+    flex: 1;
+    margin: auto;
+}
+
+.second-page{
+    max-width: 100%;
+    transition: all 0.3 ease;
+}
+
+
+
 .title-container{
     color: white;
     background-color: #104911;
@@ -47,7 +65,7 @@ Body{
     gap: 15px;
     height: auto;
     max-height: max-content;
-    max-width:70%;
+    max-width:100%;
 }
 
 .event-attendance-top{
@@ -216,12 +234,12 @@ Body{
     border-radius: 5px;
 }
 
-.edit{
+.btn-edit{
     background-color: #969393;
     color: white;
 }
 
-.edit:hover{
+.btn-edit:hover{
     background-color: #104911;
     cursor: pointer;
 }

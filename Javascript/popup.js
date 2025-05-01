@@ -1,7 +1,18 @@
 
-const modal = document.getElementById("importModal");
-const openBtn = document.getElementById("openModal");
-const closeBtn = document.querySelector(".btn-close");
 
-openBtn.onclick = () => modal.style.display = "block";
-closeBtn.onclick = () => modal.style.display = "none";
+
+
+function openModal(){
+    document.getElementById('importModal').style.display = "block";
+}
+
+
+function openRegistration(eventId) {
+    document.getElementById('importRegistration').style.display = "block";
+
+  }
+  
+  function closeModal() {
+    document.getElementById('importModal').style.display = "none";
+  }
+
