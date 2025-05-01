@@ -22,41 +22,25 @@ Body{
     overflow-x: hidden;
 }
 
-.main-content{
-    display: flex;
+.main-cont{
+    display: conten;
+    transition: all 0.3s ease;
     max-width: 100%;
-    transition: all 0.3s ease-in-out;
 }
 
 .first-page{
-    flex-grow: 1;
-    padding: 20px;
-    transition: all 0.3s ease-in-out;
+    flex: 1;
+    margin: auto;
 }
 
 .second-page{
-    margin: 5% auto;
-    transform: translateX(1000px);
-    transition: transform 0.4s ease;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 0;
-    padding: 0;
-    top: 0;
-    right: 0;
-}
-
-.second-page.active {
-    transform: translateX(0%);
-    max-width: 1000px;
-    padding: 20px;
+    max-width: 100%;
+    transition: all 0.3 ease;
 }
 
 
 
-.title-container {
-    display: flex;
-    row-gap: 15px;
+.title-container{
     color: white;
     background-color: #104911;
     padding: 20px;
@@ -89,7 +73,7 @@ Body{
     gap: 15px;
     height: auto;
     max-height: max-content;
-    max-width:70%;
+    max-width:100%;
 }
 
 .event-attendance-top{
@@ -258,12 +242,12 @@ Body{
     border-radius: 5px;
 }
 
-.edit{
+.btn-edit{
     background-color: #969393;
     color: white;
 }
 
-.edit:hover{
+.btn-edit:hover{
     background-color: #104911;
     cursor: pointer;
 }
