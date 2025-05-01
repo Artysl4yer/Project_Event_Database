@@ -1,11 +1,19 @@
 .registration-table-box{
     display: none;
+<<<<<<< HEAD
     left: 0; top: 0;;
     border-radius: 16px;
     margin: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     border: 1px solid rgba(16, 73, 17, 0.1);
+=======
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+>>>>>>> a4302e9 (Version 1.13)
 }
 
 .registration-modal-content{
