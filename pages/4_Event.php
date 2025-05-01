@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
+        <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
@@ -22,10 +23,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- The Event List. The compilation of events, sort to newest to latest -->
         <div class="event-details">
             <div class="event-attendance-top">
                 <p> Event List </p>
-                <button class="btn-import" id="openModal"> Import Event</button>
+                
                 <div class="search-container">
                     <form class="example" actiion="action_page.php">
                         <label for="search"> </label>
@@ -34,50 +37,71 @@
                     </form>
                 </div>
             </div>
-          
             <div class="event-list">
-                <table>
-                    <tr class="event-list-sets">
-                        <th> Events: </th>
-                    </tr>
-                    <tr>
                     <?php
                         include '../php/conn.php';
 
-                        $result = $conn->query("SELECT * FROM event_table"); 
+                        $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
 
-                        while($row = $result->fetch_assoc()) {
-                            echo "<div class='event'>";
-                            echo "<td>" . htmlspecialchars($row['event_title']) . "</td";
-                            echo "<td>" . htmlspecialchars($row['event_description']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['event_location']) . "</td>";
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<div class='event-box-details'>";
+                            echo "  <div class='floating-card'>";
+                            echo "      <div class='event-date'>";
+                            echo "          <p class='day'>" .$row['date_start']. "</p>";
+                            echo "          <p class='time'>" .$row['event_start']. "</p>";
+                            echo "      </div>";
+                            echo "      <div class='event-description'>";
+                            echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
+                            echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                            echo "      </div>";
+                            echo "      <div class='date'>";
+                            echo "          <p>" . $row['date_start'] . "</p>"; 
+                            echo "      </div>";
+                            echo "  </div>";
+                            echo "  <div class='even-more-details'>";
+                            echo "      <div class='event-box-row' id='box1'>";
+                            echo "          <div class='event-box-column'>";
+                            echo "              <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
+                            echo "              <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                            echo "              <p> </p>";
+                            echo "              <p> </p>";
+                            echo "          </div>";
+                            echo "          <div class='event-controls' id='box2'>";
+                            echo "              <button class='edit'> Edit </button>";
+                            echo "              <button class='delete'> Delete </button>";
+                            echo "          </div>";
+                            echo "      </div>";
+                            echo "  </div>";
                             echo "</div>";
                         }
-                        ?>
-                    </tr>
-                </table>
+                    ?>
+                <div class="add-button">
+                    <button class="btn-import" id="openModal"> <i class="fa-solid fa-plus"></i> </button>
+                </div>
             </div>
         </div>
 
+
+        <!-- This is the popup box for the import of Event System that includes the Event title, Event location, Date, time and Organization-->
         <div id="importModal" class="modal">
             <div class="modal-content">
                 <div class="header">
                     <h3> Create New Event </h3>
                     <p> Fill out the information below to get started </p>
                 </div> 
-                <form action="../php/event-sub.php" method="POST">
+                <form id="evetForm" action="../php/event-sub.php" method="POST">
                     <div class="user-details">
                         <div class="input-box">
                             <label for="event-title"> Event Title: </label>
                             <input type="text" name="event-title" required> 
                         </div>
                         <div class="input-box">
-                            <label for="event-date"> Location: </label>
+                            <label for="event-location"> Location: </label>
                             <input type="text" name="event-location" required> 
                         </div>
                         <div class="date-box">
                             <label for="event-date-start"> Start Time </label>
-                            <input type="text" name="event-date-start" placeholder="00/00/0000" required> 
+                            <input type="date" name="event-date-start" placeholder="00/00/0000" required> 
                             <input type="text" name="event-time-start" placeholder="00:00" required> 
                             <select name="timezone" id="timezone">
                                     <option value="AM">AM</option>
@@ -86,7 +110,7 @@
                         </div>
                         <div class="date-box">
                             <label for="event-date-end"> End Time </label>
-                            <input type="text" name="event-date-end" placeholder="00/00/0000" required> 
+                            <input type="date" name="event-date-end" placeholder="00/00/0000" required> 
                             <input type="text" name="event-time-end" placeholder="00:00" required> 
                             <select name="timezone" id="timezone">
                                     <option value="AM">AM</option>
@@ -101,7 +125,8 @@
                             <label for="event-description"> Decription: </label>
                             <textarea id="description" name="event-description"></textarea>
                         </div>
-                        <div class="input-box">
+                        <input type="hidden" name="code" id="codeField">
+                        <div class="input-box-options">
                             <div class="option-title-box">
                                 <label for="option-box">
                                     Options:
@@ -140,6 +165,17 @@
                 </form>
             </div>
         </div>
+
+        <!-- Popup for the registration list of attendies -->
+        <div class="registration-table-box">
+            <div class="registration-modal-content">
+                <div class="header">
+                </div>
+                <form>
+                </form>
+            </div>
+        </div>
         <script src="../Javascript/popup.js"></script>
+        <script src="../Javascript/RandomCodeGenerator.js"></script>
     </body>
 </html>
