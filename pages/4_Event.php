@@ -260,8 +260,15 @@
                 </div>
             </div>
         </div>    
-
-       
+        <!-- Popup for the registration list of attendies -->
+        <div class="registration-table-box">
+            <div class="registration-modal-content">
+                <div class="header">
+                </div>
+                <form>
+                </form>
+            </div>
+        </div>
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/RandomCodeGenerator.js"></script>
     
