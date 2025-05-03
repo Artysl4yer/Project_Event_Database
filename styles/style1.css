@@ -22,15 +22,6 @@ Body{
     overflow-x: hidden;
 }
 
-<<<<<<< HEAD
-.title-container{
-    color: white;
-    background-color: #104911;
-    padding: 30px;
-    margin: 0px;
-    size: 10px;
-    overflow: hidden;
-=======
 .main-content{
     display: flex;
     max-width: 100%;
@@ -68,7 +59,6 @@ Body{
     background-color: #104911;
     padding: 30px;
     margin: 0;
->>>>>>> parent of 02cc092 (Version 1.13)
     position: fixed;
     top: 0;
     width: 100%;
