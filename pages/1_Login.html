@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="../styles/style4.css">
     <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="../javascript/popup.js"></script>
 </head>
 <body>
     <div class="login-container">
         <div class="university-logo">
-            <i class="fas fa-university"></i>
+            <img src="../images-icon/plplogo.png" alt="PLP Logo">
         </div>
         
         <div class="university-info">
@@ -31,12 +30,12 @@
             <form id="loginForm">
                 <div class="input-field">
                     <label for="email">Email/Student ID:</label>
-                    <input type="text" id="email" required>
+                    <input type="text" id="email" name="email" required>
                 </div>
                 
                 <div class="input-field">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" name="password" required>
                 </div>
                 
                 <div class="button-group">
@@ -44,9 +43,79 @@
                     <button type="submit" class="login-btn" id="loginBtn">Log in</button>
                 </div>
             </form>
+            
+            <div id="error-message" style="color: #ff4444; margin-top: 15px; text-align: center; display: none;"></div>
         </div>
     </div>
 
-    <script src="../javascript/login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const cancelBtn = document.querySelector('.cancel-btn');
+            const errorMessage = document.getElementById('error-message');
+
+            // Login form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                // Simple validation
+                if (!email || !password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+
+                // Show loading state
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+                loginBtn.disabled = true;
+                errorMessage.style.display = 'none';
+
+                try {
+                    // Simulate network delay (remove in production)
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // For demo purposes - accept any non-empty credentials
+                    // In production, replace with actual API call
+                    if (email && password) {
+                        // Store login state in sessionStorage
+                        sessionStorage.setItem('isLoggedIn', 'true');
+                        sessionStorage.setItem('userEmail', email);
+                        
+                        // Redirect to event page
+                        window.location.href = 'event.php';
+                    } else {
+                        showError('Invalid credentials');
+                        loginBtn.innerHTML = 'Log in';
+                        loginBtn.disabled = false;
+                    }
+                } catch (error) {
+                    showError('An error occurred. Please try again.');
+                    console.error('Login error:', error);
+                    loginBtn.innerHTML = 'Log in';
+                    loginBtn.disabled = false;
+                }
+            });
+
+            // Cancel button functionality
+            cancelBtn.addEventListener('click', function() {
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                errorMessage.style.display = 'none';
+            });
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+
+            // Check if already logged in
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                window.location.href = 'event.php';
+            }
+        });
+    </script>
 </body>
 </html>
