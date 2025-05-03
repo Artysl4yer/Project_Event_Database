@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
+    
+
     <body>
         <div class="title-container">
             Pamantasan ng Lungsod ng Pasig
@@ -30,7 +32,7 @@
                 <p> Event List </p>
                 
                 <div class="search-container">
-                    <form class="example" actiion="action_page.php">
+                    <form class="example" action="action_page.php">
                         <label for="search"> </label>
                         <input type="text" id="search" name="fname" placeholder="Search...">
                         <button type="submit"><i class="fa fa-search"></i></button>
@@ -44,18 +46,22 @@
                         $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
 
                         while ($row = $result->fetch_assoc()) {
+                            $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
+                            $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+
                             echo "<div class='event-box-details'>";
                             echo "  <div class='floating-card'>";
                             echo "      <div class='event-date'>";
-                            echo "          <p class='day'>" .$row['date_start']. "</p>";
-                            echo "          <p class='time'>" .$row['event_start']. "</p>";
+                            echo "          <p class='day'>" . $dateOnly . "</p>";
+                            echo "          <p class='time'>" . $dateTimeStart . "</p>";
+
                             echo "      </div>";
                             echo "      <div class='event-description'>";
                             echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
                             echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
                             echo "      </div>";
                             echo "      <div class='date'>";
-                            echo "          <p>" . $row['date_start'] . "</p>"; 
+                            echo "          <p>" . $dateOnly . "</p>";
                             echo "      </div>";
                             echo "  </div>";
                             echo "  <div class='even-more-details'>";
@@ -101,28 +107,20 @@
                         </div>
                         <div class="date-box">
                             <label for="event-date-start"> Start Time </label>
-                            <input type="date" name="event-date-start" placeholder="00/00/0000" required> 
-                            <input type="text" name="event-time-start" placeholder="00:00" required> 
-                            <select name="timezone" id="timezone">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                            </select>
+                            <input type="date" id="event-date-start" name="event-date-start" placeholder="DD/MM/YYYY" required>
+                            <input type="time" id="event-time-start" name="event-time-start" required>
                         </div>
                         <div class="date-box">
                             <label for="event-date-end"> End Time </label>
-                            <input type="date" name="event-date-end" placeholder="00/00/0000" required> 
-                            <input type="text" name="event-time-end" placeholder="00:00" required> 
-                            <select name="timezone" id="timezone">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                            </select>
-                            </div>
+                            <input type="date" id="event-date-end" name="event-date-end" placeholder="DD/MM/YYYY" required>
+                            <input type="time" id="event-time-end" name="event-time-end" required>
+                        </div>
                         <div class="input-box">
                             <label for="event-orgs"> Organization: </label>
                             <input type="text" name="event-orgs" required> 
                         </div>
                         <div class="input-box">
-                            <label for="event-description"> Decription: </label>
+                            <label for="event-description"> Description: </label>
                             <textarea id="description" name="event-description"></textarea>
                         </div>
                         <input type="hidden" name="code" id="codeField">
@@ -158,6 +156,9 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" name="event_start" id="event_start_hidden">
+                    <input type="hidden" name="event_end" id="event_end_hidden">
+
                     <div class="controls">
                         <button class="btn-submit" type="submit">Submit</button>
                         <button class="btn-close" type="button"> Close </button>
