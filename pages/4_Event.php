@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="title-container">
-            Pamantasan ng Lungsod ng Pasig
+            <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
             <div class="tab-container">
                 <div class="menu-items">
                     <a href="" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Events </span> </a>

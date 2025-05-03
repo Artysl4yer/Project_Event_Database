@@ -55,15 +55,28 @@ Body{
 
 
 .title-container {
+    display: flex;
+    row-gap: 15px;
     color: white;
     background-color: #104911;
-    padding: 30px;
+    padding: 20px;
     margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000; /* ensure it stays above other content */
     animation: fadein 1s;
+}
+
+.title-container h1{
+    font-size: 15px;
+}
+
+.title-container img{
+    width: 40px;
+    height: 35px;
+    margin-top: 2px;
+    margin-right: 10px;
 }
 
 
@@ -325,7 +338,6 @@ Body{
     height: 500vh;
     max-height: 100%;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     overflow-x: hidden;
