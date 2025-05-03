@@ -22,30 +22,22 @@ Body{
     overflow-x: hidden;
 }
 
-.main-cont{
-    display: conten;
-    transition: all 0.3s ease;
+.main-content{
+    display: flex;
     max-width: 100%;
+    transition: all 0.3s ease-in-out;
 }
 
 .first-page{
-    flex: 1;
-    margin: auto;
+    flex-grow: 1;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
 .second-page{
-    max-width: 100%;
-    transition: all 0.3 ease;
-}
-
-
-
-.title-container{
-    color: white;
-    background-color: #104911;
-    padding: 30px;
-    margin: 0px;
-    size: 10px;
+    margin: 5% auto;
+    transform: translateX(1000px);
+    transition: transform 0.4s ease;
     overflow: hidden;
     white-space: nowrap;
     max-width: 0;
@@ -63,55 +55,17 @@ Body{
 
 
 .title-container {
-    display: flex;
-    row-gap: 15px;
     color: white;
     background-color: #104911;
-    padding: 20px;
+    padding: 30px;
     margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* ensure it stays above other content */
     animation: fadein 1s;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.title-container h1{
-    font-size: 15px;
-}
 
-.title-container img{
-    width: 40px;
-    height: 35px;
-    margin-top: 2px;
-    margin-right: 10px;
-}
-
->>>>>>> 02cc092 (Version 1.13)
-
-<<<<<<< HEAD
-=======
->>>>>>> parent of 02cc092 (Version 1.13)
-=======
-.title-container h1{
-    font-size: 15px;
-}
-
-.title-container img{
-    width: 40px;
-    height: 35px;
-    margin-top: 2px;
-    margin-right: 10px;
-}
-
->>>>>>> 02cc092 (Version 1.13)
-
-=======
->>>>>>> 59f980d (Version 1.13)
 .event-details{
     display: grid;
     margin-top: 100px;
@@ -122,7 +76,7 @@ Body{
     gap: 15px;
     height: auto;
     max-height: max-content;
-    max-width:100%;
+    max-width:70%;
 }
 
 .event-attendance-top{
@@ -291,12 +245,12 @@ Body{
     border-radius: 5px;
 }
 
-.btn-edit{
+.edit{
     background-color: #969393;
     color: white;
 }
 
-.btn-edit:hover{
+.edit:hover{
     background-color: #104911;
     cursor: pointer;
 }
@@ -370,6 +324,7 @@ Body{
     height: 500vh;
     max-height: 100%;
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     overflow-x: hidden;

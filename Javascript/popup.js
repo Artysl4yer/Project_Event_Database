@@ -16,7 +16,6 @@ function openRegistration(eventId) {
     document.getElementById('importModal').style.display = "none";
   }
 
-<<<<<<< HEAD
 
   function togglePanel() {
     const panel = document.querySelector('.second-page');
@@ -28,5 +27,3 @@ function openRegistration(eventId) {
     // Add the class back to trigger animation
     panel.classList.add('active');
   }
-=======
->>>>>>> 6c4bf48 (Version 1.13)
