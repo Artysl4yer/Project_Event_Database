@@ -22,6 +22,7 @@ Body{
     overflow-x: hidden;
 }
 
+<<<<<<< HEAD
 .title-container{
     color: white;
     background-color: #104911;
@@ -29,13 +30,55 @@ Body{
     margin: 0px;
     size: 10px;
     overflow: hidden;
+=======
+.main-content{
+    display: flex;
+    max-width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.first-page{
+    flex-grow: 1;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.second-page{
+    margin: 5% auto;
+    transform: translateX(1000px);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    padding: 0;
+    top: 0;
+    right: 0;
+}
+
+.second-page.active {
+    transform: translateX(0%);
+    max-width: 1000px;
+    padding: 20px;
+}
+
+
+
+.title-container {
+    color: white;
+    background-color: #104911;
+    padding: 30px;
+    margin: 0;
+>>>>>>> parent of 02cc092 (Version 1.13)
     position: fixed;
     top: 0;
     width: 100%;
     animation: fadein 1s;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 02cc092 (Version 1.13)
 
 .event-details{
     display: grid;
