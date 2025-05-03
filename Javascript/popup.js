@@ -3,10 +3,6 @@ const modal = document.getElementById("importModal");
 const openBtn = document.getElementById("openModal");
 const closeBtn = document.querySelector(".btn-close");
 
-<<<<<<< HEAD
-openBtn.onclick = () => modal.style.display = "block";
-closeBtn.onclick = () => modal.style.display = "none";
-=======
 
 
 function openModal(){
@@ -34,4 +30,3 @@ function openRegistration(eventId) {
     // Add the class back to trigger animation
     panel.classList.add('active');
   }
->>>>>>> 59f980d (Version 1.13)

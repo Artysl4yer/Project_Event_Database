@@ -55,17 +55,9 @@ Body{
 
 
 .title-container {
-<<<<<<< HEAD
-    display: flex;
-    row-gap: 15px;
-    color: white;
-    background-color: #104911;
-    padding: 20px;
-=======
     color: white;
     background-color: #104911;
     padding: 30px;
->>>>>>> 59f980d (Version 1.13)
     margin: 0;
     position: fixed;
     top: 0;
