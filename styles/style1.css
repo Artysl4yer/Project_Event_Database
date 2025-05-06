@@ -55,14 +55,15 @@ Body{
 
 
 .title-container {
+    display: flex;
     color: white;
     background-color: #104911;
-    padding: 30px;
+    padding: 20px;
     margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* ensure it stays above other content */
+    z-index: 1000; 
     animation: fadein 1s;
 }
 
@@ -337,6 +338,7 @@ Body{
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1000;
     overflow-x: hidden;
     padding: 40px 0px;
     padding-left: 3px;
