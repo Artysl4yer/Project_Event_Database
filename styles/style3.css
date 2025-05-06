@@ -25,11 +25,6 @@
 }
 
 
-
-.registration-header {
-    
-}
-
 .registration-modal-content form {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

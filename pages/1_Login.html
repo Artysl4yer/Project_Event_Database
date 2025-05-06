@@ -30,17 +30,27 @@
             
             <form id="loginForm">
                 <div class="input-field">
-                    <label for="email">Email/Student ID:</label>
-                    <input type="text" id="email" required>
+                    <label for="email">Admin:</label>
+                    <input type="text" id="email" placeholder="Enter email" required>
                 </div>
                 
                 <div class="input-field">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" required>
+                    <!-- Password Field with Eye Icon -->
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Enter password" required>
+                        <i id="togglePassword" class="fas fa-eye"></i>
+                    </div>
                 </div>
                 
-                <div class="button-group">
-                    <button type="button" class="cancel-btn">Cancel</button>
+                <!-- Event Code Field (hidden by default) -->
+                <div class="input-field" id="eventCodeField" style="display: none;">
+                    <label for="eventCode">Event Code:</label>
+                    <input type="text" id="eventCode">
+                    <small>Please enter the event code provided by your professor</small>
+                </div>
+                
+                <div class="button-group">  
                     <button type="submit" class="login-btn" id="loginBtn">Log in</button>
                 </div>
             </form>
@@ -48,5 +58,23 @@
     </div>
 
     <script src="../javascript/login.js"></script>
+
+    <!-- JavaScript for password toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('password');
+
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordField.type === 'password' ? 'text' : 'password';
+                passwordField.type = type;
+
+                // Toggle the eye icon
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php
+// No event code needed, just start session
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
