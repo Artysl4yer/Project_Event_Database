@@ -19,7 +19,7 @@ session_start();
             <div class="tab-container">
                 <div class="menu-items">
                     <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                    <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Event Table </span> </a>
+                    <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
                     <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
                     <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
                     <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
@@ -30,7 +30,13 @@ session_start();
                 </div>
             </div>
         </div>
+        <div class="image-background-dim">
+            <div class="image-background">
+                <h1> PLP EVENT ATTENDACNCE SYSTEM </h1>
+            </div>
+        </div>
         <div class="main-content">
+       
             <div class="first-page">
             <!-- The Event List. The compilation of events, sort to newest to latest -->
             <div class="event-details">
@@ -45,6 +51,7 @@ session_start();
                         </form>
                     </div>
                 </div>
+                
                     <div class="event-list">
                          <?php
                             include '../php/conn.php';
@@ -89,8 +96,13 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="second-page">
-                <!-- Popup for the registration list of attendies -->
+
+
+
+
+                                <!-- temporary -->
+    <!--        <div class="second-page">
+                 Popup for the registration list of attendies 
                 <div class="registration-table-box" id="importRegistration">
                     <div class="registration-modal-content">
                         <div class="registraion-header">
@@ -181,7 +193,7 @@ session_start();
                     </div>
                 </div>
             </div>
-        </div>                
+        </div>                -->
 
             <!-- This is the popup box for the import of Event System that includes the Event title, Event location, Date, time and Organization-->
             <div id="importModal" class="modal">

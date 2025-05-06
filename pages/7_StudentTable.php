@@ -13,7 +13,7 @@
             <div class="tab-container">
                 <div class="menu-items">
                     <a href="4_Event.php" class="active"> <i class="fa-solid fa-jome"></i> <span class="label"> Home </span> </a>
-                    <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Event Table </span> </a>
+                    <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Events </span> </a>
                     <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
                     <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
                     <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>

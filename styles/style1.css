@@ -24,8 +24,39 @@ Body{
 
 .main-content{
     display: flex;
+    flex-direction: column;
     max-width: 100%;
     transition: all 0.3s ease-in-out;
+    background-color: white;
+
+}
+
+.ima
+
+.image-background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 1;
+    min-height: 50vh;
+    background-image: url('../images-icon/plpbackground.jpg');
+    background-size: cover;
+    background-attachment: scroll; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-background h1{
+    color: white;
+}
+
+.image-background img{
+    
+    width: 100%;
+    position:relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    
 }
 
 .first-page{
