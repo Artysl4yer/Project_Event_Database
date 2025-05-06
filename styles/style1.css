@@ -55,17 +55,28 @@ Body{
 
 
 .title-container {
+    display: flex;
     color: white;
     background-color: #104911;
-    padding: 30px;
+    padding: 20px;
     margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* ensure it stays above other content */
+    z-index: 1000; 
     animation: fadein 1s;
 }
 
+.title-container h1{
+    font-size: 15px;
+}
+
+.title-container img{
+    width: 40px;
+    height: 35px;
+    margin-top: 2px;
+    margin-right: 10px;
+}
 
 .event-details{
     display: grid;
@@ -325,9 +336,9 @@ Body{
     height: 500vh;
     max-height: 100%;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
+    z-index: 1000;
     overflow-x: hidden;
     padding: 40px 0px;
     padding-left: 3px;

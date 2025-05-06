@@ -15,10 +15,11 @@ session_start();
     </head>
     <body>
         <div class="title-container">
-            Pamantasan ng Lungsod ng Pasig
+            <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
             <div class="tab-container">
                 <div class="menu-items">
-                    <a href="" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Events </span> </a>
+                    <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+                    <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Event Table </span> </a>
                     <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
                     <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
                     <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
@@ -48,21 +49,25 @@ session_start();
                          <?php
                             include '../php/conn.php';
 
-                            $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
 
+                            $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
+                                
                             while ($row = $result->fetch_assoc()) {
+                                $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
+                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+
                                 echo "<div class='event-box-details'>";
                                 echo "  <div class='floating-card'>";
                                 echo "      <div class='event-date'>";
-                                echo "          <p class='day'>" .$row['date_start']. "</p>";
-                                echo "          <p class='time'>" .$row['event_start']. "</p>";
+                                echo "          <p class='day'>" .$dateOnly. "</p>";
+                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
                                 echo "      </div>";
                                 echo "      <div class='event-description'>";
                                 echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
                                 echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
                                 echo "      </div>";
                                 echo "      <div class='date'>";
-                                echo "          <p>" . $row['date_start'] . "</p>"; 
+                                echo "          <p>" . $dateOnly. "</p>"; 
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "  <div class='even-more-details'>";
@@ -72,10 +77,6 @@ session_start();
                                 echo "              <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
                                 echo "              <p> </p>";
                                 echo "              <p> </p>";
-                                echo "          </div>";
-                                echo "          <div class='event-controls' id='box2'>";
-                                echo "             <button class='btn-edit' id='open-registration' onclick='togglePanel()'>Edit</button>";
-                                echo "              <button class='delete'> Delete </button>";
                                 echo "          </div>";
                                 echo "      </div>";
                                 echo "  </div>";
@@ -202,20 +203,12 @@ session_start();
                             <div class="date-box">
                                 <label for="event-date-start"> Start Time </label>
                                 <input type="date" name="event-date-start" placeholder="00/00/0000" required> 
-                                <input type="text" name="event-time-start" placeholder="00:00" required> 
-                                <select name="timezone" id="timezone">
-                                        <option value="AM">AM</option>
-                                        <option value="PM">PM</option>
-                                </select>
+                                <input type="time" name="event-time-start" placeholder="00:00" required> 
                             </div>
                             <div class="date-box">
                                 <label for="event-date-end"> End Time </label>
-                                <input type="date" name="event-date-end" placeholder="00/00/0000" required> 
-                                <input type="text" name="event-time-end" placeholder="00:00" required> 
-                                <select name="timezone" id="timezone">
-                                        <option value="AM">AM</option>
-                                        <option value="PM">PM</option>
-                                </select>
+                                <input type="date" id="event-date-end" name="event-date-end" placeholder="00/00/0000" required> 
+                                <input type="time" id= "event-time-end" name="event-time-end" placeholder="00:00" required> 
                                 </div>
                             <div class="input-box">
                                 <label for="event-orgs"> Organization: </label>
