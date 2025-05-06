@@ -72,10 +72,6 @@
                                 echo "              <p> </p>";
                                 echo "              <p> </p>";
                                 echo "          </div>";
-                                echo "          <div class='event-controls' id='box2'>";
-                                echo "             <button class='btn-edit' id='open-registration' onclick='togglePanel()'>Edit</button>";
-                                echo "              <button class='delete'> Delete </button>";
-                                echo "          </div>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "</div>";
