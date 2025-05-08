@@ -24,8 +24,57 @@ Body{
 
 .main-content{
     display: flex;
+    flex-direction: column;
     max-width: 100%;
     transition: all 0.3s ease-in-out;
+    background-color: white;
+    z-index: 1;
+    
+}
+
+.image-background {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 750px;
+    background-image: url('../images-icon/plm_courtyard.png');
+    background-size: cover;
+    background-attachment: scroll; 
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    animation: fadein 5s;
+}
+
+.image-background-dim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim effect */
+}
+
+.image-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    color: white;
+}
+
+.image-background h1{
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+    padding-bottom: 15px;
+    color: white;
 }
 
 .first-page{
@@ -56,19 +105,22 @@ Body{
 
 .title-container {
     display: flex;
-    color: white;
-    background-color: #104911;
-    padding: 20px;
+    color: #104911;
+    background-color: white;
+    padding: 20px 0px 20px 100px;
     margin: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000; 
+    transition: all 1s;
     animation: fadein 1s;
 }
 
 .title-container h1{
     font-size: 15px;
+    color:#104911;
+    transition: all 1s;
 }
 
 .title-container img{
@@ -77,6 +129,17 @@ Body{
     margin-top: 2px;
     margin-right: 10px;
 }
+
+.title-container.sticking{
+    background-color:#104911;
+    padding: 8px 0px 8px 100px;
+}
+
+.title-container.sticking h1{
+    color: white;
+}
+
+
 
 .event-details{
     display: grid;
@@ -329,7 +392,7 @@ Body{
 .tab-container{
     display: flex;
     flex-direction: column;
-    background-color: #1E4F2A;
+    background-color: transparent;
     color: white;
     width: 60px; 
     transition: width 0.3s ease;
@@ -338,13 +401,25 @@ Body{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1;
     overflow-x: hidden;
     padding: 40px 0px;
+    padding-top: 100px;
     padding-left: 3px;
-    margin-top: 79px;
     box-sizing: border-box;
     animation: fadein 2s;
+    transition: all 1s;
+    
+}
+
+.tab-container.sticking{
+    width: 60px;
+    background-color: #1E4F2A;
+}
+
+
+.tab-container.sticking:hover {
+    width: 170px; 
 }
 
 .tab-container:hover {
