@@ -58,43 +58,57 @@ session_start();
                 </div>
                 
                     <div class="event-list">
-                         <?php
+                        <?php
                             include '../php/conn.php';
 
+                            $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
 
-                            $result = $conn->query("SELECT * FROM event_table ORDER BY number DESC"); 
-                                
-                            while ($row = $result->fetch_assoc()) {
-                                $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
-                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+                            if (!empty($search)) {
+                                $query = "SELECT * FROM event_table 
+                                          WHERE event_title LIKE '%$search%' 
+                                          OR event_description LIKE '%$search%' 
+                                          OR event_location LIKE '%$search%' 
+                                          OR organization LIKE '%$search%' 
+                                          ORDER BY number DESC";
+                            } else {
+                                $query = "SELECT * FROM event_table ORDER BY number DESC";
+                            }
 
-                                echo "<div class='event-box-details'>";
-                                echo "  <div class='floating-card'>";
-                                echo "      <div class='event-date'>";
-                                echo "          <p class='day'>" .$dateOnly. "</p>";
-                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
-                                echo "      </div>";
-                                echo "      <div class='event-description'>";
-                                echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
-                                echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
-                                echo "      </div>";
-                                echo "      <div class='date'>";
-                                echo "          <p>" . $dateOnly. "</p>"; 
-                                echo "      </div>";
-                                echo "  </div>";
-                                echo "  <div class='even-more-details'>";
-                                echo "      <div class='event-box-row' id='box1'>";
-                                echo "          <div class='event-box-column'>";
-                                echo "              <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
-                                echo "              <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
-                                echo "              <p> </p>";
-                                echo "              <p> </p>";
-                                echo "          </div>";
-                                echo "      </div>";
-                                echo "  </div>";
-                                echo "</div>";
+                            $result = $conn->query($query);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
+                                    $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+
+                                    echo "<div class='event-box-details'>";
+                                    echo "  <div class='floating-card'>";
+                                    echo "      <div class='event-date'>";
+                                    echo "          <p class='day'>" .$dateOnly. "</p>";
+                                    echo "          <p class='time'>" .$dateTimeStart. "</p>";
+                                    echo "      </div>";
+                                    echo "      <div class='event-description'>";
+                                    echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
+                                    echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                                    echo "      </div>";
+                                    echo "      <div class='date'>";
+                                    echo "          <p>" . $dateOnly. "</p>"; 
+                                    echo "      </div>";
+                                    echo "  </div>";
+                                    echo "  <div class='even-more-details'>";
+                                    echo "      <div class='event-box-row' id='box1'>";
+                                    echo "          <div class='event-box-column'>";
+                                    echo "              <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
+                                    echo "              <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                                    echo "          </div>";
+                                    echo "      </div>";
+                                    echo "  </div>";
+                                    echo "</div>";
                                 }
-                            ?>
+                            } else {
+                                echo "<p style='margin: 20px; color: red;'>No events found matching your search.</p>";
+                            }
+                        ?>
                         <div class="add-button">
                             <button class="btn-import" id="openModal" onclick="openModal()"> <i class="fa-solid fa-plus"></i> </button>
                         </div>

@@ -1,29 +1,55 @@
-
-
-
-
-function openModal(){
-    document.getElementById('importModal').style.display = "block";
+// Open the modal for adding a new event
+function openModal(eventId = null) {
+  const modal = document.getElementById('importModal');
+  modal.style.display = "block";
+  
+  // If eventId is provided, load the event details into the form for editing
+  if (eventId) {
+      // Fetch the event details from the server using AJAX (you can modify this part to fit your needs)
+      fetch(`get_event_details.php?id=${eventId}`)
+          .then(response => response.json())
+          .then(data => {
+              document.querySelector('[name="event-title"]').value = data.event_title;
+              document.querySelector('[name="event-location"]').value = data.event_location;
+              document.querySelector('[name="event-date-start"]').value = data.date_start.split(' ')[0];
+              document.querySelector('[name="event-time-start"]').value = data.date_start.split(' ')[1];
+              document.querySelector('[name="event-date-end"]').value = data.date_end.split(' ')[0];
+              document.querySelector('[name="event-time-end"]').value = data.date_end.split(' ')[1];
+              document.querySelector('[name="event-orgs"]').value = data.organization;
+              document.querySelector('[name="event-description"]').value = data.event_description;
+              document.querySelector('[name="code"]').value = data.number; // Store event ID for updating
+          })
+          .catch(error => console.error('Error fetching event details:', error));
+  } else {
+      // If no eventId is provided, reset the form for adding a new event
+      document.getElementById('eventForm').reset();
+      document.querySelector('[name="code"]').value = ''; // Clear event ID for new event
+  }
 }
 
+// Close the modal
+function closeModal() {
+  document.getElementById('importModal').style.display = "none";
+}
 
+// Open the registration modal (if needed)
 function openRegistration(eventId) {
-    document.getElementById('importRegistration').style.display = "block";
+  document.getElementById('importRegistration').style.display = "block";
+}
 
-  }
-  
-  function closeModal() {
-    document.getElementById('importModal').style.display = "none";
-  }
+// Example of an event edit button on your page
+function setupEditButton(eventId) {
+  const editButton = document.querySelector(`#edit-btn-${eventId}`);
+  editButton.addEventListener('click', function() {
+      openModal(eventId); // Pass eventId to the modal
+  });
+}
 
-
-  function togglePanel() {
-    const panel = document.querySelector('.second-page');
-    panel.classList.remove('active');
-
-    // Force reflow to restart animation
-    void panel.offsetWidth;
-
-    // Add the class back to trigger animation
-    panel.classList.add('active');
-  }
+// You can call this function to set up the edit buttons when the page loads
+window.onload = function() {
+  const editButtons = document.querySelectorAll('.edit-btn');
+  editButtons.forEach(button => {
+      const eventId = button.dataset.eventId;
+      setupEditButton(eventId);
+  });
+};
