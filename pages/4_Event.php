@@ -12,9 +12,13 @@ session_start();
         <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="../styles/style6.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <title> PLP Event Attendance </title>
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div class="title-container">
+            <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
+        </div>
         <div class="tab-container">
             <div class="menu-items">
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
@@ -34,9 +38,7 @@ session_start();
                 <h1> PLP EVENT ATTENDANCE </h1>
             </div>
         </div>
-        <div class="title-container">
-            <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
-        </div>
+       
         
         <div class="main-content">
        
