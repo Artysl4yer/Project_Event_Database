@@ -113,14 +113,14 @@ Body{
     top: 0;
     width: 100%;
     z-index: 1000; 
-    transition: all 1s;
+    transition: all 500ms;
     animation: fadein 1s;
 }
 
 .title-container h1{
     font-size: 15px;
     color:#104911;
-    transition: all 1s;
+    transition: all 500ms;
 }
 
 .title-container img{
@@ -392,7 +392,7 @@ Body{
 .tab-container{
     display: flex;
     flex-direction: column;
-    background-color: transparent;
+    background-color: #104911;
     color: white;
     width: 60px; 
     transition: width 0.3s ease;
@@ -407,19 +407,9 @@ Body{
     padding-top: 100px;
     padding-left: 3px;
     box-sizing: border-box;
-    animation: fadein 2s;
-    transition: all 1s;
+    animation: fadein 500ms;
+    transition: all 500ms;
     
-}
-
-.tab-container.sticking{
-    width: 60px;
-    background-color: #1E4F2A;
-}
-
-
-.tab-container.sticking:hover {
-    width: 170px; 
 }
 
 .tab-container:hover {

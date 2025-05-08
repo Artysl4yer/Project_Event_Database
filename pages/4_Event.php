@@ -10,6 +10,7 @@ session_start();
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
         <link rel="stylesheet" href="../styles/style3.css">
+        <link rel="stylesheet" href="../styles/style6.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>

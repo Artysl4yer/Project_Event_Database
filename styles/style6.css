@@ -1,0 +1,13 @@
+.title-container{
+    background-color: white;
+}
+
+.title-container.sticking{
+    background-color:#104911;
+    padding: 8px 0px 8px 100px;
+}
+
+.title-container.sticking h1{
+    color: white;
+}
+
