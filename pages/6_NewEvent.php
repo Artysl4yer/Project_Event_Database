@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style5.css">
         <link rel="stylesheet" href="../styles/style6.css">
+        <link rel="stylesheet" href="../styles/style8.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         
     </head>
@@ -67,6 +68,7 @@
                             <th>Location</th>
                             <th>Description</th>
                             <th>Organization</th>   
+                            <th>Status</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -89,7 +91,10 @@
                             <td><?= htmlspecialchars($row['event_location']) ?></td>
                             <td><?= htmlspecialchars($row['event_description']) ?></td>
                             <td><?= htmlspecialchars($row['organization']) ?></td>
-                            <td><a class="edit-btn" href="#" onclick="openModal(<?= $row['number'] ?>)">Edit</a></td>
+                            <td><?= htmlspecialchars($row['event_status']) ?></td>
+                            <td><a class="edit-btn" href="#" onclick="openEditModal(<?= $row['number'] ?>)">Edit</a></td>
+
+
                             <td>
                                 <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                     <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
@@ -107,7 +112,8 @@
                 </div>
             </div>
         
-
+                
+                            
                 <div id="importModal" class="modal">
                     <div class="modal-content">
                         <div class="header">
@@ -138,6 +144,14 @@
                                     <label for="event-orgs"> Organization: </label>
                                     <input type="text" name="event-orgs" required> 
                                 </div>
+                                    <div class="input-box">
+                                            <label for="event-status"> Status: </label>
+                                            <select name="event-status" required>
+                                            <option value="Ongoing">Ongoing</option>
+                                            <option value="Finished">Finished</option>
+                                            <option value="Archived">Archived</option>
+                                        </select>
+                                    </div>
                                 <div class="input-box">
                                     <label for="event-description"> Decription: </label>
                                     <textarea id="description" name="event-description"></textarea>
@@ -183,6 +197,8 @@
                         </form>
                         </div>
                     </div>
+                    <div id="editModal" class="modal">
+
         <script src="../Javascript/popup.js"></script>
         
         <script>
@@ -195,14 +211,16 @@
                 return code;
             }
 
+           
+
             function populateCodeField() {
                 const codeField = document.getElementById('codeField');
                 if (codeField) {
-                    const newCode = generateCode(12);
+                    const newCode = generateCode(12);  // Generates a 12-character code
                     codeField.value = newCode;
-                    console.log('Generated code:', newCode); // Debug log
+                    console.log('Generated code:', newCode); // Debug log (optional)
                 } else {
-                    console.log('Code field not found!');
+                    console.log('Code field not found!');  // Error log if field doesn't exist
                 }
             }
 
