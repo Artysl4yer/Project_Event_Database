@@ -18,6 +18,7 @@
                     <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
                     <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                     <a href="" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+                    <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
                 </div>
                 <div class="logout">
                     <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
