@@ -240,16 +240,15 @@ Body{
 
 .floating-card {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    flex-direction: column;
 }
 .floating-card .event-date {
     background-color: #f2f2f2;
     border-radius: 10px;
-    padding: 10px;
+    padding: 50px auto;
+    margin: 20px auto;
     text-align: center;
-    min-width: 80px;
-    margin-right: 20px;
+    min-width: 100%;
 }
 
 .floating-card .event-date .day {
@@ -261,7 +260,11 @@ Body{
 }
 
 .floating-card .event-description {
-    flex: 1;
+    text-align: center;
+}
+
+.floating-card .date{
+    text-align: center;
 }
 
 .floating-card .event-description h3 {
@@ -270,6 +273,7 @@ Body{
 }
 
 .floating-card .event-description p {
+    text-align: center;
     margin: 0;
     color: #555;
 }
@@ -284,16 +288,15 @@ Body{
 
 
 .event-box-details{
-    display: flex;
-    flex-direction: column;
+    
     padding: 20px;
-    margin: 20px 0;
+    margin: auto;
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
     overflow: hidden;
     transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
-    max-height: 100px;
+    max-height: 170px;
 }
 
 .event-box-details:hover {
@@ -355,33 +358,18 @@ Body{
 .event-box-column b{
     color: black;
 }
-.event-list .add-button{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
 
-.event-list .add-button button{
-    padding: 25px;
-    background-color: transparent;
-    border: none;
-    background-color: #ffffff;
-    border-radius: 15px;
-    margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
 
-.event-list .add-button button:hover{
-    transform: scale(1.01);
-    cursor: pointer;
-}
 
 .event-list .add-button button{
     width: 100%;
 }
 
 .event-list{
+    display: flex;
+    align-items: flex-start;
+    margin: 50px;
+    gap: 0px;
     animation: fadein 1s;
 }
 
