@@ -25,8 +25,29 @@
                 </div>
             </div>
         </div>
-
-            <div class="event-list">
+        <div class="event-main">
+             <div class="event-details">
+                    <div class="event-top">
+                        <p> Event List </p>
+                        <div class="search-container">
+                            <form class="example" action="action_page.php">
+                                <label for="search"> </label>
+                                <input type="text" id="search" name="fname" placeholder="Search...">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                       
+                       
+                        <div class="col-md-12" id="importFrm" style="display:block">
+                            <form action="../php/importData.php" method="post" enctype="multipart/form-data">
+                                <input type="file" name="file" />
+                                <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                            </form>
+                        </div>
+                        
+                    </div>  
+            </div>
+            <div class="event-table-section">
                 <h2 style="margin-left: 20px;">Student Details</h2>
                     <?php
                         include '../php/conn.php';
@@ -101,5 +122,6 @@
                         $conn->close();
                     ?>
             </div>
+        </div>
     </body>
 </html>
