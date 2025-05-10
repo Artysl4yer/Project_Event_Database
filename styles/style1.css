@@ -20,6 +20,7 @@ Body{
     font-weight: 500;
     font-style: normal;
     overflow-x: hidden;
+    background-color: #EDEAEA;
 }
 
 .main-content{
@@ -27,7 +28,7 @@ Body{
     flex-direction: column;
     max-width: 100%;
     transition: all 0.3s ease-in-out;
-    background-color: white;
+    background-color: #EDEAEA;
     z-index: 1;
     
 }
