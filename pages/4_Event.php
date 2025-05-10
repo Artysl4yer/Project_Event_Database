@@ -216,85 +216,8 @@ session_start();
         </div>                -->
 
             <!-- This is the popup box for the import of Event System that includes the Event title, Event location, Date, time and Organization-->
-            <div id="importModal" class="modal">
-                <div class="modal-content">
-                    <div class="header">
-                        <h3> Create New Event </h3>
-                        <p> Fill out the information below to get started </p>
-                    </div> 
-                    <form id="evetForm" action="../php/event-sub.php" method="POST">
-                        <div class="user-details">
-                            <div class="input-box">
-                                <label for="event-title"> Event Title: </label>
-                                <input type="text" name="event-title" required> 
-                            </div>
-                            <div class="input-box">
-                                <label for="event-location"> Location: </label>
-                                <input type="text" name="event-location" required> 
-                            </div>
-                            <div class="date-box">
-                                <label for="event-date-start"> Start Time </label>
-                                <input type="date" name="event-date-start" placeholder="00/00/0000" required> 
-                                <input type="time" name="event-time-start" placeholder="00:00" required> 
-                            </div>
-                            <div class="date-box">
-                                <label for="event-date-end"> End Time </label>
-                                <input type="date" id="event-date-end" name="event-date-end" placeholder="00/00/0000" required> 
-                                <input type="time" id= "event-time-end" name="event-time-end" placeholder="00:00" required> 
-                                </div>
-                            <div class="input-box">
-                                <label for="event-orgs"> Organization: </label>
-                                <input type="text" name="event-orgs" required> 
-                            </div>
-                            <div class="input-box">
-                                <label for="event-description"> Decription: </label>
-                                <textarea id="description" name="event-description"></textarea>
-                            </div>
-                            <input type="hidden" name="code" id="codeField">
-                            <div class="input-box-options">
-                                <div class="option-title-box">
-                                    <label for="option-box">
-                                        Options:
-                                    </label>
-                                </div>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="StudentID"> StudentID
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Gender"> Gender 
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Section"> Section
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Section"> Year
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Age"> Age
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Parents"> Parents
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="ContactNo"> Contact No
-                                </label>
-                                <label for="option"> 
-                                    <input type="checkbox" name="option" value="Email"> Email
-                                </label>
-                            </div>
-                        </div>
-                        <div class="controls">
-                            <button class="btn-submit" type="submit">Submit</button>
-                            <button class="btn-close" type="button" id="btn-click" onclick="closeModal()"> Close </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>    
-
        
         <script src="../Javascript/popup.js"></script>
-        <script src="../Javascript/RandomCodeGenerator.js"></script>
         <script src="../Javascript/dynamic.js"></script>
     
     </body>
