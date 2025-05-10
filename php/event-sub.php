@@ -15,8 +15,8 @@ $date_end = $_POST["event-date-end"];
 $event_end = $_POST["event-time-end"];
 $event_description = $_POST["event-description"];
 $organization = $_POST["event-orgs"];
+$status = $_POST['event-status'];
 $code = $_POST['code'];
-$status = 'status';
 
 
 $merge_start = DateTime::createFromFormat('Y-m-d H:i', $date_start . ' ' . $event_start);
@@ -31,10 +31,10 @@ if (!$merge_start || !$merge_end) {
 $merge_start = $merge_start->format('Y-m-d H:i:s');
 $merge_end = $merge_end->format('Y-m-d H:i:s');
 
-$sql1 = "INSERT INTO event_table (
-    event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization
+$sql = "INSERT INTO event_table (
+    event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status
 ) VALUES (
-    '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization'
+    '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization', '$status'
 )";
 
 $sql2 = "INSERT INTO archive_table (
