@@ -37,6 +37,7 @@ Body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 750px;
     background-image: url('../images-icon/plm_courtyard.png');
     background-size: cover;
@@ -45,6 +46,10 @@ Body{
     background-repeat: no-repeat;
     overflow: hidden;
     animation: fadein 5s;
+}
+
+.image-content p{
+    color: white;
 }
 
 .image-background-dim {
@@ -60,7 +65,7 @@ Body{
     position: relative;
     z-index: 2;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100%;
     color: white;
 }
@@ -113,14 +118,14 @@ Body{
     top: 0;
     width: 100%;
     z-index: 1000; 
-    transition: all 1s;
+    transition: all 500ms;
     animation: fadein 1s;
 }
 
 .title-container h1{
     font-size: 15px;
     color:#104911;
-    transition: all 1s;
+    transition: all 500ms;
 }
 
 .title-container img{
@@ -208,8 +213,9 @@ Body{
     outline: none;
     font-size: 16px;
     background: transparent;
+    width: 600px;
     max-width: 100%;
-    padding: 1px;
+    padding: 20px;
     color: #333;
     flex: 1;
 
@@ -217,6 +223,7 @@ Body{
 
 .search-container form button{
     flex: 1;
+    border-radius: 8px;
     border: none;
     outline: none;
     width: fit-content;
@@ -239,17 +246,18 @@ Body{
 
 
 .floating-card {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    
 }
 .floating-card .event-date {
+    background-image: url('../images-icon/plm_courtyard.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: #f2f2f2;
     border-radius: 10px;
-    padding: 10px;
+    padding: auto;
+    margin: auto;
     text-align: center;
-    min-width: 80px;
-    margin-right: 20px;
+    height: 250px;
 }
 
 .floating-card .event-date .day {
@@ -261,7 +269,11 @@ Body{
 }
 
 .floating-card .event-description {
-    flex: 1;
+    text-align: center;
+}
+
+.floating-card .date{
+    text-align: center;
 }
 
 .floating-card .event-description h3 {
@@ -270,9 +282,57 @@ Body{
 }
 
 .floating-card .event-description p {
+    text-align: center;
     margin: 0;
     color: #555;
 }
+
+.importbtn-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+}
+
+.add-button button{
+    justify-content: center;
+    align-items: center;
+    background-color: #28a745; 
+    color: white;
+    border-radius: 18px;
+    width: 100%;
+    height: 40px;
+    margin: 10px auto;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+.add-button button:hover{
+    cursor: pointer;
+    background-color: #218838;
+}
+
+.col-md-12{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px #555;
+    padding: 10px;
+}
+
+.col-md-12 form input[type="submit"]{
+    color: white;
+    background-color:#3284ed;
+    padding: 18px;
+    border: none;
+    max-width: 100%;
+}
+
+
 
 /* Extra section (right-aligned text or date) */
 .floating-card .event-extra {
@@ -284,26 +344,24 @@ Body{
 
 
 .event-box-details{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #ffffff;
+    border-radius: 16px;
+    width: 100%; /* fixed or responsive */
+    text-align: center;
+    margin: auto;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
     overflow: hidden;
     transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
-    max-height: 100px;
+    max-height: 500px;
 }
 
 .event-box-details:hover {
     transform: scale(1.01);
     cursor: pointer;
-    max-height: 300px;
 }
 
 .even-box-details:active{
-    height: 300px;
+    transform: scale(0.1);
 }
 
 .even-more-details .event-controls{
@@ -355,34 +413,23 @@ Body{
 .event-box-column b{
     color: black;
 }
-.event-list .add-button{
+
+
+
+.event-list .add-button button{
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.event-list .add-button button{
-    padding: 25px;
-    background-color: transparent;
-    border: none;
-    background-color: #ffffff;
-    border-radius: 15px;
-    margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
-
-.event-list .add-button button:hover{
-    transform: scale(1.01);
-    cursor: pointer;
-}
-
-.event-list .add-button button{
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center; /* or space-between / space-around */
+    gap: 20px; /* controls spacing between cards */
+    padding: 20px;
+    
 }
 
 .event-list{
-    animation: fadein 1s;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 20px;
 }
 
 
@@ -392,7 +439,7 @@ Body{
 .tab-container{
     display: flex;
     flex-direction: column;
-    background-color: transparent;
+    background-color: #104911;
     color: white;
     width: 60px; 
     transition: width 0.3s ease;
@@ -407,23 +454,13 @@ Body{
     padding-top: 100px;
     padding-left: 3px;
     box-sizing: border-box;
-    animation: fadein 2s;
-    transition: all 1s;
+    animation: fadein 500ms;
+    transition: all 500ms;
     
 }
 
-.tab-container.sticking{
-    width: 60px;
-    background-color: #1E4F2A;
-}
-
-
-.tab-container.sticking:hover {
-    width: 170px; 
-}
-
 .tab-container:hover {
-    width: 170px; 
+    width: 180px; 
 }
 
 .tab-container:hover .label {

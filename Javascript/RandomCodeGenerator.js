@@ -1,14 +1,22 @@
-function generateRandomString(length = 6) {
+function generateCode(length = 12) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
+    let code = '';
     for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    return result;
-}
-
-
-document.getElementById('eventForm').addEventListener('submit', function(e) {
-    const code = generateRandomString(12);
-    document.getElementById('codeField').value = code;
-});
+    return code;
+  }
+  
+  function populateCodeField() {
+    const codeField = document.getElementById('codeField');
+    if (codeField) {
+      const newCode = generateCode(12);
+      codeField.value = newCode;
+      console.log('Generated code:', newCode); // Debug log
+    }
+  }
+  
+  // Generate code on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    populateCodeField();
+  });
