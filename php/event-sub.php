@@ -5,6 +5,8 @@ if($conn == false){
 }
 
 
+
+
 $event_title = $_POST["event-title"];
 $event_location = $_POST["event-location"];
 $date_start = $_POST["event-date-start"];
@@ -14,6 +16,7 @@ $event_end = $_POST["event-time-end"];
 $event_description = $_POST["event-description"];
 $organization = $_POST["event-orgs"];
 $code = $_POST['code'];
+$status = 'status'
 
 
 $merge_start = DateTime::createFromFormat('Y-m-d H:i', $date_start . ' ' . $event_start);
@@ -32,6 +35,12 @@ $sql = "INSERT INTO event_table (
     event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization
 ) VALUES (
     '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization'
+)";
+
+$sql = "INSERT INTO archived_table (
+    event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status
+) VALUES (
+    '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization', '$status'
 )";
 
 

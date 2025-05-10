@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -33,7 +33,7 @@
             <!-- The Event List. The compilation of events, sort to newest to latest -->
                 <div class="event-details">
                     <div class="event-top">
-                        <p> Event List </p>
+                        <p> Logs </p>
                         <div class="search-container">
                             <form class="example" action="action_page.php">
                                 <label for="search"> </label>
@@ -53,10 +53,7 @@
                     </div>  
                 </div>
                 <div class="event-table-section">
-                    <h2>Events</h2>
-                    <div class="add-button">
-                        <button class="btn-import" id="openModal" onclick="openModal()">  <span> <i class="fa-solid fa-plus"></i>  Add Event </span></button>
-                    </div>
+                    <h2>Archived Events</h2>
                     <table class="event-display-table">
                         <tr>
                             <th>Number</th>
@@ -66,14 +63,15 @@
                             <th>End</th>
                             <th>Location</th>
                             <th>Description</th>
-                            <th>Organization</th>   
+                            <th>Organization</th>
+                            <th>Status</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         <?php
 
                         include '../php/conn.php';
-                        $sql = "SELECT * FROM event_table ORDER BY number DESC";
+                        $sql = "SELECT * FROM archive_table ORDER BY number DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0):
@@ -89,9 +87,10 @@
                             <td><?= htmlspecialchars($row['event_location']) ?></td>
                             <td><?= htmlspecialchars($row['event_description']) ?></td>
                             <td><?= htmlspecialchars($row['organization']) ?></td>
+                            <td></td>
                             <td><a class="edit-btn" href="#" onclick="openModal(<?= $row['number'] ?>)">Edit</a></td>
                             <td>
-                                <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
+                                <form method="POST" action="../php/delete_archive.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                     <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                     <button type="submit" name="delete" class="delete-btn">Delete</button>
                                 </form>

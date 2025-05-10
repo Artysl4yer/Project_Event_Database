@@ -31,6 +31,7 @@ if (isset($_POST['importSubmit'])) {
                     $event_end = date('Y-m-d H:i:s', strtotime(trim($line[4])));
                     $event_description = trim($line[7]); 
                     $organization    = trim($line[8]);
+                    $status   = 'active';
 
 
                     // Always insert new event (no duplicate check)
@@ -48,6 +49,23 @@ if (isset($_POST['importSubmit'])) {
                         '".$conn->real_escape_string($event_end)."',
                         '".$conn->real_escape_string($event_description)."',
                         '".$conn->real_escape_string($organization)."'
+                    )"); 
+
+                    $conn->query("INSERT INTO archive_table (
+                        event_title, event_code, event_location,
+                        date_start, event_start, date_end, event_end,
+                        event_description, organization, event_status
+                    ) VALUES (
+                        '".$conn->real_escape_string($event_title)."',
+                        '".$conn->real_escape_string($event_code)."',
+                        '".$conn->real_escape_string($event_location)."',
+                        '".$conn->real_escape_string($date_start)."',
+                        '".$conn->real_escape_string($event_start)."',
+                        '".$conn->real_escape_string($date_end)."',
+                        '".$conn->real_escape_string($event_end)."',
+                        '".$conn->real_escape_string($event_description)."',
+                        '".$conn->real_escape_string($organization)."',
+                        '".$conn->real_escape_string($status)."'
                     )"); 
                 } 
             } 

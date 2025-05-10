@@ -1,23 +1,25 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-    $conn = new mysqli("localhost", "root", "", "event_database");
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    include '../php/conn.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
+        $delete_id = $_POST['delete_id'];
+
+        $query = "DELETE FROM event_table WHERE number = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $delete_id);
+
+        if ($stmt->execute()) {
+            header("Location: ../pages/6_NewEvent.php");
+            exit();
+        } else {
+            echo "Error deleting event: " . $conn->error;
+        }
+
+        $stmt->close();
     }
 
-    $id = intval($_POST['id']);
-    $stmt = $conn->prepare("DELETE FROM event_table WHERE id = ?");
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        header("Location: 6_NewEvent.php?deleted=1");
-        exit();
-    } else {
-        echo "Error deleting event: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-}
+    
 ?>

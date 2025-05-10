@@ -1,0 +1,186 @@
+
+
+body {
+    background-color: #EDEAEA;
+    color: #111;
+    line-height: 1.6;
+}
+
+.Top {
+    position: relative;
+    text-align: center;
+}
+
+.Top img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.Top h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    color: white;
+    letter-spacing: 0.3rem;
+}
+
+/* Intro */
+.Intro {
+    padding: 4rem 5vw;
+}
+
+.green {
+    color: #1e4620;
+}
+
+.intro-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.intro-title h1 {
+    font-size: 3vw;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.intro-text1,
+.intro-text2 {
+    padding-top: 30px;
+    flex: 1 1 300px;
+    font-size: 1rem;
+    max-width: 550px;
+    padding-left: 0;
+}
+
+/* Traits */
+.Traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10rem;
+    margin: 4rem 0;
+}
+
+.Traits > div {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #0000001a;
+    flex: 1 1 250px;
+    max-width: 350px;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.Traits img {
+    width: 40px;
+    height: 40px;
+}
+
+.Traits h2 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.Traits p {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+}
+
+/* UI Picture */
+.Intro > div:last-child {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.Intro > div:last-child::before {
+    content: url('/images-icon/UI1.png');
+    display: inline-block;
+    max-width: 90%;
+    border-radius: 12px;
+}
+
+
+/* Team Members Section */
+.member-list {
+    background-color: #e0f5e0;
+    padding: 2rem 5vw;
+    text-align: center;
+}
+
+.mtitle h1 {
+    font-size: 2em;
+}
+
+.member-list p {
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Member List */
+.memberli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+    margin: 4rem 0;
+}
+
+.member {
+    padding-bottom: 30px;
+    width: 250px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member:hover {
+    transform: scale(1.05);
+}
+
+.mem-img {
+    position: relative;
+}
+
+.mem-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+.member-info {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    background-color: #1e5128;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.member-info h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.member-info h3 {
+    margin: 0;
+    font-size: 0.9em;
+    color: #a0ff6b;
+}

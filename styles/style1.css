@@ -39,17 +39,21 @@ Body{
     justify-content: center;
     flex-direction: column;
     min-height: 750px;
-    background-image: url('../images-icon/plm_courtyard.png');
+    background: 
+    linear-gradient(135deg, rgba(26, 94, 34, 0.6), rgba(160, 131, 14, 0.3)),
+    url('/images-icon/plm_courtyard.png') no-repeat center center;
     background-size: cover;
     background-attachment: scroll; 
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
-    animation: fadein 5s;
+    animation: fadein 500ms;
 }
 
 .image-content p{
     color: white;
+    font-size: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .image-background-dim {
@@ -58,7 +62,7 @@ Body{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Dim effect */
+    
 }
 
 .image-content {
@@ -71,12 +75,12 @@ Body{
 }
 
 .image-background h1{
-    font-size: 2.5rem;
+    font-size: 50px;
     margin-bottom: 10px;
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     position: relative;
     padding-bottom: 15px;
     color: white;
