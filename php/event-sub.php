@@ -16,7 +16,7 @@ $event_end = $_POST["event-time-end"];
 $event_description = $_POST["event-description"];
 $organization = $_POST["event-orgs"];
 $code = $_POST['code'];
-$status = 'status'
+$status = 'status';
 
 
 $merge_start = DateTime::createFromFormat('Y-m-d H:i', $date_start . ' ' . $event_start);
@@ -31,13 +31,13 @@ if (!$merge_start || !$merge_end) {
 $merge_start = $merge_start->format('Y-m-d H:i:s');
 $merge_end = $merge_end->format('Y-m-d H:i:s');
 
-$sql = "INSERT INTO event_table (
+$sql1 = "INSERT INTO event_table (
     event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization
 ) VALUES (
     '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization'
 )";
 
-$sql = "INSERT INTO archived_table (
+$sql2 = "INSERT INTO archive_table (
     event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status
 ) VALUES (
     '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization', '$status'
@@ -45,7 +45,7 @@ $sql = "INSERT INTO archived_table (
 
 
 
-if(mysqli_query($conn, $sql)){
+if(mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2)){
     header("Location: ../pages/6_NewEvent.php");
     exit();
 } else {

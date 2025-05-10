@@ -41,15 +41,6 @@
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                       
-                       
-                        <div class="col-md-12" id="importFrm" style="display:block">
-                            <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                                <input type="file" name="file" />
-                                <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
-                            </form>
-                        </div>
-                        
                     </div>  
                 </div>
                 <div class="event-table-section">

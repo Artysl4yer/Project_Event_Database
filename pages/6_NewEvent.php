@@ -105,7 +105,7 @@
                         <?php endif; ?>
                     </table>
                 </div>
-            </div>
+        </div>
         
 
                 <div id="importModal" class="modal">
