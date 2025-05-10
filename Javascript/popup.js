@@ -3,9 +3,7 @@ function openModal(eventId = null) {
   const modal = document.getElementById('importModal');
   modal.style.display = "block";
   
-  // If eventId is provided, load the event details into the form for editing
   if (eventId) {
-      // Fetch the event details from the server using AJAX (you can modify this part to fit your needs)
       fetch(`get_event_details.php?id=${eventId}`)
           .then(response => response.json())
           .then(data => {
@@ -18,13 +16,14 @@ function openModal(eventId = null) {
               document.querySelector('[name="event-orgs"]').value = data.organization;
               document.querySelector('[name="event-description"]').value = data.event_description;
               document.querySelector('[name="code"]').value = data.number; // Store event ID for updating
+              
           })
           .catch(error => console.error('Error fetching event details:', error));
   } else {
-      // If no eventId is provided, reset the form for adding a new event
       document.getElementById('eventForm').reset();
       document.querySelector('[name="code"]').value = ''; // Clear event ID for new event
   }
+  populateCodeField();
 }
 
 // Close the modal

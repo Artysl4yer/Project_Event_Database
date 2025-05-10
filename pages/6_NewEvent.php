@@ -26,13 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>New Event Form</title>
+        <title>PLP: Event Attendace</title>
         <link rel="stylesheet" href="../styles/style2.css">
         <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style5.css">
         <link rel="stylesheet" href="../styles/style6.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        
     </head>
     <body>
         <div class="title-container">
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
                 <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
                 <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
+                <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
                 <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 <a href="" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
             </div>
@@ -52,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             </div>
         </div>
             <div class="event-main">
+            
+        
             <!-- The Event List. The compilation of events, sort to newest to latest -->
                 <div class="event-details">
                     <div class="event-top">
@@ -63,17 +66,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                        <div class="add-button">
-                            <button class="btn-import" id="openModal" onclick="openModal()"> Import </button>
+                       
+                       
+                        <div class="col-md-12" id="importFrm" style="display:block">
+                            <form action="../php/importData.php" method="post" enctype="multipart/form-data">
+                                <input type="file" name="file" />
+                                <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                            </form>
                         </div>
+                        
                     </div>  
                 </div>
                 <div class="event-table-section">
-                    <h2>Existing Events</h2>
+                    <h2>Events</h2>
+                    <div class="add-button">
+                        <button class="btn-import" id="openModal" onclick="openModal()">  <span> <i class="fa-solid fa-plus"></i>  Add Event </span></button>
+                    </div>
                     <table class="event-display-table">
                         <tr>
                             <th>Number</th>
                             <th>Title</th>
+                            <th>event_code</th>
                             <th>Start</th>
                             <th>End</th>
                             <th>Location</th>
@@ -95,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                         <tr>
                             <td><?= $row['number'] ?></td>
                             <td><?= htmlspecialchars($row['event_title']) ?></td>
+                            <td><?= htmlspecialchars($row['event_code'])?></td>
                             <td><?= $row['date_start'] ?></td>
                             <td><?= $row['date_end'] ?></td>
                             <td><?= htmlspecialchars($row['event_location']) ?></td>
@@ -185,15 +199,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                                         <input type="checkbox" name="option" value="Email"> Email
                                     </label>
                                 </div>
-                            </div>
-                                    <div class="controls">
-                                        <button class="btn-submit" type="submit">Submit</button>
-                                        <button class="btn-close" type="button" id="btn-click" onclick="closeModal()"> Close </button>
-                                        
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="controls">
+                                    <button class="btn-submit" type="submit">Submit</button>
+                                    <button class="btn-close" type="button" id="btn-click" onclick="closeModal()"> Close </button>
+                                    
+                                </div>
+                        </form>
                         </div>
+                    </div>
         <script src="../Javascript/popup.js"></script>
+        <script>
+            function generateCode(length = 12) {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let code = '';
+                for (let i = 0; i < length; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return code;
+            }
+
+            function populateCodeField() {
+                const codeField = document.getElementById('codeField');
+                if (codeField) {
+                    const newCode = generateCode(12);
+                    codeField.value = newCode;
+                    console.log('Generated code:', newCode); // Debug log
+                } else {
+                    console.log('Code field not found!');
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('JavaScript is running');
+                populateCodeField();
+            });
+        </script>
     </body>
 </html>

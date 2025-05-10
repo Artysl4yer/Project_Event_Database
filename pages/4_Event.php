@@ -11,7 +11,7 @@ session_start();
         <link rel="stylesheet" href="../styles/style2.css">
         <link rel="stylesheet" href="../styles/style3.css">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-        <title> PLP Event Attendance </title>
+        <title> PLP: Events </title>
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -23,7 +23,7 @@ session_start();
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
                 <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
                 <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Register </span> </a>
+                <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
                 <a href="#About" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 <a href="" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
             </div>
@@ -34,8 +34,13 @@ session_start();
         <div class="image-background">
             <div class="image-background-dim"></div>
             <div class="image-content" id="banner">
-                <h1> PLP EVENT ATTENDANCE </h1>
+                <h1> PLP EVENTS </h1>
+                <div class="image-description">
+                <p> Welcome to Pamantasan ng Lungsod ng Pasig Updates </p>
+                <p> Get Up to date with the latest upcoming Events </p>
             </div>
+            </div>
+            
         </div>
         
         <div class="main-content">
