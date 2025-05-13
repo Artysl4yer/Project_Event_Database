@@ -34,12 +34,12 @@
             <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations.</p>
             <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
             
-            <div class="action-links">
-                <a href="#" class="action-link">Regsiter <i class="fas fa-arrow-right"></i></a>
-                <a href="#" class="action-link">Login <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
+                <div class="action-links">
+                    <a href="#" class="action-link register-link" data-target="register">Register <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="action-link login-link" data-target="login">Login <i class="fas fa-arrow-right"></i></a>
+                </div>
 
+        </div>
         <div class="login-box">
             <h2>PLP: Event</h2>
             <p class="subtitle">Enter your credentials to continue</p>
@@ -65,7 +65,7 @@
         </div>
         <div class="registration-box">
             <h2>PLP: Event</h2>
-            <p class="subtitle">Enter your credentials to continue</p>
+            <p class="subtitle">Please fill-in the following:</p>
             
                 <form id="registration-form">
                     <div class="input-field">

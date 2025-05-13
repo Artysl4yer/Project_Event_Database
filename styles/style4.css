@@ -27,7 +27,8 @@ body {
 }
 
 .university-info,
-.login-box {
+.login-box,
+.registrationBox {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +42,8 @@ body {
 }
 
 .university-info.active,
-.login-box.active {
+.login-box.active
+.registrationBox.active {
   opacity: 1;
   visibility: visible;
   position: relative;
