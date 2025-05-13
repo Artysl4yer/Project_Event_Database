@@ -28,7 +28,7 @@ body {
 
 .university-info,
 .login-box,
-.registrationBox {
+.registration-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -42,12 +42,13 @@ body {
 }
 
 .university-info.active,
-.login-box.active
-.registrationBox.active {
+.login-box.active,
+.registration-box.active {
   opacity: 1;
   visibility: visible;
   position: relative;
 }
+
 
 .university-info {
   background: linear-gradient(135deg, #1a5e22 0%, #2e7d32 100%);

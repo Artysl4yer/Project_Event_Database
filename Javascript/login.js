@@ -20,21 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show login box
     loginLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log("Login link clicked");
-    loginBox.classList.add("active");
-    registrationBox.classList.remove("active");
-});
+        e.preventDefault();
+        console.log("Login link clicked");
+        loginBox.classList.add("active");
+        registrationBox.classList.remove("active");
+        universityInfo.classList.remove("active");
+    });
 
     // Show registration box
-registerLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log("Register link clicked");
-    registrationBox.classList.add("active");
-    loginBox.classList.remove("active");
-});
-
-
+    registerLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log("Register link clicked");
+        registrationBox.classList.add("active");
+        loginBox.classList.remove("active");
+        universityInfo.classList.remove("active");
+    });
 
     // Go back to university info from either form
     backButtons.forEach(button => {

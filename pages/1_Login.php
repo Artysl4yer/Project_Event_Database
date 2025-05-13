@@ -35,56 +35,56 @@
             <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
             
                 <div class="action-links">
-                    <a href="#" class="action-link register-link" data-target="register">Register <i class="fas fa-arrow-right"></i></a>
-                    <a href="#" class="action-link login-link" data-target="login">Login <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="action-link register-link">Register <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
                 </div>
 
-        </div>
-        <div class="login-box">
-            <h2>PLP: Event</h2>
-            <p class="subtitle">Enter your credentials to continue</p>
+                <div class="login-box">
+                    <h2>PLP: Event</h2>
+                    <p class="subtitle">Enter your credentials to continue</p>
             
-                <form id="loginForm">
-                    <div class="input-field">
-                        <label for="email">Email:</label>
-                        <input type="text" id="email" name="email" placeholder="Enter email" required>
-                    </div>
+                    <form id="loginForm">
+                        <div class="input-field">
+                            <label for="email">Email:</label>
+                            <input type="text" id="email" name="email" placeholder="Enter email" required>
+                        </div>
                     
-                    <div class="input-field">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                    </div>
+                        <div class="input-field">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        </div>
                     
-                    <div class="button-group">
-                        <button type="button" class="back-btn">Back</button>
-                        <button type="submit" class="login-btn" id="loginBtn">Log in</button>
-                    </div>
-                </form>
+                        <div class="button-group">
+                            <button type="button" class="back-btn">Back</button>
+                            <button type="submit" class="login-btn" id="loginBtn">Log in</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
-        <div class="registration-box">
-            <h2>PLP: Event</h2>
-            <p class="subtitle">Please fill-in the following:</p>
-            
-                <form id="registration-form">
-                    <div class="input-field">
-                        <label for="email">Email:</label>
-                        <input type="text" id="email" name="email" placeholder="Enter email" required>
-                    </div>
-                    
-                    <div class="input-field">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button type="button" class="back-btn">Back</button>
-                        <button type="submit" class="login-btn" id="loginBtn">Log in</button>
-                    </div>
-                </form>
+
+                <div class="registration-box">
+                   <h2>Register</h2>
+                    <p class="subtitle">Fill in the form below.</p>
+
+  <div class="input-field">
+    <label for="reg-username">Username</label>
+    <input type="text" id="reg-username" />
+  </div>
+
+  <div class="input-field">
+    <label for="reg-email">Email</label>
+    <input type="email" id="reg-email" />
+  </div>
+
+  <div class="input-field">
+    <label for="reg-password">Password</label>
+    <input type="password" id="reg-password" />
+  </div>
+
+  <div class="button-group">
+    <button class="back-btn">Back</button>
+    <button class="login-btn">Register</button>
+  </div>
                 </div>
-            </div>
         </div>
     </div>
     <script src="../javascript/login.js"></script>
