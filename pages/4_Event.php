@@ -1,5 +1,5 @@
 <?php
-// No event code needed, just start session
+// No event code needed, just start session testing the commit
 session_start();
 ?>
 
