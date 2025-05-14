@@ -27,8 +27,8 @@
             <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
+
     <div class="login-container">
-        
         <div class="university-info">
             <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
             <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations.</p>
@@ -41,17 +41,17 @@
         </div>
 
         <div class="login-box">
-                    <h2>PLP: Event</h2>
+                    <h2>Welcome to PLP Events Management Systems!</h2>
                     <p class="subtitle">Enter your credentials to continue</p>
             
                     <form id="loginForm">
                         <div class="input-field">
-                            <label for="email">Email:</label>
-                            <input type="text" id="email" name="email" placeholder="Enter email" required>
+                            <label for="email">Username</label>
+                            <input type="text" id="email" name="email" placeholder="Enter Username" required>
                         </div>
                     
                         <div class="input-field">
-                            <label for="password">Password:</label>
+                            <label for="password">Password</label>
                             <input type="password" id="password" name="password" placeholder="Enter Password" required>
                         </div>
                     
@@ -63,30 +63,81 @@
         </div>
 
         <div class="registration-box">
-                   <h2>Register</h2>
-                    <p class="subtitle">Fill in the form below.</p>
+                   <h2>Registration Form</h2>
+                    <p class="subtitle">Please fill in the form below</p>
 
                     <div class="input-field">
-                        <label for="reg-username">Username</label>
-                        <input type="text" id="reg-username" />
+                        <label for="reg-eventcode">Event Code</label>
+                        <input type="text" id="reg-eventcode" />
                     </div>
 
                     <div class="input-field">
-                        <label for="reg-email">Email</label>
-                        <input type="email" id="reg-email" />
+                        <label for="reg-studentID">Student ID</label>
+                        <input type="text" id="reg-studentID" />
                     </div>
 
                     <div class="input-field">
-                        <label for="reg-password">Password</label>
-                        <input type="password" id="reg-password" />
+                        <label for="reg-name">Name</label>
+                        <input type="text" id="reg-name"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-course">Course</label>
+                        <input type="text" id="reg-course"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-section">Section</label>
+                        <input type="text" id="reg-section"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-gender">Gender</label>
+                        <input type="text" id="reg-gender"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-age">Age</label>
+                        <input type="text" id="reg-age"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-year">Year</label>
+                        <input type="text" id="reg-year"/>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="reg-department">Department</label>
+                        <input type="text" id="reg-deparment"/>
                     </div>
 
                     <div class="button-group">
                         <button class="back-btn">Back</button>
-                        <button class="login-btn">Register</button>
+                        <button class="next-btn">Next</button>
                     </div>
         </div>
 
+        <div class="register-box">
+                    <h2>Registration Form</h2>
+                    <p class="subtitle">Finish your registration by providing a desired Username and Password</p>
+            
+                    <form id="loginForm">
+                        <div class="input-field">
+                            <label for="email">Username</label>
+                            <input type="text" id="email" name="email" placeholder="Enter Username" required>
+                        </div>
+                    
+                        <div class="input-field">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        </div>
+                    
+                        <div class="button-group">
+                            <button type="button" class="return-btn">Back</button>
+                            <button type="submit" class="login-btn">Log in</button>
+                        </div>
+                    </form>
+        </div>
     </div>
     <script src="../javascript/login.js"></script>
     <script src="../Javascript/dynamic.js"></script>

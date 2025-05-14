@@ -10,8 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const universityInfo = document.querySelector(".university-info");
     const loginBox = document.querySelector(".login-box");
     const registrationBox = document.querySelector(".registration-box");
+    const registerBox = document.querySelector(".register-box");
 
     const backButtons = document.querySelectorAll(".back-btn");
+
+    const nextButtons = document.querySelectorAll(".next-btn");
+    const returnButton = document.querySelectorAll(".return-btn");
 
     //University Info View
     universityInfo.classList.add("active");
@@ -43,5 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
             registrationBox.classList.remove("active");
             universityInfo.classList.add("active");
         });
+    });
+
+    nextButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            registrationBox.classList.remove("active");
+            registerBox.classList.add("active");
+        });
+    });
+
+    returnButton.forEach(button => {
+        button.addEventListener("click", function () {
+            registerBox.classList.remove("active");
+            registrationBox.classList.add("active");
+        });
+
     });
 });
