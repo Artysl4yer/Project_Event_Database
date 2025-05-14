@@ -41,7 +41,7 @@
         </div>
 
         <div class="login-box">
-                    <h2>Welcome to PLP Events Management Systems!</h2>
+                    <h2>Welcome to PLP's Event Management System!</h2>
                     <p class="subtitle">Enter your credentials to continue</p>
             
                     <form id="loginForm">
@@ -118,8 +118,8 @@
         </div>
 
         <div class="register-box">
-                    <h2>Registration Form</h2>
-                    <p class="subtitle">Finish your registration by providing a desired Username and Password</p>
+                    <h2>Almost there!</h2>
+                    <p class="subtitle">Finish your registration by providing desired username and password</p>
             
                     <form id="loginForm">
                         <div class="input-field">
@@ -131,10 +131,15 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" placeholder="Enter Password" required>
                         </div>
+
+                        <div class="input-field">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" id="password" name="password" placeholder="Confirm Password" required>
+                        </div>
                     
                         <div class="button-group">
                             <button type="button" class="return-btn">Back</button>
-                            <button type="submit" class="login-btn">Log in</button>
+                            <button type="submit" class="login-btn">Register!</button>
                         </div>
                     </form>
         </div>
