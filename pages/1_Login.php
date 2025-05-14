@@ -38,8 +38,9 @@
                     <a href="#" class="action-link register-link">Register <i class="fas fa-arrow-right"></i></a>
                     <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
                 </div>
+        </div>
 
-                <div class="login-box">
+        <div class="login-box">
                     <h2>PLP: Event</h2>
                     <p class="subtitle">Enter your credentials to continue</p>
             
@@ -59,33 +60,33 @@
                             <button type="submit" class="login-btn" id="loginBtn">Log in</button>
                         </div>
                     </form>
-                </div>
+        </div>
 
-                <div class="registration-box">
+        <div class="registration-box">
                    <h2>Register</h2>
                     <p class="subtitle">Fill in the form below.</p>
 
-  <div class="input-field">
-    <label for="reg-username">Username</label>
-    <input type="text" id="reg-username" />
-  </div>
+                    <div class="input-field">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" />
+                    </div>
 
-  <div class="input-field">
-    <label for="reg-email">Email</label>
-    <input type="email" id="reg-email" />
-  </div>
+                    <div class="input-field">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" />
+                    </div>
 
-  <div class="input-field">
-    <label for="reg-password">Password</label>
-    <input type="password" id="reg-password" />
-  </div>
+                    <div class="input-field">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" />
+                    </div>
 
-  <div class="button-group">
-    <button class="back-btn">Back</button>
-    <button class="login-btn">Register</button>
-  </div>
-                </div>
+                    <div class="button-group">
+                        <button class="back-btn">Back</button>
+                        <button class="login-btn">Register</button>
+                    </div>
         </div>
+
     </div>
     <script src="../javascript/login.js"></script>
     <script src="../Javascript/dynamic.js"></script>

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const backButtons = document.querySelectorAll(".back-btn");
 
-    // Initial view
+    //University Info View
     universityInfo.classList.add("active");
     loginBox.classList.remove("active");
     registrationBox.classList.remove("active");
