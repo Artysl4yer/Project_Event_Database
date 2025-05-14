@@ -152,6 +152,18 @@ body {
   font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 40px; /* vertical gap | horizontal gap */
+}
+
 .input-field {
   margin-bottom: 25px;
 }

@@ -63,59 +63,62 @@
         </div>
 
         <div class="registration-box">
-                   <h2>Registration Form</h2>
-                    <p class="subtitle">Please fill in the form below</p>
+                    <h2>Registration Form</h2>
+                    <p class="subtitle">Please fill in the fields below</p>
 
-                    <div class="input-field">
-                        <label for="reg-eventcode">Event Code</label>
-                        <input type="text" id="reg-eventcode" />
+                    <div class="form-grid">
+                        <div class="input-field">
+                            <label for="reg-eventcode">Event Code</label>
+                            <input type="text" id="reg-eventcode" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-studentID">Student ID</label>
+                            <input type="text" id="reg-studentID" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-name">Name</label>
+                            <input type="text" id="reg-name"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-course">Course</label>
+                            <input type="text" id="reg-course"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-section">Section</label>
+                            <input type="text" id="reg-section"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-gender">Gender</label>
+                            <input type="text" id="reg-gender"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-age">Age</label>
+                            <input type="text" id="reg-age"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-year">Year</label>
+                            <input type="text" id="reg-year"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="reg-department">Department</label>
+                            <input type="text" id="reg-department"/>
+                        </div>
                     </div>
 
-                    <div class="input-field">
-                        <label for="reg-studentID">Student ID</label>
-                        <input type="text" id="reg-studentID" />
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-name">Name</label>
-                        <input type="text" id="reg-name"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-course">Course</label>
-                        <input type="text" id="reg-course"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-section">Section</label>
-                        <input type="text" id="reg-section"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-gender">Gender</label>
-                        <input type="text" id="reg-gender"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-age">Age</label>
-                        <input type="text" id="reg-age"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-year">Year</label>
-                        <input type="text" id="reg-year"/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-department">Department</label>
-                        <input type="text" id="reg-deparment"/>
-                    </div>
-
-                    <div class="button-group">
-                        <button class="back-btn">Back</button>
-                        <button class="next-btn">Next</button>
-                    </div>
+                <div class="button-group">
+                    <button class="back-btn">Back</button>
+                    <button class="next-btn">Next</button>
+                </div>
         </div>
+
 
         <div class="register-box">
                     <h2>Almost there!</h2>
