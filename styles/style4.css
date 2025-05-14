@@ -19,7 +19,6 @@ body {
   height: 600px; /* You can adjust the height */
   position: relative;
   background: white;
-  
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.767);
