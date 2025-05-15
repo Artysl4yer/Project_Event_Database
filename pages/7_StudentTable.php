@@ -67,6 +67,8 @@
                             <th>Age</th>   
                             <th>Year</th>
                             <th>Dept</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         <?php
 
@@ -90,7 +92,7 @@
                             <td><?= htmlspecialchars($row['Dept']) ?></td>
                             <td><a class="edit-btn" href="#" onclick="openEditModal(<?= $row['number'] ?>)">Edit</a></td>
                             <td>
-                                <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
+                                <form method="POST" action="../php/delete_participant.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                     <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                     <button type="submit" name="delete" class="delete-btn">Delete</button>
                                 </form>
