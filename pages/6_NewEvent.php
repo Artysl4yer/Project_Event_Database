@@ -90,20 +90,14 @@
                             <td><?= htmlspecialchars($row['event_description']) ?></td>
                             <td><?= htmlspecialchars($row['organization']) ?></td>
                             <td><?= htmlspecialchars($row['event_status']) ?></td>
-
-                            <td style="position: relative;">
-                            <div class="dropdown-wrapper">
-                                <a href="#" class="edit-btn" onclick="toggleDropdown(<?= $row['number'] ?>); return false;">⋮</a>
-                                <div id="dropdown<?= $row['number'] ?>" class="dropdown-menu" style="display:none; position:absolute; top:20px; left:0; background:#fff; border:1px solid #ccc; padding:5px; z-index:100;">
-                                <a href="#" onclick="editEvent(<?= $row['number'] ?>); return false;">Edit</a><br>
-                                <a href="#" onclick="deleteEvent(<?= $row['number'] ?>); return false;">Delete</a>
-                                </div>
+                                
+                            <td class="dropdown-wrapper">
+                            <button class="dropdown-toggle" data-dropdown-number="<?= $row['number'] ?>">⋮</button>
+                            <div id="dropdown<?= $row['number'] ?>" class="dropdown-menu">
+                                <button onclick="editEvent(<?= $row['number'] ?>)">Edit</button>
+                                <button onclick="deleteEvent(<?= $row['number'] ?>)">Delete</button>
                             </div>
                             </td>
-
-
-
-
 
 
                             <!--<td>
@@ -211,7 +205,7 @@
                     <div id="editModal" class="modal">
 
         <script src="../Javascript/popup.js"></script>
-        
+        <script src="../Javascript/dropdown.js"></script> 
         <script>
             function generateCode(length = 12) {
                 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
