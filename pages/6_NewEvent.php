@@ -156,6 +156,7 @@
                                     <label for="event-description"> Decription: </label>
                                     <textarea id="description" name="event-description"></textarea>
                                 </div>
+                                <!--
                                 <input type="hidden" name="code" id="codeField">
                                 <div class="input-box-options">
                                     <div class="option-title-box">
@@ -187,7 +188,7 @@
                                     <label for="option"> 
                                         <input type="checkbox" name="option" value="Email"> Email
                                     </label>
-                                </div>
+                                </div>-->
                                 </div>
                                 <div class="controls">
                                     <button class="btn-submit" type="submit">Submit</button>

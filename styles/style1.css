@@ -298,8 +298,18 @@ Body{
     text-align: center;
 }
 
-.floating-card .date{
+.floating-card .status{
     text-align: center;
+}
+
+.status b {
+    color: black;
+}
+
+.status p {
+    transition: opacity 0.3s ease-in-out;
+    color: #969393;
+
 }
 
 .floating-card .event-description h3 {

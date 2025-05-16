@@ -45,7 +45,7 @@ session_start();
         </div>
         
         <div class="main-content">
-       
+    
             <div class="first-page">
             <!-- The Event List. The compilation of events, sort to newest to latest -->
             <div class="event-details">
@@ -96,8 +96,8 @@ session_start();
                                     echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
                                     echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
                                     echo "      </div>";
-                                    echo "      <div class='date'>";
-                                    echo "          <p>" . $dateOnly. "</p>"; 
+                                    echo "      <div class='status'>";
+                                    echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
                                     echo "      </div>";
                                     echo "  </div>";
                                     echo "  <div class='even-more-details'>";
