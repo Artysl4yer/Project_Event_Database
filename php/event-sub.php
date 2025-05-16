@@ -31,7 +31,7 @@ if (!$merge_start || !$merge_end) {
 $merge_start = $merge_start->format('Y-m-d H:i:s');
 $merge_end = $merge_end->format('Y-m-d H:i:s');
 
-$sql = "INSERT INTO event_table (
+$sql1 = "INSERT INTO event_table (
     event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status
 ) VALUES (
     '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization', '$status'
