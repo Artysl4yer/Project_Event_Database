@@ -58,7 +58,7 @@
             <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
             
             <div class="action-links">
-                <a href="#" class="action-link register-link">Register <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="action-link register-link">New Client Register<i class="fas fa-arrow-right"></i></a>
                 <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
@@ -93,12 +93,31 @@
             <form id="registrationForm">
                 <div class="form-grid">
                     <div class="input-field">
-                        <label for="reg-username">Username</label>
-                        <input type="text" id="reg-username" name="username" required/>
+                        <label for="reg-username">Name</label>
+                        <input type="text" id="reg-name" name="name" required/>
+                    </div>
+
+                   <div class="input-field">
+                        <label for="reg-organization">Organization</label>
+                        <select id="reg-organization" name="organization" required>
+                            <option value="">Select an organization</option>
+                            <option value="CCS">College of Computer Studies</option>
+                            <option value="CBA">College of Business and Accountancy</option>
+                            <option value="CON">College of Nursing</option>
+                            <option value="COE">College of Education</option>
+                            <option value="CIHM">College of International Hospitality Management</option>
+                            <option value="COA">College of Arts</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field">
+                        <label for="reg-confirm-password">Username</label>
+                        <input type="password" id="reg-username" name="username" required/>
                     </div>
 
                     <div class="input-field">
-                        <label for="reg-password">Password</label>
+                        <label for="reg-confirm-password">Password</label>
                         <input type="password" id="reg-password" name="password" required/>
                     </div>
 

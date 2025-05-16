@@ -25,6 +25,29 @@ body {
   animation: fadein 500ms;
 }
 
+.input-field select {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: white;
+  color: #333;
+  appearance: none; /* Removes default arrow in some browsers */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23333' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+}
+
+.input-field select:focus {
+  border-color: #1a5e22;
+  box-shadow: 0 0 0 3px rgba(26, 94, 34, 0.1);
+  outline: none;
+}
+
+
 .university-info,
 .login-box,
 .registration-box {
