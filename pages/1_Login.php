@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-    <div class="title-container">
+    <!--<div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
     </div>
     <div class="tab-container">
@@ -49,7 +49,7 @@
         <div class="logout">
             <a href="../php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
-    </div>
+    </div>-->
 
     <div class="login-container">
         <div class="university-info active">
