@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PLP: Event</title>
+        <title>PLP: About</title>
         <link rel="stylesheet" href="/styles/style7.css">
         <link rel="stylesheet" href="/styles/style1.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>

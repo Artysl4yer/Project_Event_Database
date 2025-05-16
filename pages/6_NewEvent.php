@@ -69,8 +69,6 @@
                             <th>Description</th>
                             <th>Organization</th>   
                             <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
                         </tr>
                         <?php
 
@@ -92,16 +90,29 @@
                             <td><?= htmlspecialchars($row['event_description']) ?></td>
                             <td><?= htmlspecialchars($row['organization']) ?></td>
                             <td><?= htmlspecialchars($row['event_status']) ?></td>
-                            <td><a class="edit-btn" href="#" onclick="openEditModal(<?= $row['number'] ?>)">Edit</a></td>
+
+                            <td style="position: relative;">
+                            <div class="dropdown-wrapper">
+                                <a href="#" class="edit-btn" onclick="toggleDropdown(<?= $row['number'] ?>); return false;">⋮</a>
+                                <div id="dropdown<?= $row['number'] ?>" class="dropdown-menu" style="display:none; position:absolute; top:20px; left:0; background:#fff; border:1px solid #ccc; padding:5px; z-index:100;">
+                                <a href="#" onclick="editEvent(<?= $row['number'] ?>); return false;">Edit</a><br>
+                                <a href="#" onclick="deleteEvent(<?= $row['number'] ?>); return false;">Delete</a>
+                                </div>
+                            </div>
+                            </td>
 
 
-                            <td>
+
+
+
+
+                            <!--<td>
                                 <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                     <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                     <button type="submit" name="delete" class="delete-btn">Delete</button>
                                 </form>
                             </td>
-                        </tr>
+                        </tr>-->
                         <?php
                             endwhile;
                             else:
