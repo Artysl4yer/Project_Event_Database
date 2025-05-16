@@ -45,7 +45,7 @@ $sql2 = "INSERT INTO archive_table (
 
 
 
-if(mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2)){
+if(mysqli_query($conn, $sql) && mysqli_query($conn, $sql2)){
     header("Location: ../pages/6_NewEvent.php");
     exit();
 } else {

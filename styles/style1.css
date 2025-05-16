@@ -39,7 +39,7 @@ Body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 750px;
+    min-height: 500px;
     background: 
     linear-gradient(135deg, rgba(26, 94, 34, 0.6), rgba(160, 131, 14, 0.3)),
     url('/images-icon/plm_courtyard.png') no-repeat center center;
@@ -254,24 +254,45 @@ Body{
     
 }
 .floating-card .event-date {
-    background-image: url('../images-icon/plm_courtyard.png');
-    background-size: cover;
-    background-repeat: no-repeat;
     background-color: #f2f2f2;
     border-radius: 10px;
-    padding: auto;
     margin: auto;
-    text-align: center;
     height: 250px;
 }
 
-.floating-card .event-date .day {
-    font-weight: bold;
+.event-date {
+    position: relative;
+    height: 20vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-.floating-card .event-date .time {
+.eventbg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: brightness(55%);
+}
+
+.day, .time {
+    position: absolute;
+    z-index: 2; 
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.day {
+    top: 30%;
+    font-size: 18px;
+}
+
+.time {
+    top: 45%;
     font-size: 14px;
 }
+
 
 .floating-card .event-description {
     text-align: center;
@@ -435,6 +456,7 @@ Body{
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
     padding: 20px;
+    width: 120vh;
 }
 
 

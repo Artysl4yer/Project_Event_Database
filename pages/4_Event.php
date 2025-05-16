@@ -69,11 +69,11 @@ session_start();
 
                             if (!empty($search)) {
                                 $query = "SELECT * FROM event_table 
-                                          WHERE event_title LIKE '%$search%' 
-                                          OR event_description LIKE '%$search%' 
-                                          OR event_location LIKE '%$search%' 
-                                          OR organization LIKE '%$search%' 
-                                          ORDER BY number DESC";
+                                            WHERE event_title LIKE '%$search%' 
+                                            OR event_description LIKE '%$search%' 
+                                            OR event_location LIKE '%$search%' 
+                                            OR organization LIKE '%$search%' 
+                                            ORDER BY number DESC";
                             } else {
                                 $query = "SELECT * FROM event_table ORDER BY number DESC";
                             }
@@ -88,6 +88,7 @@ session_start();
                                     echo "<div class='event-box-details'>";
                                     echo "  <div class='floating-card'>";
                                     echo "      <div class='event-date'>";
+                                    echo "          <img src='/images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
                                     echo "          <p class='day'>" .$dateOnly. "</p>";
                                     echo "          <p class='time'>" .$dateTimeStart. "</p>";
                                     echo "      </div>";
@@ -113,7 +114,7 @@ session_start();
                                 echo "<p style='margin: 20px; color: red;'>No events found matching your search.</p>";
                             }
                         ?>
-                       
+                    
                     </div>
                 </div>
             </div>
@@ -123,7 +124,7 @@ session_start();
 
                                 <!-- temporary -->
     <!--        <div class="second-page">
-                 Popup for the registration list of attendies 
+                Popup for the registration list of attendies 
                 <div class="registration-table-box" id="importRegistration">
                     <div class="registration-modal-content">
                         <div class="registraion-header">
