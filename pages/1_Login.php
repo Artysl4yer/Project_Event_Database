@@ -51,47 +51,51 @@
         </div>
     </div>-->
 
+    
     <div class="login-container">
-        <div class="university-info active">
+        <!--<div class="university-info active">
             <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
             <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations.</p>
             <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
             
-            <div class="action-links">
+        </div>-->
+
+        <!--<div class="action-links">
                 <a href="#" class="action-link register-link">New Client Register<i class="fas fa-arrow-right"></i></a>
                 <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
+            </div>-->
 
-        <div class="login-box hidden">
-            <h2>Welcome to PLP's Event Management System!</h2>
-            <p class="subtitle">Enter your credentials to continue</p>
-    
+        <div class="loginpage active">
+            <h1>Welcome to PLP's <br> Event Management System</h1>
+            <!--<h2>Enter your credentials to continue</h2>-->
             <form id="loginForm">
                 <div class="input-field">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                    <input type="text" id="username" name="username" required>
                 </div>
             
                 <div class="input-field">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    <input type="password" id="password" name="password" required>
                 </div>
             
                 <div class="button-group">
-                    <button type="button" class="back-btn">Back</button>
+                    <!--<button type="button" class="back-btn">Back</button>-->
                     <button type="submit" class="login-btn">Log in</button>
                 </div>
                 <div id="loginMessage" class="message"></div>
             </form>
-        </div>
+
+            <div class="signup-prompt">
+                Don't have an account? <a href="#" class="register-link">Sign up</a>
+            </div>
+        </div>  
 
         <div class="registration-box hidden">
             <h2>Registration Form</h2>
             <p class="subtitle">Please fill in the fields below</p>
 
             <form id="registrationForm">
-                <div class="form-grid">
                     <div class="input-field">
                         <label for="reg-username">Name</label>
                         <input type="text" id="reg-name" name="name" required/>
@@ -100,7 +104,7 @@
                    <div class="input-field">
                         <label for="reg-organization">Organization</label>
                         <select id="reg-organization" name="organization" required>
-                            <option value="">Select an organization</option>
+                            <option>Select an organization</option>
                             <option value="CCS">College of Computer Studies</option>
                             <option value="CBA">College of Business and Accountancy</option>
                             <option value="CON">College of Nursing</option>
@@ -125,7 +129,7 @@
                         <label for="reg-confirm-password">Confirm Password</label>
                         <input type="password" id="reg-confirm-password" name="confirm_password" required/>
                     </div>
-                </div>
+                
 
                 <div class="button-group">
                     <button type="button" class="back-btn">Back</button>
@@ -136,18 +140,20 @@
         </div>
     </div>
 
+    
+    
     <script>
     $(document).ready(function() {
         $('.login-link').click(function(e) {
             e.preventDefault();
-            $('.university-info').removeClass('active').addClass('hidden');
+            $('.loginpage').removeClass('active').addClass('hidden');
             $('.registration-box').removeClass('active').addClass('hidden');
             $('.login-box').removeClass('hidden').addClass('active');
         });
 
         $('.register-link').click(function(e) {
             e.preventDefault();
-            $('.university-info').removeClass('active').addClass('hidden');
+            $('.loginpage').removeClass('active').addClass('hidden');
             $('.login-box').removeClass('active').addClass('hidden');
             $('.registration-box').removeClass('hidden').addClass('active');
         });
@@ -155,7 +161,7 @@
         $('.back-btn').click(function(e) {
             e.preventDefault();
             $('.login-box, .registration-box').removeClass('active').addClass('hidden');
-            $('.university-info').removeClass('hidden').addClass('active');
+            $('.loginpage').removeClass('hidden').addClass('active');
         });
 
         // sa login form

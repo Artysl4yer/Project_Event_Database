@@ -7,18 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return; // Optional: stop the script if links are missing
     }
 
-    const universityInfo = document.querySelector(".university-info");
+    const loginPage = document.querySelector(".loginpage");
     const loginBox = document.querySelector(".login-box");
     const registrationBox = document.querySelector(".registration-box");
     const registerBox = document.querySelector(".register-box");
 
     const backButtons = document.querySelectorAll(".back-btn");
-
     const nextButtons = document.querySelectorAll(".next-btn");
     const returnButton = document.querySelectorAll(".return-btn");
 
     //University Info View
-    universityInfo.classList.add("active");
+    loginPage.classList.add("active");
     loginBox.classList.remove("active");
     registrationBox.classList.remove("active");
 
@@ -28,24 +27,26 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Login link clicked");
         loginBox.classList.add("active");
         registrationBox.classList.remove("active");
-        universityInfo.classList.remove("active");
+        loginPage.classList.remove("active");
     });
+
 
     // Show registration box
     registerLink.addEventListener("click", function (e) {
         e.preventDefault();
         console.log("Register link clicked");
         registrationBox.classList.add("active");
+        registrationBox.classList.remove("hidden");
         loginBox.classList.remove("active");
-        universityInfo.classList.remove("active");
+        loginPage.classList.remove("active");
     });
 
-    // Go back to university info from either form
+    // Go back loginpage from either form
     backButtons.forEach(button => {
         button.addEventListener("click", function () {
             loginBox.classList.remove("active");
             registrationBox.classList.remove("active");
-            universityInfo.classList.add("active");
+            loginPage.classList.add("active");
         });
     });
 
