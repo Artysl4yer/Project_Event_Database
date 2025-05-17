@@ -33,9 +33,9 @@
     </style>
 </head>
 <body>
-    <!--<div class="title-container">
+    <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
-    </div>
+    </div><!--
     <div class="tab-container">
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>

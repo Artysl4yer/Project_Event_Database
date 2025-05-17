@@ -1,19 +1,22 @@
 const ctx = document.getElementById('myChart');
 
-fetch("script.ph")
+fetch("../php/stats-script.php")
 
-.then((respinse)) => {
-    
-}
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    createChart(data, 'bar')
+});
 
 function createChart(chartData, type){
   new Chart(ctx, {
     type: type,
     data: {
-      labels: chartData,map(row => row.date),
+      labels: chartData.map(row => row.date),
       datasets: [{
-        label: '# of Votes',
-        data: chartData,map(row => row.income),
+        label:  '  ',
+        data: chartData.map(row => row.income),
         borderWidth: 1
       }]
     },
