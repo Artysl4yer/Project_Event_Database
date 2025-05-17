@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="../styles/style5.css">
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/style8.css">
+    <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 </head>
-
 <body>
     <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
@@ -130,6 +131,9 @@
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </button>
                             </form>
+                            <button onclick="generateQRCode(<?= $row['number'] ?>, '<?= htmlspecialchars($row['event_code']) ?>')">
+                                <i class="fas fa-qrcode"></i> Generate QR
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -146,6 +150,7 @@
     <!-- Event Modal -->
     <div id="eventModal" class="modal <?= $isEditing ? 'active' : '' ?>">
         <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             <div class="header">
                 <h3><?= $isEditing ? 'Edit Event' : 'Create New Event' ?></h3>
                 <p>Fill out the information below to <?= $isEditing ? 'update' : 'create' ?> the event</p>
@@ -230,8 +235,26 @@
             </form>
         </div>
     </div>
+    
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <div class="header">
+                <h3>Event QR Code</h3>
+                <span class="close-qr">&times;</span>
+            </div>
+            <div id="qrcode-container" class="text-center">
+                <div id="qrcode"></div>
+                <p>Scan this QR code to register for the event</p>
+                <button onclick="downloadQRCode()" class="btn-download">Download QR Code</button>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
+        let qrcode = null;
+        
         // Function to open modal
         function openModal() {
             document.getElementById('eventModal').classList.add('active');
@@ -249,8 +272,13 @@
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('eventModal');
+            const qrModal = document.getElementById('qrModal');
+            
             if (event.target == modal) {
                 closeModal();
+            }
+            if (event.target == qrModal) {
+                qrModal.classList.remove('show');
             }
         }
         
@@ -270,6 +298,50 @@
             document.getElementById('codeField').value = generateCode(12);
             <?php endif; ?>
         });
+        
+        // QR Code Generation
+        function generateQRCode(eventNumber, eventCode) {
+            const modal = document.getElementById('qrModal');
+            const container = document.getElementById('qrcode-container');
+            const qrcodeDiv = document.getElementById('qrcode');
+            
+            // Clear previous QR code
+            qrcodeDiv.innerHTML = '';
+            
+            // Create registration URL with correct path
+            const registrationUrl = `${window.location.origin}/Project_Event_Database/php/register_participant.php?event=${eventNumber}&code=${eventCode}`;
+            
+            // Generate new QR code
+            qrcode = new QRCode(qrcodeDiv, {
+                text: registrationUrl,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Show modal
+            modal.classList.add('show');
+        }
+        
+        function downloadQRCode() {
+            if (!qrcode) return;
+            
+            const canvas = document.querySelector("#qrcode canvas");
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.href = image;
+            link.download = 'event-qr-code.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Close QR modal when clicking the close button
+        document.querySelector('.close-qr').onclick = function() {
+            document.getElementById('qrModal').classList.remove('show');
+        }
     </script>
 </body>
 </html>
