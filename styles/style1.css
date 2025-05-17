@@ -120,6 +120,7 @@ Body{
     padding: 20px 0px 20px 100px;
     margin: 0;
     position: fixed;
+    height: 8vh;
     top: 0;
     width: 100%;
     z-index: 1000; 
@@ -128,15 +129,15 @@ Body{
 }
 
 .title-container h1{
-    font-size: 15px;
+    font-size: 20px;
     color:#104911;
     transition: all 500ms;
 }
 
 .title-container img{
-    width: 40px;
-    height: 35px;
-    margin-top: 2px;
+    width: 60px;
+    height: 55px;
+    margin-top: 0px;
     margin-right: 10px;
 }
 

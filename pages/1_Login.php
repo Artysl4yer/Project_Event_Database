@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="../styles/style4.css">
     <link rel="stylesheet" href="../styles/style1.css">
     <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
-   
+
 </head>
 <body>
     <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
     </div>
+    <!--
     <div class="tab-container">
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
@@ -26,7 +27,7 @@
         <div class="logout">
             <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
-    </div>
+    </div>-->
 
     <div class="login-container">
         <div class="university-info">
@@ -147,7 +148,10 @@
                     </form>
         </div>
     </div>
+
     <script src="../javascript/login.js"></script>
     <script src="../Javascript/dynamic.js"></script>
+
+
 </body>
 </html>

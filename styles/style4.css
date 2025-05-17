@@ -5,7 +5,7 @@
 body {
   height: 100vh;
   background: 
-    linear-gradient(135deg, rgba(26, 94, 34, 0.6), rgba(160, 131, 14, 0.3)),
+    linear-gradient(135deg, rgba(20, 71, 26, 0.6), rgba(133, 107, 7, 0.3)),
     url('/images-icon/plm_courtyard.png') no-repeat center center;
   background-size: cover;
   display: flex;
