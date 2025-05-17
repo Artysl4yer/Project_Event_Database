@@ -96,40 +96,38 @@
             <p class="subtitle">Please fill in the fields below</p>
 
             <form id="registrationForm">
-                    <div class="input-field">
-                        <label for="reg-username">Name</label>
-                        <input type="text" id="reg-name" name="name" required/>
-                    </div>
+                <div class="input-field">
+                    <label for="reg-name">Name</label>
+                    <input type="text" id="reg-name" name="name" required/>
+                </div>
 
-                   <div class="input-field">
-                        <label for="reg-organization">Organization</label>
-                        <select id="reg-organization" name="organization" required>
-                            <option>Select an organization</option>
-                            <option value="CCS">College of Computer Studies</option>
-                            <option value="CBA">College of Business and Accountancy</option>
-                            <option value="CON">College of Nursing</option>
-                            <option value="COE">College of Education</option>
-                            <option value="CIHM">College of International Hospitality Management</option>
-                            <option value="COA">College of Arts</option>
-                        </select>
-                    </div>
+                <div class="input-field">
+                    <label for="reg-organization">Organization</label>
+                    <select id="reg-organization" name="organization" required>
+                        <option value="">Select an organization</option>
+                        <option value="CCS">College of Computer Studies</option>
+                        <option value="CBA">College of Business and Accountancy</option>
+                        <option value="CON">College of Nursing</option>
+                        <option value="COE">College of Education</option>
+                        <option value="CIHM">College of International Hospitality Management</option>
+                        <option value="COA">College of Arts</option>
+                    </select>
+                </div>
 
+                <div class="input-field">
+                    <label for="reg-username">Username</label>
+                    <input type="text" id="reg-username" name="username" required/>
+                </div>
 
-                    <div class="input-field">
-                        <label for="reg-confirm-password">Username</label>
-                        <input type="password" id="reg-username" name="username" required/>
-                    </div>
+                <div class="input-field">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" name="password" required/>
+                </div>
 
-                    <div class="input-field">
-                        <label for="reg-confirm-password">Password</label>
-                        <input type="password" id="reg-password" name="password" required/>
-                    </div>
-
-                    <div class="input-field">
-                        <label for="reg-confirm-password">Confirm Password</label>
-                        <input type="password" id="reg-confirm-password" name="confirm_password" required/>
-                    </div>
-                
+                <div class="input-field">
+                    <label for="reg-confirm-password">Confirm Password</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" required/>
+                </div>
 
                 <div class="button-group">
                     <button type="button" class="back-btn">Back</button>
@@ -139,85 +137,85 @@
             </form>
         </div>
     </div>
-
     
-    
-    <script>
-    $(document).ready(function() {
-        $('.login-link').click(function(e) {
-            e.preventDefault();
-            $('.loginpage').removeClass('active').addClass('hidden');
-            $('.registration-box').removeClass('active').addClass('hidden');
-            $('.login-box').removeClass('hidden').addClass('active');
-        });
+        <script>
+            $(document).ready(function() {
+                $('.register-link').click(function(e) {
+                    e.preventDefault();
+                    console.log("Register link clicked");
+                    $('.loginpage').removeClass('active').addClass('hidden');
+                    $('.registration-box').removeClass('hidden').addClass('active');
+                });
 
-        $('.register-link').click(function(e) {
-            e.preventDefault();
-            $('.loginpage').removeClass('active').addClass('hidden');
-            $('.login-box').removeClass('active').addClass('hidden');
-            $('.registration-box').removeClass('hidden').addClass('active');
-        });
+                $('.back-btn').click(function(e) {
+                    e.preventDefault();
+                    $('.registration-box').removeClass('active').addClass('hidden');
+                    $('.loginpage').removeClass('hidden').addClass('active');
+                });
 
-        $('.back-btn').click(function(e) {
-            e.preventDefault();
-            $('.login-box, .registration-box').removeClass('active').addClass('hidden');
-            $('.loginpage').removeClass('hidden').addClass('active');
-        });
+                $('#registrationForm').on('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Registration form submitted');
+                    
+                    var formData = {
+                        name: $('#reg-name').val(),
+                        organization: $('#reg-organization').val(),
+                        username: $('#reg-username').val(),
+                        password: $('#reg-password').val(),
+                        confirm_password: $('#reg-confirm-password').val()
+                    };
 
-        // sa login form
-        $('#loginForm').on('submit', function(e) {
-            e.preventDefault();
-            console.log('Login form submitted');
-            $.ajax({
-                type: 'POST',
-                url: '../php/login.php',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function(response) {
-                    console.log('Login response:', response);
-                    if (response.success) {
-                        window.location.href = '4_Event.php';
-                    } else {
-                        $('#loginMessage').html(response.message).removeClass('success').addClass('error');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Login error:', error);
-                    $('#loginMessage').html('An error occurred').addClass('error');
-                }
+                    console.log('Form data:', formData);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '../php/register.php',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('Registration response:', response);
+                            if (response.success) {
+                                $('#registerMessage').html(response.message).removeClass('error').addClass('success');
+                                $('#registrationForm')[0].reset();
+                                setTimeout(function() {
+                                    $('.registration-box').removeClass('active').addClass('hidden');
+                                    $('.loginpage').removeClass('hidden').addClass('active');
+                                    $('#loginMessage').html('Registration successful! Please login with your new account.').removeClass('error').addClass('success');
+                                }, 2000);
+                            } else {
+                                $('#registerMessage').html(response.message).removeClass('success').addClass('error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Registration error:', error);
+                            $('#registerMessage').html('An error occurred').addClass('error');
+                        }
+                    });
+                });
+
+                $('#loginForm').on('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Login form submitted');
+                    $.ajax({
+                        type: 'POST',
+                        url: '../php/login.php',
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('Login response:', response);
+                            if (response.success) {
+                                window.location.href = '4_Event.php';
+                            } else {
+                                $('#loginMessage').html(response.message).removeClass('success').addClass('error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Login error:', error);
+                            $('#loginMessage').html('An error occurred').addClass('error');
+                        }
+                    });
+                });
             });
-        });
-
-        // sa registration
-        $('#registrationForm').on('submit', function(e) {
-            e.preventDefault();
-            console.log('Registration form submitted');
-            $.ajax({
-                type: 'POST',
-                url: '../php/register.php',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function(response) {
-                    console.log('Registration response:', response);
-                    if (response.success) {
-                        $('#registerMessage').html(response.message).removeClass('error').addClass('success');
-                        setTimeout(function() {
-                            $('.registration-box').removeClass('active').addClass('hidden');
-                            $('.login-box').removeClass('hidden').addClass('active');
-                        }, 2000);
-                    } else {
-                        $('#registerMessage').html(response.message).removeClass('success').addClass('error');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Registration error:', error);
-                    $('#registerMessage').html('An error occurred').addClass('error');
-                }
-            });
-        });
-    });
-    </script>
-    
-    <script src="../javascript/login.js"></script>
-</body>
+        </script>
+    </body>
 </html>

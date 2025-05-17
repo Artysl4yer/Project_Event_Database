@@ -6,8 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $name = $_POST['name'];
+    $organization = $_POST['organization'];
 
-    if (empty($username) || empty($password) || empty($confirm_password)) {
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($name) || empty($organization)) {
         echo json_encode(['success' => false, 'message' => 'All fields are required']);
         exit;
     }
@@ -17,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    // Check if username already exists
+    $stmt = $conn->prepare("SELECT id FROM clients WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -27,10 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->bind_param("ss", $username, $hashed_password);
+    // Insert into clients table
+    $stmt = $conn->prepare("INSERT INTO clients (name, organization, username, password) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $organization, $username, $hashed_password);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Registration successful']);
