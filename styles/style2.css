@@ -9,6 +9,10 @@
     background-color: rgba(0,0,0,0.5);
 }
 
+ .modal.active {
+            display: block;
+        }
+
 .header{
     background-color: #104911;
     padding: 20px 20px;
@@ -112,6 +116,103 @@ form .input-box .option-title-box{
 .modal-content .controls .btn-submit:hover{
     cursor: pointer;
 }
+
+ .dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+            font-size: 1.2em;
+            color: #555;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-toggle:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 150px;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .dropdown-menu button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px 15px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-menu button i {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+            color: #555;
+        }
+        
+        .dropdown-menu button:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .dropdown-menu button:first-child {
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* Edit button in dropdown */
+        .dropdown-menu button:nth-child(1) {
+            color: #3284ed;
+        }
+        
+        .dropdown-menu button:nth-child(1):hover {
+            background-color: rgba(50, 132, 237, 0.1);
+        }
+        
+        /* Delete button in dropdown */
+        .dropdown-menu button:nth-child(2) {
+            color: #e74c3c;
+        }
+        
+        .dropdown-menu button:nth-child(2):hover {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        /* Show dropdown when wrapper is hovered */
+        .dropdown-wrapper:hover .dropdown-menu {
+            display: block;
+        }
+        
+        /* Table cell adjustments */
+        .event-display-table td:last-child {
+            padding: 8px;
+            text-align: center;
+        }
+        
+        
+        
+        
+
 
 
 
