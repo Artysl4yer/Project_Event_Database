@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../styles/style5.css">
         <link rel="stylesheet" href="../styles/style6.css">
         <link rel="stylesheet" href="../styles/style8.css">
+        <link rel="stylesheet" href="../styles/style10.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         
     </head>
@@ -96,17 +97,82 @@
                             <div id="dropdown<?= $row['number'] ?>" class="dropdown-menu">
                                 <button onclick="editEvent(<?= $row['number'] ?>)">Edit</button>
                                 <button onclick="deleteEvent(<?= $row['number'] ?>)">Delete</button>
+                                <button onclick="generateQRCode(<?= $row['number'] ?>, '<?= htmlspecialchars($row['event_code']) ?>')">Generate QR Code</button>
                             </div>
                             </td>
 
+                            <!-- QR Code Modal -->
+                            <div id="qrModal" class="modal">
+                                <div class="modal-content">
+                                    <div class="header">
+                                        <h3>Event QR Code</h3>
+                                        <span class="close-qr">&times;</span>
+                                    </div>
+                                    <div id="qrcode-container" class="text-center">
+                                        <div id="qrcode"></div>
+                                        <p>Scan this QR code to register for the event</p>
+                                        <button onclick="downloadQRCode()" class="btn-download">Download QR Code</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <!--<td>
-                                <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
-                                    <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
-                                    <button type="submit" name="delete" class="delete-btn">Delete</button>
-                                </form>
-                            </td>
-                        </tr>-->
+                            <!-- Add QR Code generation script -->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+                            <script>
+                            let qrcode = null;
+                            
+                            function generateQRCode(eventNumber, eventCode) {
+                                const modal = document.getElementById('qrModal');
+                                const container = document.getElementById('qrcode-container');
+                                const qrcodeDiv = document.getElementById('qrcode');
+                                
+                                // Clear previous QR code
+                                qrcodeDiv.innerHTML = '';
+                                
+                                // Create registration URL with correct path
+                                const registrationUrl = `${window.location.origin}/Project_Event_Database/php/register_participant.php?event=${eventNumber}&code=${eventCode}`;
+                                
+                                // Generate new QR code
+                                qrcode = new QRCode(qrcodeDiv, {
+                                    text: registrationUrl,
+                                    width: 256,
+                                    height: 256,
+                                    colorDark: "#000000",
+                                    colorLight: "#ffffff",
+                                    correctLevel: QRCode.CorrectLevel.H
+                                });
+                                
+                                // Show modal
+                                modal.classList.add('show');
+                            }
+                            
+                            function downloadQRCode() {
+                                if (!qrcode) return;
+                                
+                                const canvas = document.querySelector("#qrcode canvas");
+                                const image = canvas.toDataURL("image/png");
+                                const link = document.createElement('a');
+                                link.href = image;
+                                link.download = 'event-qr-code.png';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            }
+                            
+                            // Close QR modal when clicking the close button
+                            document.querySelector('.close-qr').onclick = function() {
+                                document.getElementById('qrModal').classList.remove('show');
+                            }
+                            
+                            // Close QR modal when clicking outside
+                            window.onclick = function(event) {
+                                const modal = document.getElementById('qrModal');
+                                if (event.target == modal) {
+                                    modal.classList.remove('show');
+                                }
+                            }
+                            </script>
+                        </tr>
                         <?php
                             endwhile;
                             else:
@@ -115,12 +181,9 @@
                         <?php endif; ?>
                     </table>
                 </div>
-        </div>
-        
-                
-                            
-                <div id="importModal" class="modal">
-                    <div class="modal-content">
+         </div>              
+             <div id="importModal" class="modal">
+                   <div class="modal-content">
                         <div class="header">
                             <h3> Create New Event </h3>
                             <p> Fill out the information below to get started </p>
@@ -200,9 +263,9 @@
                                     
                                 </div>
                         </form>
-                        </div>
+                         </div>
                     </div>
-                    <div id="editModal" class="modal">
+                 <div id="editModal" class="modal">
 
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/dropdown.js"></script> 
