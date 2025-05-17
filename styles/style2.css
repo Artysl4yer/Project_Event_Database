@@ -207,8 +207,8 @@ form .input-box .option-title-box{
         }
         
         /* Table cell adjustments */
-        .event-display-table td:last-child {
-            padding: 8px;
+        .event-display-table td:last-child {    
+            padding: 25px;
             text-align: center;
         }
         
