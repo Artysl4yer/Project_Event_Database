@@ -259,7 +259,7 @@
         function openModal() {
             document.getElementById('eventModal').classList.add('active');
         }
-        
+            
         // Function to close modal
         function closeModal() {
             document.getElementById('eventModal').classList.remove('active');
