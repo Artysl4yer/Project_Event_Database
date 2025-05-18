@@ -1,4 +1,3 @@
-
 <?php
 // Handle form submissions
 include '../php/conn.php';
@@ -76,6 +75,21 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/student-table.css">
     <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
+    <style>
+        /* Additional dropdown styles */
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 15px;
+        }
+        select:focus {
+            outline: none;
+            border-color: #104911;
+        }
+    </style>
 </head>
 <body>
     <div class="title-container">
@@ -141,7 +155,15 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             </div>
                             <div class="input-box">
                                 <label>Course</label>
-                                <input type="text" name="participant-course" id="participant-course" required>
+                                <select name="participant-course" id="participant-course" required>
+                                    <option value="">Select Course</option>
+                                    <option value="BSIT">BS Information Technology</option>
+                                    <option value="BSCS">BS Computer Science</option>
+                                    <option value="BSIS">BS Information Systems</option>
+                                    <option value="BSCE">BS Computer Engineering</option>
+                                    <option value="BSA">BS Accountancy</option>
+                                    <option value="BSBA">BS Business Administration</option>
+                                </select>
                             </div>
                             <div class="input-box">
                                 <label>Section</label>
@@ -161,11 +183,23 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             </div>
                             <div class="input-box">
                                 <label>Year</label>
-                                <input type="text" name="participant-year" id="participant-year" required>
+                                <select name="participant-year" id="participant-year" required>
+                                    <option value="">Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
                             </div>
                             <div class="input-box">
                                 <label>Department</label>
-                                <input type="text" name="participant-dept" id="participant-dept" required>
+                                <select name="participant-dept" id="participant-dept" required>
+                                    <option value="">Select Department</option>
+                                    <option value="CCS">College of Computer Studies</option>
+                                    <option value="CBA">College of Business Administration</option>
+                                    <option value="CAS">College of Arts and Sciences</option>
+                                    <option value="COE">College of Engineering</option>
+                                </select>
                             </div>
                         </div>
                         <div class="controls">
@@ -206,13 +240,25 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                     <td><?= $row['Age'] ?></td>
                     <td><?= htmlspecialchars($row['Year']) ?></td>
                     <td><?= htmlspecialchars($row['Dept']) ?></td>
-                    <td>
-                        <button class="edit-btn" onclick="openParticipantModal(<?= $row['number'] ?>)">Edit</button>
-                        <form method="POST" style="display:inline;">
-                            <input type="hidden" name="action" value="delete_participant">
-                            <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
-                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                    <td class="dropdown-wrapper">
+                        <button class="dropdown-toggle">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" onclick="openParticipantModal(<?= $row['number'] ?>)">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <form method="POST" action="7_StudentTable.php" onsubmit="return confirm('Are you sure you want to delete this participant?');">
+                                <input type="hidden" name="action" value="delete_participant">
+                                <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </form>
+                            <button class="dropdown-item" onclick="generateQRCode(<?= $row['number'] ?>, '<?= $row['ID'] ?>')">
+                                <i class="fas fa-qrcode"></i> Generate QR
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 <?php
@@ -224,7 +270,140 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             </table>
         </div>
     </div>
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <div class="header">
+                <h3>Participant QR Code</h3>
+                <span class="close-qr">&times;</span>
+            </div>
+            <div id="qrcode-container" class="text-center">
+                <div id="qrcode"></div>
+                <p>Scan this QR code to view participant details</p>
+                <button onclick="downloadQRCode()" class="btn-download">Download QR Code</button>
+            </div>
+        </div>
+    </div>
 
-    <script src="../Javascript/student-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Modal Functions
+        function openParticipantModal(participantId = null) {
+            const modal = document.getElementById('participantModal');
+            const form = document.getElementById('participantForm');
+            const title = document.getElementById('modalTitle');
+            
+            if (participantId) {
+                title.textContent = 'Edit Participant';
+                document.getElementById('participant-number').value = participantId;
+                
+                fetch(`7_StudentTable.php?action=get_participant&id=${participantId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('participant-id').value = data.ID || '';
+                        document.getElementById('participant-name').value = data.Name || '';
+                        document.getElementById('participant-course').value = data.Course || '';
+                        document.getElementById('participant-section').value = data.Section || '';
+                        document.getElementById('participant-gender').value = data.Gender || '';
+                        document.getElementById('participant-age').value = data.Age || '';
+                        document.getElementById('participant-year').value = data.Year || '';
+                        document.getElementById('participant-dept').value = data.Dept || '';
+                    });
+            } else {
+                title.textContent = 'Add New Participant';
+                form.reset();
+                document.getElementById('participant-number').value = '';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('participantModal').style.display = 'none';
+        }
+
+        // QR Code Functions
+        let qrcode = null;
+        
+        function generateQRCode(participantNumber, participantId) {
+            const modal = document.getElementById('qrModal');
+            const qrcodeDiv = document.getElementById('qrcode');
+            
+            qrcodeDiv.innerHTML = '';
+            
+            const participantData = {
+                type: 'participant',
+                id: participantId,
+                number: participantNumber,
+                system: 'PLP Event System',
+                timestamp: new Date().toISOString()
+            };
+            
+            qrcode = new QRCode(qrcodeDiv, {
+                text: JSON.stringify(participantData),
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            modal.classList.add('show');
+        }
+        
+        function downloadQRCode() {
+            if (!qrcode) return;
+            
+            const canvas = document.querySelector("#qrcode canvas");
+            const image = canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.href = image;
+            link.download = `participant-qr-${new Date().getTime()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle dropdown on click
+            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const menu = this.nextElementSibling;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(m => {
+                        if (m !== menu) m.classList.remove('show');
+                    });
+                    
+                    // Toggle current dropdown
+                    menu.classList.toggle('show');
+                });
+            });
+            
+            // Close dropdown when clicking elsewhere
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            });
+
+            // Close modals when clicking their close buttons
+            document.querySelector('.close-qr')?.addEventListener('click', function() {
+                document.getElementById('qrModal').classList.remove('show');
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('participantModal')) {
+                closeModal();
+            }
+            if (event.target == document.getElementById('qrModal')) {
+                document.getElementById('qrModal').classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
