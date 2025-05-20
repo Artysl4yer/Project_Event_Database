@@ -52,4 +52,3 @@ window.onload = function() {
       setupEditButton(eventId);
   });
 };
-
