@@ -30,49 +30,18 @@ if (!$merge_start || !$merge_end) {
 $merge_start = $merge_start->format('Y-m-d H:i:s');
 $merge_end = $merge_end->format('Y-m-d H:i:s');
 
-// Use prepared statement for event_table
-$stmt = $conn->prepare("INSERT INTO event_table (
-    event_title, event_code, event_location, 
-    date_start, event_start, date_end, event_end, 
-    event_description, organization, event_status
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$sql = "INSERT INTO event_table (
+    event_title, event_code, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status
+) VALUES (
+    '$event_title', '$code', '$event_location', '$date_start', '$merge_start', '$date_end', '$merge_end', '$event_description', '$organization', '$status'
+)";
 
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
-
-$stmt->bind_param("ssssssssss", 
-    $event_title, $code, $event_location,
-    $date_start, $merge_start, $date_end, $merge_end,
-    $event_description, $organization, $status
-);
-
-// Use prepared statement for archive_table
-$stmt2 = $conn->prepare("INSERT INTO archive_table (
-    event_title, event_code, event_location, 
-    date_start, event_start, date_end, event_end, 
-    event_description, organization, event_status
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-if (!$stmt2) {
-    die("Prepare failed for archive: " . $conn->error);
-}
-
-$stmt2->bind_param("ssssssssss", 
-    $event_title, $code, $event_location,
-    $date_start, $merge_start, $date_end, $merge_end,
-    $event_description, $organization, $status
-);
-
-// Execute both statements
-if ($stmt->execute() && $stmt2->execute()) {
+if(mysqli_query($conn, $sql)){
     header("Location: ../pages/6_NewEvent.php");
     exit();
 } else {
-    echo "ERROR: Could not execute insert. " . $stmt->error . " or " . $stmt2->error;
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
 }
 
-$stmt->close();
-$stmt2->close();
 $conn->close();
 ?>
