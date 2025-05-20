@@ -65,20 +65,24 @@
                 <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
             </div>-->
 
-        <div class="loginpage active">
+       <div class="loginpage active">
             <h1>Welcome to PLP's <br> Event Management System</h1>
             <!--<h2>Enter your credentials to continue</h2>-->
             <form id="loginForm">
                 <div class="input-field">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" placeholder= "Username" required>
                 </div>
             
                 <div class="input-field">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" placeholder= "Password" required>
                 </div>
-            
+
+                <div class="show-pass">
+                    <input type="checkbox" onclick="showPass()"> Show Passwords
+                </div>
+
                 <div class="button-group">
                     <!--<button type="button" class="back-btn">Back</button>-->
                     <button type="submit" class="login-btn">Log in</button>
@@ -98,7 +102,7 @@
             <form id="registrationForm">
                 <div class="input-field">
                     <label for="reg-name">Name</label>
-                    <input type="text" id="reg-name" name="name" required/>
+                    <input type="text" id="reg-name" name="name" placeholder= "Full Name" required/>
                 </div>
 
                 <div class="input-field">
@@ -116,17 +120,21 @@
 
                 <div class="input-field">
                     <label for="reg-username">Username</label>
-                    <input type="text" id="reg-username" name="username" required/>
+                    <input type="text" id="reg-username" name="username" placeholder= "Username" required/>
                 </div>
 
                 <div class="input-field">
                     <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" name="password" required/>
+                    <input type="password" id="reg-password" name="password" placeholder= "Password" required/>
                 </div>
 
                 <div class="input-field">
                     <label for="reg-confirm-password">Confirm Password</label>
-                    <input type="password" id="reg-confirm-password" name="confirm_password" required/>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" placeholder= "Confirm Password" required/>
+                </div>
+
+                <div class="show-pass">
+                    <input type="checkbox" onclick="showPass()"> Show Passwords
                 </div>
 
                 <div class="button-group">
@@ -137,85 +145,8 @@
             </form>
         </div>
     </div>
-    
-        <script>
-            $(document).ready(function() {
-                $('.register-link').click(function(e) {
-                    e.preventDefault();
-                    console.log("Register link clicked");
-                    $('.loginpage').removeClass('active').addClass('hidden');
-                    $('.registration-box').removeClass('hidden').addClass('active');
-                });
 
-                $('.back-btn').click(function(e) {
-                    e.preventDefault();
-                    $('.registration-box').removeClass('active').addClass('hidden');
-                    $('.loginpage').removeClass('hidden').addClass('active');
-                });
-
-                $('#registrationForm').on('submit', function(e) {
-                    e.preventDefault();
-                    console.log('Registration form submitted');
-                    
-                    var formData = {
-                        name: $('#reg-name').val(),
-                        organization: $('#reg-organization').val(),
-                        username: $('#reg-username').val(),
-                        password: $('#reg-password').val(),
-                        confirm_password: $('#reg-confirm-password').val()
-                    };
-
-                    console.log('Form data:', formData);
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '../php/register.php',
-                        data: formData,
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log('Registration response:', response);
-                            if (response.success) {
-                                $('#registerMessage').html(response.message).removeClass('error').addClass('success');
-                                $('#registrationForm')[0].reset();
-                                setTimeout(function() {
-                                    $('.registration-box').removeClass('active').addClass('hidden');
-                                    $('.loginpage').removeClass('hidden').addClass('active');
-                                    $('#loginMessage').html('Registration successful! Please login with your new account.').removeClass('error').addClass('success');
-                                }, 2000);
-                            } else {
-                                $('#registerMessage').html(response.message).removeClass('success').addClass('error');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Registration error:', error);
-                            $('#registerMessage').html('An error occurred').addClass('error');
-                        }
-                    });
-                });
-
-                $('#loginForm').on('submit', function(e) {
-                    e.preventDefault();
-                    console.log('Login form submitted');
-                    $.ajax({
-                        type: 'POST',
-                        url: '../php/login.php',
-                        data: $(this).serialize(),
-                        dataType: 'json',
-                        success: function(response) {
-                            console.log('Login response:', response);
-                            if (response.success) {
-                                window.location.href = '4_Event.php';
-                            } else {
-                                $('#loginMessage').html(response.message).removeClass('success').addClass('error');
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Login error:', error);
-                            $('#loginMessage').html('An error occurred').addClass('error');
-                        }
-                    });
-                });
-            });
-        </script>
+    <script src="/Javascript/show-password.js"></script>
+    <script src="/Javascript/login.js"></script>
     </body>
 </html>

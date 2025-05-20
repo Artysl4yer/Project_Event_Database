@@ -14,9 +14,10 @@ body {
 }
 
 .login-container {
+  top: 20px;
   width: 90%;
   max-width: 900px;
-  height: 800px; /* You can adjust the height */
+  height: 750px; /* You can adjust the height */
   position: relative;
   background: white;
   border-radius: 15px;

@@ -1,15 +1,5 @@
 <?php
-// Start session at the very beginning
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Fix the path to config.php
-$config_path = __DIR__ . '/../config.php';
-if (!file_exists($config_path)) {
-    die("Configuration file not found at: " . $config_path);
-}
-include $config_path;
+session_start();
 ?>
 
 
@@ -236,6 +226,7 @@ include $config_path;
        
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/dynamic.js"></script>
+        
     
     </div>
 
