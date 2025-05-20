@@ -1,67 +1,77 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const loginLink = document.querySelector(".login-link");
-    const registerLink = document.querySelector(".register-link");
-    
-    if (!loginLink || !registerLink) {
-        console.error("Login or Register link not found in DOM.");
-        return; // Optional: stop the script if links are missing
-    }
+ $(document).ready(function() {
+                $('.register-link').click(function(e) {
+                    e.preventDefault();
+                    console.log("Register link clicked");
+                    $('.loginpage').removeClass('active').addClass('hidden');
+                    $('.registration-box').removeClass('hidden').addClass('active');
+                });
 
-    const loginPage = document.querySelector(".loginpage");
-    const loginBox = document.querySelector(".login-box");
-    const registrationBox = document.querySelector(".registration-box");
-    const registerBox = document.querySelector(".register-box");
+                $('.back-btn').click(function(e) {
+                    e.preventDefault();
+                    $('.registration-box').removeClass('active').addClass('hidden');
+                    $('.loginpage').removeClass('hidden').addClass('active');
+                });
 
-    const backButtons = document.querySelectorAll(".back-btn");
-    const nextButtons = document.querySelectorAll(".next-btn");
-    const returnButton = document.querySelectorAll(".return-btn");
+                $('#registrationForm').on('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Registration form submitted');
+                    
+                    var formData = {
+                        name: $('#reg-name').val(),
+                        organization: $('#reg-organization').val(),
+                        username: $('#reg-username').val(),
+                        password: $('#reg-password').val(),
+                        confirm_password: $('#reg-confirm-password').val()
+                    };
 
-    //University Info View
-    loginPage.classList.add("active");
-    loginBox.classList.remove("active");
-    registrationBox.classList.remove("active");
+                    console.log('Form data:', formData);
 
-    // Show login box
-    loginLink.addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log("Login link clicked");
-        loginBox.classList.add("active");
-        registrationBox.classList.remove("active");
-        loginPage.classList.remove("active");
-    });
+                    $.ajax({
+                        type: 'POST',
+                        url: '../php/register.php',
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('Registration response:', response);
+                            if (response.success) {
+                                $('#registerMessage').html(response.message).removeClass('error').addClass('success');
+                                $('#registrationForm')[0].reset();
+                                setTimeout(function() {
+                                    $('.registration-box').removeClass('active').addClass('hidden');
+                                    $('.loginpage').removeClass('hidden').addClass('active');
+                                    $('#loginMessage').html('Registration successful! Please login with your new account.').removeClass('error').addClass('success');
+                                }, 2000);
+                            } else {
+                                $('#registerMessage').html(response.message).removeClass('success').addClass('error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Registration error:', error);
+                            $('#registerMessage').html('An error occurred').addClass('error');
+                        }
+                    });
+                });
 
-
-    // Show registration box
-    registerLink.addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log("Register link clicked");
-        registrationBox.classList.add("active");
-        registrationBox.classList.remove("hidden");
-        loginBox.classList.remove("active");
-        loginPage.classList.remove("active");
-    });
-
-    // Go back loginpage from either form
-    backButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            loginBox.classList.remove("active");
-            registrationBox.classList.remove("active");
-            loginPage.classList.add("active");
-        });
-    });
-
-    nextButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            registrationBox.classList.remove("active");
-            registerBox.classList.add("active");
-        });
-    });
-
-    returnButton.forEach(button => {
-        button.addEventListener("click", function () {
-            registerBox.classList.remove("active");
-            registrationBox.classList.add("active");
-        });
-
-    });
-});
+                $('#loginForm').on('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Login form submitted');
+                    $.ajax({
+                        type: 'POST',
+                        url: '../php/login.php',
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log('Login response:', response);
+                            if (response.success) {
+                                window.location.href = '4_Event.php';
+                            } else {
+                                $('#loginMessage').html(response.message).removeClass('success').addClass('error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Login error:', error);
+                            $('#loginMessage').html('An error occurred').addClass('error');
+                        }
+                    });
+                });
+            });
