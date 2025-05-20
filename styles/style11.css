@@ -1,0 +1,453 @@
+/* Admin Modal Styles */
+.admin-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.admin-modal.show {
+    display: block;
+}
+
+.admin-modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 30px;
+    width: 95%;
+    max-width: 1000px; /* Increased max-width */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #333;
+    font-size: 18px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 50px;
+}
+
+.form-group select {
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Button Styles */
+.submit-btn {
+    width: 100%;
+    background: #104911;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 25px;
+    height: 55px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background: #0d3a0d;
+}
+
+/* Header Styles */
+.admin-modal-content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-modal-content .header h3 {
+    font-size: 28px;
+    color: #104911;
+    margin: 0;
+}
+
+.close-admin {
+    font-size: 32px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.close-admin:hover {
+    color: #104911;
+}
+
+/* Password Section */
+#adminPassword {
+    font-size: 18px;
+    letter-spacing: 2px;
+    height: 55px;
+}
+
+/* Form Sections */
+#participantForm {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+/* Error Messages */
+.error-message {
+    color: #dc3545;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 12px;
+    background-color: #fff5f5;
+    border-radius: 4px;
+    border: 1px solid #ffcdd2;
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Focus and Hover States */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #104911;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 73, 17, 0.15);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #104911;
+}
+
+.invalid {
+    border-color: #dc3545 !important;
+}
+
+.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important;
+}
+
+/* Admin Add Button in Participants Modal */
+.admin-add-btn {
+    background: #104911;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.admin-add-btn:hover {
+    background: #0d3a0d;
+}
+
+.admin-add-btn i {
+    font-size: 18px;
+}
+
+/* Participants Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.participants-container {
+    padding: 25px;
+    min-height: 400px;
+}
+
+.participants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.participants-table th,
+.participants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.participants-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+}
+
+.participants-summary {
+    text-align: right;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Form Button Styles */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn, .exit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.exit-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.exit-btn:hover {
+    background-color: #da190b;
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Event List Container Styles */
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Event Card Styles */
+.event-box-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    width: 100%;
+    min-height: 400px;
+}
+
+.floating-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-date {
+    position: relative;
+    height: 140px;
+    overflow: hidden;
+}
+
+.eventbg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.day, .time {
+    position: absolute;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+.day {
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.time {
+    top: 45px;
+    left: 20px;
+    font-size: 18px;
+}
+
+.event-description {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.event-description h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.event-description p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+    font-size: 1em;
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.status {
+    padding: 15px 20px;
+    background: #f5f5f5;
+    border-top: 1px solid #eee;
+}
+
+.status p {
+    margin: 0;
+    color: #666;
+    font-size: 1em;
+}
+
+.status b {
+    color: #104911;
+}
+
+.event-actions {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.action-btn {
+    background: #104911;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: #0d3a0d;
+}
+
+.action-btn i {
+    font-size: 16px;
+}
+
+.even-more-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.event-box-row {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.event-box-row p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+/* Remove table styles */
+.event-display-table {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .event-list {
+        grid-template-columns: 1fr;
+        max-width: 800px;
+    }
+}

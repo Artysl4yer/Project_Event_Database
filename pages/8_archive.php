@@ -19,8 +19,8 @@
             <div class="menu-items">
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
                 <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+                <a href="7_StudentTable.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
                 <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
                 <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
@@ -56,18 +56,15 @@
                             <th>Description</th>
                             <th>Organization</th>
                             <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Actions</th>
                         </tr>
                         <?php
-
                         include '../php/conn.php';
                         $sql = "SELECT * FROM archive_table ORDER BY number DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0):
                             while ($row = $result->fetch_assoc()):
-                                
                         ?>
                         <tr>
                             <td><?= $row['number'] ?></td>
@@ -78,24 +75,103 @@
                             <td><?= htmlspecialchars($row['event_location']) ?></td>
                             <td><?= htmlspecialchars($row['event_description']) ?></td>
                             <td><?= htmlspecialchars($row['organization']) ?></td>
-                            <td></td>
-                            <td><a class="edit-btn" href="#" onclick="openModal(<?= $row['number'] ?>)">Edit</a></td>
-                            <td>
-                                <form method="POST" action="../php/delete_archive.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
-                                    <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
-                                    <button type="submit" name="delete" class="delete-btn">Delete</button>
-                                </form>
+                            <td><?= htmlspecialchars($row['event_status']) ?></td>
+                            <td class="dropdown-wrapper">
+                                <button class="dropdown-toggle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button onclick="viewEventDetails(<?= $row['number'] ?>)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <form method="POST" action="../php/delete_archive.php" onsubmit="return confirm('Are you sure you want to permanently delete this event?');">
+                                        <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
+                                        <button type="submit" name="delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="../php/unarchive_event.php" onsubmit="return confirm('Are you sure you want to unarchive this event?');">
+                                        <input type="hidden" name="unarchive_id" value="<?= $row['number'] ?>">
+                                        <button type="submit" name="unarchive">
+                                            <i class="fas fa-archive"></i> Unarchive
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php
                             endwhile;
                             else:
                         ?>
-                        <tr><td colspan="8">No events found.</td></tr>
+                        <tr><td colspan="10">No events found.</td></tr>
                         <?php endif; ?>
                     </table>
                 </div>
             </div>
+
+            <!-- View Event Modal -->
+            <div id="viewEventModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="closeViewModal()">&times;</span>
+                    <div class="header">
+                        <h3>Event Details</h3>
+                    </div>
+                    <div id="eventDetails" class="event-details-content">
+                        <!-- Event details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function viewEventDetails(eventId) {
+                    // Fetch event details using AJAX
+                    fetch(`../php/get_event_details.php?id=${eventId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const detailsHtml = `
+                                <div class="detail-item">
+                                    <label>Title:</label>
+                                    <p>${data.event_title}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Location:</label>
+                                    <p>${data.event_location}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Start Date:</label>
+                                    <p>${data.date_start}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>End Date:</label>
+                                    <p>${data.date_end}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Organization:</label>
+                                    <p>${data.organization}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Description:</label>
+                                    <p>${data.event_description}</p>
+                                </div>
+                            `;
+                            document.getElementById('eventDetails').innerHTML = detailsHtml;
+                            document.getElementById('viewEventModal').style.display = 'block';
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                function closeViewModal() {
+                    document.getElementById('viewEventModal').style.display = 'none';
+                }
+
+                // Close modal when clicking outside
+                window.onclick = function(event) {
+                    const modal = document.getElementById('viewEventModal');
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                }
+            </script>
         
 
                 <div id="importModal" class="modal">
@@ -175,5 +251,56 @@
                     </div>
         <script src="../Javascript/popup.js"></script>
         <script src="../Javacscript/RandomCodeGenerator.js"></script>
+        <style>
+            .dropdown-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+            .dropdown-toggle {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+            }
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                right: 0;
+                background: #fff;
+                min-width: 140px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                z-index: 100;
+                border-radius: 6px;
+                padding: 8px 0;
+            }
+            .dropdown-wrapper.open .dropdown-menu {
+                display: block;
+            }
+            .dropdown-menu button, .dropdown-menu form {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 15px;
+                color: #333;
+            }
+            .dropdown-menu button:hover {
+                background: #f0f0f0;
+            }
+        </style>
+        <script>
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    document.querySelectorAll('.dropdown-wrapper').forEach(w => w.classList.remove('open'));
+                    this.parentElement.classList.toggle('open');
+                });
+            });
+            window.addEventListener('click', function() {
+                document.querySelectorAll('.dropdown-wrapper').forEach(w => w.classList.remove('open'));
+            });
+        </script>
     </body>
 </html>

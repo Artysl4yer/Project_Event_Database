@@ -155,6 +155,10 @@ form .input-box .option-title-box{
     overflow: hidden;
 }
 
+.dropdown-menu.show {
+    display: block !important;
+}
+
 .dropdown-menu button {
     display: flex;
     align-items: center;
@@ -200,11 +204,6 @@ form .input-box .option-title-box{
 
 .dropdown-menu button:nth-child(2):hover {
     background-color: rgba(231, 76, 60, 0.1);
-}
-
-/* Show dropdown when wrapper is hovered */
-.dropdown-wrapper:hover .dropdown-menu {
-    display: block;
 }
 
 /* Table cell adjustments */
@@ -301,6 +300,10 @@ form .input-box .option-title-box{
     overflow: hidden;
 }
 
+.dropdown-menu.show {
+    display: block !important;
+}
+
 .dropdown-menu button {
     display: flex;
     align-items: center;
@@ -384,6 +387,8 @@ form .input-box .option-title-box{
     text-decoration: underline;
 }
  
+
+
 
 
 
