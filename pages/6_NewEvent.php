@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
 </head>
 <body>
     <div class="title-container">
@@ -51,7 +50,6 @@
                 </div>
             </div>  
         </div>
-        
         <?php
         // Check if we're editing an event
         $isEditing = isset($_GET['edit']);
@@ -146,7 +144,6 @@
             </table>
         </div>
     </div>
-    
     <!-- Event Modal -->
     <div id="eventModal" class="modal <?= $isEditing ? 'active' : '' ?>">
         <div class="modal-content">
@@ -235,7 +232,6 @@
             </form>
         </div>
     </div>
-    
     <!-- QR Code Modal -->
     <div id="qrModal" class="modal">
         <div class="modal-content">
@@ -250,89 +246,23 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="../Javascript/qrcode.js"></script>
     <script>
-        let qrcode = null;
-        
-        // Function to open modal
-        function openModal() {
-            document.getElementById('eventModal').classList.add('active');
-        }
-            
-        // Function to close modal
+        const isEditing = <?= json_encode($isEditing) ?>;
+
         function closeModal() {
             document.getElementById('eventModal').classList.remove('active');
-            <?php if ($isEditing): ?>
-            window.location.href = '6_NewEvent.php';
-            <?php endif; ?>
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('eventModal');
-            const qrModal = document.getElementById('qrModal');
-            
-            if (event.target == modal) {
-                closeModal();
-            }
-            if (event.target == qrModal) {
-                qrModal.classList.remove('show');
+            if (isEditing) {
+                window.location.href = '6_NewEvent.php';
             }
         }
-        
-        // Generate code for new events
-        function generateCode(length = 12) {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let code = '';
-            for (let i = 0; i < length; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return code;
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            <?php if (!$isEditing): ?>
-            document.getElementById('codeField').value = generateCode(12);
-            <?php endif; ?>
-        });
-        
-        // QR Code Generation
-        function generateQRCode(eventNumber, eventCode) {
-            const modal = document.getElementById('qrModal');
-            const container = document.getElementById('qrcode-container');
-            const qrcodeDiv = document.getElementById('qrcode');
-            qrcodeDiv.innerHTML = '';
-            const registrationUrl = `${window.location.origin}/Project_Event_Database/php/register_participant.php?event=${eventNumber}&code=${eventCode}`;
-            
-            qrcode = new QRCode(qrcodeDiv, {
-                text: registrationUrl,
-                width: 256,
-                height: 256,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
 
-            modal.classList.add('show');
-        }
-        
-        function downloadQRCode() {
-            if (!qrcode) return;
-            
-            const canvas = document.querySelector("#qrcode canvas");
-            const image = canvas.toDataURL("image/png");
-            const link = document.createElement('a');
-            link.href = image;
-            link.download = 'event-qr-code.png';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    
-        document.querySelector('.close-qr').onclick = function() {
-            document.getElementById('qrModal').classList.remove('show');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!isEditing) {
+                document.getElementById('codeField').value = generateCode(12);
+            }
+        });
     </script>
 </body>
 </html>

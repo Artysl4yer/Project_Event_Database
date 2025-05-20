@@ -1,5 +1,4 @@
 <?php
-// No event code needed, just start session testing the commit
 session_start();
 ?>
 
@@ -221,6 +220,7 @@ session_start();
        
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/dynamic.js"></script>
+        
     
     </body>
 </html>
