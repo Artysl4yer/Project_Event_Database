@@ -10,8 +10,8 @@
 }
 
 .modal.active {
-            display: block;
-        }
+    display: block;
+}
 
 .header{
     border-top-left-radius: 4vh;
@@ -120,6 +120,7 @@ form .input-box .option-title-box{
     cursor: pointer;
 }
 
+
  .dropdown-wrapper {
             position: relative;
             display: inline-block;
@@ -214,8 +215,6 @@ form .input-box .option-title-box{
 
 
 
-
-/* Modal Styles
 .modal {
     display: none;
     position: fixed;
@@ -264,9 +263,9 @@ form .input-box .option-title-box{
 .close-modal:hover, .close-qr:hover {
     color: #333;
 }
-*/
 
-Dropdown Styles 
+
+
 
 .dropdown-wrapper {
     position: relative;

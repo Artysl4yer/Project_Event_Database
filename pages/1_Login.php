@@ -137,8 +137,10 @@
             </form>
         </div>
     </div>
+
+    <script src="/Javascript/show-password.js"></script>
     
-        <script>
+     <script>
             $(document).ready(function() {
                 $('.register-link').click(function(e) {
                     e.preventDefault();
