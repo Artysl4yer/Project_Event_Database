@@ -1,7 +1,32 @@
 <?php
-session_start();
-?>
+// Start session at the very beginning
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
+// Fix the path to config.php
+$config_path = __DIR__ . '/../config.php';
+if (!file_exists($config_path)) {
+    die("Configuration file not found at: " . $config_path);
+}
+include $config_path;
+
+// Test database connection
+if ($conn === false) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+
+// Test if we can query the event table
+$test_query = "SELECT COUNT(*) as count FROM event_table";
+$result = $conn->query($test_query);
+if (!$result) {
+    die("Error accessing event table: " . $conn->error);
+}
+
+// Debug information
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +39,7 @@ session_start();
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
         <script>
             // Add base URL to JavaScript
-            const BASE_URL = '<?php echo get_base_url(); ?>';
+            const BASE_URL = '<?php echo SITE_URL; ?>';
         </script>
     </head>
     <body>
@@ -622,5 +647,18 @@ session_start();
             </form>
         </div>
     </div>
+
+    <?php
+    // Debug output at the top of the page
+    if (isset($_GET['debug'])) {
+        echo "<div style='background: #f0f0f0; padding: 10px; margin: 10px;'>";
+        echo "<h3>Debug Information:</h3>";
+        echo "Database connection: " . ($conn ? "OK" : "Failed") . "<br>";
+        echo "Event table count: " . $result->fetch_assoc()['count'] . "<br>";
+        echo "Session status: " . session_status() . "<br>";
+        echo "Config path: " . $config_path . "<br>";
+        echo "</div>";
+    }
+    ?>
     </body>
 </html>
