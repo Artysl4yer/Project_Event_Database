@@ -193,7 +193,11 @@
                         <textarea id="description" name="event-description"><?= $isEditing ? htmlspecialchars($eventData['event_description']) : '' ?></textarea>
                     </div>
                     <?php if (!$isEditing): ?>
-                    <input type="hidden" name="code" id="codeField">
+                    <div class="input-box">
+                        <label for="event-code">Event Code:</label>
+                        <input type="text" name="code" id="codeField" readonly>
+                        <small style="color: #666; font-size: 0.8em;">This code will be auto-generated for QR code registration</small>
+                    </div>
                     <?php endif; ?>
                     <div class="input-box-options">
                         <div class="option-title-box">
@@ -257,12 +261,14 @@
                 window.location.href = '6_NewEvent.php';
             }
         }
-
+        
+    
         document.addEventListener('DOMContentLoaded', function() {
-            if (!isEditing) {
-                document.getElementById('codeField').value = generateCode(12);
-            }
+            <?php if (!$isEditing): ?>
+            document.getElementById('codeField').value = generateCode(12);
+            <?php endif; ?>
         });
+        
     </script>
 </body>
 </html>

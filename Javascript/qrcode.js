@@ -20,23 +20,23 @@ window.onclick = function(event) {
 
 // Generate code for new events
 function generateCode(length = 12) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const timestamp = Date.now().toString().slice(-4);
     let code = '';
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length - 4; i++) {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    return code;
+    return code + timestamp;
 }
 
 
-
-// QR Code Generatio
+ // QR Code Generation
 function generateQRCode(eventNumber, eventCode) {
     const modal = document.getElementById('qrModal');
     const container = document.getElementById('qrcode-container');
     const qrcodeDiv = document.getElementById('qrcode');
     qrcodeDiv.innerHTML = '';
-    const registrationUrl = `${window.location.origin}/Project_Event_Database/php/register_participant.php?event=${eventNumber}&code=${eventCode}`;
+    const registrationUrl = `${window.location.origin}/Project_Event_Database/pages/register_participant.php?event=${eventNumber}&code=${eventCode}`;
     
     qrcode = new QRCode(qrcodeDiv, {
         text: registrationUrl,
@@ -46,7 +46,6 @@ function generateQRCode(eventNumber, eventCode) {
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
     });
-
     modal.classList.add('show');
 }
 
