@@ -15,7 +15,7 @@ function openModal(eventId = null) {
               document.querySelector('[name="event-time-end"]').value = data.date_end.split(' ')[1];
               document.querySelector('[name="event-orgs"]').value = data.organization;
               document.querySelector('[name="event-description"]').value = data.event_description;
-              document.querySelector('[name="code"]').value = data.number; // Store event ID for updating
+              document.querySelector('[name="code"]').value = data.event_code; // FIXED: Use event_code instead of number
               
           })
           .catch(error => console.error('Error fetching event details:', error));

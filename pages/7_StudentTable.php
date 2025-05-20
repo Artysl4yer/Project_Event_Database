@@ -62,11 +62,10 @@
                             <th>Name</th>
                             <th>Course</th>
                             <th>Section</th>
-                            <th>Location</th>
                             <th>Gender</th>
-                            <th>Age</th>   
-                            <th>Year</th>
-                            <th>Dept</th>
+                            <th>Age</th>
+                            <th>Year Level</th>   
+                            <th>Department</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>

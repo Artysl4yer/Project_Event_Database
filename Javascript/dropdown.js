@@ -91,14 +91,13 @@ function openModal(eventId = null) {
         document.querySelector('[name="event-time-end"]').value = data.date_end.split(' ')[1];
         document.querySelector('[name="event-orgs"]').value = data.organization;
         document.querySelector('[name="event-description"]').value = data.event_description;
-        document.querySelector('[name="code"]').value = data.number;
+        document.querySelector('[name="code"]').value = data.event_code || generateCode(12);
       })
       .catch(error => console.error('Error fetching event details:', error));
   } else {
     document.getElementById('eventForm').reset();
-    document.querySelector('[name="code"]').value = '';
+    populateCodeField();
   }
-  populateCodeField();
 }
 
 function closeModal() {
@@ -119,18 +118,25 @@ function setupEditButtons() {
 
 function populateCodeField() {
   const codeField = document.getElementById('codeField');
-  if (codeField && !codeField.value) {
-    codeField.value = generateCode(12);
+  if (codeField) {
+    if (!codeField.value) {
+      const newCode = generateCode(12);
+      codeField.value = newCode;
+      console.log('Generated event code:', newCode);
+    }
+  } else {
+    console.error('Code field not found!');
   }
 }
 
 function generateCode(length = 12) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const timestamp = Date.now().toString(36);
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let code = '';
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length - timestamp.length; i++) {
     code += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return code;
+  return timestamp + code;
 }
 
 window.addEventListener('resize', function() {

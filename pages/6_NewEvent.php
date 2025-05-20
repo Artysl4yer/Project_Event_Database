@@ -125,12 +125,12 @@
                                 const modal = document.getElementById('qrModal');
                                 const container = document.getElementById('qrcode-container');
                                 const qrcodeDiv = document.getElementById('qrcode');
-                                
-                                // Clear previous QR code
+                            
                                 qrcodeDiv.innerHTML = '';
                                 
-                                // Create registration URL with correct path
-                                const registrationUrl = `${window.location.origin}/Project_Event_Database/php/register_participant.php?event=${eventNumber}&code=${eventCode}`;
+                                // Use the current server's address
+                                const baseUrl = window.location.origin + '/Project_Event_Database';
+                                const registrationUrl = `${baseUrl}/pages/register_participant.php?event=${eventNumber}&code=${eventCode}`;
                                 
                                 // Generate new QR code
                                 qrcode = new QRCode(qrcodeDiv, {
@@ -212,19 +212,23 @@
                                     <label for="event-orgs"> Organization: </label>
                                     <input type="text" name="event-orgs" required> 
                                 </div>
-                                    <div class="input-box">
-                                            <label for="event-status"> Status: </label>
-                                            <select name="event-status" required>
-                                            <option value="Ongoing">Ongoing</option>
-                                            <option value="Finished">Finished</option>
-                                            <option value="Archived">Archived</option>
-                                        </select>
-                                    </div>
                                 <div class="input-box">
-                                    <label for="event-description"> Decription: </label>
+                                    <label for="event-description"> Description: </label>
                                     <textarea id="description" name="event-description"></textarea>
                                 </div>
-                                <input type="hidden" name="code" id="codeField">
+                                <div class="input-box">
+                                    <label for="event-code"> Event Code: </label>
+                                    <input type="text" name="code" id="codeField" readonly>
+                                    <small style="color: #666; font-size: 0.8em;">This code is automatically generated and cannot be changed</small>
+                                </div>
+                                <div class="input-box">
+                                    <label for="event-status"> Status: </label>
+                                    <select name="event-status" required>
+                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Finished">Finished</option>
+                                        <option value="Archived">Archived</option>
+                                    </select>
+                                </div>
                                 <div class="input-box-options">
                                     <div class="option-title-box">
                                         <label for="option-box">
