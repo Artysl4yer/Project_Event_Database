@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <script src="/Javascript/show-password.js"></script>
-    <script src="/Javascript/login.js"></script>
+    <script src="../Javascript/show-password.js"></script>
+    <script src="../Javascript/login.js"></script>
     </body>
 </html>
