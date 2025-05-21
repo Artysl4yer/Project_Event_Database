@@ -12,7 +12,8 @@ if (isset($_POST['name']) &&
     isset($_POST['email']) &&
     isset($_POST['course']) &&
     isset($_POST['surveymsg']))
-{
+{       
+        $subject = "Feedback Form";
         $name = $_POST['name'];
         $email = $_POST['email'];
         $course = $_POST['course'];
