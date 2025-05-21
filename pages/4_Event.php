@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Fix the path to config.php
-$config_path = __DIR__ . '/../config.php';
+$config_path = __DIR__ . '../php/conn.php';
 if (!file_exists($config_path)) {
     die("Configuration file not found at: " . $config_path);
 }

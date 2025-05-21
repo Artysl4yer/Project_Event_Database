@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'event_database';
+$db_name = 'eventdatabase';
 
 // Create connection
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
