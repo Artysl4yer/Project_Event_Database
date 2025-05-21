@@ -6,10 +6,10 @@ ini_set('display_errors', 1);
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'event_database';
+$db_name = 'eventdatabase';
 
 // Create connection
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+$conn = new mysqli('localhost', 'root', '', 'eventdatabase');
 
 // Check connection
 if ($conn->connect_error) {
@@ -24,7 +24,7 @@ $tables = ['event_table', 'participants_table'];
 foreach ($tables as $table) {
     $result = $conn->query("SHOW TABLES LIKE '$table'");
     if ($result->num_rows == 0) {
-        die("Table '$table' does not exist in database '$db_name'");
+        die("Table '$table' does not exist in database '$eventdatabase'");
     }
 }
 

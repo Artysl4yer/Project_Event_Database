@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'event_database');
+define('DB_NAME', 'eventdatabase');
 
 // Site configuration
 define('SITE_NAME', 'PLP Event Management System');

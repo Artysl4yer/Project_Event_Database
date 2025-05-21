@@ -2,12 +2,12 @@
 session_start();
 include '../php/conn.php';
 
-// Check if user is logged in as admin
 if (!isset($_SESSION['client_id'])) {
     header("Location: 1_Login.php");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['client_id'])) {
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <form method="POST" action="../php/delete_admin.php" onsubmit="return confirm('Are you sure you want to delete this admin?');">
+                           <form method="POST" action="../php/delete_admin.php" onsubmit="return confirm('Are you sure you want to delete this admin?');">
                                 <input type="hidden" name="admin_id" value="<?= $row['id'] ?>">
                                 <button type="submit" class="dropdown-item">
                                     <i class="fas fa-trash-alt"></i> Delete
@@ -163,83 +163,7 @@ if (!isset($_SESSION['client_id'])) {
         </div>
     </div>
 
-    <script>
-        // Admin Modal Functions
-        function openAdminModal() {
-            document.getElementById('adminModal').style.display = 'block';
-        }
+   <script src="../Javascript/adminmodal.js"></script>
 
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-            document.getElementById('adminForm').reset();
-            document.getElementById('adminMessage').innerHTML = '';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('adminModal');
-            if (event.target == modal) {
-                closeAdminModal();
-            }
-        }
-
-        // AJAX form submission
-        document.getElementById('adminForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const messageDiv = document.getElementById('adminMessage');
-                if (data.success) {
-                    messageDiv.innerHTML = data.message;
-                    messageDiv.className = 'message success';
-                    setTimeout(() => {
-                        closeAdminModal();
-                        window.location.reload();
-                    }, 1500);
-                } else {
-                    messageDiv.innerHTML = data.message;
-                    messageDiv.className = 'message error';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('adminMessage').innerHTML = 'An error occurred';
-                document.getElementById('adminMessage').className = 'message error';
-            });
-        });
-
-        // Dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Toggle dropdown on click
-            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const menu = this.nextElementSibling;
-                    
-                    // Close all other dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(m => {
-                        if (m !== menu) m.classList.remove('show');
-                    });
-                    
-                    // Toggle current dropdown
-                    menu.classList.toggle('show');
-                });
-            });
-            
-            // Close dropdown when clicking elsewhere
-            document.addEventListener('click', function() {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
