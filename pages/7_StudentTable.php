@@ -156,7 +156,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                         <div class="user-details">
                             <div class="input-box">
                                 <label>ID Number</label>
-                                <input type="text" maxlength="8" id="participant-id" oninput="participantID(this)" required>
+                                <input type="text" name="participant-id" maxlength="8" id="participant-id" oninput="participantID(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Full Name</label>
@@ -188,7 +188,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             </div>
                             <div class="input-box">
                                 <label>Age</label>
-                                <input type="text" id="participant-age" maxlength="2" oninput="age(this)" required>
+                                <input type="text" name="participant-age" id="participant-age" maxlength="2" oninput="age(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Year</label>
