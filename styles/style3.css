@@ -33,6 +33,7 @@
 
 .registration-modal-content label {
     display: flex;
+    margin-left: 5vh;
     flex-direction: column;
     margin-bottom: 15px;
     font-weight: 500;

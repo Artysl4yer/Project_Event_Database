@@ -65,7 +65,7 @@
                 <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
             </div>-->
 
-       <div class="loginpage active">
+    <div class="loginpage active">
             <h1>Welcome to PLP's <br> Event Management System</h1>
             <!--<h2>Enter your credentials to continue</h2>-->
             <form id="loginForm">
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Passwords
+                    <input type="checkbox" onclick="showPass()"> Show Password
                 </div>
 
                 <div class="button-group">
@@ -119,6 +119,11 @@
                 </div>
 
                 <div class="input-field">
+                    <label for="reg-email">Email</label>
+                    <input type="text" id="reg-email" name="email" placeholder= "Email" required/>
+                </div>
+
+                <div class="input-field">
                     <label for="reg-username">Username</label>
                     <input type="text" id="reg-username" name="username" placeholder= "Username" required/>
                 </div>
@@ -146,7 +151,7 @@
         </div>
     </div>
 
-    <script src="/Javascript/show-password.js"></script>
-    <script src="/Javascript/login.js"></script>
+    <script src="../Javascript/show-password.js"></script>
+    <script src="../Javascript/login.js"></script>
     </body>
 </html>

@@ -47,7 +47,7 @@
                         },
                         error: function(xhr, status, error) {
                             console.error('Registration error:', error);
-                            $('#registerMessage').html('An error occurred').addClass('error');
+                            $('#registerMessage').html('An error occured').addClass('error');
                         }
                     });
                 });
@@ -70,7 +70,7 @@
                         },
                         error: function(xhr, status, error) {
                             console.error('Login error:', error);
-                            $('#loginMessage').html('An error occurred').addClass('error');
+                            $('#loginMessage').html('Invalid credentials').addClass('error');
                         }
                     });
                 });

@@ -6,12 +6,12 @@ include '../php/conn.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'save_participant') {
         $number = $_POST['participant-number'] ?? null;
-        $id = $_POST['participant-id'];
+        $id = $_POST['participant-id'] ?? null;
         $name = $_POST['participant-name'];
         $course = $_POST['participant-course'];
         $section = $_POST['participant-section'];
         $gender = $_POST['participant-gender'];
-        $age = $_POST['participant-age'];
+        $age = $_POST['participant-age'] ?? null;
         $year = $_POST['participant-year'];
         $dept = $_POST['participant-dept'];
 
@@ -73,6 +73,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <link rel="stylesheet" href="../styles/style3.css">
     <link rel="stylesheet" href="../styles/style5.css">
     <link rel="stylesheet" href="../styles/style6.css">
+    <link rel="stylesheet" href="../styles/filter.css">
     <link rel="stylesheet" href="../styles/student-table.css">
     <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     <style>
@@ -98,7 +99,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             <div class="menu-items">
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
                 <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Events </span> </a>
-                <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
                 <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
                 <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
@@ -120,11 +121,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-                <div class="col-md-12" id="importFrm" style="display:block">
+                <div class="col-md-12" id="importFrm" >
                     <form action="../php/importData.php" method="post" enctype="multipart/form-data">
                         <input type="file" name="file" />
                         <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
                     </form>
+                </div>
+                <div class="filter-container">
+                    <button class="filter"><i class="fa-solid fa-filter"> Filter</i></button>
+                    <div id="filter-option" class="filter-dropdown">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
                 </div>
             </div>  
         </div>
@@ -147,7 +156,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                         <div class="user-details">
                             <div class="input-box">
                                 <label>ID Number</label>
-                                <input type="text" name="participant-id" id="participant-id" required>
+                                <input type="text" maxlength="8" id="participant-id" oninput="participantID(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Full Name</label>
@@ -179,7 +188,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             </div>
                             <div class="input-box">
                                 <label>Age</label>
-                                <input type="number" name="participant-age" id="participant-age" required>
+                                <input type="text" id="participant-age" maxlength="2" oninput="age(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Year</label>
@@ -213,6 +222,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             <table class="event-display-table">
                 <tr>
                     <th>Number</th>
+                    <th>Event Code</th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Course</th>
@@ -232,6 +242,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                 ?>
                 <tr>
                     <td><?= $row['number'] ?></td>
+                    <td><?= $row['event_code'] ?></td>
                     <td><?= $row['ID'] ?></td>
                     <td><?= htmlspecialchars($row['Name']) ?></td>
                     <td><?= htmlspecialchars($row['Course']) ?></td>
@@ -287,24 +298,87 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="../Javascript/qrcode1.js"></script>
+    <script src="/Javascript/participantid.js"></script>
+    <script src="/Javascript/filter.js"></script>
+
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const menu = this.nextElementSibling;
-                document.querySelectorAll('.dropdown-menu').forEach(m => {
-                    if (m !== menu) m.classList.remove('show');
-                });
-                menu.classList.toggle('show');
+        // Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use event delegation for dropdown toggles
+            document.addEventListener('click', function(e) {
+                // Handle dropdown toggle clicks
+                if (e.target.closest('.dropdown-toggle')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const toggle = e.target.closest('.dropdown-toggle');
+                    const menu = toggle.nextElementSibling;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(m => {
+                        if (m !== menu) m.classList.remove('show');
+                    });
+                    
+                    // Toggle current dropdown
+                    menu.classList.toggle('show');
+                }
+                // Close dropdowns when clicking outside
+                else if (!e.target.closest('.dropdown-menu')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
             });
-        });
-        document.addEventListener('click', function() {
+
+            // Prevent dropdown from closing when clicking inside the menu
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
             });
         });
-    });
+
+        // Modal functionality
+        function openParticipantModal(participantId = null) {
+            const modal = document.getElementById('participantModal');
+            const form = document.getElementById('participantForm');
+            const title = document.getElementById('modalTitle');
+            
+            if (participantId) {
+                title.textContent = 'Edit Participant';
+                document.getElementById('participant-number').value = participantId;
+                
+                fetch(`7_StudentTable.php?action=get_participant&id=${participantId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('participant-id').value = data.ID || '';
+                        document.getElementById('participant-name').value = data.Name || '';
+                        document.getElementById('participant-course').value = data.Course || '';
+                        document.getElementById('participant-section').value = data.Section || '';
+                        document.getElementById('participant-gender').value = data.Gender || '';
+                        document.getElementById('participant-age').value = data.Age || '';
+                        document.getElementById('participant-year').value = data.Year || '';
+                        document.getElementById('participant-dept').value = data.Dept || '';
+                    });
+            } else {
+                title.textContent = 'Add New Participant';
+                form.reset();
+                document.getElementById('participant-number').value = '';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('participantModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('participantModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>

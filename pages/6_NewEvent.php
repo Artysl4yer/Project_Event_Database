@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/style10.css">
+    <link rel="stylesheet" href="../styles/filter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
             <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
             <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
             <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
@@ -41,13 +42,21 @@
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-               
+            
                 <div class="col-md-12" id="importFrm" style="display:block">
                     <form action="../php/importData.php" method="post" enctype="multipart/form-data">
                         <input type="file" name="file" />
                         <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
                     </form>
                 </div>
+
+                <div class="filter-container">
+                    <button class="filter"><i class="fa-solid fa-filter"> Filter</i></button>
+                    <div id="filter-option" class="filter-dropdown">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
             </div>  
         </div>
         <?php
@@ -199,35 +208,7 @@
                         <small style="color: #666; font-size: 0.8em;">This code will be auto-generated for QR code registration</small>
                     </div>
                     <?php endif; ?>
-                    <div class="input-box-options">
-                        <div class="option-title-box">
-                            <label for="option-box">Options:</label>
-                        </div>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="StudentID"> StudentID
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Gender"> Gender 
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Section"> Section
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Year"> Year
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Age"> Age
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Parents"> Parents
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="ContactNo"> Contact No
-                        </label>
-                        <label for="option"> 
-                            <input type="checkbox" name="option" value="Email"> Email
-                        </label>
-                    </div>
+                    
                 </div>
                 <div class="controls">
                     <button class="btn-submit" type="submit"><?= $isEditing ? 'Update' : 'Submit' ?></button>
@@ -252,7 +233,8 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="../Javascript/qrcode.js"></script>
-    
+    <script src="/Javascript/filter.js"></script>
+
     <script>
         const isEditing = <?= json_encode($isEditing) ?>;
 

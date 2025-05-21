@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("SELECT id, username, password, name, organization FROM clients WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, username, email, password, name, organization FROM clients WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $client = $result->fetch_assoc();
         if (password_verify($password, $client['password'])) {
             $_SESSION['client_id'] = $client['id'];
+            $_SESSION['email'] = $client['email'];
             $_SESSION['username'] = $client['username'];
             $_SESSION['name'] = $client['name'];
             $_SESSION['organization'] = $client['organization'];

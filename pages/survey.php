@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="styles/1_survey.css">
+        <link rel="stylesheet" href="/styles/1_survey.css">
     </head>
     <body>
     <div class="survey-container">
