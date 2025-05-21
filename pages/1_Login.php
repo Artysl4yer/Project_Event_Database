@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Passwords
+                    <input type="checkbox" onclick="showPass()"> Show Password
                 </div>
 
                 <div class="button-group">
