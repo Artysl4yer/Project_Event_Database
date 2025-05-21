@@ -41,6 +41,11 @@
         animation: fadein 2.5s;
     }
 
+
+.filter-container{
+    margin-left: 65vh;
+}
+
     .event-top button{
         display: flex;
         align-items: center;

@@ -62,13 +62,15 @@
 }
 
 .header h3 {
+    
     color: white;
-    margin: 0;
+    margin-left: 5vh;
 }
 
 .close, .close-modal, .close-qr {
     position: absolute;
     right: 20px;
+    margin-left: 3vh;
     top: 20px;
     font-size: 24px;
     font-weight: bold;

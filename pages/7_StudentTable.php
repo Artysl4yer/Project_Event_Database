@@ -6,12 +6,12 @@ include '../php/conn.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'save_participant') {
         $number = $_POST['participant-number'] ?? null;
-        $id = $_POST['participant-id'];
+        $id = $_POST['participant-id'] ?? null;
         $name = $_POST['participant-name'];
         $course = $_POST['participant-course'];
         $section = $_POST['participant-section'];
         $gender = $_POST['participant-gender'];
-        $age = $_POST['participant-age'];
+        $age = $_POST['participant-age'] ?? null;
         $year = $_POST['participant-year'];
         $dept = $_POST['participant-dept'];
 
@@ -73,6 +73,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <link rel="stylesheet" href="../styles/style3.css">
     <link rel="stylesheet" href="../styles/style5.css">
     <link rel="stylesheet" href="../styles/style6.css">
+    <link rel="stylesheet" href="../styles/filter.css">
     <link rel="stylesheet" href="../styles/student-table.css">
     <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     <style>
@@ -120,11 +121,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-                <div class="col-md-12" id="importFrm" style="display:block">
+                <div class="col-md-12" id="importFrm" >
                     <form action="../php/importData.php" method="post" enctype="multipart/form-data">
                         <input type="file" name="file" />
                         <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
                     </form>
+                </div>
+                <div class="filter-container">
+                    <button class="filter"><i class="fa-solid fa-filter"> Filter</i></button>
+                    <div id="filter-option" class="filter-dropdown">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
                 </div>
             </div>  
         </div>
@@ -147,7 +156,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                         <div class="user-details">
                             <div class="input-box">
                                 <label>ID Number</label>
-                                <input type="text" name="participant-id" id="participant-id" required>
+                                <input type="text" maxlength="8" id="participant-id" oninput="participantID(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Full Name</label>
@@ -179,7 +188,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             </div>
                             <div class="input-box">
                                 <label>Age</label>
-                                <input type="number" name="participant-age" id="participant-age" required>
+                                <input type="text" id="participant-age" maxlength="2" oninput="age(this)" required>
                             </div>
                             <div class="input-box">
                                 <label>Year</label>
@@ -212,6 +221,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
 
             <table class="event-display-table">
                 <tr>
+                    <th>Number</th>
                     <th>Event Code</th>
                     <th>ID</th>
                     <th>Name</th>
@@ -232,6 +242,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                 ?>
                 <tr>
                     <td><?= $row['number'] ?></td>
+                    <td><?= $row['event_code'] ?></td>
                     <td><?= $row['ID'] ?></td>
                     <td><?= htmlspecialchars($row['Name']) ?></td>
                     <td><?= htmlspecialchars($row['Course']) ?></td>
@@ -287,6 +298,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="../Javascript/qrcode1.js"></script>
+    <script src="/Javascript/participantid.js"></script>
+    <script src="/Javascript/filter.js"></script>
+
     <script>
         // Dropdown functionality
         document.addEventListener('DOMContentLoaded', function() {

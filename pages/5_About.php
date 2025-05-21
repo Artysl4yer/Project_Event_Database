@@ -10,8 +10,8 @@
         <div class="title-container">
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
-        
         <div class="Top">
+            <button class="backbutton" onclick="history.back()">Back</button>
             <img src="/images-icon/plm_courtyard.png" alt="plpback" height="100">
             <h1>About</h1>
         </div>
