@@ -288,23 +288,83 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="../Javascript/qrcode1.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const menu = this.nextElementSibling;
-                document.querySelectorAll('.dropdown-menu').forEach(m => {
-                    if (m !== menu) m.classList.remove('show');
-                });
-                menu.classList.toggle('show');
+        // Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use event delegation for dropdown toggles
+            document.addEventListener('click', function(e) {
+                // Handle dropdown toggle clicks
+                if (e.target.closest('.dropdown-toggle')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const toggle = e.target.closest('.dropdown-toggle');
+                    const menu = toggle.nextElementSibling;
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu').forEach(m => {
+                        if (m !== menu) m.classList.remove('show');
+                    });
+                    
+                    // Toggle current dropdown
+                    menu.classList.toggle('show');
+                }
+                // Close dropdowns when clicking outside
+                else if (!e.target.closest('.dropdown-menu')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
             });
-        });
-        document.addEventListener('click', function() {
+
+            // Prevent dropdown from closing when clicking inside the menu
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
             });
         });
-    });
+
+        // Modal functionality
+        function openParticipantModal(participantId = null) {
+            const modal = document.getElementById('participantModal');
+            const form = document.getElementById('participantForm');
+            const title = document.getElementById('modalTitle');
+            
+            if (participantId) {
+                title.textContent = 'Edit Participant';
+                document.getElementById('participant-number').value = participantId;
+                
+                fetch(`7_StudentTable.php?action=get_participant&id=${participantId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('participant-id').value = data.ID || '';
+                        document.getElementById('participant-name').value = data.Name || '';
+                        document.getElementById('participant-course').value = data.Course || '';
+                        document.getElementById('participant-section').value = data.Section || '';
+                        document.getElementById('participant-gender').value = data.Gender || '';
+                        document.getElementById('participant-age').value = data.Age || '';
+                        document.getElementById('participant-year').value = data.Year || '';
+                        document.getElementById('participant-dept').value = data.Dept || '';
+                    });
+            } else {
+                title.textContent = 'Add New Participant';
+                form.reset();
+                document.getElementById('participant-number').value = '';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('participantModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('participantModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
     </script>
 </body>
 </html>
