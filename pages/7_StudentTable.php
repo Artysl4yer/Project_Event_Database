@@ -1,4 +1,19 @@
 <?php
+session_start();
+
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+
+$allowed_roles = ['coordinator'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+
 // Handle form submissions
 include '../php/conn.php';
 

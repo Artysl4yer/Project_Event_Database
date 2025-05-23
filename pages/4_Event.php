@@ -1,3 +1,49 @@
+<?php
+// Start session at the very beginning
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Fix the path to config.php
+$config_path = __DIR__ . '/config.php';
+if (!file_exists($config_path)) {
+    die("Configuration file not found at: " . $config_path);
+}
+include $config_path;
+
+// Test database connection
+if ($conn === false) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+
+// Test if we can query the event table
+$test_query = "SELECT COUNT(*) as count FROM event_table";
+$result = $conn->query($test_query);
+if (!$result) {
+    die("Error accessing event table: " . $conn->error);
+}
+
+// Debug information
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
+
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+
+$allowed_roles = ['coordinator'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,7 +68,7 @@
                 <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
             </div>
             <div class="logout">
-                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="image-background">

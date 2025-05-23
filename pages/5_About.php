@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Check student id and email
+if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
