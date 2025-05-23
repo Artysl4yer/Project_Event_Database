@@ -1,43 +1,8 @@
 <?php
-// Start session at the very beginning
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Fix the path to config.php
-$config_path = __DIR__ . '/config.php';
-if (!file_exists($config_path)) {
-    die("Configuration file not found at: " . $config_path);
-}
-include $config_path;
-
-// Test database connection
-if ($conn === false) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-
-// Test if we can query the event table
-$test_query = "SELECT COUNT(*) as count FROM event_table";
-$result = $conn->query($test_query);
-if (!$result) {
-    die("Error accessing event table: " . $conn->error);
-}
-
-// Debug information
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
-// Check email, student_id, and role
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: ../pages/Login_v1.php");
-    exit();
-}
-
-$allowed_roles = ['coordinator'];
-
-if (!in_array($_SESSION['role'], $allowed_roles)) {
+// Check student id and email
+if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
     header("Location: ../pages/Login_v1.php");
     exit();
 }
@@ -48,24 +13,19 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
 <html>
     <head>
         <link rel="stylesheet" href="../styles/style1.css">
-        <link rel="stylesheet" href="../styles/style2.css">
-        <link rel="stylesheet" href="../styles/style3.css">
-        <title> PLP: Events </title>
-        <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/style11.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
     <body>
-        <div class="title-container">
+    <div class="title-container">
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
         <div class="tab-container">
             <div class="menu-items">
-                <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-                <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+                <a href="../pages/student-profile.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Profile </span> </a>
+                <a href="../pages/student-home.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+                <a href="../pages/5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+                <a href="" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> QR Code </span> </a>
             </div>
             <div class="logout">
                 <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
@@ -75,23 +35,17 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
             <div class="image-background-dim"></div>
             <div class="image-content" id="banner">
                 <h1> PLP EVENTS </h1>
-                <div class="image-description">
-                <p> Welcome to Pamantasan ng Lungsod ng Pasig Updates </p>
-                <p> Get Up to date with the latest upcoming Events </p>
             </div>
-            </div>
+            
         </div>
-        
-        <div class="main-content">
-    
-            <div class="first-page">
-            <!-- The Event List. The compilation of events, sort to newest to latest -->
+
+        <div class="first-page">
             <div class="event-details">
                 <div class="event-attendance-top">
                     <p> Event List </p>
                     
                     <div class="search-container">
-                        <form class="example" actiion="action_page.php">
+                        <form class="example" action="action_page.php">
                             <label for="search"> </label>
                             <input type="text" id="search" name="fname" placeholder="Search...">
                             <button type="submit"><i class="fa fa-search"></i></button>
@@ -122,16 +76,13 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                         while ($row = $result->fetch_assoc()) {
                             $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
                             $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
-                            $eventNumber = $row['number']; // Get the event number
                             
-                            echo "<div class='event-box-details' style='cursor: pointer;'>";
+                            echo "<div class='event-box-details'>";
                             echo "  <div class='floating-card'>";
-                            echo "      <div class='event-container'>";
+                            echo "      <div class='event-date'>";
                             echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
-                            echo "          <div class = 'event-date'>   ";
-                            echo "              <p class='day'>" .$dateOnly. "</p>";
-                            echo "              <p class='time'>" .$dateTimeStart. "</p>";
-                            echo "          </div>  ";
+                            echo "          <p class='day'>" .$dateOnly. "</p>";
+                            echo "          <p class='time'>" .$dateTimeStart. "</p>";
                             echo "      </div>";
                             echo "      <div class='event-description'>";
                             echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
@@ -140,6 +91,8 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                             echo "      <div class='status'>";
                             echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
                             echo "      </div>";
+                            echo "      <div class='event-actions'>";
+                            echo "      </div>";
                             echo "  </div>";
                             echo "  <div class='even-more-details'>";
                             echo "      <div class='event-box-row'>";
@@ -147,11 +100,6 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                             echo "          <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
                             echo "      </div>";
                             echo "  </div>";
-                            echo "      <div class='event-actions'>";
-                            echo "          <button onclick='event.stopPropagation(); window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' class='action-btn'>";
-                            echo "              <i class='fas fa-users'></i> View Participants";
-                            echo "          </button>";
-                            echo "      </div>";
                             echo "</div>";
                         }
                     } else {
@@ -160,11 +108,6 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                     ?>
                 </div>
             </div>
-        </div>
-    </div>               
-   
-    
-    <script src="../Javascript/dynamic.js"></script>    
-   
+            </div>
     </body>
 </html>
