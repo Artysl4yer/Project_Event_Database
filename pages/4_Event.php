@@ -27,8 +27,6 @@ if (!$result) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-
 // Check email, student_id, and role
 if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
     header("Location: ../pages/Login_v1.php");
@@ -61,11 +59,9 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
             <div class="menu-items">
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
                 <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
                 <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
                 <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
             </div>
             <div class="logout">
                 <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>

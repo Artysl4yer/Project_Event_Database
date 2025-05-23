@@ -15,25 +15,40 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
         <link rel="stylesheet" href="/styles/style7.css">
         <link rel="stylesheet" href="/styles/style1.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
+        <style>
+            .back-button {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background-color: #104911;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            .back-button:hover {
+                background-color: #0d3a0d;
+                transform: scale(1.1);
+            }
+        </style>
     </head>
     <body>
-       <div class="title-container">
+        <button class="back-button" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="title-container">
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
-        <div class="tab-container">
-            <div class="menu-items">
-                <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-                <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
-            </div>
-            <div class="logout">
-                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
-            </div>
-        </div>
+    
         <div class="Top">
             <img src="/images-icon/plm_courtyard.png" alt="plpback" height="100">
             <h1>About</h1>
@@ -47,7 +62,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
                     <p>Welcome to the official Event Attendance portal of Pamantasan ng Lungsod ng Pasig. This system is designed to efficiently track and manage student and participant attendance across university events.</p>
                 </div>
                 <div class="intro-text2">
-                    <p> It promotes accountability, streamlines record-keeping, and supports PLP’s commitment to excellence in student engagement and campus activities.</p>
+                    <p> It promotes accountability, streamlines record-keeping, and supports PLP's commitment to excellence in student engagement and campus activities.</p>
                 </div>
             </div>
         <div class="Traits">

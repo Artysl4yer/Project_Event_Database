@@ -16,3 +16,94 @@
     color: white;
 }
 
+.org-dropdown {
+    width: 100%;
+    margin-top: 5px;
+    position: relative;
+}
+
+.org-options {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.org-option {
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 24px;
+}
+
+.org-option:hover {
+    background-color: #f5f5f5;
+}
+
+.org-option input[type="checkbox"] {
+    margin: 0 6px 0 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+}
+
+.org-option label {
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+#other-org {
+    margin-top: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: none;
+    font-size: 13px;
+    height: 30px;
+}
+
+#other-org:focus {
+    border-color: #104911;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 73, 17, 0.1);
+}
+
+#other-org.active {
+    display: block;
+}
+
+/* Scrollbar styling for the dropdown */
+.org-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.org-options::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.org-options::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.org-options::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+

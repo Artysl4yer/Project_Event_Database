@@ -38,14 +38,12 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
             <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
             <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
             <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
         </div>
         <div class="logout">
-            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
@@ -218,7 +216,14 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                     </div>
                     <div class="input-box">
                         <label for="event-orgs">Organization:</label>
-                        <input type="text" name="event-orgs" value="<?= $isEditing ? htmlspecialchars($eventData['organization']) : '' ?>" required> 
+                        <select name="event-orgs" class="form-select" required>
+                            <option value="">Select Organization</option>
+                            <option value="College of Computer Studies" <?= $isEditing && $eventData['organization'] == 'College of Computer Studies' ? 'selected' : '' ?>>College of Computer Studies</option>
+                            <option value="College of Engineering" <?= $isEditing && $eventData['organization'] == 'College of Engineering' ? 'selected' : '' ?>>College of Engineering</option>
+                            <option value="College of Business Accounting" <?= $isEditing && $eventData['organization'] == 'College of Business Accounting' ? 'selected' : '' ?>>College of Business Accounting</option>
+                            <option value="College of Nursing" <?= $isEditing && $eventData['organization'] == 'College of Nursing' ? 'selected' : '' ?>>College of Nursing</option>
+                            <option value="All Courses" <?= $isEditing && $eventData['organization'] == 'All Courses' ? 'selected' : '' ?>>All Courses</option>
+                        </select>
                     </div>
                     <div class="input-box">
                         <label for="event-status">Status:</label>
@@ -267,10 +272,94 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
     <script src="../Javascript/qrcode.js"></script>
     <script src="../Javascript/filter.js"></script>
     <script src="../Javascript/dropdown.js"></script>
-    <script src="../Javascript/event-edit.js"></script>
     <script>
-        // Make isEditing available to the JavaScript
-        window.isEditing = <?= json_encode($isEditing) ?>;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Generate random event code
+        function generateEventCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Set initial event code
+        const codeField = document.getElementById('codeField');
+        if (codeField) {
+            codeField.value = generateEventCode();
+        }
+
+        // Handle form submission
+        const form = document.getElementById('eventForm');
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                try {
+                    const formData = new FormData(this);
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        // Handle JSON response
+                        const result = await response.json();
+                        if (result.error) {
+                            alert(result.message || 'Error saving event');
+                        } else {
+                            // Redirect on success without showing error
+                            window.location.href = '6_NewEvent.php?success=true';
+                            return;
+                        }
+                    } else {
+                        // Handle regular form response
+                        if (response.ok) {
+                            window.location.href = '6_NewEvent.php?success=true';
+                            return;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error saving event. Please try again.');
+                }
+            });
+        }
+
+        // Modal functions
+        window.openModal = function() {
+            document.getElementById('eventModal').style.display = 'block';
+            // Reset form and generate new code when opening modal
+            if (!window.isEditing) {
+                form.reset();
+                if (codeField) {
+                    codeField.value = generateEventCode();
+                }
+            }
+        };
+
+        window.closeModal = function() {
+            document.getElementById('eventModal').style.display = 'none';
+        };
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Show success message if present in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            alert('Event saved successfully!');
+            // Remove the success parameter from URL
+            window.history.replaceState({}, document.title, '6_NewEvent.php');
+        }
+    });
     </script>
 </body>
 </html>

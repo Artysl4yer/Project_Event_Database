@@ -147,20 +147,37 @@ class EventEditor {
 
     async handleFormSubmit(form) {
         try {
+            // Ensure organizations are combined before submission
+            combineOrganizations();
+            
+            // Get the combined organizations value
+            const combinedOrgs = document.getElementById('combined-orgs').value;
+            
+            // Validate organizations
+            if (!combinedOrgs) {
+                alert('Please select at least one organization');
+                return;
+            }
+
             const formData = new FormData(form);
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData
             });
 
-            if (!response.ok) throw new Error('Network response was not ok');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
 
             const result = await response.text();
-            if (result.includes('success')) {
-                window.location.reload();
-            } else {
-                alert('Error saving event. Please try again.');
+            
+            // Check if the response contains HTML (error page)
+            if (result.includes('<!DOCTYPE html>')) {
+                throw new Error('Server returned an error page');
             }
+            
+            // Redirect on success
+            window.location.href = '../pages/6_NewEvent.php?success=true';
         } catch (error) {
             console.error('Error submitting form:', error);
             alert('Error saving event. Please try again.');
@@ -189,4 +206,85 @@ document.addEventListener('DOMContentLoaded', function() {
     window.closeModal = function() {
         window.eventEditor.closeModal();
     };
+});
+
+function toggleOtherOrg() {
+    const otherCheckbox = document.getElementById('other');
+    const otherInput = document.getElementById('other-org');
+    
+    if (otherCheckbox.checked) {
+        otherInput.style.display = 'block';
+        otherInput.required = true;
+    } else {
+        otherInput.style.display = 'none';
+        otherInput.required = false;
+        otherInput.value = '';
+    }
+}
+
+// Function to combine selected organizations
+function combineOrganizations() {
+    const checkboxes = document.querySelectorAll('input[name="organizations[]"]');
+    const otherInput = document.getElementById('other-org');
+    const combinedInput = document.getElementById('combined-orgs');
+    let selectedOrgs = [];
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            if (checkbox.value === 'other' && otherInput.value.trim()) {
+                selectedOrgs.push(otherInput.value.trim());
+            } else if (checkbox.value !== 'other') {
+                selectedOrgs.push(checkbox.value);
+            }
+        }
+    });
+
+    combinedInput.value = selectedOrgs.join(', ');
+    return selectedOrgs.length > 0;
+}
+
+// Add event listeners when document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('eventForm');
+    const checkboxes = document.querySelectorAll('input[name="organizations[]"]');
+    const otherInput = document.getElementById('other-org');
+
+    // Add change event listeners to all checkboxes and the other input
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', combineOrganizations);
+    });
+
+    otherInput.addEventListener('input', combineOrganizations);
+
+    // If editing, pre-populate the checkboxes
+    if (window.isEditing) {
+        const existingOrgs = document.querySelector('input[name="event-orgs"]').value;
+        const orgArray = existingOrgs.split(', ');
+        
+        orgArray.forEach(org => {
+            const checkbox = Array.from(checkboxes).find(cb => cb.value === org);
+            if (checkbox) {
+                checkbox.checked = true;
+            } else {
+                // If organization is not in predefined list, check "Other" and fill input
+                const otherCheckbox = document.getElementById('other');
+                otherCheckbox.checked = true;
+                otherInput.style.display = 'block';
+                otherInput.value = org;
+            }
+        });
+        
+        combineOrganizations();
+    }
+
+    // Add form submit handler
+    form.addEventListener('submit', function(e) {
+        combineOrganizations();
+        const combinedOrgs = document.getElementById('combined-orgs').value;
+        
+        if (!combinedOrgs) {
+            e.preventDefault();
+            alert('Please select at least one organization');
+        }
+    });
 }); 
