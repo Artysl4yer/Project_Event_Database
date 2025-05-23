@@ -4,8 +4,10 @@
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
         <link rel="stylesheet" href="../styles/style3.css">
+        
         <title> PLP: Events </title>
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
+        
     </head>
     <body>
         <div class="title-container">
@@ -34,6 +36,7 @@
                 <p> Get Up to date with the latest upcoming Events </p>
             </div>
             </div>
+            
         </div>
         
         <div class="main-content">
@@ -76,16 +79,13 @@
                         while ($row = $result->fetch_assoc()) {
                             $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
                             $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
-                            $eventNumber = $row['number']; // Get the event number
                             
-                            echo "<div class='event-box-details' onclick='window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' style='cursor: pointer;'>";
+                            echo "<div class='event-box-details'>";
                             echo "  <div class='floating-card'>";
-                            echo "      <div class='event-container'>";
+                            echo "      <div class='event-date'>";
                             echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
-                            echo "          <div class = 'event-date'>   ";
-                            echo "              <p class='day'>" .$dateOnly. "</p>";
-                            echo "              <p class='time'>" .$dateTimeStart. "</p>";
-                            echo "          </div>  ";
+                            echo "          <p class='day'>" .$dateOnly. "</p>";
+                            echo "          <p class='time'>" .$dateTimeStart. "</p>";
                             echo "      </div>";
                             echo "      <div class='event-description'>";
                             echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
@@ -102,7 +102,7 @@
                             echo "      </div>";
                             echo "  </div>";
                             echo "      <div class='event-actions'>";
-                            echo "          <button onclick='event.stopPropagation(); window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' class='action-btn'>";
+                            echo "          <button onclick='' class='action-btn'>";
                             echo "              <i class='fas fa-users'></i> View Participants";
                             echo "          </button>";
                             echo "      </div>";

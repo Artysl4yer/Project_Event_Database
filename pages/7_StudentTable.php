@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'save_participant') {
         $number = $_POST['participant-number'] ?? null;
         $id = $_POST['participant-id'] ?? null;
-        $name = $_POST['participant-name'];
+        $first_name = $_POST['participant-firstname'];
+        $last_name = $_POST['participant-lastname'];
         $course = $_POST['participant-course'];
         $section = $_POST['participant-section'];
         $gender = $_POST['participant-gender'];
@@ -17,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
         if (empty($number)) {
             // Insert new
-            $stmt = $conn->prepare("INSERT INTO participants_table (ID, Name, Course, Section, Gender, Age, Year, Dept) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssiss", $id, $name, $course, $section, $gender, $age, $year, $dept);
+            $stmt = $conn->prepare("INSERT INTO participants_table (ID, first_name, last_name, Course, Section, Gender, Age, Year, Dept) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssiss", $id, $first_name, $last_name, $course, $section, $gender, $age, $year, $dept);
         } else {
             // Update existing
-            $stmt = $conn->prepare("UPDATE participants_table SET ID=?, Name=?, Course=?, Section=?, Gender=?, Age=?, Year=?, Dept=? WHERE number=?");
-            $stmt->bind_param("sssssissi", $id, $name, $course, $section, $gender, $age, $year, $dept, $number);
+            $stmt = $conn->prepare("UPDATE participants_table SET ID=?, first_name=?, last_name=?, Course=?, Section=?, Gender=?, Age=?, Year=?, Dept=? WHERE number=?");
+            $stmt->bind_param("ssssssissi", $id, $first_name, $last_name, $course, $section, $gender, $age, $year, $dept, $number);
         }
 
         if ($stmt->execute()) {
@@ -68,171 +69,92 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
 <head>
     <meta charset="UTF-8">
     <title>PLP: Participants</title>
-    <link rel="stylesheet" href="../styles/style1.css">
     <link rel="stylesheet" href="../styles/style2.css">
     <link rel="stylesheet" href="../styles/style3.css">
+    <link rel="stylesheet" href="../styles/style1.css">
     <link rel="stylesheet" href="../styles/style5.css">
     <link rel="stylesheet" href="../styles/style6.css">
+    <link rel="stylesheet" href="../styles/style8.css">
+    <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="../styles/filter.css">
-    <link rel="stylesheet" href="../styles/student-table.css">
-    <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
-    <style>
-        /* Additional dropdown styles */
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: white;
-            font-size: 15px;
-        }
-        select:focus {
-            outline: none;
-            border-color: #104911;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
-        <div class="tab-container">
-            <div class="menu-items">
-                <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label">Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-                <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
-            </div>
-            <div class="logout">
-                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
-            </div>
+    </div>
+    <div class="tab-container">
+        <div class="menu-items">
+            <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+        </div>
+        <div class="logout">
+            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
         <div class="event-details">
             <div class="event-top">
-                <p> Event List </p>
+                <p>Participants List</p>
                 <div class="search-container">
                     <form class="example" action="action_page.php">
-                        <label for="search"> </label>
+                        <label for="search"></label>
                         <input type="text" id="search" name="fname" placeholder="Search...">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-                <div class="col-md-12" id="importFrm" >
+                <div class="col-md-12" id="importFrm">
                     <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" />
-                        <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                        <label class="upload-btn">
+                            Upload File
+                            <input type="file" id="fileInput" name="file" hidden>
+                        </label>
+                        <span id="fileName">No file chosen</span>
                     </form>
-                </div>
-                <div class="filter-container">
-                    <button class="filter"><i class="fa-solid fa-filter"> Filter</i></button>
-                    <div id="filter-option" class="filter-dropdown">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
                 </div>
             </div>  
         </div>
         <div class="event-table-section">
             <h2>Participants</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Participants</button>
+                <button class="filter-btn" data-filter="name">Sort by Name</button>
+                <button class="filter-btn" data-filter="course">Sort by Course</button>
+                <button class="filter-btn" data-filter="department">Filter by Department</button>
+                <select id="departmentFilter" class="status-select" style="display: none;">
+                    <option value="all">All Departments</option>
+                    <option value="CCS">College of Computer Studies</option>
+                    <option value="CBA">College of Business Administration</option>
+                    <option value="CAS">College of Arts and Sciences</option>
+                    <option value="COE">College of Engineering</option>
+                </select>
+            </div>
             <div class="add-button">
-                <button class="btn-import" onclick="openParticipantModal()"><span>ADD <i class="fa-solid fa-plus"></i></span></button>
+                <button class="btn-import" onclick="openParticipantModal()">
+                    <span><i class="fa-solid fa-plus"></i> Add Participant</span>
+                </button>
             </div>
-            
-            <!-- Add/Edit Participant Modal -->
-            <div id="participantModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <div class="header">
-                        <h3 id="modalTitle">Add New Participant</h3>
-                    </div>
-                    <form id="participantForm" method="POST">
-                        <input type="hidden" name="action" value="save_participant">
-                        <input type="hidden" name="participant-number" id="participant-number">
-                        <div class="user-details">
-                            <div class="input-box">
-                                <label>ID Number</label>
-                                <input type="text" name="participant-id" maxlength="8" id="participant-id" oninput="participantID(this)" required>
-                            </div>
-                            <div class="input-box">
-                                <label>Full Name</label>
-                                <input type="text" name="participant-name" id="participant-name" required>
-                            </div>
-                            <div class="input-box">
-                                <label>Course</label>
-                                <select name="participant-course" id="participant-course" required>
-                                    <option value="">Select Course</option>
-                                    <option value="BSIT">BS Information Technology</option>
-                                    <option value="BSCS">BS Computer Science</option>
-                                    <option value="BSIS">BS Information Systems</option>
-                                    <option value="BSCE">BS Computer Engineering</option>
-                                    <option value="BSA">BS Accountancy</option>
-                                    <option value="BSBA">BS Business Administration</option>
-                                </select>
-                            </div>
-                            <div class="input-box">
-                                <label>Section</label>
-                                <input type="text" name="participant-section" id="participant-section" required>
-                            </div>
-                            <div class="input-box">
-                                <label>Gender</label>
-                                <select name="participant-gender" id="participant-gender" required>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="input-box">
-                                <label>Age</label>
-                                <input type="text" name="participant-age" id="participant-age" maxlength="2" oninput="age(this)" required>
-                            </div>
-                            <div class="input-box">
-                                <label>Year</label>
-                                <select name="participant-year" id="participant-year" required>
-                                    <option value="">Select Year</option>
-                                    <option value="1">1st Year</option>
-                                    <option value="2">2nd Year</option>
-                                    <option value="3">3rd Year</option>
-                                    <option value="4">4th Year</option>
-                                </select>
-                            </div>
-                            <div class="input-box">
-                                <label>Department</label>
-                                <select name="participant-dept" id="participant-dept" required>
-                                    <option value="">Select Department</option>
-                                    <option value="CCS">College of Computer Studies</option>
-                                    <option value="CBA">College of Business Administration</option>
-                                    <option value="CAS">College of Arts and Sciences</option>
-                                    <option value="COE">College of Engineering</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="controls">
-                            <button type="submit" class="btn-submit">Save</button>
-                            <button type="button" class="btn-close" onclick="closeModal()">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <table class="event-display-table">
-                <tr>
-                    <th>Number</th>
-                    <th>Event Code</th>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Course</th>
-                    <th>Section</th>
-                    <th>Gender</th>
-                    <th>Age</th>   
-                    <th>Year</th>
-                    <th>Dept</th>
-                    <th>Actions</th>
-                </tr>
+            <table class="event-display-table" id="participantTable">
+                <thead>
+                    <tr>
+                        <th data-sort="number">Number</th>
+                        <th data-sort="id">ID</th>
+                        <th data-sort="name">Name</th>
+                        <th data-sort="course">Course</th>
+                        <th data-sort="section">Section</th>
+                        <th data-sort="gender">Gender</th>
+                        <th data-sort="age">Age</th>
+                        <th data-sort="year">Year</th>
+                        <th data-sort="department">Department</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
                 $sql = "SELECT * FROM participants_table ORDER BY number DESC";
                 $result = $conn->query($sql);
@@ -242,9 +164,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                 ?>
                 <tr>
                     <td><?= $row['number'] ?></td>
-                    <td><?= $row['event_code'] ?></td>
-                    <td><?= $row['ID'] ?></td>
-                    <td><?= htmlspecialchars($row['Name']) ?></td>
+                    <td><?= htmlspecialchars($row['ID']) ?></td>
+                    <td><?= htmlspecialchars($row['first_name']) . " " . htmlspecialchars($row['last_name']) ?></td>
                     <td><?= htmlspecialchars($row['Course']) ?></td>
                     <td><?= htmlspecialchars($row['Section']) ?></td>
                     <td><?= htmlspecialchars($row['Gender']) ?></td>
@@ -256,17 +177,17 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <button class="dropdown-item" onclick="openParticipantModal(<?= $row['number'] ?>)">
+                            <button onclick="openParticipantModal(<?= $row['number'] ?>)">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                             <form method="POST" action="7_StudentTable.php" onsubmit="return confirm('Are you sure you want to delete this participant?');">
                                 <input type="hidden" name="action" value="delete_participant">
                                 <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
-                                <button type="submit" class="dropdown-item">
+                                <button type="submit">
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </button>
                             </form>
-                            <button class="dropdown-item" onclick="generateQRCode(<?= $row['number'] ?>, '<?= $row['ID'] ?>')">
+                            <button onclick="generateQRCode(<?= $row['number'] ?>, '<?= htmlspecialchars($row['ID']) ?>')">
                                 <i class="fas fa-qrcode"></i> Generate QR
                             </button>
                         </div>
@@ -278,9 +199,92 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                 ?>
                 <tr><td colspan="10">No participants found.</td></tr>
                 <?php endif; ?>
+                </tbody>
             </table>
         </div>
     </div>
+
+    <!-- Add/Edit Participant Modal -->
+    <div id="participantModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="header">
+                <h3 id="modalTitle">Add New Participant</h3>
+                <p>Fill out the information below to add a new participant</p>
+            </div>
+            <form id="participantForm" method="POST">
+                <input type="hidden" name="action" value="save_participant">
+                <input type="hidden" name="participant-number" id="participant-number">
+                <div class="user-details">
+                    <div class="input-box">
+                        <label for="participant-id">ID Number</label>
+                        <input type="text" name="participant-id" id="participant-id" maxlength="8" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-firstname">First Name</label>
+                        <input type="text" name="participant-firstname" id="participant-firstname" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-lastname">Last Name</label>
+                        <input type="text" name="participant-lastname" id="participant-lastname" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-course">Course</label>
+                        <select name="participant-course" id="participant-course" required>
+                            <option value="">Select Course</option>
+                            <option value="BSIT">BS Information Technology</option>
+                            <option value="BSCS">BS Computer Science</option>
+                            <option value="BSIS">BS Information Systems</option>
+                            <option value="BSCE">BS Computer Engineering</option>
+                            <option value="BSA">BS Accountancy</option>
+                            <option value="BSBA">BS Business Administration</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-section">Section</label>
+                        <input type="text" name="participant-section" id="participant-section" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-gender">Gender</label>
+                        <select name="participant-gender" id="participant-gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-age">Age</label>
+                        <input type="number" name="participant-age" id="participant-age" min="15" max="99" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-year">Year</label>
+                        <select name="participant-year" id="participant-year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="participant-dept">Department</label>
+                        <select name="participant-dept" id="participant-dept" required>
+                            <option value="">Select Department</option>
+                            <option value="CCS">College of Computer Studies</option>
+                            <option value="CBA">College of Business Administration</option>
+                            <option value="CAS">College of Arts and Sciences</option>
+                            <option value="COE">College of Engineering</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="btn-submit">Save</button>
+                    <button type="button" class="btn-close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- QR Code Modal -->
     <div id="qrModal" class="modal">
         <div class="modal-content">
@@ -290,95 +294,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             </div>
             <div id="qrcode-container" class="text-center">
                 <div id="qrcode"></div>
-                <p>Scan this QR code to view participant details</p>
+                <p>Scan this QR code to verify participant identity</p>
                 <button onclick="downloadQRCode()" class="btn-download">Download QR Code</button>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="../Javascript/qrcode1.js"></script>
-    <script src="/Javascript/participantid.js"></script>
-    <script src="/Javascript/filter.js"></script>
-
-    <script>
-        // Dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Use event delegation for dropdown toggles
-            document.addEventListener('click', function(e) {
-                // Handle dropdown toggle clicks
-                if (e.target.closest('.dropdown-toggle')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const toggle = e.target.closest('.dropdown-toggle');
-                    const menu = toggle.nextElementSibling;
-                    
-                    // Close all other dropdowns
-                    document.querySelectorAll('.dropdown-menu').forEach(m => {
-                        if (m !== menu) m.classList.remove('show');
-                    });
-                    
-                    // Toggle current dropdown
-                    menu.classList.toggle('show');
-                }
-                // Close dropdowns when clicking outside
-                else if (!e.target.closest('.dropdown-menu')) {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.classList.remove('show');
-                    });
-                }
-            });
-
-            // Prevent dropdown from closing when clicking inside the menu
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            });
-        });
-
-        // Modal functionality
-        function openParticipantModal(participantId = null) {
-            const modal = document.getElementById('participantModal');
-            const form = document.getElementById('participantForm');
-            const title = document.getElementById('modalTitle');
-            
-            if (participantId) {
-                title.textContent = 'Edit Participant';
-                document.getElementById('participant-number').value = participantId;
-                
-                fetch(`7_StudentTable.php?action=get_participant&id=${participantId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('participant-id').value = data.ID || '';
-                        document.getElementById('participant-name').value = data.Name || '';
-                        document.getElementById('participant-course').value = data.Course || '';
-                        document.getElementById('participant-section').value = data.Section || '';
-                        document.getElementById('participant-gender').value = data.Gender || '';
-                        document.getElementById('participant-age').value = data.Age || '';
-                        document.getElementById('participant-year').value = data.Year || '';
-                        document.getElementById('participant-dept').value = data.Dept || '';
-                    });
-            } else {
-                title.textContent = 'Add New Participant';
-                form.reset();
-                document.getElementById('participant-number').value = '';
-            }
-            
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('participantModal').style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('participantModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
+    <script src="../Javascript/filter.js"></script>
+    <script src="../Javascript/uploadscv.js"></script>
+    <script src="../Javascript/participant-modal.js"></script>
+    <script src="../Javascript/dropdown.js"></script>
+    <script src="../Javascript/table-sort.js"></script>
+    <script src="../Javascript/qr-modal.js"></script>
 </body>
 </html>

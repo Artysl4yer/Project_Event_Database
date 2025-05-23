@@ -41,3 +41,113 @@
 .show {
     display: block;
 }
+
+.filter-buttons {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #f0f0f0;
+}
+
+.filter-btn.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.status-select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+th[data-sort] {
+    cursor: pointer;
+    position: relative;
+}
+
+th[data-sort]:after {
+    content: '↕';
+    position: absolute;
+    right: 8px;
+    color: #999;
+}
+
+th[data-sort].asc:after {
+    content: '↑';
+    color: #007bff;
+}
+
+th[data-sort].desc:after {
+    content: '↓';
+    color: #007bff;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu button,
+.dropdown-menu form {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu form button:hover {
+    background: #f0f0f0;
+}
+
+.dropdown-menu form {
+    margin: 0;
+}
+
+.dropdown-menu form button {
+    width: 100%;
+}
+
+.dropdown-wrapper {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.dropdown-toggle:hover {
+    background: #f0f0f0;
+    border-radius: 4px;
+}

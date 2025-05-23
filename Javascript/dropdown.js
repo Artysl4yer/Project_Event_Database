@@ -4,9 +4,31 @@
     });
 
     function initializeDropdowns() {
-    document.addEventListener('click', handleDropdownClick);
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeAllDropdowns();
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const menu = this.nextElementSibling;
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                if (m !== menu) m.classList.remove('show');
+            });
+            
+            // Toggle current dropdown
+            menu.classList.toggle('show');
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        closeAllDropdowns();
+    });
+
+    // Prevent dropdown from closing when clicking inside menu items
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     });
     }
 
@@ -47,7 +69,7 @@
 
     function closeAllDropdowns() {
     document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.style.display = 'none';
+        menu.classList.remove('show');
     });
     }
 
@@ -101,7 +123,7 @@
     populateCodeField();
     }
 
-    function closeModal() {
+    function closeImportModal() {
     document.getElementById('importModal').style.display = "none";
     }
 
@@ -143,6 +165,6 @@
 
     document.addEventListener('click', function(event) {
     const modal = document.getElementById('importModal');
-    if (event.target === modal) closeModal();
+    if (event.target === modal) closeImportModal();
     });
     

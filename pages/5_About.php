@@ -7,11 +7,24 @@
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="title-container">
+       <div class="title-container">
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
+        <div class="tab-container">
+            <div class="menu-items">
+                <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+                <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+            </div>
+            <div class="logout">
+                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            </div>
+        </div>
         <div class="Top">
-            <button class="backbutton" onclick="history.back()">Back</button>
             <img src="/images-icon/plm_courtyard.png" alt="plpback" height="100">
             <h1>About</h1>
         </div>

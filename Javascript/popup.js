@@ -1,3 +1,6 @@
+// This file is deprecated. Modal functionality has been moved to event-edit.js
+// Please use the EventEditor class from event-edit.js instead.
+
 // Open the modal for adding a new event
 function openModal(eventId = null) {
   const modal = document.getElementById('importModal');

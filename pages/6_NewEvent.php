@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../styles/style5.css">
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/style8.css">
-    <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="../styles/filter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -43,20 +42,15 @@
                     </form>
                 </div>
             
-                <div class="col-md-12" id="importFrm" style="display:block">
+                <div class="col-md-12" id="importFrm">
                     <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" />
-                        <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+                        <label class="upload-btn">
+                            Upload File
+                            <input type="file" id="fileInput" name="file" hidden>
+                        </label>
+                        <span id="fileName">No file chosen</span>
                     </form>
                 </div>
-
-                <div class="filter-container">
-                    <button class="filter"><i class="fa-solid fa-filter"> Filter</i></button>
-                    <div id="filter-option" class="filter-dropdown">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
             </div>  
         </div>
         <?php
@@ -88,24 +82,39 @@
         
         <div class="event-table-section">
             <h2>Events</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="title">Sort by Title</button>
+                <button class="filter-btn" data-filter="attendees">Sort by Attendees</button>
+                <button class="filter-btn" data-filter="status">Filter by Status</button>
+                <select id="statusFilter" class="status-select" style="display: none;">
+                    <option value="all">All Status</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Finished">Finished</option>
+                    <option value="Archived">Archived</option>
+                </select>
+            </div>
             <div class="add-button">
                 <button class="btn-import" onclick="openModal()">
                     <span><i class="fa-solid fa-plus"></i> Add Event</span>
                 </button>
             </div>
-            <table class="event-display-table">
-                <tr>
-                    <th>Number</th>
-                    <th>Title</th>
-                    <th>Event Code</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Location</th>
-                    <th>Description</th>
-                    <th>Organization</th>   
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
+            <table class="event-display-table" id="eventTable">
+                <thead>
+                    <tr>
+                        <th data-sort="number">Number</th>
+                        <th data-sort="title">Title</th>
+                        <th data-sort="code">Event Code</th>
+                        <th data-sort="start">Start</th>
+                        <th data-sort="end">End</th>
+                        <th data-sort="location">Location</th>
+                        <th data-sort="description">Description</th>
+                        <th data-sort="organization">Organization</th>   
+                        <th data-sort="status">Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <?php
                 include '../php/conn.php';
                 $sql = "SELECT * FROM event_table ORDER BY number DESC";
@@ -132,6 +141,9 @@
                             <button onclick="window.location.href='6_NewEvent.php?edit=<?= $row['number'] ?>'">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
+                            <button onclick="window.location.href='11_Attendance.php?event=<?= $row['number'] ?>'">
+                                <i class="fas fa-clipboard-check"></i> Take Attendance
+                            </button>
                             <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                 <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                 <button type="submit" name="delete">
@@ -150,6 +162,7 @@
                 ?>
                 <tr><td colspan="10">No events found.</td></tr>
                 <?php endif; ?>
+                </tbody>
             </table>
         </div>
     </div>
@@ -231,44 +244,15 @@
             </div>
         </div>
     </div>
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="../Javascript/qrcode.js"></script>
-    <script src="/Javascript/filter.js"></script>
-
+    <script src="../Javascript/filter.js"></script>
+    <script src="../Javascript/dropdown.js"></script>
+    <script src="../Javascript/event-edit.js"></script>
     <script>
-        const isEditing = <?= json_encode($isEditing) ?>;
-
-        function closeModal() {
-            document.getElementById('eventModal').classList.remove('active');
-            if (isEditing) {
-                window.location.href = '6_NewEvent.php';
-            }
-        }
-        
-    
-        document.addEventListener('DOMContentLoaded', function() {
-            <?php if (!$isEditing): ?>
-            document.getElementById('codeField').value = generateCode(12);
-            <?php endif; ?>
-        });
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const menu = this.nextElementSibling;
-                    document.querySelectorAll('.dropdown-menu').forEach(m => {
-                        if (m !== menu) m.classList.remove('show');
-                    });
-                    menu.classList.toggle('show');
-                });
-            });
-            document.addEventListener('click', function() {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
-                });
-            });
-        });
+        // Make isEditing available to the JavaScript
+        window.isEditing = <?= json_encode($isEditing) ?>;
     </script>
 </body>
 </html>

@@ -28,9 +28,3 @@ foreach ($tables as $table) {
     }
 }
 
-// Function to get database connection
-function get_db_connection() {
-    global $conn;
-    return $conn;
-}
-?>

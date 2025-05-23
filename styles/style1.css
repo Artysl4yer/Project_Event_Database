@@ -12,7 +12,7 @@
 }
 
 
-Body{
+body{
     margin: 0px;
     padding: 0px;
     font-family: "Montserrat", sans-serif;
@@ -20,6 +20,7 @@ Body{
     font-weight: 500;
     font-style: normal;
     overflow-x: hidden;
+    
     
 }
 
@@ -87,6 +88,61 @@ Body{
     color: white;
 }
 
+/* PLP Events Title Animation */
+.image-content h1 {
+    animation: slideTitleFromRight 1.2s ease-out forwards;
+    opacity: 0;
+    transform: translateX(100%);
+    text-align: center;
+    color: #ffffff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 20px 0;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideTitleFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Welcome text animation */
+.image-description p {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.image-description p:first-child {
+    animation-delay: 0.5s;
+}
+
+.image-description p:last-child {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .first-page{
     flex-grow: 1;
     padding: 20px;
@@ -121,7 +177,7 @@ Body{
     margin: 0;
     position: fixed;
     width: 100%;
-    z-index: 1000; 
+    z-index: 99;
     transition: all 500ms;
     animation: fadein 1s;
 }
@@ -206,10 +262,10 @@ Body{
     color: gray;
     background-color: white;
     gap: 15px;
-    border-radius: 50px;
+    
     height: 45px;
-    flex: 1; 
-    max-width: 300px;
+    
+    max-width: 320px;
 }
 
 .search-container form input[type="text"]{
@@ -220,9 +276,14 @@ Body{
     width: 600px;
     max-width: 100%;
     padding: 20px;
-    color: #333;
+    
     flex: 1;
 
+}
+.search-container form input[type="text"]:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 .search-container form button{
@@ -234,6 +295,7 @@ Body{
     font-size: 16px;
     margin-left: 10px;
     background: transparent;
+    box-shadow: none;
     color: #333;
 }
 
@@ -282,7 +344,6 @@ Body{
 .col-md-12{
     display: flex;
     flex-direction: row;
-    border: solid 1px #555;
     padding: 10px;
 }
 
@@ -294,6 +355,16 @@ Body{
     max-width: 100%;
 }
 
+.upload-btn {
+  background-color: #007BFF;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
 
 
 /* Extra section (right-aligned text or date) */
@@ -304,6 +375,41 @@ Body{
     color: #333;
 }
 
+.event-description h3{
+    color:#28a745;
+    text-shadow: 2px;
+}
+
+.event-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 150px;
+}
+
+.eventbg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.event-date,
+.event-description {
+    position: relative;
+    z-index: 1;
+    color: #000; /* Ensure text is readable */
+}
+
+.event-date{
+    font-weight: bold;
+}
 
 .event-box-details{
     border-radius: 16px;
@@ -314,7 +420,8 @@ Body{
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* This creates the "floating" effect */
     overflow: hidden;
     transition: transform 0.2s ease-in-out, max-height 1s ease-in-out;
-    max-height: 500px;
+    max-height: 700px;
+    padding-bottom: 30px;
 }
 
 .event-box-details:hover {
@@ -338,6 +445,16 @@ Body{
     border: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+}
+
+.event-actions button{
+    padding: 15px;
+    background-color: #218838;
+    color: white;
+    border: none;
+    width: 50%;
+    border-radius: 8px;
+
 }
 
 .btn-edit{
@@ -411,7 +528,7 @@ Body{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 50;
     overflow-x: hidden;
     padding: 40px 0px;
     padding-top: 100px;
@@ -465,7 +582,7 @@ Body{
     height: 1000px;
     max-height: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 50;
     top: 0;
     left: 0;
     overflow-x: hidden;
