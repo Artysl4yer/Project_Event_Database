@@ -79,7 +79,7 @@ function isActiveForm($formName, $activeForm) {
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Password
+                    <input type="checkbox"> Show Password
                 </div>
 
                 <div class="button-group">
@@ -93,39 +93,39 @@ function isActiveForm($formName, $activeForm) {
             </div>
         </div>  
 
-        <div class="registration-box <?= isActiveForm('register', $active_form) ?>" id="register-form">
-            <h2>Registration Form</h2>
-            <p class="subtitle">Please fill in the fields below</p>
+        <div class="registration-box <?= isActiveForm('register', $active_form) ?>" id="register-form" style="display: block;">
+            <h2>Create Your Account</h2>
+            <p class="subtitle">Please fill in your details to register</p>
 
             <form id="registrationForm" action="../php/login_register.php" method="POST" onsubmit="return validateIdentifier(this)">
                 <?= showError($errors['register']); ?>
                 <div class="input-field">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                 </div>
 
                 <div class="input-field">
                     <label for="student_id">Student ID</label>
-                    <input type="text" id="student_id" name="student_id" maxlength="8" oninput="formatInput(this)" placeholder="Student ID" required>
+                    <input type="text" id="student_id" name="student_id" maxlength="9" oninput="formatInput(this)" placeholder="XX-XXXXXX" required>
                 </div>
 
                 <div class="input-field">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
 
                 <div class="input-field">
                     <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" name="password" placeholder="Password" required>
+                    <input type="password" id="reg-password" name="password" placeholder="Create a password" required>
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Password
+                    <input type="checkbox"> Show Password
                 </div>
 
                 <div class="button-group">
-                    <button type="button" class="back-btn" onclick="showForm('login-form')">Back</button>
-                    <button type="submit" name="register" class="register-btn">Register</button>
+                    <button type="button" class="back-btn" onclick="showForm('login-form')">Back to Login</button>
+                    <button type="submit" name="register" class="register-btn">Create Account</button>
                 </div>
                 <div id="registerMessage" class="message"></div>
             </form>

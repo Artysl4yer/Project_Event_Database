@@ -1,18 +1,43 @@
 function showForm(formId) {
-    if (formId === 'register-form') {
-        document.querySelector('.loginpage').classList.remove('active');
-        document.querySelector('.registration-box').classList.add('active');
-    } else {
-        document.querySelector('.registration-box').classList.remove('active');
-        document.querySelector('.loginpage').classList.add('active');
+    console.log('Showing form:', formId);
+    
+    // Get both forms
+    const loginForm = document.querySelector('.loginpage');
+    const registerForm = document.querySelector('.registration-box');
+    
+    if (!loginForm || !registerForm) {
+        console.error('Forms not found:', { loginForm, registerForm });
+        return;
     }
+    
+    if (formId === 'register-form') {
+        console.log('Switching to registration form');
+        loginForm.classList.remove('active');
+        registerForm.classList.add('active');
+    } else {
+        console.log('Switching to login form');
+        registerForm.classList.remove('active');
+        loginForm.classList.add('active');
+    }
+    
+    // Log the state after changes
+    console.log('Login form active:', loginForm.classList.contains('active'));
+    console.log('Register form active:', registerForm.classList.contains('active'));
+    console.log('Login form visibility:', window.getComputedStyle(loginForm).visibility);
+    console.log('Register form visibility:', window.getComputedStyle(registerForm).visibility);
 }
 
-function showPass() {
-    var passwordInputs = document.querySelectorAll('input[type="password"]');
-    passwordInputs.forEach(function(input) {
-        input.type = input.type === 'password' ? 'text' : 'password';
-    });
+function showPass(event) {
+    // Get the checkbox that was clicked
+    const checkbox = event.target;
+    
+    // Find the closest form to determine which password field to toggle
+    const form = checkbox.closest('form');
+    const passwordInput = form.querySelector('input[type="password"], input[type="text"][id="password"], input[type="text"][id="reg-password"]');
+    
+    if (passwordInput) {
+        passwordInput.type = checkbox.checked ? 'text' : 'password';
+    }
 }
 
 function formatInput(input) {
@@ -92,4 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Add click event listeners to all show password checkboxes
+    const showPassCheckboxes = document.querySelectorAll('.show-pass input[type="checkbox"]');
+    showPassCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', showPass);
+    });
 });
