@@ -78,7 +78,7 @@
                             $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
                             $eventNumber = $row['number']; // Get the event number
                             
-                            echo "<div class='event-box-details' onclick='window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' style='cursor: pointer;'>";
+                            echo "<div class='event-box-details' style='cursor: pointer;'>";
                             echo "  <div class='floating-card'>";
                             echo "      <div class='event-container'>";
                             echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";

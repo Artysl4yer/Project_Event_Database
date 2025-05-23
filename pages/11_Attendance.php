@@ -123,6 +123,16 @@
                     </table>
                 </div>
             </div>
+            <div class="statisical-report">
+                <h3>Attendance List</h3>
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
         </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../Javascript/stats-script.js"></script>
     </body>
 </html>

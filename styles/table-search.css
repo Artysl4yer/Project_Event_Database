@@ -1,0 +1,78 @@
+.search-container {
+    position: relative;
+    margin-right: 20px;
+}
+
+.search-container .example {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-container input[type="text"] {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 250px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-container input[type="text"]:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+.search-container button {
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #e9ecef;
+}
+
+.search-container button i {
+    color: #666;
+}
+
+.search-container button:hover i {
+    color: #2196F3;
+}
+
+#participantTable tbody tr td.no-results {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background-color: #f8f9fa;
+}
+
+/* Loading state */
+.search-container.loading input[type="text"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px;
+}
+
+/* Animation for table updates */
+#participantTable tbody tr {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 

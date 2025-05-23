@@ -457,6 +457,10 @@ body{
 
 }
 
+.event-actions button:hover{
+    cursor: pointer;
+}
+
 .btn-edit{
     background-color: #969393;
     color: white;

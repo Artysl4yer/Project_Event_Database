@@ -41,16 +41,6 @@
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-            
-                <div class="col-md-12" id="importFrm">
-                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <label class="upload-btn">
-                            Upload File
-                            <input type="file" id="fileInput" name="file" hidden>
-                        </label>
-                        <span id="fileName">No file chosen</span>
-                    </form>
-                </div>
             </div>  
         </div>
         <?php
@@ -93,9 +83,7 @@
                     <option value="Finished">Finished</option>
                     <option value="Archived">Archived</option>
                 </select>
-            </div>
-            <div class="add-button">
-                <button class="btn-import" onclick="openModal()">
+                <button class="filter-btn btn-import" onclick="openModal()">
                     <span><i class="fa-solid fa-plus"></i> Add Event</span>
                 </button>
             </div>

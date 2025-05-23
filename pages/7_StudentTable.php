@@ -77,6 +77,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="../styles/filter.css">
+    <link rel="stylesheet" href="../styles/table-search.css">
+    <link rel="stylesheet" href="../styles/csv-import.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -102,19 +104,25 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             <div class="event-top">
                 <p>Participants List</p>
                 <div class="search-container">
-                    <form class="example" action="action_page.php">
+                    <form class="example" action="../php/action_page.php" method="GET">
                         <label for="search"></label>
-                        <input type="text" id="search" name="fname" placeholder="Search...">
+                        <input type="text" id="search" name="search" placeholder="Search in any column...">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="col-md-12" id="importFrm">
-                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <label class="upload-btn">
-                            Upload File
-                            <input type="file" id="fileInput" name="file" hidden>
-                        </label>
-                        <span id="fileName">No file chosen</span>
+                    <form id="csvImportForm" action="../php/importData.php" method="post" enctype="multipart/form-data">
+                        <div class="import-container">
+                            <label class="upload-btn">
+                                <i class="fas fa-file-import"></i> Choose CSV File
+                                <input type="file" id="fileInput" name="file" accept=".csv" hidden>
+                            </label>
+                            <span id="fileName">No file chosen</span>
+                            <button type="submit" id="importSubmit" class="import-submit-btn" disabled>
+                                <i class="fas fa-upload"></i> Import
+                            </button>
+                        </div>
+                        <div id="importStatus" class="import-status" style="display: none;"></div>
                     </form>
                 </div>
             </div>  
@@ -133,10 +141,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                     <option value="CAS">College of Arts and Sciences</option>
                     <option value="COE">College of Engineering</option>
                 </select>
-            </div>
-            <div class="add-button">
-                <button class="btn-import" onclick="openParticipantModal()">
-                    <span><i class="fa-solid fa-plus"></i> Add Participant</span>
+                <button class="filter-btn btn-import" onclick="openParticipantModal()">
+                    <i class="fa-solid fa-plus"></i> Add Participant
                 </button>
             </div>
             <table class="event-display-table" id="participantTable">
@@ -308,5 +314,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <script src="../Javascript/dropdown.js"></script>
     <script src="../Javascript/table-sort.js"></script>
     <script src="../Javascript/qr-modal.js"></script>
+    <script src="../Javascript/table-search.js"></script>
+    <script src="../Javascript/csv-import.js"></script>
 </body>
 </html>
