@@ -14,16 +14,21 @@ if (isset($_POST['register'])) {
         $_SESSION['register_error'] = "Email or Student ID already exists.";
         $_SESSION['active_form'] = 'register';
     } else {
-        $conn->query("INSERT INTO users (name, email, student_id, password) VALUES ('$name', '$email', '$student_id', '$password')");
+        $conn->query("INSERT INTO users (name, email, student_id, password, role) VALUES ('$name', '$email', '$student_id', '$password', 'student')");
+        $_SESSION['register_success'] = "Registration successful! Please login.";
+        $_SESSION['active_form'] = 'login';
     }
 
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 
 if (isset($_POST['login'])) {
     $identifier = str_replace('-', '', $_POST['identifier']); // student_id or email
     $password = $_POST['password'];
+
+    // Debug log the login attempt
+    error_log("Login attempt - Identifier: " . $identifier);
 
     // check student_id or email
     $stmt = $conn->prepare("SELECT * FROM users WHERE student_id = ? OR email = ?");
@@ -33,25 +38,46 @@ if (isset($_POST['login'])) {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+        error_log("User found in database - Email: " . $user['email'] . ", Student ID: " . $user['student_id']);
+        
         if (password_verify($password, $user['password'])) {
+            error_log("Password verification successful");
+            
+            // Clear any existing session data
+            session_unset();
+            
+            // Set session variables
             $_SESSION['name'] = $user['name'];
             $_SESSION['student_id'] = $user['student_id'];
             $_SESSION['email'] = $user['email'];
-
-            if ($user['role'] == 'admin') {
-                header("Location: ../pages/admin-home.php");
-            } elseif ($user['role'] == 'student') {
-                header("Location: ../pages/student-home.php");
-            } elseif ($user['role'] == 'coordinator') {
+            $_SESSION['role'] = $user['role'] ?? 'student'; // Use role from database, default to 'student' if not set
+            
+            // Ensure session is written
+            session_write_close();
+            
+            // Debug output
+            error_log("Login successful for user: " . $user['email']);
+            error_log("Session role set to: " . $_SESSION['role']);
+            
+            // Redirect based on role
+            if ($_SESSION['role'] === 'coordinator' || $_SESSION['role'] === 'admin') {
                 header("Location: ../pages/4_Event.php");
+            } else {
+                header("Location: ../pages/student-home.php");
             }
             exit();
+        } else {
+            error_log("Password verification failed for user: " . $user['email']);
+            error_log("Provided password: " . $password);
+            error_log("Stored hash: " . $user['password']);
         }
+    } else {
+        error_log("No user found with identifier: " . $identifier);
     }
 
     $_SESSION['login_error'] = "Invalid Student ID/Email or password.";
     $_SESSION['active_form'] = 'login';
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 

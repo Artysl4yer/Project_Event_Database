@@ -3,14 +3,14 @@ session_start();
 
 // Check email, student_id, and role
 if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 
 $allowed_roles = ['coordinator'];
 
 if (!in_array($_SESSION['role'], $allowed_roles)) {
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 
@@ -111,7 +111,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
         </div>
         <div class="logout">
-            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">

@@ -3,7 +3,7 @@ session_start();
 
 // Check student id and email
 if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 ?>
@@ -31,7 +31,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
                 <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
             </div>
             <div class="logout">
-                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="Top">
@@ -47,7 +47,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
                     <p>Welcome to the official Event Attendance portal of Pamantasan ng Lungsod ng Pasig. This system is designed to efficiently track and manage student and participant attendance across university events.</p>
                 </div>
                 <div class="intro-text2">
-                    <p> It promotes accountability, streamlines record-keeping, and supports PLP’s commitment to excellence in student engagement and campus activities.</p>
+                    <p> It promotes accountability, streamlines record-keeping, and supports PLP's commitment to excellence in student engagement and campus activities.</p>
                 </div>
             </div>
         <div class="Traits">

@@ -1,49 +1,35 @@
 <?php
-// Start session at the very beginning
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Fix the path to config.php
-$config_path = __DIR__ . '/config.php';
-if (!file_exists($config_path)) {
-    die("Configuration file not found at: " . $config_path);
-}
-include $config_path;
-
-// Test database connection
-if ($conn === false) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-
-// Test if we can query the event table
-$test_query = "SELECT COUNT(*) as count FROM event_table";
-$result = $conn->query($test_query);
-if (!$result) {
-    die("Error accessing event table: " . $conn->error);
-}
-
-// Debug information
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 
-// Check email, student_id, and role
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: ../pages/Login_v1.php");
+// Debug output
+error_log("4_Event.php accessed");
+error_log("Session data: " . print_r($_SESSION, true));
+
+// Strict session check - must have all required variables and they must not be empty
+if (!isset($_SESSION['email']) || !isset($_SESSION['student_id']) || !isset($_SESSION['role']) ||
+    empty($_SESSION['email']) || empty($_SESSION['student_id']) || empty($_SESSION['role'])) {
+    
+    error_log("Session check failed - missing or empty session variables");
+    // Clear session and redirect to login
+    session_unset();
+    session_destroy();
+    header("Location: 1_Login.php");
     exit();
 }
 
-$allowed_roles = ['coordinator'];
-
+// Verify role is valid
+$allowed_roles = ['coordinator', 'admin'];
 if (!in_array($_SESSION['role'], $allowed_roles)) {
-    header("Location: ../pages/Login_v1.php");
+    error_log("Invalid role access attempt: " . $_SESSION['role']);
+    session_unset();
+    session_destroy();
+    header("Location: 1_Login.php");
     exit();
 }
+
+// Log the role for debugging
+error_log("User role: " . $_SESSION['role']);
 ?>
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,7 +54,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                 <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
             </div>
             <div class="logout">
-                <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="image-background">
@@ -81,9 +67,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
             </div>
             </div>
         </div>
-        
         <div class="main-content">
-    
             <div class="first-page">
             <!-- The Event List. The compilation of events, sort to newest to latest -->
             <div class="event-details">
@@ -124,7 +108,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                             $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
                             $eventNumber = $row['number']; // Get the event number
                             
-                            echo "<div class='event-box-details' style='cursor: pointer;'>";
+                            echo "<div class='event-box-details' onclick='window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' style='cursor: pointer;'>";
                             echo "  <div class='floating-card'>";
                             echo "      <div class='event-container'>";
                             echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
