@@ -1,9 +1,10 @@
 <?php
 session_start();
+include '../php/conn.php';
 
-// Check if user is logged in and has admin role
-if (!isset($_SESSION['email']) || !isset($_SESSION['student_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../pages/Login_v1.php");
+// Check student id and email
+if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 

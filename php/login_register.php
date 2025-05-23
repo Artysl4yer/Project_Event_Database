@@ -5,23 +5,30 @@ require_once '../php/conn.php';
 // Set header to return JSON
 header('Content-Type: application/json');
 
-if (isset($_POST['register']) && ($_POST['register'] === '1' || $_POST['register'] === 'Register')) {
-    // Validate required fields
-    $required_fields = ['name', 'student_id', 'email', 'password'];
-    foreach ($required_fields as $field) {
-        if (!isset($_POST[$field]) || empty($_POST[$field])) {
-            echo json_encode(['success' => false, 'message' => 'All fields are required.']);
-            exit();
+// Error handler to catch PHP errors and return them as JSON
+function handleError($errno, $errstr, $errfile, $errline) {
+    echo json_encode(['success' => false, 'message' => 'PHP Error: ' . $errstr]);
+    exit();
+}
+set_error_handler('handleError');
+
+try {
+    if (isset($_POST['register']) && ($_POST['register'] === '1' || $_POST['register'] === 'Register')) {
+        // Validate required fields
+        $required_fields = ['name', 'student_id', 'email', 'password'];
+        foreach ($required_fields as $field) {
+            if (!isset($_POST[$field]) || empty($_POST[$field])) {
+                echo json_encode(['success' => false, 'message' => 'All fields are required.']);
+                exit();
+            }
         }
-    }
 
-    $name = $_POST['name'];
-    $student_id = str_replace('-', '', $_POST['student_id']);
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $name = $_POST['name'];
+        $student_id = str_replace('-', '', $_POST['student_id']);
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    try {
-        // Check database connection first
+        // Check database connection
         if ($conn->connect_error) {
             echo json_encode(['success' => false, 'message' => 'Database connection failed. Please try again later.']);
             exit();
@@ -57,24 +64,27 @@ if (isset($_POST['register']) && ($_POST['register'] === '1' || $_POST['register
         } else {
             echo json_encode(['success' => false, 'message' => 'Registration failed: ' . $stmt->error]);
         }
-    } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
+        exit();
     }
-    exit();
-}
 
-if (isset($_POST['login']) || isset($_POST['identifier'])) {
-    $identifier = str_replace('-', '', $_POST['identifier']); // student_id or email
-    $password = $_POST['password'];
+    if (isset($_POST['login']) || isset($_POST['identifier'])) {
+        // Validate required login fields
+        if (!isset($_POST['identifier']) || !isset($_POST['password']) || 
+            empty($_POST['identifier']) || empty($_POST['password'])) {
+            echo json_encode(['success' => false, 'message' => 'Both identifier and password are required.']);
+            exit();
+        }
 
-    try {
-        // Check database connection first
+        $identifier = str_replace('-', '', $_POST['identifier']);
+        $password = $_POST['password'];
+
+        // Check database connection
         if ($conn->connect_error) {
             echo json_encode(['success' => false, 'message' => 'Database connection failed. Please try again later.']);
             exit();
         }
 
-        // check student_id or email
+        // Check student_id or email
         $stmt = $conn->prepare("SELECT * FROM users WHERE student_id = ? OR email = ?");
         if (!$stmt) {
             echo json_encode(['success' => false, 'message' => 'An error occurred during login. Please try again.']);
@@ -82,7 +92,11 @@ if (isset($_POST['login']) || isset($_POST['identifier'])) {
         }
 
         $stmt->bind_param("ss", $identifier, $identifier);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            echo json_encode(['success' => false, 'message' => 'Login query failed. Please try again.']);
+            exit();
+        }
+
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
@@ -94,12 +108,18 @@ if (isset($_POST['login']) || isset($_POST['identifier'])) {
                 $_SESSION['role'] = $user['role'];
                 
                 $redirect = '';
-                if ($user['role'] == 'admin') {
-                    $redirect = '../pages/admin-home.php';
-                } elseif ($user['role'] == 'student') {
-                    $redirect = '../pages/student-home.php';
-                } elseif ($user['role'] == 'coordinator') {
-                    $redirect = '../pages/4_Event.php';
+                switch ($user['role']) {
+                    case 'admin':
+                        $redirect = '../pages/admin-home.php';
+                        break;
+                    case 'student':
+                        $redirect = '../pages/student-home.php';
+                        break;
+                    case 'coordinator':
+                        $redirect = '../pages/4_Event.php';
+                        break;
+                    default:
+                        $redirect = '../pages/student-home.php';
                 }
                 
                 echo json_encode(['success' => true, 'redirect' => $redirect]);
@@ -108,12 +128,12 @@ if (isset($_POST['login']) || isset($_POST['identifier'])) {
         }
 
         echo json_encode(['success' => false, 'message' => 'Invalid Student ID/Email or password.']);
-    } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
+        exit();
     }
-    exit();
-}
 
-// If no valid action was specified
-echo json_encode(['success' => false, 'message' => 'Invalid request']);
+    // If no valid action was specified
+    echo json_encode(['success' => false, 'message' => 'Invalid request']);
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
+}
 ?>

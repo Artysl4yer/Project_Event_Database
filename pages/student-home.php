@@ -1,9 +1,17 @@
 <?php
 session_start();
 
-// Check student id and email
-if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
-    header("Location: ../pages/Login_v1.php");
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
+
+// Allowed roles
+$allowed_roles = ['student', 'coordinator', 'admin'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 

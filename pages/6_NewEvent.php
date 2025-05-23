@@ -3,14 +3,14 @@ session_start();
 
 // Check email, student_id, and role
 if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 
 $allowed_roles = ['coordinator'];
 
 if (!in_array($_SESSION['role'], $allowed_roles)) {
-    header("Location: ../pages/Login_v1.php");
+    header("Location: ../pages/1_Login.php");
     exit();
 }
 ?>
@@ -43,7 +43,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
             <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
         </div>
         <div class="logout">
-            <a href="../php/1logout.php"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
@@ -55,16 +55,6 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                         <label for="search"></label>
                         <input type="text" id="search" name="fname" placeholder="Search...">
                         <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            
-                <div class="col-md-12" id="importFrm">
-                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <label class="upload-btn">
-                            Upload File
-                            <input type="file" id="fileInput" name="file" hidden>
-                        </label>
-                        <span id="fileName">No file chosen</span>
                     </form>
                 </div>
             </div>  
@@ -109,9 +99,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                     <option value="Finished">Finished</option>
                     <option value="Archived">Archived</option>
                 </select>
-            </div>
-            <div class="add-button">
-                <button class="btn-import" onclick="openModal()">
+                <button class="filter-btn btn-import" onclick="openModal()">
                     <span><i class="fa-solid fa-plus"></i> Add Event</span>
                 </button>
             </div>
