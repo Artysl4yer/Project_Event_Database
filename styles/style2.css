@@ -1,0 +1,249 @@
+/*for popups*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Add flex properties when modal is shown */
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.header {
+    background-color: #104911;
+    padding: 25px 30px;
+    border-radius: 8px 8px 0 0;
+}
+
+.header h3 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+
+.header p {
+    color: #e0e0e0;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 20px auto;
+    padding: 0;
+    width: 98%;
+    max-width: 1400px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border-radius: 8px;
+    min-height: min-content;
+}
+
+.modal-content .controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin: 0;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #eee;
+}
+
+.modal-content .controls button {
+    padding: 12px 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.modal-content form .user-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 40px 50px;
+    min-height: min-content;
+}
+
+form .input-box {
+    width: 100%;
+    margin: 0;
+    min-height: min-content;
+}
+
+form .input-box label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #333;
+    font-size: 15px;
+}
+
+form .input-box input[type="text"],
+form .input-box input[type="number"],
+form .input-box select,
+form .input-box textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+form .input-box input[type="text"]:focus,
+form .input-box input[type="number"]:focus,
+form .input-box select:focus,
+form .input-box textarea:focus {
+    border-color: #104911;
+    outline: none;
+    background-color: #fff;
+}
+
+form .date-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+form .date-box label {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+form .date-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #f8f9fa;
+}
+
+form .input-box textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.input-box-options {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.option-title-box {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+}
+
+.option-title-box label {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.input-box-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.input-box-options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #104911;
+}
+
+.modal-content .controls .btn-close {
+    background: #f8f9fa;
+    color: #104911;
+    border: 1px solid #104911;
+}
+
+.modal-content .controls .btn-close:hover {
+    background: #e9ecef;
+    cursor: pointer;
+}
+
+.modal-content .controls .btn-submit {
+    background: #104911;
+    color: white;
+}
+
+.modal-content .controls .btn-submit:hover {
+    background: #0d3a0d;
+    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .modal-content form .user-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .modal-content form .user-details {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
+    .header h3 {
+        font-size: 20px;
+    }
+
+    .modal-content .controls {
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .modal-content .controls button {
+        width: 100%;
+    }
+
+    form .date-box {
+        grid-template-columns: 1fr;
+    }
+
+    .input-box-options {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+    }
+} 
