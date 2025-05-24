@@ -1,0 +1,203 @@
+[24-May-2025 12:10:53 Asia/Manila] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 12:10:53 Asia/Manila] Sending response - Success: true, Message: Login successful
+[24-May-2025 12:11:38 Asia/Manila] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 12:11:38 Asia/Manila] Sending response - Success: true, Message: Login successful
+[24-May-2025 12:13:54 Asia/Manila] PHP Fatal error:  Cannot redeclare get_base_url() (previously declared in C:\HTML src\src\Project_Event_Database\php\conn.php:35) in C:\HTML src\src\Project_Event_Database\php\conn.php on line 35
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:14:48 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:14:48 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:14:50 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:14:50 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:15:53 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:15:53 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:17:40 Asia/Manila] Student ID: 2312121
+[24-May-2025 12:17:40 Asia/Manila] Student Course: 
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:17:40 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:17:40 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:18:17 Asia/Manila] Student ID: 2312121
+[24-May-2025 12:18:17 Asia/Manila] Student Course: 
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:18:17 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:18:17 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:19:52 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'eventdatabase.event_ratings' doesn't exist in C:\HTML src\src\Project_Event_Database\pages\student-home.php:132
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\pages\student-home.php(132): mysqli->prepare('SELECT COUNT(*)...')
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\pages\student-home.php on line 132
+[24-May-2025 12:20:00 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'eventdatabase.event_ratings' doesn't exist in C:\HTML src\src\Project_Event_Database\pages\student-home.php:132
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\pages\student-home.php(132): mysqli->prepare('SELECT COUNT(*)...')
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\pages\student-home.php on line 132
+[24-May-2025 12:21:02 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-home.php(8): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:21:03 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-home.php(8): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:21:04 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-profile.php(18): include('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:21:05 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-home.php(8): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:21:05 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-profile.php(18): include('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:21:06 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `eventdatabase`.`event_ratings` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\HTML src\src\Project_Event_Database\php\conn.php:70
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(70): mysqli->query('CREATE TABLE IF...')
+#1 C:\HTML src\src\Project_Event_Database\pages\student-home.php(8): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 70
+[24-May-2025 12:24:52 Asia/Manila] Login/Register request received: Array
+(
+    [identifier] => 23-00992
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 12:24:52 Asia/Manila] Sending response - Success: false, Message: Invalid Student ID/Email or password.
+[24-May-2025 12:25:02 Asia/Manila] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 12:25:02 Asia/Manila] Sending response - Success: true, Message: Login successful
+[24-May-2025 12:47:08 Asia/Manila] PHP Warning:  Undefined array key "registration_status" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 222
+[24-May-2025 12:47:08 Asia/Manila] PHP Warning:  Undefined array key "registration_status" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 223
+[24-May-2025 12:47:08 Asia/Manila] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 223
+[24-May-2025 12:47:08 Asia/Manila] PHP Warning:  Undefined array key "registration_deadline" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 230
+[24-May-2025 12:47:08 Asia/Manila] PHP Warning:  Undefined variable $can_control_registration in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 235
+[24-May-2025 12:47:08 Asia/Manila] PHP Warning:  Undefined variable $is_registration_open in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 250
+[24-May-2025 12:47:39 Asia/Manila] PHP Warning:  Undefined array key "registration_status" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 222
+[24-May-2025 12:47:39 Asia/Manila] PHP Warning:  Undefined array key "registration_status" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 223
+[24-May-2025 12:47:39 Asia/Manila] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 223
+[24-May-2025 12:47:39 Asia/Manila] PHP Warning:  Undefined array key "registration_deadline" in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 230
+[24-May-2025 12:47:39 Asia/Manila] PHP Warning:  Undefined variable $can_control_registration in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 235
+[24-May-2025 12:47:39 Asia/Manila] PHP Warning:  Undefined variable $is_registration_open in C:\HTML src\src\Project_Event_Database\pages\11_Attendance.php on line 250
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 9
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant DB_USER already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 10
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 11
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 12
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant SITE_NAME already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 15
+[24-May-2025 12:50:50 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in C:\HTML src\src\Project_Event_Database\php\conn.php on line 16
+[24-May-2025 12:50:50 Asia/Manila] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\HTML src\src\Project_Event_Database\php\conn.php:71
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(71): mysqli->close()
+#1 [internal function]: {closure}()
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 71
+[24-May-2025 12:51:51 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\6_NewEvent.php(70): include('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37
+[24-May-2025 12:52:10 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\6_NewEvent.php(5): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37
+[24-May-2025 12:52:11 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\6_NewEvent.php(5): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37
+[24-May-2025 12:52:12 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\6_NewEvent.php(5): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37
+[24-May-2025 12:52:13 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\4_Event.php(8): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37
+[24-May-2025 12:52:13 Asia/Manila] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'event_database' in C:\HTML src\src\Project_Event_Database\php\conn.php:37
+Stack trace:
+#0 C:\HTML src\src\Project_Event_Database\php\conn.php(37): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\pages\6_NewEvent.php(5): require_once('C:\\HTML src\\src...')
+#2 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\conn.php on line 37

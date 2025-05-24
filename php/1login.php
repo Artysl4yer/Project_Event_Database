@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../php/conn.php';
+include 'conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];

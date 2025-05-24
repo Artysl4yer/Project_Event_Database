@@ -1,0 +1,26 @@
+[24-May-2025 06:05:19 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 06:05:19 Europe/Berlin] Sending response - Success: false, Message: An unexpected error occurred: Unknown database 'event_database'
+[24-May-2025 07:09:07 Europe/Berlin] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:09:07 Europe/Berlin] Sending response - Success: true, Message: Login successful
+[24-May-2025 07:12:28 Europe/Berlin] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:12:28 Europe/Berlin] Sending response - Success: true, Message: Login successful
+[24-May-2025 07:14:02 Europe/Berlin] Login/Register request received: Array
+(
+    [identifier] => 12-3456
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:14:02 Europe/Berlin] Sending response - Success: true, Message: Login successful

@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-include '../php/conn.php';
+include 'conn.php';
 
 // Get all events
 $sql = "SELECT e.*, 

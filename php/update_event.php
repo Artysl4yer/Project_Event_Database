@@ -1,5 +1,5 @@
 <?php
-include '../php/conn.php';
+include 'conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $event_id = $_POST['event_id'];

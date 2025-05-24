@@ -6,10 +6,10 @@ ini_set('display_errors', 1);
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'event_database';
+$db_name = 'eventdatabase';
 
 // Create connection
-$conn = new mysqli('localhost', 'root', '', 'event_database');
+$conn = new mysqli('localhost', 'root', '', 'eventdatabase');
 
 // Check connection
 if ($conn->connect_error) {

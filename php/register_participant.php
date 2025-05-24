@@ -1,5 +1,5 @@
 <?php
-include '../php/conn.php';
+include 'conn.php';
 
 // Get event details
 $event_id = isset($_GET['event']) ? $_GET['event'] : '';

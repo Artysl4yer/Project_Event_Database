@@ -1,3 +1,48 @@
+<?php
+session_start();
+
+// Include database connection at the top
+require_once '../php/conn.php';
+
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
+
+$allowed_roles = ['coordinator'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
+
+// Check if we're editing an event
+$isEditing = isset($_GET['edit']);
+$eventData = [];
+
+if ($isEditing) {
+    $eventId = $_GET['edit'];
+    $sql = "SELECT * FROM event_table WHERE number = $eventId";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        $eventData = $result->fetch_assoc();
+        
+        // Split datetime into date and time components
+        $startDateTime = new DateTime($eventData['date_start']);
+        $endDateTime = new DateTime($eventData['date_end']);
+        
+        $eventData['date_start_date'] = $startDateTime->format('Y-m-d');
+        $eventData['date_start_time'] = $startDateTime->format('H:i');
+        $eventData['date_end_date'] = $endDateTime->format('Y-m-d');
+        $eventData['date_end_time'] = $endDateTime->format('H:i');
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +55,23 @@
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/filter.css">
+    <link rel="stylesheet" href="../styles/event_modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="title-container">   
+    <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
     </div>
     <div class="tab-container">
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+            <a href="6_NewEvent.php" class=            <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+            <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+            <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
         </div>
         <div class="logout">
-            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
@@ -41,51 +85,14 @@
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-            
-                <div class="col-md-12" id="importFrm">
-                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <label class="upload-btn">
-                            Upload File
-                            <input type="file" id="fileInput" name="file" hidden>
-                        </label>
-                        <span id="fileName">No file chosen</span>
-                    </form>
-                </div>
             </div>  
         </div>
-        <?php
-        // Check if we're editing an event
-        $isEditing = isset($_GET['edit']);
-        $eventData = [];
-        
-        if ($isEditing) {
-            include '../php/conn.php';
-            $eventId = $_GET['edit'];
-            $sql = "SELECT * FROM event_table WHERE number = $eventId";
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                $eventData = $result->fetch_assoc();
-                
-                // Split datetime into date and time components
-                $startDateTime = new DateTime($eventData['date_start']);
-                $endDateTime = new DateTime($eventData['date_end']);
-                
-                $eventData['date_start_date'] = $startDateTime->format('Y-m-d');
-                $eventData['date_start_time'] = $startDateTime->format('H:i');
-                $eventData['date_end_date'] = $endDateTime->format('Y-m-d');
-                $eventData['date_end_time'] = $endDateTime->format('H:i');
-            }
-            $conn->close();
-        }
-        ?>
-        
         <div class="event-table-section">
             <h2>Events</h2>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" data-sort="number">All Events</button>
+                    <button class="filter-btn active" data-filter="all" data-sort="number">All Events</button>
                 <button class="filter-btn" data-filter="title" data-sort="event_title">Sort by Title</button>
-                <button class="filter-btn" data-filter="attendees" data-sort="attendee_count">Sort by Attendees</button>
+                <button class="filter-btn" data-filter="organization" data-sort="organization">Sort by Organization</button>
                 <button class="filter-btn" data-filter="status">Filter by Status</button>
                 <select id="statusFilter" class="status-select" style="display: none;">
                     <option value="all">All Status</option>
@@ -93,13 +100,10 @@
                     <option value="Finished">Finished</option>
                     <option value="Archived">Archived</option>
                 </select>
-            </div>
-            <div class="add-button">
-                <button class="btn-import" onclick="openModal()">
+                <button class="filter-btn btn-import" onclick="openModal()">
                     <span><i class="fa-solid fa-plus"></i> Add Event</span>
                 </button>
             </div>
-<<<<<<< HEAD
             <table class="event-display-table" id="eventTable">
                 <thead>
                     <tr>
@@ -116,23 +120,7 @@
                     </tr>
                 </thead>
                 <tbody>
-=======
-            <table class="event-display-table">
-                <tr>
-                    <th>Number</th>
-                    <th>Title</th>
-                    <th>Event Code</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Location</th>
-                    <th>Description</th>
-                    <th>Organization</th>   
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
->>>>>>> 569ce66a0dd436d87e404091b6cb966b5bd49e6f
                 <?php
-                include '../php/conn.php';
                 // Get sort parameters from URL
                 $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'number';
                 $sort_direction = isset($_GET['direction']) ? strtoupper($_GET['direction']) : 'DESC';
@@ -215,13 +203,16 @@
                             <button onclick="window.location.href='6_NewEvent.php?edit=<?= $row['number'] ?>'">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
+                            <button onclick="window.location.href='11_Attendance.php?event=<?= $row['number'] ?>'">
+                                <i class="fas fa-clipboard-check"></i> Take Attendance
+                            </button>
                             <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                 <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                 <button type="submit" name="delete">
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </button>
                             </form>
-                            <button onclick="generateQRCode('<?= htmlspecialchars($row['event_code']) ?>')">
+                            <button onclick="generateQRCode(<?= $row['number'] ?>, '<?= htmlspecialchars($row['event_code']) ?>')">
                                 <i class="fas fa-qrcode"></i> Generate QR
                             </button>
                         </div>
@@ -233,6 +224,7 @@
                 ?>
                 <tr><td colspan="10">No events found.</td></tr>
                 <?php endif; ?>
+                </tbody>
             </table>
         </div>
     </div>
@@ -244,76 +236,106 @@
                 <h3><?= $isEditing ? 'Edit Event' : 'Create New Event' ?></h3>
                 <p>Fill out the information below to <?= $isEditing ? 'update' : 'create' ?> the event</p>
             </div> 
-            <form id="eventForm" action="../php/<?= $isEditing ? 'update_event.php' : 'event-sub.php' ?>" method="POST">
+            <form id="eventForm" action="../php/<?= $isEditing ? 'update_event.php' : 'event-sub.php' ?>" method="POST" enctype="multipart/form-data">
                 <?php if ($isEditing): ?>
                 <input type="hidden" name="event_id" value="<?= $eventData['number'] ?>">
                 <?php endif; ?>
                 
-                <div class="user-details">
-                    <div class="input-box">
-                        <label for="event-title">Event Title:</label>
-                        <input type="text" name="event-title" value="<?= $isEditing ? htmlspecialchars($eventData['event_title']) : '' ?>" required> 
+                <div class="form-container">
+                    <!-- Image Upload Section -->
+                    <div class="image-upload-section">
+                        <div class="image-preview-container">
+                            <div id="imagePreview" class="image-preview">
+                                <img id="previewImg" src="<?= $isEditing ? '../' . htmlspecialchars($eventData['file']) : '../images-icon/plm_courtyard.png' ?>" alt="Event Preview">
+                            </div>
+                            <div class="upload-controls">
+                                <label for="fileInput" class="upload-btn">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Choose Image</span>
+                                </label>
+                                <input type="file" id="fileInput" name="file" accept="image/*" onchange="handleFileSelect(this)" style="display: none;">
+                                <span id="fileName" class="file-name">No file chosen</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-box">
-                        <label for="event-location">Location:</label>
-                        <input type="text" name="event-location" value="<?= $isEditing ? htmlspecialchars($eventData['event_location']) : '' ?>" required> 
+
+                    <!-- Form Fields Section -->
+                    <div class="form-fields">
+                        <div class="form-row">
+                            <div class="input-box full-width">
+                                <label for="event-title">Event Title</label>
+                                <input type="text" name="event-title" id="event-title" value="<?= $isEditing ? htmlspecialchars($eventData['event_title']) : '' ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-box full-width">
+                                <label for="event-location">Location</label>
+                                <input type="text" name="event-location" id="event-location" value="<?= $isEditing ? htmlspecialchars($eventData['event_location']) : '' ?>" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-box">
+                                <label for="event-date-start">Start Date & Time</label>
+                                <div class="datetime-inputs">
+                                    <input type="date" name="event-date-start" id="event-date-start" value="<?= $isEditing ? $eventData['date_start_date'] : '' ?>" required>
+                                    <input type="time" name="event-time-start" id="event-time-start" value="<?= $isEditing ? $eventData['date_start_time'] : '' ?>" required>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label for="event-date-end">End Date & Time</label>
+                                <div class="datetime-inputs">
+                                    <input type="date" name="event-date-end" id="event-date-end" value="<?= $isEditing ? $eventData['date_end_date'] : '' ?>" required>
+                                    <input type="time" name="event-time-end" id="event-time-end" value="<?= $isEditing ? $eventData['date_end_time'] : '' ?>" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-box">
+                                <label for="event-orgs">Organization</label>
+                                <select name="event-orgs" id="event-orgs" required>
+                                    <option value="">Select Organization</option>
+                                    <option value="College of Computer Studies" <?= $isEditing && $eventData['organization'] == 'College of Computer Studies' ? 'selected' : '' ?>>College of Computer Studies</option>
+                                    <option value="College of Engineering" <?= $isEditing && $eventData['organization'] == 'College of Engineering' ? 'selected' : '' ?>>College of Engineering</option>
+                                    <option value="College of Business Accounting" <?= $isEditing && $eventData['organization'] == 'College of Business Accounting' ? 'selected' : '' ?>>College of Business Accounting</option>
+                                    <option value="College of Nursing" <?= $isEditing && $eventData['organization'] == 'College of Nursing' ? 'selected' : '' ?>>College of Nursing</option>
+                                    <option value="All Courses" <?= $isEditing && $eventData['organization'] == 'All Courses' ? 'selected' : '' ?>>All Courses</option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <label for="event-status">Status</label>
+                                <select name="event-status" id="event-status" required>
+                                    <option value="Ongoing" <?= $isEditing && $eventData['event_status'] == 'Ongoing' ? 'selected' : '' ?>>Ongoing</option>
+                                    <option value="Finished" <?= $isEditing && $eventData['event_status'] == 'Finished' ? 'selected' : '' ?>>Finished</option>
+                                    <option value="Archived" <?= $isEditing && $eventData['event_status'] == 'Archived' ? 'selected' : '' ?>>Archived</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-box full-width">
+                                <label for="event-description">Description</label>
+                                <textarea id="event-description" name="event-description" rows="4"><?= $isEditing ? htmlspecialchars($eventData['event_description']) : '' ?></textarea>
+                            </div>
+                        </div>
+
+                        <?php if (!$isEditing): ?>
+                        <div class="form-row">
+                            <div class="input-box full-width">
+                                <label for="event-code">Event Code</label>
+                                <input type="text" name="code" id="codeField" readonly>
+                                <small class="help-text">This code will be auto-generated for QR code registration</small>
+                            </div>
+                        </div>
+                        <?php endif; ?>
                     </div>
-                    <div class="date-box">
-                        <label for="event-date-start">Start Time</label>
-                        <input type="date" name="event-date-start" value="<?= $isEditing ? $eventData['date_start_date'] : '' ?>" required> 
-                        <input type="time" name="event-time-start" value="<?= $isEditing ? $eventData['date_start_time'] : '' ?>" required> 
-                    </div>
-                    <div class="date-box">
-                        <label for="event-date-end">End Time</label>
-                        <input type="date" name="event-date-end" value="<?= $isEditing ? $eventData['date_end_date'] : '' ?>" required> 
-                        <input type="time" name="event-time-end" value="<?= $isEditing ? $eventData['date_end_time'] : '' ?>" required> 
-                    </div>
-                    <div class="input-box">
-                        <label for="event-orgs">Organization:</label>
-                        <input type="text" name="event-orgs" value="<?= $isEditing ? htmlspecialchars($eventData['organization']) : '' ?>" required> 
-                    </div>
-                    <div class="input-box">
-                        <label for="event-status">Status:</label>
-                        <select name="event-status" required>
-                            <option value="draft" <?= $isEditing && $eventData['event_status'] == 'draft' ? 'selected' : '' ?>>Draft</option>
-                            <option value="scheduled" <?= $isEditing && $eventData['event_status'] == 'scheduled' ? 'selected' : '' ?>>Scheduled</option>
-                            <option value="ongoing" <?= $isEditing && $eventData['event_status'] == 'ongoing' ? 'selected' : '' ?>>Ongoing</option>
-                            <option value="completed" <?= $isEditing && $eventData['event_status'] == 'completed' ? 'selected' : '' ?>>Completed</option>
-                            <option value="cancelled" <?= $isEditing && $eventData['event_status'] == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
-                            <option value="archived" <?= $isEditing && $eventData['event_status'] == 'archived' ? 'selected' : '' ?>>Archived</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label for="registration-status">Registration Status:</label>
-                        <select name="registration-status" required>
-                            <option value="closed" <?= $isEditing && $eventData['registration_status'] == 'closed' ? 'selected' : '' ?>>Closed</option>
-                            <option value="open" <?= $isEditing && $eventData['registration_status'] == 'open' ? 'selected' : '' ?>>Open</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label for="auto-close">Auto-close Registration:</label>
-                        <select name="auto-close" required>
-                            <option value="1" <?= $isEditing && $eventData['auto_close_registration'] == 1 ? 'selected' : '' ?>>Yes</option>
-                            <option value="0" <?= $isEditing && $eventData['auto_close_registration'] == 0 ? 'selected' : '' ?>>No</option>
-                        </select>
-                        <small style="color: #666; font-size: 0.8em;">Automatically close registration when event ends</small>
-                    </div>
-                    <div class="input-box">
-                        <label for="event-description">Description:</label>
-                        <textarea id="description" name="event-description"><?= $isEditing ? htmlspecialchars($eventData['event_description']) : '' ?></textarea>
-                    </div>
-                    <?php if (!$isEditing): ?>
-                    <div class="input-box">
-                        <label for="event-code">Event Code:</label>
-                        <input type="text" name="code" id="codeField" readonly>
-                        <small style="color: #666; font-size: 0.8em;">This code will be auto-generated for QR code registration</small>
-                    </div>
-                    <?php endif; ?>
-                    
                 </div>
-                <div class="controls">
-                    <button class="btn-submit" type="submit"><?= $isEditing ? 'Update' : 'Submit' ?></button>
-                    <button class="btn-close" type="button" onclick="closeModal()">Close</button>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-submit"><?= $isEditing ? 'Update Event' : 'Create Event' ?></button>
                 </div>
             </form>
         </div>
@@ -332,12 +354,13 @@
             </div>
         </div>
     </div>
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="../Javascript/utils/code-generator.js"></script>
     <script src="../Javascript/qrcode.js"></script>
     <script src="../Javascript/filter.js"></script>
     <script src="../Javascript/dropdown.js"></script>
     <script src="../Javascript/event_modal.js"></script>
-    <script src="../Javascript/table-sortjs"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize event table
@@ -358,7 +381,6 @@
             const currentStatus = urlParams.get('status');
             
             if (currentFilter === 'status') {
-                statusFilterBtn.classList.add('active');
                 statusFilter.style.display = 'inline-block';
                 if (currentStatus) {
                     statusFilter.value = currentStatus;
@@ -387,10 +409,6 @@
             });
         }
     });
-    <script src="../Javascript/event-edit.js"></script>
-    <script>
-        // Make isEditing available to the JavaScript
-        window.isEditing = <?= json_encode($isEditing) ?>;
     </script>
-</body>
+>
 </html>
