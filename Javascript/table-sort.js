@@ -2,14 +2,15 @@
 class TableManager {
     constructor(tableId, options = {}) {
         this.table = document.getElementById(tableId);
-        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.filterButtons = document.querySelectorAll('.filter-btn:not(.btn-import)');
         this.departmentFilter = document.getElementById('departmentFilter');
-        this.currentSort = { column: null, direction: 'asc' };
+        this.statusFilter = document.getElementById('statusFilter');
+        this.currentSort = { column: 'number', direction: 'desc' };
         this.currentFilter = 'all';
         this.options = {
-            filterColumn: options.filterColumn || 9, // Department column
-            nameColumn: options.nameColumn || 3,    // Name column
-            courseColumn: options.courseColumn || 4, // Course column
+            filterColumn: options.filterColumn || 9,
+            nameColumn: options.nameColumn || 3,
+            courseColumn: options.courseColumn || 4,
             ...options
         };
 
@@ -21,29 +22,99 @@ class TableManager {
 
         // Initialize filter buttons
         this.filterButtons.forEach(button => {
-            button.addEventListener('click', () => this.handleFilterClick(button));
+            if (!button.classList.contains('btn-import')) {
+                button.addEventListener('click', () => this.handleFilterClick(button));
+            }
         });
 
-        // Initialize department filter
+        // Initialize filters
         if (this.departmentFilter) {
             this.departmentFilter.addEventListener('change', () => this.filterTable());
+        }
+        if (this.statusFilter) {
+            this.statusFilter.addEventListener('change', () => this.filterTable());
         }
 
         // Initialize sorting headers
         this.table.querySelectorAll('th[data-sort]').forEach(header => {
             header.addEventListener('click', () => this.handleSortClick(header));
         });
+
+        // Set initial active state based on URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentFilter = urlParams.get('filter') || 'all';
+        const currentSort = urlParams.get('sort') || 'number';
+        const currentDirection = urlParams.get('direction') || 'desc';
+        const currentDepartment = urlParams.get('department') || 'all';
+        const currentStatus = urlParams.get('status') || 'all';
+        
+        this.currentSort = { column: currentSort, direction: currentDirection };
+        this.currentFilter = currentFilter;
+
+        // Update filter buttons
+        this.filterButtons.forEach(button => {
+            if (button.dataset.filter === currentFilter) {
+                button.classList.add('active');
+                // If the button has a data-sort attribute, use it for initial sort
+                if (button.dataset.sort) {
+                    this.currentSort.column = button.dataset.sort;
+                }
+            } else {
+                button.classList.remove('active');
+            }
+        });
+
+        // Show appropriate filter dropdown
+        if (this.currentFilter === 'department' && this.departmentFilter) {
+            this.departmentFilter.style.display = 'inline-block';
+            if (currentDepartment !== 'all') {
+                this.departmentFilter.value = currentDepartment;
+            }
+        } else if (this.currentFilter === 'status' && this.statusFilter) {
+            this.statusFilter.style.display = 'inline-block';
+            if (currentStatus !== 'all') {
+                this.statusFilter.value = currentStatus;
+            }
+        }
+
+        // Update sort indicators
+        this.table.querySelectorAll('th[data-sort]').forEach(th => {
+            if (th.dataset.sort === currentSort) {
+                th.classList.add(currentDirection);
+            } else {
+                th.classList.remove('asc', 'desc');
+            }
+        });
     }
 
     handleFilterClick(button) {
+        // Don't process if it's the Add button
+        if (button.classList.contains('btn-import')) {
+            return;
+        }
+
         this.filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
         this.currentFilter = button.dataset.filter;
         
+        // Handle filter visibility
         if (this.currentFilter === 'department' && this.departmentFilter) {
             this.departmentFilter.style.display = 'inline-block';
-        } else if (this.departmentFilter) {
-            this.departmentFilter.style.display = 'none';
+            if (this.statusFilter) this.statusFilter.style.display = 'none';
+            return;
+        } else if (this.currentFilter === 'status' && this.statusFilter) {
+            this.statusFilter.style.display = 'inline-block';
+            if (this.departmentFilter) this.departmentFilter.style.display = 'none';
+            return;
+        } else {
+            if (this.departmentFilter) this.departmentFilter.style.display = 'none';
+            if (this.statusFilter) this.statusFilter.style.display = 'none';
+        }
+        
+        // If the button has a data-sort attribute, use it for sorting
+        if (button.dataset.sort) {
+            this.currentSort.column = button.dataset.sort;
+            this.currentSort.direction = 'asc'; // Reset to ascending when changing sort column
         }
         
         this.filterTable();
@@ -58,75 +129,55 @@ class TableManager {
             this.currentSort.column = column;
             this.currentSort.direction = 'asc';
         }
+
+        // Update sort indicators
+        this.table.querySelectorAll('th[data-sort]').forEach(th => {
+            th.classList.remove('asc', 'desc');
+        });
+        header.classList.add(this.currentSort.direction);
         
         this.filterTable();
     }
 
     filterTable() {
-        const tbody = this.table.querySelector('tbody');
-        if (!tbody) return;
-
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        const departmentValue = this.departmentFilter ? this.departmentFilter.value : 'all';
-        
-        // Sort rows
-        if (this.currentSort.column) {
-            rows.sort((a, b) => {
-                const aValue = a.querySelector(`td:nth-child(${this.getColumnIndex(this.currentSort.column)})`).textContent;
-                const bValue = b.querySelector(`td:nth-child(${this.getColumnIndex(this.currentSort.column)})`).textContent;
-                
-                if (this.currentSort.direction === 'asc') {
-                    return aValue.localeCompare(bValue);
-                } else {
-                    return bValue.localeCompare(aValue);
-                }
-            });
-        }
-        
-        // Filter rows
-        rows.forEach(row => {
-            const department = row.querySelector(`td:nth-child(${this.options.filterColumn})`).textContent;
-            const name = row.querySelector(`td:nth-child(${this.options.nameColumn})`).textContent;
-            const course = row.querySelector(`td:nth-child(${this.options.courseColumn})`).textContent;
-            
-            let show = true;
-            
-            if (this.currentFilter === 'department' && departmentValue !== 'all') {
-                show = department === departmentValue;
-            } else if (this.currentFilter === 'name' || this.currentFilter === 'course') {
-                // Name and course sorting are handled by the sort function
-                show = true;
-            }
-            
-            row.style.display = show ? '' : 'none';
+        // Build URL with current sort and filter parameters
+        const params = new URLSearchParams({
+            sort: this.currentSort.column,
+            direction: this.currentSort.direction,
+            filter: this.currentFilter
         });
 
-        // Reorder rows in the table
-        rows.forEach(row => tbody.appendChild(row));
-    }
+        // Add appropriate filter value
+        if (this.currentFilter === 'department' && this.departmentFilter) {
+            params.append('department', this.departmentFilter.value);
+        } else if (this.currentFilter === 'status' && this.statusFilter) {
+            params.append('status', this.statusFilter.value);
+        }
 
-    getColumnIndex(column) {
-        const columns = {
-            'number': 1,
-            'id': 2,
-            'name': 3,
-            'course': 4,
-            'section': 5,
-            'gender': 6,
-            'age': 7,
-            'year': 8,
-            'department': 9
-        };
-        return columns[column] || 1;
+        // Reload the page with new parameters
+        window.location.href = `${window.location.pathname}?${params.toString()}`;
     }
 }
 
 // Initialize table manager when the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize participant table
-    const participantTable = new TableManager('participantTable', {
-        filterColumn: 9,  // Department column
-        nameColumn: 3,    // Name column
-        courseColumn: 4   // Course column
-    });
+    // Initialize participant table if it exists
+    const participantTable = document.getElementById('participantTable');
+    if (participantTable) {
+        new TableManager('participantTable', {
+            filterColumn: 9,  // Department column
+            nameColumn: 3,    // Name column
+            courseColumn: 4   // Course column
+        });
+    }
+
+    // Initialize event table if it exists
+    const eventTable = document.getElementById('eventTable');
+    if (eventTable) {
+        new TableManager('eventTable', {
+            filterColumn: 8,  // Status column
+            nameColumn: 1,    // Title column
+            courseColumn: 7   // Organization column
+        });
+    }
 }); 

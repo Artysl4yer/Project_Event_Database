@@ -78,6 +78,56 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     echo json_encode($participant);
     exit();
 }
+
+// Get sort parameters from URL
+$sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'number';
+$sort_direction = isset($_GET['direction']) ? $_GET['direction'] : 'DESC';
+
+// Validate sort column to prevent SQL injection
+$allowed_columns = [
+    'number' => 'number',
+    'id' => 'ID',
+    'name' => 'CONCAT(first_name, " ", last_name)',
+    'course' => 'Course',
+    'section' => 'Section',
+    'gender' => 'Gender',
+    'age' => 'Age',
+    'year' => 'Year',
+    'department' => 'Dept'
+];
+
+// Get filter parameters
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+$department = isset($_GET['department']) ? $_GET['department'] : 'all';
+
+// If filter is set to name or course, use that as the sort column
+if ($filter === 'name') {
+    $sort_column = 'name';
+} elseif ($filter === 'course') {
+    $sort_column = 'course';
+}
+
+$sort_column = isset($allowed_columns[$sort_column]) ? $allowed_columns[$sort_column] : 'number';
+$sort_direction = strtoupper($sort_direction) === 'ASC' ? 'ASC' : 'DESC';
+
+// Build the query
+$query = "SELECT * FROM participants_table";
+
+// Add department filter if selected
+if ($filter === 'department' && $department !== 'all') {
+    $query .= " WHERE Dept = ?";
+}
+
+// Add sorting
+$query .= " ORDER BY $sort_column $sort_direction";
+
+// Prepare and execute the query
+$stmt = $conn->prepare($query);
+if ($filter === 'department' && $department !== 'all') {
+    $stmt->bind_param("s", $department);
+}
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html>
@@ -143,9 +193,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
         <div class="event-table-section">
             <h2>Participants</h2>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Participants</button>
-                <button class="filter-btn" data-filter="name">Sort by Name</button>
-                <button class="filter-btn" data-filter="course">Sort by Course</button>
+                <button class="filter-btn active" data-filter="all" data-sort="number">All Participants</button>
+                <button class="filter-btn" data-filter="name" data-sort="name">Sort by Name</button>
+                <button class="filter-btn" data-filter="course" data-sort="course">Sort by Course</button>
                 <button class="filter-btn" data-filter="department">Filter by Department</button>
                 <select id="departmentFilter" class="status-select" style="display: none;">
                     <option value="all">All Departments</option>
@@ -175,9 +225,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                 </thead>
                 <tbody>
                 <?php
-                $sql = "SELECT * FROM participants_table ORDER BY number DESC";
-                $result = $conn->query($sql);
-
                 if ($result->num_rows > 0):
                     while ($row = $result->fetch_assoc()):
                 ?>

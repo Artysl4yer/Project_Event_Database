@@ -25,6 +25,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $student_course = $user['course'];
+
+// Add debug logging
+error_log("Student ID: " . $student_id);
+error_log("Student Course: " . $student_course);
 ?>
 
 
@@ -110,7 +114,7 @@ $student_course = $user['course'];
                                 echo "<div class='event-box-details'>";
                                 echo "  <div class='floating-card'>";
                                 echo "      <div class='event-date'>";
-                                echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
+                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' alt='Event Background' class='eventbg' />";
                                 echo "          <p class='day'>" .$dateOnly. "</p>";
                                 echo "          <p class='time'>" .$dateTimeStart. "</p>";
                                 echo "      </div>";

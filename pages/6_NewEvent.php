@@ -93,9 +93,9 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
         <div class="event-table-section">
             <h2>Events</h2>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Events</button>
-                <button class="filter-btn" data-filter="title">Sort by Title</button>
-                <button class="filter-btn" data-filter="attendees">Sort by Attendees</button>
+                <button class="filter-btn active" data-filter="all" data-sort="number">All Events</button>
+                <button class="filter-btn" data-filter="title" data-sort="event_title">Sort by Title</button>
+                <button class="filter-btn" data-filter="attendees" data-sort="attendee_count">Sort by Attendees</button>
                 <button class="filter-btn" data-filter="status">Filter by Status</button>
                 <select id="statusFilter" class="status-select" style="display: none;">
                     <option value="all">All Status</option>
@@ -111,22 +111,80 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                 <thead>
                     <tr>
                         <th data-sort="number">Number</th>
-                        <th data-sort="title">Title</th>
-                        <th data-sort="code">Event Code</th>
-                        <th data-sort="start">Start</th>
-                        <th data-sort="end">End</th>
-                        <th data-sort="location">Location</th>
-                        <th data-sort="description">Description</th>
+                        <th data-sort="event_title">Title</th>
+                        <th data-sort="event_code">Event Code</th>
+                        <th data-sort="date_start">Start</th>
+                        <th data-sort="date_end">End</th>
+                        <th data-sort="event_location">Location</th>
+                        <th data-sort="event_description">Description</th>
                         <th data-sort="organization">Organization</th>   
-                        <th data-sort="status">Status</th>
+                        <th data-sort="event_status">Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
                 include '../php/conn.php';
-                $sql = "SELECT * FROM event_table ORDER BY number DESC";
-                $result = $conn->query($sql);
+                // Get sort parameters from URL
+                $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'number';
+                $sort_direction = isset($_GET['direction']) ? strtoupper($_GET['direction']) : 'DESC';
+
+                // Validate sort column to prevent SQL injection
+                $allowed_columns = [
+                    'number' => 'e.number',
+                    'event_title' => 'e.event_title',
+                    'event_code' => 'e.event_code',
+                    'date_start' => 'e.date_start',
+                    'date_end' => 'e.date_end',
+                    'event_location' => 'e.event_location',
+                    'event_description' => 'e.event_description',
+                    'organization' => 'e.organization',
+                    'event_status' => 'e.event_status',
+                    'attendee_count' => 'attendee_count'
+                ];
+
+                // Get filter parameters
+                $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+                $status = isset($_GET['status']) ? $_GET['status'] : 'all';
+
+                // Build the base query
+                $query = "SELECT e.*, COUNT(p.number) as attendee_count 
+                          FROM event_table e 
+                          LEFT JOIN participants_table p ON e.number = p.number";
+
+                // Add filters
+                $where_conditions = [];
+                $params = [];
+                $param_types = "";
+
+                if ($filter === 'status' && $status !== 'all') {
+                    $where_conditions[] = "e.event_status = ?";
+                    $params[] = $status;
+                    $param_types .= "s";
+                }
+
+                // Add WHERE clause if we have conditions
+                if (!empty($where_conditions)) {
+                    $query .= " WHERE " . implode(" AND ", $where_conditions);
+                }
+
+                // Add GROUP BY for attendee count
+                $query .= " GROUP BY e.number";
+
+                // Handle sorting
+                if (isset($allowed_columns[$sort_column])) {
+                    $query .= " ORDER BY " . $allowed_columns[$sort_column] . " " . $sort_direction;
+                } else {
+                    $query .= " ORDER BY e.number DESC"; // Default sorting
+                }
+
+                // Prepare and execute the query
+                $stmt = $conn->prepare($query);
+                if (!empty($params)) {
+                    $stmt->bind_param($param_types, ...$params);
+                }
+                $stmt->execute();
+                $result = $stmt->get_result();
 
                 if ($result->num_rows > 0):
                     while ($row = $result->fetch_assoc()):
@@ -307,5 +365,56 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
     <script src="../Javascript/filter.js"></script>
     <script src="../Javascript/dropdown.js"></script>
     <script src="../Javascript/event_modal.js"></script>
+    <script src="../Javascript/table-sortjs"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize event table
+        const eventTable = new TableManager('eventTable', {
+            filterColumn: 8,  // Status column
+            nameColumn: 1,    // Title column
+            courseColumn: 7   // Organization column
+        });
+
+        // Show/hide status filter
+        const statusFilterBtn = document.querySelector('[data-filter="status"]');
+        const statusFilter = document.getElementById('statusFilter');
+        
+        if (statusFilterBtn && statusFilter) {
+            // Set initial state based on URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentFilter = urlParams.get('filter');
+            const currentStatus = urlParams.get('status');
+            
+            if (currentFilter === 'status') {
+                statusFilterBtn.classList.add('active');
+                statusFilter.style.display = 'inline-block';
+                if (currentStatus) {
+                    statusFilter.value = currentStatus;
+                }
+            }
+
+            statusFilterBtn.addEventListener('click', function() {
+                const isVisible = statusFilter.style.display === 'inline-block';
+                statusFilter.style.display = isVisible ? 'none' : 'inline-block';
+                
+                if (!isVisible) {
+                    // Reset to 'all' when showing the filter
+                    statusFilter.value = 'all';
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('filter', 'status');
+                    params.set('status', 'all');
+                    window.location.href = `${window.location.pathname}?${params.toString()}`;
+                }
+            });
+
+            statusFilter.addEventListener('change', function() {
+                const params = new URLSearchParams(window.location.search);
+                params.set('filter', 'status');
+                params.set('status', this.value);
+                window.location.href = `${window.location.pathname}?${params.toString()}`;
+            });
+        }
+    });
+    </script>
 </body>
 </html>
