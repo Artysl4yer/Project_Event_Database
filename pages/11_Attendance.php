@@ -1,12 +1,43 @@
 <?php
 session_start();
 
-// Check email, student_id, and role
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+// Check if user is logged in and has appropriate role
+if (!isset($_SESSION['email'], $_SESSION['role']) || !in_array($_SESSION['role'], ['admin', 'coordinator'])) {
     header("Location: ../pages/1_Login.php");
     exit();
 }
 
+include '../php/conn.php';
+
+// Get event details from URL parameter (either event number or event title)
+$event_id = isset($_GET['event']) ? $_GET['event'] : null;
+$event_title = isset($_GET['event_title']) ? urldecode($_GET['event_title']) : null;
+
+// Query to get event details based on either event number or title
+if ($event_id !== null) {
+    $event_query = "SELECT * FROM event_table WHERE number = ?";
+    $stmt = $conn->prepare($event_query);
+    $stmt->bind_param("i", $event_id);
+} else if ($event_title !== null) {
+    $event_query = "SELECT * FROM event_table WHERE event_title = ?";
+    $stmt = $conn->prepare($event_query);
+    $stmt->bind_param("s", $event_title);
+} else {
+    echo "<div class='error-message'>No event selected or event not found.</div>";
+    exit;
+}
+
+$stmt->execute();
+$event_result = $stmt->get_result();
+$event_row = $event_result->fetch_assoc();
+
+if (!$event_row) {
+    echo "<div class='error-message'>No event selected or event not found.</div>";
+    exit;
+}
+
+// Get the event number for attendance records
+$event_number = $event_row['number'];
 
 ?>
 <!DOCTYPE html>
@@ -177,45 +208,7 @@ if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
                 <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
-        <div class="main-container">
-            <?php
-                include '../php/conn.php';
-                $event_id = isset($_GET['event']) ? $_GET['event'] : null;
-                $event_title = isset($_GET['event_title']) ? urldecode($_GET['event_title']) : null;
-
-                if ($event_id !== null) {
-                    $event_query = "SELECT *, 
-                        TIMESTAMPDIFF(MINUTE, NOW(), event_start) as minutes_until_start,
-                        TIMESTAMPDIFF(MINUTE, NOW(), event_end) as minutes_until_end
-                        FROM event_table WHERE number = ?";
-                    $stmt = $conn->prepare($event_query);
-                    $stmt->bind_param("i", $event_id);
-                } else if ($event_title !== null) {
-                    $event_query = "SELECT *, 
-                        TIMESTAMPDIFF(MINUTE, NOW(), event_start) as minutes_until_start,
-                        TIMESTAMPDIFF(MINUTE, NOW(), event_end) as minutes_until_end
-                        FROM event_table WHERE event_title = ?";
-                    $stmt = $conn->prepare($event_query);
-                    $stmt->bind_param("s", $event_title);
-                } else {
-                    echo "<div class='error-message'>No event selected or event not found.</div>";
-                    exit;
-                }
-
-                $stmt->execute();
-                $event_result = $stmt->get_result();
-                $event_row = $event_result->fetch_assoc();
-
-                if (!$event_row) {
-                    echo "<div class='error-message'>No event selected or event not found.</div>";
-                    exit;
-                }
-
-                $event_number = $event_row['number'];
-                $is_registration_open = $event_row['registration_status'] === 'open';
-                $can_control_registration = isset($_SESSION['client_id']) && 
-                    ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'coordinator');
-            ?>
+        <div class = "main-container">
             <div class="attendance-top">
                 <div class="event-title">
                     <h2>Event: <?php echo htmlspecialchars($event_row['event_title']); ?></h2>

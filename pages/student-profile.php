@@ -137,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="menu-items">
             <a href="../pages/student-profile.php" class="active"><i class="fa-regular fa-circle-user"></i><span class="label"> Profile </span></a>
             <a href="../pages/student-home.php" class="active"><i class="fa-solid fa-home"></i><span class="label"> Home </span></a>
+            <a href="../pages/student-attendance.php"> <i class="fa-solid fa-qrcode"></i> <span class="label"> Scan QR </span> </a>
             <a href="../pages/5_About.php" class="active"><i class="fa-solid fa-circle-info"></i><span class="label"> About </span></a>
         </div>
         <div class="logout">

@@ -43,9 +43,10 @@ $student_course = $user['course'];
         </div>
         <div class="tab-container">
             <div class="menu-items">
-                <a href="../pages/student-profile.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Profile </span> </a>
+                <a href="../pages/student-profile.php"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Profile </span> </a>
                 <a href="../pages/student-home.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="../pages/5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+                <a href="../pages/student-attendance.php"> <i class="fa-solid fa-qrcode"></i> <span class="label"> Scan QR </span> </a>
+                <a href="../pages/5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             </div>
             <div class="logout">
                 <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
@@ -122,12 +123,18 @@ $student_course = $user['course'];
                                 echo "      </div>";
                                 echo "      <div class='status'>";
                                 echo "          <p>Status: <b>" . htmlspecialchars($row['event_status']) . "</b></p>";
+                                echo "          <p>Event Code: <b>" . htmlspecialchars($row['event_code']) . "</b></p>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "  <div class='even-more-details'>";
                                 echo "      <div class='event-box-row'>";
                                 echo "          <p>Location: <b>" . htmlspecialchars($row['event_location']) . "</b></p>";
                                 echo "          <p>Organization: <b>" . htmlspecialchars($row['organization']) . "</b></p>";
+                                echo "      </div>";
+                                echo "      <div class='event-actions'>";
+                                echo "          <a href='event-survey.php?event=" . $row['number'] . "' class='survey-btn'>";
+                                echo "              <i class='fas fa-star'></i> Rate Event";
+                                echo "          </a>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "</div>";
