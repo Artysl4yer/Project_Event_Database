@@ -73,14 +73,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $value = $_POST['value'] ?? '';
 
     // Basic validation for allowed fields to update
-    $allowed_fields = ['student_id', 'name', 'email', 'course', 'year', 'password'];
+    $allowed_fields = ['student_id', 'firstname', 'lastname', 'email', 'course', 'year', 'password'];
     if (in_array($field, $allowed_fields)) {
         if ($field === 'password') {
             $value = password_hash($value, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $value, $student_id);
+            $stmt->execute();
+        } else if ($field === 'firstname' || $field === 'lastname') {
+            // Get current name parts
+            $stmt = $conn->prepare("SELECT name FROM users WHERE student_id = ?");
+            $stmt->bind_param("s", $student_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user_data = $result->fetch_assoc();
+            $name_parts = explode(' ', $user_data['name'], 2);
+            
+            // Update the appropriate part
+            if ($field === 'firstname') {
+                $new_name = $value . ' ' . ($name_parts[1] ?? '');
+            } else {
+                $new_name = ($name_parts[0] ?? '') . ' ' . $value;
+            }
+            
+            $stmt = $conn->prepare("UPDATE users SET name = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $new_name, $student_id);
+            $stmt->execute();
+        } else {
+            $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $value, $student_id);
+            $stmt->execute();
         }
-        $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
-        $stmt->bind_param("ss", $value, $student_id);
-        $stmt->execute();
 
         // Refresh $user data after update
         $stmt = $conn->prepare("SELECT * FROM users WHERE student_id = ?");
@@ -152,10 +175,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </span>
             </div>
             <div class="detail-row">
-                <span>Name</span>
+                <span>First Name</span>
                 <span class="value">
-                    <?= htmlspecialchars($user['name']) ?>
-                    <a href="javascript:void(0)" onclick="openModal('name', '<?= htmlspecialchars(addslashes($user['name'])) ?>')">
+                    <?php 
+                    $name_parts = explode(' ', $user['name'], 2);
+                    $firstname = $name_parts[0] ?? '';
+                    echo htmlspecialchars($firstname);
+                    ?>
+                    <a href="javascript:void(0)" onclick="openModal('firstname', '<?= htmlspecialchars(addslashes($firstname)) ?>')">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </span>
+            </div>
+            <div class="detail-row">
+                <span>Last Name</span>
+                <span class="value">
+                    <?php 
+                    $lastname = $name_parts[1] ?? '';
+                    echo htmlspecialchars($lastname);
+                    ?>
+                    <a href="javascript:void(0)" onclick="openModal('lastname', '<?= htmlspecialchars(addslashes($lastname)) ?>')">
                         <i class="fas fa-edit"></i> Edit
                     </a>
                 </span>
@@ -313,7 +352,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
     function openModal(field, currentValue) {
-        document.getElementById('modalFieldName').innerText = field.replace('_', ' ').charAt(0).toUpperCase() + field.slice(1);
+        const fieldDisplayNames = {
+            'student_id': 'Student ID',
+            'firstname': 'First Name',
+            'lastname': 'Last Name',
+            'email': 'Email',
+            'course': 'Course',
+            'year': 'Year Level',
+            'password': 'Password'
+        };
+        
+        document.getElementById('modalFieldName').innerText = fieldDisplayNames[field] || field.replace('_', ' ').charAt(0).toUpperCase() + field.slice(1);
         document.getElementById('fieldInput').value = field;
         const valueInputContainer = document.getElementById('valueInputContainer');
         const passwordConfirmContainer = document.getElementById('password-confirm-container');
