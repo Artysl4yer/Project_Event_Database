@@ -86,6 +86,54 @@ if (!$event) {
         let currentParticipant = null;
         const eventId = <?php echo $event_id; ?>;
 
+        function processAttendance(data, isManual = false) {
+            console.log('Sending attendance data:', data);
+            $.ajax({
+                url: '../php/process_attendance.php',
+                method: 'POST',
+                data: {
+                    event_id: <?php echo $event_id; ?>,
+                    qr_data: data,
+                    is_manual: isManual
+                },
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                success: function(response) {
+                    console.log('Server response:', response);
+                    if (typeof response === 'string') {
+                        try {
+                            response = JSON.parse(response);
+                        } catch (e) {
+                            console.error('Error parsing response:', e);
+                            showMessage('Invalid server response', false);
+                            return;
+                        }
+                    }
+                    showMessage(response.message, response.success);
+                    
+                    if (response.success) {
+                        $('#preview').hide();
+                        $('#manual-form')[0].reset();
+                        currentScanData = null;
+                    }
+                    
+                    setTimeout(() => {
+                        if (html5QrcodeScanner) {
+                            html5QrcodeScanner.resume();
+                        }
+                    }, 2000);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', {
+                        status: status,
+                        error: error,
+                        response: xhr.responseText
+                    });
+                    showMessage('Error processing attendance: ' + error, false);
+                }
+            });
+        }
+
         // QR Code Scanner
         function onScanSuccess(decodedText, decodedResult) {
             try {

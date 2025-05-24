@@ -205,10 +205,28 @@
                     <div class="input-box">
                         <label for="event-status">Status:</label>
                         <select name="event-status" required>
-                            <option value="Ongoing" <?= $isEditing && $eventData['event_status'] == 'Ongoing' ? 'selected' : '' ?>>Ongoing</option>
-                            <option value="Finished" <?= $isEditing && $eventData['event_status'] == 'Finished' ? 'selected' : '' ?>>Finished</option>
-                            <option value="Archived" <?= $isEditing && $eventData['event_status'] == 'Archived' ? 'selected' : '' ?>>Archived</option>
+                            <option value="draft" <?= $isEditing && $eventData['event_status'] == 'draft' ? 'selected' : '' ?>>Draft</option>
+                            <option value="scheduled" <?= $isEditing && $eventData['event_status'] == 'scheduled' ? 'selected' : '' ?>>Scheduled</option>
+                            <option value="ongoing" <?= $isEditing && $eventData['event_status'] == 'ongoing' ? 'selected' : '' ?>>Ongoing</option>
+                            <option value="completed" <?= $isEditing && $eventData['event_status'] == 'completed' ? 'selected' : '' ?>>Completed</option>
+                            <option value="cancelled" <?= $isEditing && $eventData['event_status'] == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
+                            <option value="archived" <?= $isEditing && $eventData['event_status'] == 'archived' ? 'selected' : '' ?>>Archived</option>
                         </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="registration-status">Registration Status:</label>
+                        <select name="registration-status" required>
+                            <option value="closed" <?= $isEditing && $eventData['registration_status'] == 'closed' ? 'selected' : '' ?>>Closed</option>
+                            <option value="open" <?= $isEditing && $eventData['registration_status'] == 'open' ? 'selected' : '' ?>>Open</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="auto-close">Auto-close Registration:</label>
+                        <select name="auto-close" required>
+                            <option value="1" <?= $isEditing && $eventData['auto_close_registration'] == 1 ? 'selected' : '' ?>>Yes</option>
+                            <option value="0" <?= $isEditing && $eventData['auto_close_registration'] == 0 ? 'selected' : '' ?>>No</option>
+                        </select>
+                        <small style="color: #666; font-size: 0.8em;">Automatically close registration when event ends</small>
                     </div>
                     <div class="input-box">
                         <label for="event-description">Description:</label>

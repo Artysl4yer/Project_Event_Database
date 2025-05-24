@@ -45,26 +45,38 @@ class QRCodeModal {
         // Clear previous QR code
         qrcodeDiv.innerHTML = '';
         
-        // Create data for participant QR code
-        const qrData = JSON.stringify({
-            type: 'participant',
-            id: participantId,
-            number: participantNumber
-        });
-        
-        // Generate new QR code
-        window.qrcode = new QRCode(qrcodeDiv, {
-            text: qrData,
-            width: 200,
-            height: 200,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-        
-        // Show modal
-        modal.style.display = 'block';
-        modal.classList.add('active');
+        // Fetch student details
+        fetch(`../php/get_student_details.php?student_id=${participantId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Create QR code data in the format:
+                    // Name
+                    // (Student ID)
+                    // Course
+                    const qrData = `${data.student.full_name}\n(${data.student.student_id})\n${data.student.course}`;
+                    
+                    // Generate new QR code
+                    window.qrcode = new QRCode(qrcodeDiv, {
+                        text: qrData,
+                        width: 200,
+                        height: 200,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                    
+                    // Show modal
+                    modal.style.display = 'block';
+                    modal.classList.add('active');
+                } else {
+                    alert('Error: Could not fetch student details');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error: Could not fetch student details');
+            });
     }
 
     closeModal() {
