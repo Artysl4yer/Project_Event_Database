@@ -101,19 +101,34 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!validateIdentifier(this)) return;
 
             const formData = new FormData(this);
+            formData.append('register', '1'); // Ensure register flag is set
             
             fetch('../php/login_register.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(() => {
-                // The PHP script will handle the redirect
-                window.location.reload();
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('registerMessage');
+                if (data.success) {
+                    messageDiv.innerHTML = data.message;
+                    messageDiv.className = 'message success';
+                    // Clear form
+                    this.reset();
+                    // Redirect to login form after 2 seconds
+                    setTimeout(() => {
+                        showForm('login-form');
+                    }, 2000);
+                } else {
+                    messageDiv.innerHTML = data.message;
+                    messageDiv.className = 'message error';
+                }
             })
             .catch(error => {
-                document.getElementById('registerMessage').innerHTML = 'Registration failed. Please try again.';
-                document.getElementById('registerMessage').className = 'message error';
+                console.error('Registration error:', error);
+                const messageDiv = document.getElementById('registerMessage');
+                messageDiv.innerHTML = 'Registration failed. Please try again.';
+                messageDiv.className = 'message error';
             });
         });
     }
