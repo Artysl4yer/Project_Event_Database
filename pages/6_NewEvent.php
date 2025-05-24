@@ -1,24 +1,3 @@
-<?php
-session_start();
-
-// Check email, student_id, and role
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: ../pages/1_Login.php");
-    exit();
-}
-
-$allowed_roles = ['coordinator'];
-
-if (!in_array($_SESSION['role'], $allowed_roles)) {
-    header("Location: ../pages/1_Login.php");
-    exit();
-}
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,23 +10,24 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
     <link rel="stylesheet" href="../styles/style6.css">
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/filter.css">
-    <link rel="stylesheet" href="../styles/event_modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="title-container">
+    <div class="title-container">   
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
     </div>
     <div class="tab-container">
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-            <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-            <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-            <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
         </div>
         <div class="logout">
-            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
+            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
@@ -59,6 +39,16 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                         <label for="search"></label>
                         <input type="text" id="search" name="fname" placeholder="Search...">
                         <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            
+                <div class="col-md-12" id="importFrm">
+                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
+                        <label class="upload-btn">
+                            Upload File
+                            <input type="file" id="fileInput" name="file" hidden>
+                        </label>
+                        <span id="fileName">No file chosen</span>
                     </form>
                 </div>
             </div>  
@@ -103,26 +93,25 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                     <option value="Finished">Finished</option>
                     <option value="Archived">Archived</option>
                 </select>
-                <button class="filter-btn btn-import" onclick="openModal()">
+            </div>
+            <div class="add-button">
+                <button class="btn-import" onclick="openModal()">
                     <span><i class="fa-solid fa-plus"></i> Add Event</span>
                 </button>
             </div>
-            <table class="event-display-table" id="eventTable">
-                <thead>
-                    <tr>
-                        <th data-sort="number">Number</th>
-                        <th data-sort="title">Title</th>
-                        <th data-sort="code">Event Code</th>
-                        <th data-sort="start">Start</th>
-                        <th data-sort="end">End</th>
-                        <th data-sort="location">Location</th>
-                        <th data-sort="description">Description</th>
-                        <th data-sort="organization">Organization</th>   
-                        <th data-sort="status">Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <table class="event-display-table">
+                <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                    <th>Event Code</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Organization</th>   
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
                 <?php
                 include '../php/conn.php';
                 $sql = "SELECT * FROM event_table ORDER BY number DESC";
@@ -149,16 +138,13 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                             <button onclick="window.location.href='6_NewEvent.php?edit=<?= $row['number'] ?>'">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
-                            <button onclick="window.location.href='11_Attendance.php?event=<?= $row['number'] ?>'">
-                                <i class="fas fa-clipboard-check"></i> Take Attendance
-                            </button>
                             <form method="POST" action="../php/delete_event.php" onsubmit="return confirm('Are you sure you want to delete this event?');">
                                 <input type="hidden" name="delete_id" value="<?= $row['number'] ?>">
                                 <button type="submit" name="delete">
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </button>
                             </form>
-                            <button onclick="generateQRCode(<?= $row['number'] ?>, '<?= htmlspecialchars($row['event_code']) ?>')">
+                            <button onclick="generateQRCode('<?= htmlspecialchars($row['event_code']) ?>')">
                                 <i class="fas fa-qrcode"></i> Generate QR
                             </button>
                         </div>
@@ -170,7 +156,6 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                 ?>
                 <tr><td colspan="10">No events found.</td></tr>
                 <?php endif; ?>
-                </tbody>
             </table>
         </div>
     </div>
@@ -182,102 +167,20 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                 <h3><?= $isEditing ? 'Edit Event' : 'Create New Event' ?></h3>
                 <p>Fill out the information below to <?= $isEditing ? 'update' : 'create' ?> the event</p>
             </div> 
-            <form id="eventForm" action="../php/<?= $isEditing ? 'update_event.php' : 'event-sub.php' ?>" method="POST" enctype="multipart/form-data">
+            <form id="eventForm" action="../php/<?= $isEditing ? 'update_event.php' : 'event-sub.php' ?>" method="POST">
                 <?php if ($isEditing): ?>
                 <input type="hidden" name="event_id" value="<?= $eventData['number'] ?>">
                 <?php endif; ?>
                 
-                <div class="form-container">
-                    <!-- Image Upload Section -->
-                    <div class="image-upload-section">
-                        <div class="image-preview-container">
-                            <div id="imagePreview" class="image-preview">
-                                <img id="previewImg" src="<?= $isEditing ? '../' . htmlspecialchars($eventData['file']) : '../images-icon/plm_courtyard.png' ?>" alt="Event Preview">
-                            </div>
-                            <div class="upload-controls">
-                                <label for="fileInput" class="upload-btn">
-                                    <i class="fas fa-camera"></i>
-                                    <span>Choose Image</span>
-                                </label>
-                                <input type="file" id="fileInput" name="file" accept="image/*" onchange="handleFileSelect(this)" style="display: none;">
-                                <span id="fileName" class="file-name">No file chosen</span>
-                            </div>
-                        </div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <label for="event-title">Event Title:</label>
+                        <input type="text" name="event-title" value="<?= $isEditing ? htmlspecialchars($eventData['event_title']) : '' ?>" required> 
                     </div>
-
-                    <!-- Form Fields Section -->
-                    <div class="form-fields">
-                        <div class="form-row">
-                            <div class="input-box full-width">
-                                <label for="event-title">Event Title</label>
-                                <input type="text" name="event-title" id="event-title" value="<?= $isEditing ? htmlspecialchars($eventData['event_title']) : '' ?>" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="input-box full-width">
-                                <label for="event-location">Location</label>
-                                <input type="text" name="event-location" id="event-location" value="<?= $isEditing ? htmlspecialchars($eventData['event_location']) : '' ?>" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="input-box">
-                                <label for="event-date-start">Start Date & Time</label>
-                                <div class="datetime-inputs">
-                                    <input type="date" name="event-date-start" id="event-date-start" value="<?= $isEditing ? $eventData['date_start_date'] : '' ?>" required>
-                                    <input type="time" name="event-time-start" id="event-time-start" value="<?= $isEditing ? $eventData['date_start_time'] : '' ?>" required>
-                                </div>
-                            </div>
-                            <div class="input-box">
-                                <label for="event-date-end">End Date & Time</label>
-                                <div class="datetime-inputs">
-                                    <input type="date" name="event-date-end" id="event-date-end" value="<?= $isEditing ? $eventData['date_end_date'] : '' ?>" required>
-                                    <input type="time" name="event-time-end" id="event-time-end" value="<?= $isEditing ? $eventData['date_end_time'] : '' ?>" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="input-box">
-                                <label for="event-orgs">Organization</label>
-                                <select name="event-orgs" id="event-orgs" required>
-                                    <option value="">Select Organization</option>
-                                    <option value="College of Computer Studies" <?= $isEditing && $eventData['organization'] == 'College of Computer Studies' ? 'selected' : '' ?>>College of Computer Studies</option>
-                                    <option value="College of Engineering" <?= $isEditing && $eventData['organization'] == 'College of Engineering' ? 'selected' : '' ?>>College of Engineering</option>
-                                    <option value="College of Business Accounting" <?= $isEditing && $eventData['organization'] == 'College of Business Accounting' ? 'selected' : '' ?>>College of Business Accounting</option>
-                                    <option value="College of Nursing" <?= $isEditing && $eventData['organization'] == 'College of Nursing' ? 'selected' : '' ?>>College of Nursing</option>
-                                    <option value="All Courses" <?= $isEditing && $eventData['organization'] == 'All Courses' ? 'selected' : '' ?>>All Courses</option>
-                                </select>
-                            </div>
-                            <div class="input-box">
-                                <label for="event-status">Status</label>
-                                <select name="event-status" id="event-status" required>
-                                    <option value="Ongoing" <?= $isEditing && $eventData['event_status'] == 'Ongoing' ? 'selected' : '' ?>>Ongoing</option>
-                                    <option value="Finished" <?= $isEditing && $eventData['event_status'] == 'Finished' ? 'selected' : '' ?>>Finished</option>
-                                    <option value="Archived" <?= $isEditing && $eventData['event_status'] == 'Archived' ? 'selected' : '' ?>>Archived</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="input-box full-width">
-                                <label for="event-description">Description</label>
-                                <textarea id="event-description" name="event-description" rows="4"><?= $isEditing ? htmlspecialchars($eventData['event_description']) : '' ?></textarea>
-                            </div>
-                        </div>
-
-                        <?php if (!$isEditing): ?>
-                        <div class="form-row">
-                            <div class="input-box full-width">
-                                <label for="event-code">Event Code</label>
-                                <input type="text" name="code" id="codeField" readonly>
-                                <small class="help-text">This code will be auto-generated for QR code registration</small>
-                            </div>
-                        </div>
-                        <?php endif; ?>
+                    <div class="input-box">
+                        <label for="event-location">Location:</label>
+                        <input type="text" name="event-location" value="<?= $isEditing ? htmlspecialchars($eventData['event_location']) : '' ?>" required> 
                     </div>
-<<<<<<< HEAD
                     <div class="date-box">
                         <label for="event-date-start">Start Time</label>
                         <input type="date" name="event-date-start" value="<?= $isEditing ? $eventData['date_start_date'] : '' ?>" required> 
@@ -330,13 +233,10 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                     </div>
                     <?php endif; ?>
                     
-=======
->>>>>>> 46b2a36d0da5b244dbe9a533b041c1893e282e45
                 </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn-submit"><?= $isEditing ? 'Update Event' : 'Create Event' ?></button>
+                <div class="controls">
+                    <button class="btn-submit" type="submit"><?= $isEditing ? 'Update' : 'Submit' ?></button>
+                    <button class="btn-close" type="button" onclick="closeModal()">Close</button>
                 </div>
             </form>
         </div>
@@ -355,12 +255,14 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
             </div>
         </div>
     </div>
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="../Javascript/utils/code-generator.js"></script>
     <script src="../Javascript/qrcode.js"></script>
     <script src="../Javascript/filter.js"></script>
     <script src="../Javascript/dropdown.js"></script>
-    <script src="../Javascript/event_modal.js"></script>
+    <script src="../Javascript/event-edit.js"></script>
+    <script>
+        // Make isEditing available to the JavaScript
+        window.isEditing = <?= json_encode($isEditing) ?>;
+    </script>
 </body>
 </html>
