@@ -9,7 +9,9 @@ try {
     $event_id = $_POST['event_id'] ?? '';
     $event_code = $_POST['event_code'] ?? '';
     $student_id = $_POST['ID'] ?? '';
-    $name = $_POST['Name'] ?? '';
+    $firstname = $_POST['FirstName'] ?? '';
+    $lastname = $_POST['LastName'] ?? '';
+    $name = trim($firstname) . ' ' . trim($lastname);
     $course = $_POST['Course'] ?? '';
     $section = $_POST['Section'] ?? '';
     $gender = $_POST['Gender'] ?? '';
@@ -18,7 +20,7 @@ try {
     $dept = $_POST['Dept'] ?? '';
 
     // Validate required fields
-    if (empty($event_id) || empty($event_code) || empty($student_id) || empty($name)) {
+    if (empty($event_id) || empty($event_code) || empty($student_id) || empty($firstname) || empty($lastname)) {
         throw new Exception('All fields are required');
     }
 

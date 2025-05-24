@@ -7,13 +7,7 @@ if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
     exit();
 }
 
-// Allowed roles
-$allowed_roles = ['coordinator', 'admin'];
 
-if (!in_array($_SESSION['role'], $allowed_roles)) {
-    header("Location: ../pages/1_Login.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html>

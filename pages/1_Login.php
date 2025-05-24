@@ -168,8 +168,13 @@ function showError($error) {
             <form id="registrationForm" action="../php/login_register.php" method="POST">
                 <?= showError($errors['register']); ?>
                 <div class="input-field">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
                 </div>
 
                 <div class="input-field">

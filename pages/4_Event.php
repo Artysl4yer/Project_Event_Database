@@ -109,7 +109,7 @@ error_log("User role: " . $_SESSION['role']);
                             echo "<div class='event-box-details' onclick='window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' style='cursor: pointer;'>";
                             echo "  <div class='floating-card'>";
                             echo "      <div class='event-container'>";
-                            echo "          <img src='../" . htmlspecialchars($row['file']) . "' alt='Event Background' class='eventbg' />";
+                            echo "          <img src='../" . htmlspecialchars($row['file']) . "' onerror=\"this.src='../images-icon/plm_courtyard.png'\" alt='Event Background' class='eventbg' />";
                             echo "          <div class = 'event-date'>   ";
                             echo "              <p class='day'>" .$dateOnly. "</p>";
                             echo "              <p class='time'>" .$dateTimeStart. "</p>";

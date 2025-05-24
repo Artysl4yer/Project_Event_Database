@@ -93,8 +93,8 @@ $student_course = $user['course'];
                             $stmt->bind_param("sssss", $search_param, $search_param, $search_param, $search_param, $student_course);
                         } else {
                             $query = "SELECT * FROM event_table 
-                                     WHERE organization = ? OR organization = 'All Courses'
-                                     ORDER BY number DESC";
+                                        WHERE organization = ? OR organization = 'All Courses'
+                                        ORDER BY number DESC";
                             $stmt = $conn->prepare($query);
                             $stmt->bind_param("s", $student_course);
                         }
@@ -105,27 +105,29 @@ $student_course = $user['course'];
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
-                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+                                $dateTimeStart = (new DateTime($row['event_start']))->format('H:i');
                                 
                                 echo "<div class='event-box-details'>";
                                 echo "  <div class='floating-card'>";
                                 echo "      <div class='event-date'>";
-                                echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
-                                echo "          <p class='day'>" .$dateOnly. "</p>";
-                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
+                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' onerror=\"this.src='../images-icon/plm_courtyard.png'\" alt='Event Background' class='eventbg' />";
+                                echo "          <div class='date-overlay'>";
+                                echo "              <p class='day'>" . $dateOnly . "</p>";
+                                echo "              <p class='time'>" . $dateTimeStart . "</p>";
+                                echo "          </div>";
                                 echo "      </div>";
                                 echo "      <div class='event-description'>";
-                                echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
-                                echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                                echo "          <h3>" . htmlspecialchars($row['event_title']) . "</h3>";
+                                echo "          <p>" . htmlspecialchars($row['event_description']) . "</p>";
                                 echo "      </div>";
                                 echo "      <div class='status'>";
-                                echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
+                                echo "          <p>Status: <b>" . htmlspecialchars($row['event_status']) . "</b></p>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "  <div class='even-more-details'>";
                                 echo "      <div class='event-box-row'>";
-                                echo "          <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
-                                echo "          <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                                echo "          <p>Location: <b>" . htmlspecialchars($row['event_location']) . "</b></p>";
+                                echo "          <p>Organization: <b>" . htmlspecialchars($row['organization']) . "</b></p>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "</div>";
