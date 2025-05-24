@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../php/conn.php';
 
 // Check if user is logged in and has appropriate role
 if (!isset($_SESSION['email'], $_SESSION['role']) || !in_array($_SESSION['role'], ['admin', 'coordinator'])) {
@@ -7,38 +8,48 @@ if (!isset($_SESSION['email'], $_SESSION['role']) || !in_array($_SESSION['role']
     exit();
 }
 
-include '../php/conn.php';
+// Get event details
+$event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
+$event_title = isset($_GET['event_title']) ? $_GET['event_title'] : null;
 
-// Get event details from URL parameter (either event number or event title)
-$event_id = isset($_GET['event']) ? $_GET['event'] : null;
-$event_title = isset($_GET['event_title']) ? urldecode($_GET['event_title']) : null;
-
-// Query to get event details based on either event number or title
-if ($event_id !== null) {
-    $event_query = "SELECT * FROM event_table WHERE number = ?";
-    $stmt = $conn->prepare($event_query);
+if ($event_id) {
+    $sql = "SELECT * FROM event_table WHERE number = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $event_id);
-} else if ($event_title !== null) {
-    $event_query = "SELECT * FROM event_table WHERE event_title = ?";
-    $stmt = $conn->prepare($event_query);
-    $stmt->bind_param("s", $event_title);
-} else {
-    echo "<div class='error-message'>No event selected or event not found.</div>";
-    exit;
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $event = $result->fetch_assoc();
+        
+        // Format dates properly
+        $start_date = !empty($event['date_start']) ? date('F j, Y g:i A', strtotime($event['date_start'])) : 'Not set';
+        $end_date = !empty($event['date_end']) ? date('F j, Y g:i A', strtotime($event['date_end'])) : 'Not set';
+        
+        // Check if event is ongoing
+        $current_time = new DateTime('now', new DateTimeZone('Asia/Manila'));
+        $event_start = new DateTime($event['date_start'], new DateTimeZone('Asia/Manila'));
+        $event_end = new DateTime($event['date_end'], new DateTimeZone('Asia/Manila'));
+        
+        $is_ongoing = $current_time >= $event_start && $current_time <= $event_end;
+        $is_finished = $current_time > $event_end;
+        
+        // Update event status if needed
+        if ($is_ongoing && $event['event_status'] !== 'ongoing') {
+            $update_sql = "UPDATE event_table SET event_status = 'ongoing' WHERE number = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            $update_stmt->bind_param("i", $event_id);
+            $update_stmt->execute();
+            $event['event_status'] = 'ongoing';
+        } elseif ($is_finished && $event['event_status'] !== 'completed') {
+            $update_sql = "UPDATE event_table SET event_status = 'completed' WHERE number = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            $update_stmt->bind_param("i", $event_id);
+            $update_stmt->execute();
+            $event['event_status'] = 'completed';
+        }
+    }
 }
-
-$stmt->execute();
-$event_result = $stmt->get_result();
-$event_row = $event_result->fetch_assoc();
-
-if (!$event_row) {
-    echo "<div class='error-message'>No event selected or event not found.</div>";
-    exit;
-}
-
-// Get the event number for attendance records
-$event_number = $event_row['number'];
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -208,27 +219,33 @@ $event_number = $event_row['number'];
                 <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
-        <div class = "main-container">
+        <div class="main-container">
+            <?php
+                $event_number = $event['number'];
+                $is_registration_open = $event['registration_status'] === 'open';
+                $can_control_registration = isset($_SESSION['client_id']) && 
+                    ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'coordinator');
+            ?>
             <div class="attendance-top">
                 <div class="event-title">
-                    <h2>Event: <?php echo htmlspecialchars($event_row['event_title']); ?></h2>
+                    <h2>Event: <?php echo htmlspecialchars($event['event_title']); ?></h2>
                 </div>
                 
                 <div class="event-status">
                     <div>
-                        <span class="status-badge status-<?php echo $event_row['event_status']; ?>">
-                            <?php echo ucfirst($event_row['event_status']); ?>
+                        <span class="status-badge status-<?php echo $event['event_status']; ?>">
+                            <?php echo ucfirst($event['event_status']); ?>
                         </span>
-                        <span class="registration-status registration-<?php echo $event_row['registration_status']; ?>">
-                            Registration <?php echo ucfirst($event_row['registration_status']); ?>
+                        <span class="registration-status registration-<?php echo $event['registration_status']; ?>">
+                            Registration <?php echo ucfirst($event['registration_status']); ?>
                         </span>
                     </div>
                     
                     <div class="event-time">
-                        <p>Start: <?php echo date('F j, Y g:i A', strtotime($event_row['event_start'])); ?></p>
-                        <p>End: <?php echo date('F j, Y g:i A', strtotime($event_row['event_end'])); ?></p>
-                        <?php if ($event_row['registration_deadline']): ?>
-                            <p>Registration Deadline: <?php echo date('F j, Y g:i A', strtotime($event_row['registration_deadline'])); ?></p>
+                        <p>Start: <?php echo date('F j, Y g:i A', strtotime($event['date_start'])); ?></p>
+                        <p>End: <?php echo date('F j, Y g:i A', strtotime($event['date_end'])); ?></p>
+                        <?php if ($event['registration_deadline']): ?>
+                            <p>Registration Deadline: <?php echo date('F j, Y g:i A', strtotime($event['registration_deadline'])); ?></p>
                         <?php endif; ?>
                     </div>
                     
@@ -384,12 +401,11 @@ $event_number = $event_row['number'];
             // Process Attendance Function
             async function processAttendance(qrData) {
                 try {
-                    // Get event ID from URL
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const eventId = urlParams.get('event');
+                    // Get event ID from PHP variable
+                    const eventId = <?php echo json_encode($event_id); ?>;
                     
                     if (!eventId) {
-                        throw new Error('Event ID not found in URL');
+                        throw new Error('Event ID not found');
                     }
 
                     // Disable the scan button to prevent multiple submissions

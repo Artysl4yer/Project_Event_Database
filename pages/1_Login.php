@@ -196,6 +196,14 @@ function showError($error) {
                     <input type="password" id="reg-password" name="password" placeholder="Password" required>
                 </div>
 
+                <div class="input-field">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="student">Student</option>
+                        <option value="coordinator">Event Coordinator</option>
+                    </select>
+                </div>
+
                 <div class="show-pass">
                     <input type="checkbox" onclick="showPass()"> Show Passwords
                 </div>
@@ -269,11 +277,20 @@ function showError($error) {
                 dataType: 'json',
                 success: function(response) {
                     try {
+                        console.log('Login response:', response);
                         if (response.success) {
                             setTimeout(function() {
                                 $('.loading-screen').fadeOut(300, function() {
                                     if (response.redirect) {
+                                        console.log('Redirecting to:', response.redirect);
                                         window.location.href = response.redirect;
+                                    } else {
+                                        console.error('No redirect URL provided');
+                                        $('#loginMessage')
+                                            .removeClass('success')
+                                            .addClass('error')
+                                            .text('Error: No redirect URL provided')
+                                            .show();
                                     }
                                 });
                             }, 2000);

@@ -1,119 +1,108 @@
 <?php
-include 'conn.php';
+// Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-header('Content-Type: application/json');
+// Set up error logging
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/event_errors.log');
 
-if($conn == false){
-    die(json_encode(['error' => true, 'message' => "Could not connect to database: " . mysqli_connect_error()]));
+// Log the start of event creation
+error_log("Starting event creation process");
+
+// Include database connection
+include 'conn.php';
+
+// Function to log errors
+function logError($message) {
+    error_log("Error: " . $message);
+    return json_encode(['status' => 'error', 'message' => $message]);
 }
 
-// Get and sanitize input
-$event_title = $conn->real_escape_string($_POST["event-title"]);
-$event_location = $conn->real_escape_string($_POST["event-location"]);
-$date_start = $conn->real_escape_string($_POST["event-date-start"]);
-$event_start = $conn->real_escape_string($_POST["event-time-start"]);
-$date_end = $conn->real_escape_string($_POST["event-date-end"]);
-$event_end = $conn->real_escape_string($_POST["event-time-end"]);
-$event_description = $conn->real_escape_string($_POST["event-description"]);
-$organization = $conn->real_escape_string($_POST["event-orgs"]);
-$event_status = $conn->real_escape_string($_POST['event-status']);
-$registration_status = $conn->real_escape_string($_POST['registration-status']);
-$auto_close = $conn->real_escape_string($_POST['auto-close']);
-$code = $conn->real_escape_string($_POST['code']);
-
-// Validate date/time format
-$merge_start = DateTime::createFromFormat('Y-m-d H:i', $date_start . ' ' . $event_start, new DateTimeZone('Asia/Manila'));
-$merge_end = DateTime::createFromFormat('Y-m-d H:i', $date_end . ' ' . $event_end, new DateTimeZone('Asia/Manila'));
-
-    if (!$merge_start || !$merge_end) {
-        throw new Exception("Invalid date or time format");
-    }
-
-    $merge_start = $merge_start->format('Y-m-d H:i:s');
-    $merge_end = $merge_end->format('Y-m-d H:i:s');
-
-error_log("Creating event with start time: $merge_start and end time: $merge_end");
-
-// Validate status values
-$valid_event_statuses = ['draft', 'scheduled', 'ongoing', 'completed', 'cancelled', 'archived'];
-$valid_registration_statuses = ['open', 'closed'];
-
-if (!in_array($event_status, $valid_event_statuses)) {
-    die("ERROR: Invalid event status.");
-}
-
-if (!in_array($registration_status, $valid_registration_statuses)) {
-    die("ERROR: Invalid registration status.");
-}
-
-// Start transaction
-$conn->begin_transaction();
-
-try {
-    $sql = "INSERT INTO event_table (
-        event_title, event_code, event_location, 
-        date_start, event_start, date_end, event_end, 
-        event_description, organization, event_status,
-        registration_status, auto_close_registration,
-        last_status_update
-    ) VALUES (
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP
-    )";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssssssi", 
-        $event_title, $code, $event_location,
-        $date_start, $merge_start, $date_end, $merge_end,
-        $event_description, $organization, $event_status,
-        $registration_status, $auto_close
-    );
-
-    if (!$stmt->execute()) {
-        throw new Exception("Error executing statement: " . $stmt->error);
-    }
-
-    $event_id = $conn->insert_id;
-
-    // Check if event_logs table exists before trying to log
-    $table_exists = $conn->query("SHOW TABLES LIKE 'event_logs'");
-    if ($table_exists && $table_exists->num_rows > 0) {
-        // Log the event creation
-        $stmt = $conn->prepare("
-            INSERT INTO event_logs (
-                event_id, 
-                action, 
-                details, 
-                performed_by
-            ) VALUES (?, 'event_created', ?, ?)
-        ");
-        $details = "Event created with status: $event_status, registration: $registration_status";
-        $stmt->bind_param("isi", $event_id, $details, $_SESSION['client_id']);
-        $stmt->execute();
-    }
-
-    // Commit transaction
-    $conn->commit();
+// Check if it's a POST request
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    error_log("POST request received");
     
-    // Return success response
-    header('Content-Type: application/json');
-    echo json_encode(['success' => true, 'message' => 'Event created successfully']);
-    exit();
-
-} catch (Exception $e) {
-    // Rollback transaction on error
-    $conn->rollback();
-    error_log("Event Creation Error: " . $e->getMessage());
+    // Log POST data
+    error_log("POST data: " . print_r($_POST, true));
     
-    // Return error response
-    header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'message' => 'Error creating event: ' . $e->getMessage()]);
-    exit();
-} finally {
-    if (isset($stmt)) {
-        $stmt->close();
+    // Validate required fields
+    $required_fields = ['event-title', 'event-location', 'event-date-start', 'event-time-start', 
+                       'event-date-end', 'event-time-end', 'event-orgs', 'event-status', 
+                       'registration-status', 'auto-close', 'event-description'];
+    
+    foreach ($required_fields as $field) {
+        if (!isset($_POST[$field]) || empty($_POST[$field])) {
+            error_log("Missing required field: " . $field);
+            echo logError("Missing required field: " . $field);
+            exit;
+        }
     }
-    $conn->close();
+
+    // Generate event code
+    $event_code = strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
+    error_log("Generated event code: " . $event_code);
+
+    // Combine date and time
+    $start_datetime = $_POST['event-date-start'] . ' ' . $_POST['event-time-start'] . ':00';
+    $end_datetime = $_POST['event-date-end'] . ' ' . $_POST['event-time-end'] . ':00';
+    
+    error_log("Start datetime: " . $start_datetime);
+    error_log("End datetime: " . $end_datetime);
+
+    // Validate dates
+    $start_date = new DateTime($start_datetime, new DateTimeZone('Asia/Manila'));
+    $end_date = new DateTime($end_datetime, new DateTimeZone('Asia/Manila'));
+    
+    if ($end_date <= $start_date) {
+        echo logError("End date must be after start date");
+        exit;
+    }
+
+    // Prepare SQL statement
+    $sql = "INSERT INTO event_table (event_title, event_location, date_start, date_end, 
+            organization, event_status, registration_status, auto_close_registration, 
+            event_description, event_code) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    error_log("SQL Query: " . $sql);
+
+    try {
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+
+        $stmt->bind_param("ssssssssss", 
+            $_POST['event-title'],
+            $_POST['event-location'],
+            $start_datetime,
+            $end_datetime,
+            $_POST['event-orgs'],
+            $_POST['event-status'],
+            $_POST['registration-status'],
+            $_POST['auto-close'],
+            $_POST['event-description'],
+            $event_code
+        );
+
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+
+        error_log("Event created successfully");
+        echo json_encode(['status' => 'success', 'message' => 'Event created successfully']);
+        
+    } catch (Exception $e) {
+        error_log("Exception: " . $e->getMessage());
+        echo logError("Failed to create event: " . $e->getMessage());
+    }
+
+    $stmt->close();
+} else {
+    error_log("Invalid request method: " . $_SERVER["REQUEST_METHOD"]);
+    echo logError("Invalid request method");
 }
+
+$conn->close();
 ?>

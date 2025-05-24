@@ -9167,3 +9167,39 @@ Stack trace:
 [23-May-2025 20:24:03 Europe/Berlin] Time check passed: Current time is within event time range
 [23-May-2025 20:24:03 Europe/Berlin] Successfully registered attendance for BOLOTAOLO, LARK L.
 [23-May-2025 20:24:03 Europe/Berlin] Sending response - Success: true, Message: Attendance registered for BOLOTAOLO, LARK L. (BSIT) in event: eto test
+[24-May-2025 04:46:06 Europe/Berlin] Updating event statuses at: 2025-05-24 04:46:06
+[24-May-2025 04:46:06 Europe/Berlin] Error updating event statuses: Unknown column 'auto_close' in 'field list'
+[24-May-2025 04:46:06 Europe/Berlin] Updating event statuses at: 2025-05-24 04:46:06
+[24-May-2025 04:46:06 Europe/Berlin] Error updating event statuses: Unknown column 'auto_close' in 'field list'
+[24-May-2025 04:46:06 Europe/Berlin] Failed to update event statuses
+[24-May-2025 04:46:06 Europe/Berlin] Found event: Array
+(
+    [number] => 53
+    [event_title] => d
+    [event_status] => completed
+    [registration_status] => open
+    [event_start] => 
+    [event_end] => 
+)
+
+[24-May-2025 04:46:06 Europe/Berlin] Event not in valid state: completed
+[24-May-2025 04:46:06 Europe/Berlin] Attendance Error: Event is not active (must be scheduled or ongoing)
+[24-May-2025 04:46:06 Europe/Berlin] Sending response - Success: false, Message: Event is not active (must be scheduled or ongoing)
+[24-May-2025 06:26:45 Europe/Berlin] Updating event statuses at: 2025-05-24 06:26:45
+[24-May-2025 06:26:45 Europe/Berlin] Error updating event statuses: Unknown column 'auto_close' in 'field list'
+[24-May-2025 06:26:45 Europe/Berlin] Updating event statuses at: 2025-05-24 06:26:45
+[24-May-2025 06:26:45 Europe/Berlin] Error updating event statuses: Unknown column 'auto_close' in 'field list'
+[24-May-2025 06:26:45 Europe/Berlin] Failed to update event statuses
+[24-May-2025 06:26:45 Europe/Berlin] Found event: Array
+(
+    [number] => 53
+    [event_title] => d
+    [event_status] => completed
+    [registration_status] => open
+    [event_start] => 
+    [event_end] => 
+)
+
+[24-May-2025 06:26:45 Europe/Berlin] Event not in valid state: completed
+[24-May-2025 06:26:45 Europe/Berlin] Attendance Error: Event is not active (must be scheduled or ongoing)
+[24-May-2025 06:26:45 Europe/Berlin] Sending response - Success: false, Message: Event is not active (must be scheduled or ongoing)

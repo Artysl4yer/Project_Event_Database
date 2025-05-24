@@ -147,19 +147,22 @@ class EventEditor {
 
     async handleFormSubmit(form) {
         try {
-            // Ensure organizations are combined before submission
-            combineOrganizations();
+            // Get form data
+            const formData = new FormData(form);
             
-            // Get the combined organizations value
-            const combinedOrgs = document.getElementById('combined-orgs').value;
-            
-            // Validate organizations
-            if (!combinedOrgs) {
-                alert('Please select at least one organization');
+            // Get selected organizations
+            const orgSelect = form.querySelector('[name="event-orgs"]');
+            if (!orgSelect || !orgSelect.value) {
+                alert('Please select an organization');
                 return;
             }
 
-            const formData = new FormData(form);
+            // Log form data
+            console.log('Submitting form data:');
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: formData
@@ -168,49 +171,18 @@ class EventEditor {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
 
             const result = await response.json();
             
-            if (result.success) {
-                // Show success message
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'success-message';
-                messageDiv.textContent = result.message;
-                form.parentNode.insertBefore(messageDiv, form.nextSibling);
-                
-                // Close modal after a short delay
-                setTimeout(() => {
-                    this.closeModal();
-                    window.location.reload();
-                }, 1500);
+            if (result.status === 'success') {
+                alert('Event created successfully!');
+                window.location.reload();
             } else {
-                // Show error message
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'error-message';
-                messageDiv.textContent = result.message || 'Error saving event. Please try again.';
-                form.parentNode.insertBefore(messageDiv, form.nextSibling);
-                
-                // Remove message after 3 seconds
-                setTimeout(() => {
-                    messageDiv.remove();
-                }, 3000);
+                alert('Error: ' + (result.message || 'Failed to create event'));
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            
-            // Show error message
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'error-message';
-            messageDiv.textContent = 'Error saving event. Please try again.';
-            form.parentNode.insertBefore(messageDiv, form.nextSibling);
-            
-            // Remove message after 3 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 3000);
+            alert('Error: Failed to create event. Please try again.');
         }
     }
 }
@@ -309,12 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add form submit handler
     form.addEventListener('submit', function(e) {
-        combineOrganizations();
-        const combinedOrgs = document.getElementById('combined-orgs').value;
-        
-        if (!combinedOrgs) {
-            e.preventDefault();
-            alert('Please select at least one organization');
-        }
+        e.preventDefault();
+        window.eventEditor.handleFormSubmit(this);
     });
 }); 

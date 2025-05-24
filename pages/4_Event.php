@@ -1,104 +1,78 @@
 <?php
-// Enable all error reporting at the very top
-error_reporting(-1);
+// Enable error reporting
+error_reporting(E_ALL);
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-// Log errors to a file
 ini_set('log_errors', 1);
-ini_set('error_log', '../php/error.log');
+ini_set('error_log', dirname(__FILE__) . '/event_errors.log');
 
-// Start output buffering to catch any errors
-ob_start();
+// Log the start of the script
+error_log("Starting 4_Event.php script");
 
-try {
-    // Start session
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    error_log("Session started");
-
-    // Include database connection
-    if (!file_exists('../php/conn.php')) {
-        throw new Exception("Database connection file not found");
-    }
-    require_once '../php/conn.php';
-    error_log("Database connection file included");
-
-    // Test database connection
-    if (!isset($conn)) {
-        throw new Exception("Database connection variable not set");
-    }
-    if (!$conn) {
-        throw new Exception("Database connection failed: " . mysqli_connect_error());
-    }
-    error_log("Database connection successful");
-
-    // Test if we can query the database
-    $test_query = "SELECT 1";
-    if (!$conn->query($test_query)) {
-        throw new Exception("Database query test failed: " . $conn->error);
-    }
-    error_log("Database query test successful");
-
-    // Get search parameter
-    $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
-    error_log("Search parameter: " . $search);
-
-    // Prepare the query based on search
-    if (!empty($search)) {
-        $query = "SELECT *, 
-                CASE 
-                    WHEN file IS NULL OR file = '' OR file = 'null' 
-                    THEN '../images-icon/plm_courtyard.png'
-                    ELSE file 
-                END as event_image 
-                FROM event_table 
-                WHERE event_title LIKE ? 
-                OR event_description LIKE ? 
-                OR event_location LIKE ? 
-                OR organization LIKE ? 
-                ORDER BY number DESC";
-        $search_param = "%$search%";
-        $stmt = $conn->prepare($query);
-        if (!$stmt) {
-            throw new Exception("Prepare failed: " . $conn->error);
-        }
-        $stmt->bind_param("ssss", $search_param, $search_param, $search_param, $search_param);
-        if (!$stmt->execute()) {
-            throw new Exception("Execute failed: " . $stmt->error);
-        }
-        $result = $stmt->get_result();
-        error_log("Search query executed successfully");
-    } else {
-        $query = "SELECT *, 
-                CASE 
-                    WHEN file IS NULL OR file = '' OR file = 'null' 
-                    THEN '../images-icon/plm_courtyard.png'
-                    ELSE file 
-                END as event_image 
-                FROM event_table 
-                ORDER BY number DESC";
-        $result = $conn->query($query);
-        if (!$result) {
-            throw new Exception("Query failed: " . $conn->error);
-        }
-        error_log("Default query executed successfully");
-    }
-
-    // Check if we got any results
-    if ($result) {
-        error_log("Number of results: " . $result->num_rows);
-    } else {
-        error_log("No results returned");
-    }
-
-} catch (Exception $e) {
-    error_log("Error in 4_Event.php: " . $e->getMessage());
-    die("An error occurred: " . $e->getMessage());
+// Start session at the very beginning
+if (session_status() === PHP_SESSION_NONE) {
+    error_log("Starting new session");
+    session_start();
+} else {
+    error_log("Session already started");
 }
 
-// Rest of your existing code...
+// Log session data
+error_log("Session data: " . print_r($_SESSION, true));
+
+// Check if user is logged in and is a coordinator
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    error_log("Session check failed - Missing required session variables");
+    error_log("Available session variables: " . print_r($_SESSION, true));
+    header("Location: 1_Login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'coordinator') {
+    error_log("Invalid role access attempt - User role: " . $_SESSION['role']);
+    header("Location: 1_Login.php");
+    exit();
+}
+
+error_log("Coordinator page accessed by: " . $_SESSION['email']);
+
+// Fix the path to config.php
+$config_path = __DIR__ . '/../config.php';
+error_log("Looking for config file at: " . $config_path);
+
+if (!file_exists($config_path)) {
+    error_log("Configuration file not found at: " . $config_path);
+    die("Configuration file not found at: " . $config_path);
+}
+
+error_log("Including config file");
+require_once $config_path;
+
+// Test database connection
+if (!isset($conn) || $conn === false) {
+    error_log("Database connection failed: " . (isset($conn) ? mysqli_connect_error() : "Connection not established"));
+    die("Database connection failed. Please try again later.");
+}
+
+error_log("Database connection successful");
+
+// Test if we can query the event table
+try {
+    $test_query = "SELECT COUNT(*) as count FROM event_table";
+    $result = $conn->query($test_query);
+    if (!$result) {
+        error_log("Error accessing event table: " . $conn->error);
+        die("Error accessing event table: " . $conn->error);
+    }
+    error_log("Event table query successful");
+} catch (Exception $e) {
+    error_log("Exception while querying event table: " . $e->getMessage());
+    die("Error accessing event table: " . $e->getMessage());
+}
+
+// Define SITE_URL if not already defined
+if (!defined('SITE_URL')) {
+    define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/Project_Event_Database');
+}
 ?>
 
 <!DOCTYPE html>
@@ -106,11 +80,11 @@ try {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PLP: Events</title>
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
-        <link rel="stylesheet" href="../styles/style3.css">
+        <link rel="stylesheet" href="../styles/style4.css">
         <link rel="stylesheet" href="../styles/style11.css">
+        <title>PLP: Events</title>
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -224,6 +198,9 @@ try {
        
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/dynamic.js"></script>
+        <script src="../Javascript/event_modal.js"></script>
+        <script src="../Javascript/table-search.js"></script>
+        <script src="../Javascript/filter.js"></script>
         
     
     </div>
