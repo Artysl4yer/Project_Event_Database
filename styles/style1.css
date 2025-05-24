@@ -614,16 +614,6 @@ body{
     display: grid;
 }
 
-/* Remove notification styles */
-.notifications-section,
-.notifications-container,
-.notification-item,
-.notification-content,
-.mark-read-btn,
-.no-notifications {
-    display: none;
-}
-
 /* table styling to lark */
 .event-list table {
     width: 100%;

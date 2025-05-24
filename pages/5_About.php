@@ -1,12 +1,4 @@
-<?php
-session_start();
 
-// Check student id and email
-if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
-    header("Location: ../pages/1_Login.php");
-    exit();
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +40,6 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
         <div class="title-container">
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
-    
         <div class="Top">
             <img src="/images-icon/plm_courtyard.png" alt="plpback" height="100">
             <h1>About</h1>
@@ -98,69 +89,6 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
                 <!-- Wag tanggalin -->
             </div>
         </div>
-        <!--
-        <div class="member-list">
-            <div class="mtitle">
-                <h1>Team Members</h1>
-            </div>
-    <p>A dedicated team of PLP students and staff collaboratively manages the Event<br> Attendance System to ensure smooth and efficient event tracking.</p>
-
-            <div class="memberli">
-                <div class="member">
-                    <div class="mem-img">
-                        <img src="/images-icon/members-img/lark.jpg" alt="member"> 
-                    </div>
-                    <div class="member-info">
-                        <h2>Lark</h2>
-                        <h3>Role</h3>
-                    </div>
-                    
-                </div>
-
-                <div class="member">
-                    <div class="mem-img">
-                        <img src="/images-icon/members-img/madi.jpg" alt="member"> 
-                    </div>
-                    <div class="member-info">
-                        <h2>Madi</h2>
-                        <h3>Role</h3>
-                    </div>
-                    
-                </div>
-
-                <div class="member">
-                    <div class="mem-img">
-                        <img src="/images-icon/members-img/darryl.jpg" alt="member"> 
-                    </div>
-                    <div class="member-info">
-                        <h2>Darryl</h2>
-                        <h3>Role</h3>
-                    </div>
-                    
-                </div>
-
-                <div class="member">
-                    <div class="mem-img">
-                        <img src="/images-icon/members-img/alex.jpg" alt="member"> 
-                    </div>
-                    <div class="member-info">
-                        <h2>Alex</h2>
-                        <h3>Role</h3>
-                    </div>
-                    
-                </div>
-
-                <div class="member">
-                    <div class="mem-img">
-                        <img src="/images-icon/members-img/pasion.jpg" alt="member"> 
-                    </div>
-                    <div class="member-info">
-                        <h2>Pasion</h2>
-                        <h3>Role</h3>
-                    </div>
-                    
-                </div>
-                -->
     <script src="../Javascript/dynamic.js"></script>
     </body>
 </html>
