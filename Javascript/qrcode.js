@@ -1,4 +1,20 @@
 let qrcode = null;
+        
+function openModal() {
+    document.getElementById('eventModal').classList.add('active');
+}
+    
+window.onclick = function(event) {
+    const modal = document.getElementById('eventModal');
+    const qrModal = document.getElementById('qrModal');
+    
+    if (event.target == modal) {
+        closeModal();
+    }
+    if (event.target == qrModal) {
+        qrModal.classList.remove('show');
+    }
+}
 
 // Generate code for new events
 function generateCode(length = 12) {
@@ -11,53 +27,39 @@ function generateCode(length = 12) {
     return code + timestamp;
 }
 
-// QR Code specific functions
-function generateQRCode(eventId, eventCode) {
+
+ // QR Code Generation
+function generateQRCode(eventCode) {
     const modal = document.getElementById('qrModal');
-    if (!modal) return;
-
-    modal.style.display = 'block';
-    modal.classList.add('show');
-
-    const qrcodeContainer = document.getElementById('qrcode');
-    qrcodeContainer.innerHTML = ''; // Clear previous QR code
-
-    // Generate QR code with event registration URL
-    const registrationUrl = `${window.location.origin}/pages/register_participant.php?event=${eventId}&code=${eventCode}`;
-    qrcode = new QRCode(qrcodeContainer, {
+    const container = document.getElementById('qrcode-container');
+    const qrcodeDiv = document.getElementById('qrcode');
+    qrcodeDiv.innerHTML = '';
+    const registrationUrl = `${window.location.origin}/Project_Event_Database/pages/register_participant.php?code=${eventCode}`;
+    
+    qrcode = new QRCode(qrcodeDiv, {
         text: registrationUrl,
         width: 256,
-        height: 256
+        height: 256,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
     });
+    modal.classList.add('show');
 }
 
 function downloadQRCode() {
-    const canvas = document.querySelector('#qrcode canvas');
-    if (!canvas) return;
-
+    if (!qrcode) return;
+    
+    const canvas = document.querySelector("#qrcode canvas");
+    const image = canvas.toDataURL("image/png");
     const link = document.createElement('a');
+    link.href = image;
     link.download = 'event-qr-code.png';
-    link.href = canvas.toDataURL();
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 }
 
-// Close QR modal when clicking outside
-window.addEventListener('click', function(event) {
-    const qrModal = document.getElementById('qrModal');
-    if (event.target === qrModal) {
-        qrModal.classList.remove('show');
-        qrModal.style.display = 'none';
-    }
-});
-
-// Close QR modal when clicking close button
-document.addEventListener('DOMContentLoaded', function() {
-    const closeButton = document.querySelector('.close-qr');
-    if (closeButton) {
-        closeButton.addEventListener('click', function() {
-            const qrModal = document.getElementById('qrModal');
-            qrModal.classList.remove('show');
-            qrModal.style.display = 'none';
-        });
-    }
-});
+document.querySelector('.close-qr').onclick = function() {
+    document.getElementById('qrModal').classList.remove('show');
+}
