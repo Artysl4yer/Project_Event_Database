@@ -37,7 +37,7 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
                 <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
             </div>
             <div class="logout">
-                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class = "main-container">
