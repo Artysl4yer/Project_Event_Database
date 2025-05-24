@@ -90,9 +90,9 @@ if ($isEditing) {
         <div class="event-table-section">
             <h2>Events</h2>
             <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all" data-sort="number">All Events</button>
+                <button class="filter-btn active" data-filter="all" data-sort="number">All Events</button>
                 <button class="filter-btn" data-filter="title" data-sort="event_title">Sort by Title</button>
-                <button class="filter-btn" data-filter="organization" data-sort="organization">Sort by Organization</button>
+                <button class="filter-btn" data-filter="attendees" data-sort="attendee_count">Sort by Attendees</button>
                 <button class="filter-btn" data-filter="status">Filter by Status</button>
                 <select id="statusFilter" class="status-select" style="display: none;">
                     <option value="all">All Status</option>
@@ -121,6 +121,7 @@ if ($isEditing) {
                 </thead>
                 <tbody>
                 <?php
+                include '../php/conn.php';
                 // Get sort parameters from URL
                 $sort_column = isset($_GET['sort']) ? $_GET['sort'] : 'number';
                 $sort_direction = isset($_GET['direction']) ? strtoupper($_GET['direction']) : 'DESC';
@@ -364,6 +365,7 @@ if ($isEditing) {
     <script src="../Javascript/filter.js"></script>
     <script src="../Javascript/dropdown.js"></script>
     <script src="../Javascript/event_modal.js"></script>
+    <script src="../Javascript/table-sortjs"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize event table
@@ -384,6 +386,7 @@ if ($isEditing) {
             const currentStatus = urlParams.get('status');
             
             if (currentFilter === 'status') {
+                statusFilterBtn.classList.add('active');
                 statusFilter.style.display = 'inline-block';
                 if (currentStatus) {
                     statusFilter.value = currentStatus;
@@ -413,5 +416,5 @@ if ($isEditing) {
         }
     });
     </script>
->
+</body>
 </html>

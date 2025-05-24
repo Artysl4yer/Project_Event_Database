@@ -27,7 +27,16 @@ $stmt->bind_param("s", $student_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
+<<<<<<< HEAD
 $student_course = $user['course'] ?? '';
+=======
+$student_course = $user['course'];
+
+// Add debug logging
+error_log("Student ID: " . $student_id);
+error_log("Student Course: " . $student_course);
+?>
+>>>>>>> 8e1b8c5 (Version 1.24.4)
 
 // Close the first statement
 $stmt->close();
@@ -136,6 +145,7 @@ ini_set('display_errors', 1);
 
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
+<<<<<<< HEAD
                                 try {
                                     $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
                                     $dateTimeStart = (new DateTime($row['event_start']))->format('H:i');
@@ -183,6 +193,33 @@ ini_set('display_errors', 1);
                                     error_log("Error processing event row: " . $e->getMessage());
                                     continue;
                                 }
+=======
+                                $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
+                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+                                
+                                echo "<div class='event-box-details'>";
+                                echo "  <div class='floating-card'>";
+                                echo "      <div class='event-date'>";
+                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' alt='Event Background' class='eventbg' />";
+                                echo "          <p class='day'>" .$dateOnly. "</p>";
+                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
+                                echo "      </div>";
+                                echo "      <div class='event-description'>";
+                                echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
+                                echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                                echo "      </div>";
+                                echo "      <div class='status'>";
+                                echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
+                                echo "      </div>";
+                                echo "  </div>";
+                                echo "  <div class='even-more-details'>";
+                                echo "      <div class='event-box-row'>";
+                                echo "          <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
+                                echo "          <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                                echo "      </div>";
+                                echo "  </div>";
+                                echo "</div>";
+>>>>>>> 8e1b8c5 (Version 1.24.4)
                             }
                         } else {
                             echo "<div class='no-events'>";
