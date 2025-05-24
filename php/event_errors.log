@@ -1,0 +1,78 @@
+[24-May-2025 04:41:17 Europe/Berlin] Starting event creation process
+[24-May-2025 04:41:17 Europe/Berlin] POST request received
+[24-May-2025 04:41:17 Europe/Berlin] POST data: Array
+(
+    [event-title] => f
+    [event-location] => f
+    [event-date-start] => 2025-05-24
+    [event-time-start] => 10:41
+    [event-date-end] => 2025-05-24
+    [event-time-end] => 10:44
+    [event-orgs] => f
+    [event-status] => scheduled
+    [registration-status] => open
+    [auto-close] => 1
+    [event-description] => f
+    [code] => PC5TOL728290
+)
+
+[24-May-2025 04:41:17 Europe/Berlin] Generated event code: 9D294737
+[24-May-2025 04:41:17 Europe/Berlin] Start datetime: 2025-05-24 10:41
+[24-May-2025 04:41:17 Europe/Berlin] End datetime: 2025-05-24 10:44
+[24-May-2025 04:41:17 Europe/Berlin] SQL Query: INSERT INTO event_table (event_title, event_location, date_start, date_end, 
+            organization, event_status, registration_status, auto_close_registration, 
+            event_description, event_code) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[24-May-2025 04:41:17 Europe/Berlin] Event created successfully
+[24-May-2025 04:43:49 Europe/Berlin] Starting event creation process
+[24-May-2025 04:43:49 Europe/Berlin] POST request received
+[24-May-2025 04:43:49 Europe/Berlin] POST data: Array
+(
+    [event-title] => dasdasd
+    [event-location] => d
+    [event-date-start] => 2025-05-24
+    [event-time-start] => 10:43
+    [event-date-end] => 2025-05-24
+    [event-time-end] => 10:46
+    [event-orgs] => d
+    [event-status] => scheduled
+    [registration-status] => open
+    [auto-close] => 1
+    [event-description] => d
+    [code] => PUAVYWKS2706
+)
+
+[24-May-2025 04:43:49 Europe/Berlin] Generated event code: 1F6CB572
+[24-May-2025 04:43:49 Europe/Berlin] Start datetime: 2025-05-24 10:43
+[24-May-2025 04:43:49 Europe/Berlin] End datetime: 2025-05-24 10:46
+[24-May-2025 04:43:49 Europe/Berlin] SQL Query: INSERT INTO event_table (event_title, event_location, date_start, date_end, 
+            organization, event_status, registration_status, auto_close_registration, 
+            event_description, event_code) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[24-May-2025 04:43:49 Europe/Berlin] Event created successfully
+[24-May-2025 04:45:53 Europe/Berlin] Starting event creation process
+[24-May-2025 04:45:53 Europe/Berlin] POST request received
+[24-May-2025 04:45:53 Europe/Berlin] POST data: Array
+(
+    [event-title] => d
+    [event-location] => d
+    [event-date-start] => 2025-05-24
+    [event-time-start] => 10:45
+    [event-date-end] => 2025-05-24
+    [event-time-end] => 10:49
+    [event-orgs] => d
+    [event-status] => scheduled
+    [registration-status] => open
+    [auto-close] => 1
+    [event-description] => d
+    [code] => EBA5FXZH0282
+)
+
+[24-May-2025 04:45:53 Europe/Berlin] Generated event code: A1EFBB13
+[24-May-2025 04:45:53 Europe/Berlin] Start datetime: 2025-05-24 10:45:00
+[24-May-2025 04:45:53 Europe/Berlin] End datetime: 2025-05-24 10:49:00
+[24-May-2025 04:45:53 Europe/Berlin] SQL Query: INSERT INTO event_table (event_title, event_location, date_start, date_end, 
+            organization, event_status, registration_status, auto_close_registration, 
+            event_description, event_code) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[24-May-2025 04:45:53 Europe/Berlin] Event created successfully

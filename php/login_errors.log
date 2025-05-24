@@ -1,0 +1,330 @@
+[24-May-2025 04:26:22 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:26:22 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:26:22 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:26:22 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:26:22 Europe/Berlin] Password verified successfully
+[24-May-2025 04:26:22 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:26:22 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:28:59 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:28:59 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:28:59 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:28:59 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:29:00 Europe/Berlin] Password verified successfully
+[24-May-2025 04:29:00 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:29:00 Europe/Berlin] Redirecting to: 4_Event.php
+[24-May-2025 04:30:59 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:30:59 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:30:59 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:30:59 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:30:59 Europe/Berlin] Password verified successfully
+[24-May-2025 04:30:59 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:30:59 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:31:11 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:31:11 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:31:11 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:31:11 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:31:11 Europe/Berlin] Password verified successfully
+[24-May-2025 04:31:11 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:31:11 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:32:42 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:32:42 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:32:42 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:32:42 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:32:42 Europe/Berlin] Password verified successfully
+[24-May-2025 04:32:42 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:32:42 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:33:07 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 22-22222
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:33:07 Europe/Berlin] Processing login for identifier: 2222222
+[24-May-2025 04:33:07 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:33:07 Europe/Berlin] Found user: Array
+(
+    [id] => 21
+    [name] => jamerone madi
+    [student_id] => 2222222
+    [email] => madi@gmail.com
+    [password] => $2y$10$6XyQRvi3QyoU8AOdEQi9xukto6gxTsVfu2/KttwgmZX8wQFA9CWTO
+    [role] => student
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:33:07 Europe/Berlin] Password verified successfully
+[24-May-2025 04:33:07 Europe/Berlin] Session variables set: Array
+(
+    [name] => jamerone madi
+    [student_id] => 2222222
+    [email] => madi@gmail.com
+    [role] => student
+    [client_id] => 21
+)
+
+[24-May-2025 04:33:07 Europe/Berlin] Redirecting to: ../pages/student-home.php
+[24-May-2025 04:33:20 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:33:20 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:33:20 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:33:20 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:33:21 Europe/Berlin] Password verified successfully
+[24-May-2025 04:33:21 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:33:21 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:34:00 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:34:00 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:34:00 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:34:00 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:34:00 Europe/Berlin] Password verified successfully
+[24-May-2025 04:34:00 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:34:00 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 04:35:22 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 04:35:22 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 04:35:22 Europe/Berlin] Query returned 1 rows
+[24-May-2025 04:35:22 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 04:35:22 Europe/Berlin] Password verified successfully
+[24-May-2025 04:35:22 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 04:35:22 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 06:25:08 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 11-11111
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 06:25:08 Europe/Berlin] Processing login for identifier: 1111111
+[24-May-2025 06:25:08 Europe/Berlin] Query returned 1 rows
+[24-May-2025 06:25:08 Europe/Berlin] Found user: Array
+(
+    [id] => 20
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [password] => $2y$10$az2m6jCNcnTETRWwk1WjHO/0ieFKDICEkuaOVqgIJTvuIWfqvaQhC
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 06:25:08 Europe/Berlin] Password verified successfully
+[24-May-2025 06:25:08 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 06:25:08 Europe/Berlin] Redirecting to: ../pages/4_Event.php

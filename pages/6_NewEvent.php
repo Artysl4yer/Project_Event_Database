@@ -147,6 +147,9 @@
                             <button onclick="generateQRCode('<?= htmlspecialchars($row['event_code']) ?>')">
                                 <i class="fas fa-qrcode"></i> Generate QR
                             </button>
+                            <button onclick="window.location.href='11_Attendance.php?event_id=<?= $row['number'] ?>&event_title=<?= urlencode($row['event_title']) ?>'">
+                                <i class="fas fa-clipboard-check"></i> Take Attendance
+                            </button>
                         </div>
                     </td>
                 </tr>

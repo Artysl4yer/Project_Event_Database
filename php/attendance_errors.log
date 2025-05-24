@@ -441,3 +441,31 @@ BSIT
 BSIT
 [23-May-2025 20:24:03 Europe/Berlin] Parsed data - Name: BOLOTAOLO, LARK L., ID: 23-00992, Course: BSIT
 [23-May-2025 20:24:03 Europe/Berlin] Started transaction
+[24-May-2025 04:46:06 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 04:46:06 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 04:46:06 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 04:46:06 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 04:46:06 Europe/Berlin] Started transaction
+[24-May-2025 06:26:45 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 06:26:45 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 06:26:45 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 06:26:45 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 06:26:45 Europe/Berlin] Started transaction

@@ -1,41 +1,90 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', dirname(__FILE__) . '/event_errors.log');
+
+// Log the start of the script
+error_log("Starting 4_Event.php script");
+
 // Start session at the very beginning
 if (session_status() === PHP_SESSION_NONE) {
+    error_log("Starting new session");
     session_start();
+} else {
+    error_log("Session already started");
 }
+
+// Log session data
+error_log("Session data: " . print_r($_SESSION, true));
+
+// Check if user is logged in and is a coordinator
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    error_log("Session check failed - Missing required session variables");
+    error_log("Available session variables: " . print_r($_SESSION, true));
+    header("Location: 1_Login.php");
+    exit();
+}
+
+if ($_SESSION['role'] !== 'coordinator') {
+    error_log("Invalid role access attempt - User role: " . $_SESSION['role']);
+    header("Location: 1_Login.php");
+    exit();
+}
+
+error_log("Coordinator page accessed by: " . $_SESSION['email']);
 
 // Fix the path to config.php
 $config_path = __DIR__ . '/../config.php';
+error_log("Looking for config file at: " . $config_path);
+
 if (!file_exists($config_path)) {
+    error_log("Configuration file not found at: " . $config_path);
     die("Configuration file not found at: " . $config_path);
 }
-include $config_path;
+
+error_log("Including config file");
+require_once $config_path;
 
 // Test database connection
-if ($conn === false) {
-    die("Database connection failed: " . mysqli_connect_error());
+if (!isset($conn) || $conn === false) {
+    error_log("Database connection failed: " . (isset($conn) ? mysqli_connect_error() : "Connection not established"));
+    die("Database connection failed. Please try again later.");
 }
+
+error_log("Database connection successful");
 
 // Test if we can query the event table
-$test_query = "SELECT COUNT(*) as count FROM event_table";
-$result = $conn->query($test_query);
-if (!$result) {
-    die("Error accessing event table: " . $conn->error);
+try {
+    $test_query = "SELECT COUNT(*) as count FROM event_table";
+    $result = $conn->query($test_query);
+    if (!$result) {
+        error_log("Error accessing event table: " . $conn->error);
+        die("Error accessing event table: " . $conn->error);
+    }
+    error_log("Event table query successful");
+} catch (Exception $e) {
+    error_log("Exception while querying event table: " . $e->getMessage());
+    die("Error accessing event table: " . $e->getMessage());
 }
 
-// Debug information
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Define SITE_URL if not already defined
+if (!defined('SITE_URL')) {
+    define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/Project_Event_Database');
+}
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style2.css">
-        <link rel="stylesheet" href="../styles/style3.css">
+        <link rel="stylesheet" href="../styles/style4.css">
         <link rel="stylesheet" href="../styles/style11.css">
-        <title> PLP: Events </title>
+        <title>PLP: Events</title>
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
         <script>
             // Add base URL to JavaScript
@@ -253,6 +302,9 @@ ini_set('display_errors', 1);
        
         <script src="../Javascript/popup.js"></script>
         <script src="../Javascript/dynamic.js"></script>
+        <script src="../Javascript/event_modal.js"></script>
+        <script src="../Javascript/table-search.js"></script>
+        <script src="../Javascript/filter.js"></script>
         
     
     </div>
