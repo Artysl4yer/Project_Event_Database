@@ -52,7 +52,7 @@ error_log("User role: " . $_SESSION['role']);
                 <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             </div>
             <div class="logout">
-                <a href="/php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="image-background">

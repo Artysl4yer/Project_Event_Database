@@ -2,9 +2,6 @@
 session_start();
 include '../php/conn.php';
 
-
-include '../php/conn.php';
-
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     try {
@@ -68,6 +65,16 @@ if (!in_array($_SESSION['role'], $allowed_roles)) {
 // Get any error messages
 $error_msg = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 unset($_SESSION['error']); // Clear the error message after getting it
+
+// Verify role is valid
+$allowed_roles = ['admin'];
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    error_log("Invalid role access attempt: " . $_SESSION['role']);
+    session_unset();
+    session_destroy();
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -92,10 +99,9 @@ unset($_SESSION['error']); // Clear the error message after getting it
                     <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 </div>
                 <div class="logout">
-            <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
-
-        </div>
-    </div>
+                    <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
+                </div>
+            </div>
 
     <div class="event-main">
         <?php if (!empty($error_msg)): ?>
