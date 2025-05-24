@@ -2,8 +2,8 @@
 session_start();
 include '../php/conn.php';
 
-// Check email, student_id, and role
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+// Check if user is logged in and has appropriate role
+if (!isset($_SESSION['email'], $_SESSION['role']) || !in_array($_SESSION['role'], ['admin', 'coordinator'])) {
     header("Location: ../pages/1_Login.php");
     exit();
 }
