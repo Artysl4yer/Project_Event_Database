@@ -2,7 +2,16 @@
 session_start();
 include '../php/conn.php';
 
-if (!isset($_SESSION['client_id'])) {
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: 1_Login.php");
+    exit();
+}
+
+// Allowed roles
+$allowed_roles = ['coordinator', 'admin'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
     header("Location: 1_Login.php");
     exit();
 }
@@ -37,7 +46,7 @@ if (!isset($_SESSION['client_id'])) {
             <a href="1_Login.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
         </div>
         <div class="logout">
-            <a href="../php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     

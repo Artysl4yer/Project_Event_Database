@@ -3,8 +3,10 @@ include 'conn.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+header('Content-Type: application/json');
+
 if($conn == false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+    die(json_encode(['error' => true, 'message' => "Could not connect to database: " . mysqli_connect_error()]));
 }
 
 // Get and sanitize input
@@ -25,12 +27,12 @@ $code = $conn->real_escape_string($_POST['code']);
 $merge_start = DateTime::createFromFormat('Y-m-d H:i', $date_start . ' ' . $event_start, new DateTimeZone('Asia/Manila'));
 $merge_end = DateTime::createFromFormat('Y-m-d H:i', $date_end . ' ' . $event_end, new DateTimeZone('Asia/Manila'));
 
-if (!$merge_start || !$merge_end) {
-    die("ERROR: Invalid date or time format.");
-}
+    if (!$merge_start || !$merge_end) {
+        throw new Exception("Invalid date or time format");
+    }
 
-$merge_start = $merge_start->format('Y-m-d H:i:s');
-$merge_end = $merge_end->format('Y-m-d H:i:s');
+    $merge_start = $merge_start->format('Y-m-d H:i:s');
+    $merge_end = $merge_end->format('Y-m-d H:i:s');
 
 error_log("Creating event with start time: $merge_start and end time: $merge_end");
 

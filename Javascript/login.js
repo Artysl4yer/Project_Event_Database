@@ -1,77 +1,141 @@
- $(document).ready(function() {
-    $('.register-link').click(function(e) {
-        e.preventDefault();
-        console.log("Register link clicked");
-        $('.loginpage').removeClass('active').addClass('hidden');
-        $('.registration-box').removeClass('hidden').addClass('active');
-    });
+function showForm(formId) {
+    console.log('Showing form:', formId);
+    
+    // Get both forms
+    const loginForm = document.querySelector('.loginpage');
+    const registerForm = document.querySelector('.registration-box');
+    
+    if (!loginForm || !registerForm) {
+        console.error('Forms not found:', { loginForm, registerForm });
+        return;
+    }
+    
+    if (formId === 'register-form') {
+        console.log('Switching to registration form');
+        loginForm.classList.remove('active');
+        registerForm.classList.add('active');
+    } else {
+        console.log('Switching to login form');
+        registerForm.classList.remove('active');
+        loginForm.classList.add('active');
+    }
+    
+    // Log the state after changes
+    console.log('Login form active:', loginForm.classList.contains('active'));
+    console.log('Register form active:', registerForm.classList.contains('active'));
+    console.log('Login form visibility:', window.getComputedStyle(loginForm).visibility);
+    console.log('Register form visibility:', window.getComputedStyle(registerForm).visibility);
+}
 
-    $('.back-btn').click(function(e) {
-        e.preventDefault();
-        $('.registration-box').removeClass('active').addClass('hidden');
-        $('.loginpage').removeClass('hidden').addClass('active');
-    });
+function showPass(event) {
+    // Get the checkbox that was clicked
+    const checkbox = event.target;
+    
+    // Find the closest form to determine which password field to toggle
+    const form = checkbox.closest('form');
+    const passwordInput = form.querySelector('input[type="password"], input[type="text"][id="password"], input[type="text"][id="reg-password"]');
+    
+    if (passwordInput) {
+        passwordInput.type = checkbox.checked ? 'text' : 'password';
+    }
+}
 
-    $('#registrationForm').on('submit', function(e) {
-        e.preventDefault();
-        console.log('Registration form submitted');
+function formatInput(input) {
+    if (input.id === 'student_id' || input.id === 'identifier') {
+        // Remove any non-digit characters
+        let value = input.value.replace(/\D/g, '');
         
-        var formData = {
-            name: $('#reg-name').val(),
-            organization: $('#reg-organization').val(),
-            username: $('#reg-username').val(),
-            password: $('#reg-password').val(),
-            confirm_password: $('#reg-confirm-password').val()
-        };
+        // Format as XX-XXXXXX if it's a student ID
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '-' + value.substring(2);
+        }
+        
+        input.value = value;
+    }
+}
 
-        console.log('Form data:', formData);
 
-        $.ajax({
-            type: 'POST',
-            url: '../php/register.php',
-            data: formData,
-            dataType: 'json',
-            success: function(response) {
-                console.log('Registration response:', response);
-                if (response.success) {
-                    $('#registerMessage').html(response.message).removeClass('error').addClass('success');
-                    $('#registrationForm')[0].reset();
-                    setTimeout(function() {
-                        $('.registration-box').removeClass('active').addClass('hidden');
-                        $('.loginpage').removeClass('hidden').addClass('active');
-                        $('#loginMessage').html('Registration successful! Please login with your new account.').removeClass('error').addClass('success');
+// Handle form submissions
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const registrationForm = document.getElementById('registrationForm');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch('../php/login_register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Check if the response contains an error message
+                if (data.includes('Invalid Student ID/Email or password')) {
+                    document.getElementById('loginMessage').innerHTML = 'Invalid Student ID/Email or password';
+                    document.getElementById('loginMessage').className = 'message error';
+                    return;
+                }
+                
+                // If login was successful, the PHP script will have set the session
+                // and we should be redirected to 4_Event.php
+                window.location.href = '4_Event.php';
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+                document.getElementById('loginMessage').innerHTML = 'Login failed. Please try again.';
+                document.getElementById('loginMessage').className = 'message error';
+            });
+        });
+    }
+
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!validateIdentifier(this)) return;
+
+            const formData = new FormData(this);
+            formData.append('register', '1'); // Ensure register flag is set
+            
+            fetch('../php/login_register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageDiv = document.getElementById('registerMessage');
+                if (data.success) {
+                    messageDiv.innerHTML = data.message;
+                    messageDiv.className = 'message success';
+                    // Clear form
+                    this.reset();
+                    // Redirect to login form after 2 seconds
+                    setTimeout(() => {
+                        showForm('login-form');
                     }, 2000);
                 } else {
-                    $('#registerMessage').html(response.message).removeClass('success').addClass('error');
+                    messageDiv.innerHTML = data.message;
+                    messageDiv.className = 'message error';
                 }
-            },
-            error: function(xhr, status, error) {
+            })
+            .catch(error => {
                 console.error('Registration error:', error);
-                $('#registerMessage').html('An error occured').addClass('error');
-            }
+                const messageDiv = document.getElementById('registerMessage');
+                messageDiv.innerHTML = 'Registration failed. Please try again.';
+                messageDiv.className = 'message error';
+            });
         });
-    });
+    }
 
-    $('#loginForm').on('submit', function(e) {
-        e.preventDefault();
-        console.log('Login form submitted');
-        $.ajax({
-            type: 'POST',
-            url: '../php/login.php',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(response) {
-                console.log('Login response:', response);
-                if (response.success) {
-                    window.location.href = '4_Event.php';
-                } else {
-                    $('#loginMessage').html(response.message).removeClass('success').addClass('error');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Login error:', error);
-                $('#loginMessage').html('Invalid credentials').addClass('error');
-            }
-        });
+    // Add click event listeners to all show password checkboxes
+    const showPassCheckboxes = document.querySelectorAll('.show-pass input[type="checkbox"]');
+    showPassCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('click', showPass);
     });
 });

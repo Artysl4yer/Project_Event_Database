@@ -1,4 +1,19 @@
 <?php
+session_start();
+
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
+
+$allowed_roles = ['coordinator'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/1_Login.php");
+    exit();
+}
+
 // Handle form submissions
 include '../php/conn.php';
 
@@ -77,6 +92,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <link rel="stylesheet" href="../styles/style8.css">
     <link rel="stylesheet" href="../styles/style10.css">
     <link rel="stylesheet" href="../styles/filter.css">
+    <link rel="stylesheet" href="../styles/table-search.css">
+    <link rel="stylesheet" href="../styles/csv-import.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -86,15 +103,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <div class="tab-container">
         <div class="menu-items">
             <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+            <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+            <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+            <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
         </div>
         <div class="logout">
-            <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
         </div>
     </div>
     <div class="event-main">
@@ -102,19 +117,25 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
             <div class="event-top">
                 <p>Participants List</p>
                 <div class="search-container">
-                    <form class="example" action="action_page.php">
+                    <form class="example" action="../php/action_page.php" method="GET">
                         <label for="search"></label>
-                        <input type="text" id="search" name="fname" placeholder="Search...">
+                        <input type="text" id="search" name="search" placeholder="Search in any column...">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="col-md-12" id="importFrm">
-                    <form action="../php/importData.php" method="post" enctype="multipart/form-data">
-                        <label class="upload-btn">
-                            Upload File
-                            <input type="file" id="fileInput" name="file" hidden>
-                        </label>
-                        <span id="fileName">No file chosen</span>
+                    <form id="csvImportForm" action="../php/importData.php" method="post" enctype="multipart/form-data">
+                        <div class="import-container">
+                            <label class="upload-btn">
+                                <i class="fas fa-file-import"></i> Choose CSV File
+                                <input type="file" id="fileInput" name="file" accept=".csv" hidden>
+                            </label>
+                            <span id="fileName">No file chosen</span>
+                            <button type="submit" id="importSubmit" class="import-submit-btn" disabled>
+                                <i class="fas fa-upload"></i> Import
+                            </button>
+                        </div>
+                        <div id="importStatus" class="import-status" style="display: none;"></div>
                     </form>
                 </div>
             </div>  
@@ -133,10 +154,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
                     <option value="CAS">College of Arts and Sciences</option>
                     <option value="COE">College of Engineering</option>
                 </select>
-            </div>
-            <div class="add-button">
-                <button class="btn-import" onclick="openParticipantModal()">
-                    <span><i class="fa-solid fa-plus"></i> Add Participant</span>
+                <button class="filter-btn btn-import" onclick="openParticipantModal()">
+                    <i class="fa-solid fa-plus"></i> Add Participant
                 </button>
             </div>
             <table class="event-display-table" id="participantTable">
@@ -308,5 +327,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_participant') {
     <script src="../Javascript/dropdown.js"></script>
     <script src="../Javascript/table-sort.js"></script>
     <script src="../Javascript/qr-modal.js"></script>
+    <script src="../Javascript/table-search.js"></script>
+    <script src="../Javascript/csv-import.js"></script>
 </body>
 </html>

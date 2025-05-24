@@ -1,31 +1,4 @@
-/* Admin Modal Styles */
-.admin-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.admin-modal.show {
-    display: block;
-}
-
-.admin-modal-content {
-    background-color: white;
-    margin: 2% auto;
-    width: 95%;
-    max-width: 1000px; /* Increased max-width */
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-/* Form Styles */
+/* Admin Page Specific Styles */
 .form-group {
     margin-bottom: 25px;
 }
@@ -72,34 +45,6 @@
 
 .submit-btn:hover {
     background: #0d3a0d;
-}
-
-/* Header Styles */
-.admin-modal-content .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #eee;
-}
-
-.admin-modal-content .header h3 {
-    font-size: 28px;
-    color: #ffffff;
-    margin: 0;
-}
-
-.close-admin {
-    font-size: 32px;
-    color: #666;
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.3s;
-}
-
-.close-admin:hover {
-    color: #104911;
 }
 
 /* Password Section */
@@ -179,149 +124,7 @@
     font-size: 18px;
 }
 
-/* Participants Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.modal.show {
-    display: block;
-}
-
-.modal-content {
-    background-color: white;
-    margin: 2% auto;
-    padding: 0;
-    width: 95%;
-    max-width: 1200px;
-    max-height: 90vh;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-}
-
-.participants-container {
-    padding: 25px;
-    min-height: 400px;
-}
-
-.participants-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.participants-table th,
-.participants-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 16px;
-}
-
-.participants-table th {
-    background-color: #f5f5f5;
-    font-weight: 600;
-    color: #333;
-}
-
-.participants-summary {
-    text-align: right;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-/* Form Button Styles */
-.form-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.submit-btn, .exit-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left:5vh;
-    width: 930px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.submit-btn {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.submit-btn:hover {
-    background-color: #45a049;
-}
-
-.exit-btn {
-    background-color: #f44336;
-    color: white;
-}
-
-.exit-btn:hover {
-    background-color: #da190b;
-}
-
-.submit-btn:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Event List Container Styles */
-.event-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    padding: 25px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Event Card Styles */
-.event-box-details {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 0;
-    width: 100%;
-    min-height: 400px;
-}
-
-.floating-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.floating-card:hover {
-    transform: translateY(-5px);
-}
-
-.event-date {
-    position: relative;
-    height: 140px;
-    overflow: hidden;
-}
-
+/* Event Box Styles */
 .eventbg {
     width: 100%;
     height: 100%;
@@ -338,7 +141,6 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     margin: 0;
 }
-
 
 .day {
     top: 20px;
@@ -436,6 +238,9 @@
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .event-box-row p {
@@ -443,6 +248,13 @@
     color: #666;
     line-height: 1.5;
     font-size: 1em;
+    width: 100%;
+}
+
+.event-box-row b {
+    color: #333;
+    font-weight: 600;
+    margin-left: 5px;
 }
 
 /* Remove table styles */
@@ -456,4 +268,102 @@
         grid-template-columns: 1fr;
         max-width: 800px;
     }
+}
+
+.event-box-details {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.floating-card {
+    position: relative;
+}
+
+.event-date {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.event-date img.eventbg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-date p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+.event-date .day {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.event-date .time {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.event-description {
+    padding: 20px;
+}
+
+.event-description h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.event-description p {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.status {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+}
+
+.status p {
+    margin: 0;
+    color: #666;
+}
+
+.status b {
+    color: #28a745;
+}
+
+.even-more-details {
+    background: #f8f9fa;
+    padding: 15px 20px;
+}
+
+.event-list {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Add styles for date overlay */
+.date-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    color: white;
+    text-align: center;
 }

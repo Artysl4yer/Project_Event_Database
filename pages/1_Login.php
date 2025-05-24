@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+$errors = [
+    'login' => $_SESSION['login_error'] ?? '',
+    'register' => $_SESSION['register_error'] ?? ''
+];
+$active_form = $_SESSION['active_form'] ?? 'login';
+
+function showError($error) {
+    return !empty($error) ? "<p class='error-message'>{$error}</p>" : "";
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,53 +46,104 @@
             color: #2e7d32;
             border: 1px solid #a5d6a7;
         }
+        .error-message {
+            color: #c62828;
+            margin: 5px 0;
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(46, 125, 50, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .loading-text {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #104911;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <img src="../images-icon/plplogo.png" alt="PLP Logo" class="loading-logo">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Logging in...</div>
+        </div>
+    </div>
+
     <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
-    </div><!--
-    <div class="tab-container">
-        <div class="menu-items">
-            <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
-        </div>
-        <div class="logout">
-            <a href="../php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
-        </div>
-    </div>-->
-
+    </div>
     
     <div class="login-container">
-        <!--<div class="university-info active">
-            <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
-            <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations.</p>
-            <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
-            
-        </div>-->
-
-        <!--<div class="action-links">
-                <a href="#" class="action-link register-link">New Client Register<i class="fas fa-arrow-right"></i></a>
-                <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
-            </div>-->
-
-    <div class="loginpage active">
+        <div class="loginpage active">
             <h1>Welcome to PLP's <br> Event Management System</h1>
-            <!--<h2>Enter your credentials to continue</h2>-->
-            <form id="loginForm">
+            <form id="loginForm" action="../php/login_register.php" method="POST">
+                <?= showError($errors['login']); ?>
                 <div class="input-field">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder= "Username" required>
+                    <label for="identifier">Student ID or Email</label>
+                    <input type="text" id="identifier" name="identifier" placeholder="Student ID (XX-XXXXX) or Email" required>
                 </div>
             
                 <div class="input-field">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder= "Password" required>
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="show-pass">
@@ -84,8 +151,7 @@
                 </div>
 
                 <div class="button-group">
-                    <!--<button type="button" class="back-btn">Back</button>-->
-                    <button type="submit" class="login-btn">Log in</button>
+                    <button type="submit" class="login-btn" name="login" value="1">Log in</button>
                 </div>
                 <div id="loginMessage" class="message"></div>
             </form>
@@ -96,46 +162,38 @@
         </div>  
 
         <div class="registration-box hidden">
-            <h2>Registration Form</h2>
-            <p class="subtitle">Please fill in the fields below</p>
+            <h2>Create Your Account</h2>
+            <p class="subtitle">Fill in your details to register</p>
 
-            <form id="registrationForm">
+            <form id="registrationForm" action="../php/login_register.php" method="POST">
+                <?= showError($errors['register']); ?>
                 <div class="input-field">
-                    <label for="reg-name">Name</label>
-                    <input type="text" id="reg-name" name="name" placeholder= "Full Name" required/>
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
                 </div>
 
                 <div class="input-field">
-                    <label for="reg-organization">Organization</label>
-                    <select id="reg-organization" name="organization" required>
-                        <option value="">Select an organization</option>
-                        <option value="CCS">College of Computer Studies</option>
-                        <option value="CBA">College of Business and Accountancy</option>
-                        <option value="CON">College of Nursing</option>
-                        <option value="COE">College of Education</option>
-                        <option value="CIHM">College of International Hospitality Management</option>
-                        <option value="COA">College of Arts</option>
-                    </select>
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
                 </div>
 
                 <div class="input-field">
-                    <label for="reg-email">Email</label>
-                    <input type="text" id="reg-email" name="email" placeholder= "Email" required/>
+                    <label for="student_id">Student ID</label>
+                    <input type="text" id="student_id" name="student_id" maxlength="8" 
+                    pattern="\d{2}-\d{5}" 
+                    title="Please enter a valid Student ID in XX-XXXXX format" 
+                    placeholder="Student ID (XX-XXXXX)" 
+                    required>
                 </div>
 
                 <div class="input-field">
-                    <label for="reg-username">Username</label>
-                    <input type="text" id="reg-username" name="username" placeholder= "Username" required/>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="input-field">
                     <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" name="password" placeholder= "Password" required/>
-                </div>
-
-                <div class="input-field">
-                    <label for="reg-confirm-password">Confirm Password</label>
-                    <input type="password" id="reg-confirm-password" name="confirm_password" placeholder= "Confirm Password" required/>
+                    <input type="password" id="reg-password" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="show-pass">
@@ -143,15 +201,161 @@
                 </div>
 
                 <div class="button-group">
-                    <button type="button" class="back-btn">Back</button>
-                    <button type="submit" class="register-btn">Register</button>
+                    <button type="button" class="back-btn">Back to Login</button>
+                    <button type="submit" class="register-btn" name="register" value="1">Create Account</button>
                 </div>
                 <div id="registerMessage" class="message"></div>
             </form>
         </div>
     </div>
 
-    <script src="../Javascript/show-password.js"></script>
-    <script src="../Javascript/login.js"></script>
-    </body>
+    <script>
+    $(document).ready(function() {
+        // Format student ID input
+        function formatStudentId(input) {
+            // Remove any non-digit characters
+            let value = input.value.replace(/\D/g, '');
+            
+            // Ensure maximum of 7 digits
+            if (value.length > 7) {
+                value = value.substr(0, 7);
+            }
+            
+            // Format as XX-XXXXX
+            if (value.length > 2) {
+                value = value.substr(0, 2) + '-' + value.substr(2);
+            }
+            
+            input.value = value;
+        }
+
+        // Apply formatting to student ID fields
+        $('#student_id, #identifier').on('input', function() {
+            formatStudentId(this);
+        });
+
+        // Toggle between login and registration forms
+        $('.register-link').click(function(e) {
+            e.preventDefault();
+            $('.loginpage').removeClass('active').addClass('hidden');
+            $('.registration-box').removeClass('hidden').addClass('active');
+        });
+
+        $('.back-btn').click(function(e) {
+            e.preventDefault();
+            $('.registration-box').removeClass('active').addClass('hidden');
+            $('.loginpage').removeClass('hidden').addClass('active');
+        });
+
+        // Show/hide password
+        $('.show-pass input').change(function() {
+            var passwordField = $(this).closest('form').find('input[type="password"]');
+            passwordField.attr('type', this.checked ? 'text' : 'password');
+        });
+
+        // Handle login form submission
+        $('#loginForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = $(this).serialize();
+            formData += '&login=1';
+            
+            $('.loading-screen').css('display', 'flex').hide().fadeIn(300);
+            
+            $.ajax({
+                type: 'POST',
+                url: '../php/login_register.php',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    try {
+                        if (response.success) {
+                            setTimeout(function() {
+                                $('.loading-screen').fadeOut(300, function() {
+                                    if (response.redirect) {
+                                        window.location.href = response.redirect;
+                                    }
+                                });
+                            }, 2000);
+                        } else {
+                            $('.loading-screen').fadeOut(300);
+                            $('#loginMessage')
+                                .removeClass('success')
+                                .addClass('error')
+                                .text(response.message)
+                                .show();
+                        }
+                    } catch (e) {
+                        $('.loading-screen').fadeOut(300);
+                        $('#loginMessage')
+                            .removeClass('success')
+                            .addClass('error')
+                            .text('An unexpected error occurred. Please try again.')
+                            .show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('.loading-screen').fadeOut(300);
+                    $('#loginMessage')
+                        .removeClass('success')
+                        .addClass('error')
+                        .text('Server error: ' + (error || 'Unknown error occurred'))
+                        .show();
+                }
+            });
+        });
+
+        // Handle registration form submission
+        $('#registrationForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = $(this).serialize();
+            formData += '&register=1';
+            
+            $.ajax({
+                type: 'POST',
+                url: '../php/login_register.php',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    try {
+                        if (response.success) {
+                            $('#registerMessage')
+                                .removeClass('error')
+                                .addClass('success')
+                                .text(response.message)
+                                .show();
+                            
+                            setTimeout(function() {
+                                window.location.href = '1_Login.php';
+                            }, 2000);
+                        } else {
+                            $('#registerMessage')
+                                .removeClass('success')
+                                .addClass('error')
+                                .text(response.message)
+                                .show();
+                        }
+                    } catch (e) {
+                        $('#registerMessage')
+                            .removeClass('success')
+                            .addClass('error')
+                            .text('An unexpected error occurred. Please try again.')
+                            .show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('#registerMessage')
+                        .removeClass('success')
+                        .addClass('error')
+                        .text('Server error: ' + (error || 'Unknown error occurred'))
+                        .show();
+                }
+            });
+        });
+    });
+    </script>
+</body>
 </html>
+
+<?php session_unset(); ?> 

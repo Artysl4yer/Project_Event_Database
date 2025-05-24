@@ -7,24 +7,76 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     overflow-y: auto;
+    backdrop-filter: blur(4px);
 }
 
 .modal.active, .modal.show {
     display: block;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Modal Content */
 .modal-content {
     background-color: white;
-    margin: 5% auto;
+    margin: 3% auto;
     padding: 0;
     width: 90%;
     max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     position: relative;
+    max-height: 94vh;
+    overflow-y: auto;
+    animation: modalContentSlideIn 0.3s ease-out;
+}
+
+@keyframes modalContentSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Admin Modal Specific */
+.admin-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.admin-modal.show {
+    display: block;
+}
+
+.admin-modal-content {
+    background-color: white;
+    margin: 2% auto;
+    width: 95%;
+    max-width: 1000px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-height: 90vh;
     overflow-y: auto;
 }
@@ -33,32 +85,50 @@
 .header {
     position: sticky;
     top: 0;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-bottom: 1px solid #dee2e6;
+    background-color: #ffffff;
+    padding: 24px 32px;
+    border-bottom: 1px solid #eef0f2;
     z-index: 10000;
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 16px 16px 0 0;
 }
 
 .header h3 {
-    color: #333;
+    color: #1a1a1a;
     margin: 0;
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .header p {
     color: #666;
-    margin: 5px 0 0;
-    font-size: 0.9rem;
+    margin: 8px 0 0;
+    font-size: 0.95rem;
 }
 
-/* Close Button */
+/* Admin Modal Header */
+.admin-modal-content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-modal-content .header h3 {
+    font-size: 28px;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Close Buttons */
 .close-modal,
-.close-qr {
+.close-qr,
+.close-admin {
     position: relative;
     right: 0;
     top: 0;
@@ -68,22 +138,33 @@
     cursor: pointer;
     background: none;
     border: none;
-    padding: 4px 8px;
+    padding: 8px;
     line-height: 1;
     z-index: 10000;
-    transition: color 0.2s;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
 }
 
 .close-modal:hover,
-.close-qr:hover {
-    color: #333;
-    background-color: rgba(0, 0, 0, 0.05);
+.close-qr:hover,
+.close-admin:hover {
+    color: #1a1a1a;
+    background-color: #f5f5f5;
+    transform: rotate(90deg);
+}
+
+.close-admin {
+    font-size: 32px;
+    padding: 5px;
+}
+
+.close-admin:hover {
+    color: #104911;
 }
 
 /* Modal Body */
@@ -119,6 +200,7 @@
 .modal input[type="text"],
 .modal input[type="date"],
 .modal input[type="time"],
+.modal input[type="password"],
 .modal select,
 .modal textarea {
     width: 100%;
@@ -137,6 +219,7 @@
 .modal input[type="text"]:focus,
 .modal input[type="date"]:focus,
 .modal input[type="time"]:focus,
+.modal input[type="password"]:focus,
 .modal select:focus,
 .modal textarea:focus {
     border-color: #104911;
@@ -170,7 +253,9 @@
 .modal .btn-submit,
 .modal .btn-close,
 .modal .btn-download,
-.btn-submit {
+.btn-submit,
+.btn-close,
+.btn-download {
     padding: 8px 16px;
     border: 1px solid #dee2e6;
     border-radius: 4px;
@@ -187,7 +272,8 @@
     border-color: #104911;
 }
 
-.modal .btn-download {
+.modal .btn-download,
+.btn-download {
     background: #3284ed;
     color: white;
     border-color: #3284ed;
@@ -230,6 +316,82 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Participants Modal Specific */
+.participants-container {
+    padding: 25px;
+    min-height: 400px;
+}
+
+.participants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.participants-table th,
+.participants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.participants-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+}
+
+.participants-summary {
+    text-align: right;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Form Button Styles */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn, .exit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5vh;
+    width: 930px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.exit-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.exit-btn:hover {
+    background-color: #da190b;
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .modal-content {
@@ -260,7 +422,138 @@
         padding: 8px 12px;
         font-size: 13px;
     }
+
+    .admin-modal-content {
+        margin: 5% auto;
+        width: 95%;
+    }
+
+    .submit-btn, .exit-btn {
+        width: 100%;
+        margin-left: 0;
+    }
 }
+
+
+.input-box textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.datetime-inputs {
+    display: flex;
+    gap: 12px;
+}
+
+.datetime-inputs input {
+    flex: 1;
+}
+
+.help-text {
+    display: block;
+    margin-top: 6px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 24px 32px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 16px 16px;
+}
+
+.btn-cancel,
+.btn-submit {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.btn-cancel {
+    background: #fff;
+    color: #666;
+    border: 1px solid #dee2e6;
+}
+
+.btn-cancel:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.btn-submit {
+    background: #104911;
+    color: white;
+    border: none;
+}
+
+.btn-submit:hover {
+    background: #0d3a0d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 73, 17, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .header {
+        padding: 20px;
+    }
+    
+    .header h3 {
+        font-size: 1.25rem;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+    
+    .image-upload-section {
+        padding: 16px;
+    }
+    
+    .image-preview {
+        height: 200px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .input-box {
+        flex: 1 1 100%;
+    }
+    
+    .datetime-inputs {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .form-actions {
+        padding: 16px 20px;
+        flex-direction: column;
+    }
+    
+    .btn-cancel,
+    .btn-submit {
+        width: 100%;
+    }
+}
+
 
 
 

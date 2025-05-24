@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+// Debug output
+error_log("4_Event.php accessed");
+error_log("Session data: " . print_r($_SESSION, true));
+
+// Strict session check - must have all required variables and they must not be empty
+if (!isset($_SESSION['email']) || !isset($_SESSION['student_id']) || !isset($_SESSION['role']) ||
+    empty($_SESSION['email']) || empty($_SESSION['student_id']) || empty($_SESSION['role'])) {
+    
+    error_log("Session check failed - missing or empty session variables");
+    // Clear session and redirect to login
+    session_unset();
+    session_destroy();
+    header("Location: 1_Login.php");
+    exit();
+}
+
+// Verify role is valid
+$allowed_roles = ['coordinator'];
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    error_log("Invalid role access attempt: " . $_SESSION['role']);
+    session_unset();
+    session_destroy();
+    header("Location: 1_Login.php");
+    exit();
+}
+
+// Log the role for debugging
+error_log("User role: " . $_SESSION['role']);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,15 +46,13 @@
         <div class="tab-container">
             <div class="menu-items">
                 <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-                <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
-                <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+                <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+                <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+                <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+                <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             </div>
             <div class="logout">
-                <a href=""> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="image-background">
@@ -35,9 +65,7 @@
             </div>
             </div>
         </div>
-        
         <div class="main-content">
-    
             <div class="first-page">
             <!-- The Event List. The compilation of events, sort to newest to latest -->
             <div class="event-details">
@@ -81,7 +109,7 @@
                             echo "<div class='event-box-details' onclick='window.location.href=\"11_Attendance.php?event=" . $eventNumber . "\"' style='cursor: pointer;'>";
                             echo "  <div class='floating-card'>";
                             echo "      <div class='event-container'>";
-                            echo "          <img src='../images-icon/plm_courtyard.png' alt='Event Background' class='eventbg' />";
+                            echo "          <img src='../" . htmlspecialchars($row['file']) . "' onerror=\"this.src='../images-icon/plm_courtyard.png'\" alt='Event Background' class='eventbg' />";
                             echo "          <div class = 'event-date'>   ";
                             echo "              <p class='day'>" .$dateOnly. "</p>";
                             echo "              <p class='time'>" .$dateTimeStart. "</p>";

@@ -47,6 +47,7 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .filter-btn {
@@ -56,6 +57,9 @@
     background: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .filter-btn:hover {
@@ -66,6 +70,22 @@
     background: #007bff;
     color: white;
     border-color: #007bff;
+}
+
+.filter-btn.btn-import {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+    margin-left: auto;
+}
+
+.filter-btn.btn-import:hover {
+    background: #218838;
+    border-color: #218838;
+}
+
+.filter-btn.btn-import i {
+    font-size: 14px;
 }
 
 .status-select {
