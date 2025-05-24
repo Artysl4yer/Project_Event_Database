@@ -22,6 +22,27 @@ try {
     $status = isset($_POST['event-status']) ? $conn->real_escape_string($_POST['event-status']) : 'Ongoing';
     $code = isset($_POST['code']) ? $conn->real_escape_string($_POST['code']) : '';
 
+    // Handle image upload
+    $file = '../images-icon/plm_courtyard.png'; // Default image
+    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = '../images-icon/events/';
+        if (!file_exists($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        $file_extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+        $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (in_array($file_extension, $allowed_extensions)) {
+            $new_filename = uniqid('event_') . '.' . $file_extension;
+            $upload_path = $upload_dir . $new_filename;
+
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $upload_path)) {
+                $file = 'images-icon/events/' . $new_filename;
+            }
+        }
+    }
+
     // Validate required fields
     $required_fields = [
         'event-title' => $event_title,
@@ -56,18 +77,18 @@ try {
     $merge_start = $merge_start->format('Y-m-d H:i:s');
     $merge_end = $merge_end->format('Y-m-d H:i:s');
 
-    // Insert event
+    // Insert event with image
     $stmt = $conn->prepare("INSERT INTO event_table (
         event_title, event_code, event_location, 
         date_start, event_start, date_end, event_end, 
-        event_description, organization, event_status
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        event_description, organization, event_status, file
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         throw new Exception("Database error: " . $conn->error);
     }
 
-    $stmt->bind_param("ssssssssss", 
+    $stmt->bind_param("sssssssssss", 
         $event_title, 
         $code, 
         $event_location, 
@@ -77,7 +98,8 @@ try {
         $merge_end, 
         $event_description, 
         $organization, 
-        $status
+        $status,
+        $file
     );
 
     if (!$stmt->execute()) {
