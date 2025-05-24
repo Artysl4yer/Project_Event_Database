@@ -168,19 +168,49 @@ class EventEditor {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
-            const result = await response.text();
-            
-            // Check if the response contains HTML (error page)
-            if (result.includes('<!DOCTYPE html>')) {
-                throw new Error('Server returned an error page');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+
+            const result = await response.json();
             
-            // Redirect on success
-            window.location.href = '../pages/6_NewEvent.php?success=true';
+            if (result.success) {
+                // Show success message
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'success-message';
+                messageDiv.textContent = result.message;
+                form.parentNode.insertBefore(messageDiv, form.nextSibling);
+                
+                // Close modal after a short delay
+                setTimeout(() => {
+                    this.closeModal();
+                    window.location.reload();
+                }, 1500);
+            } else {
+                // Show error message
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'error-message';
+                messageDiv.textContent = result.message || 'Error saving event. Please try again.';
+                form.parentNode.insertBefore(messageDiv, form.nextSibling);
+                
+                // Remove message after 3 seconds
+                setTimeout(() => {
+                    messageDiv.remove();
+                }, 3000);
+            }
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert('Error saving event. Please try again.');
+            
+            // Show error message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'error-message';
+            messageDiv.textContent = 'Error saving event. Please try again.';
+            form.parentNode.insertBefore(messageDiv, form.nextSibling);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
         }
     }
 }

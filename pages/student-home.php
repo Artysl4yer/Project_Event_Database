@@ -47,9 +47,10 @@ error_log("Student Course: " . $student_course);
         </div>
         <div class="tab-container">
             <div class="menu-items">
-                <a href="../pages/student-profile.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Profile </span> </a>
+                <a href="../pages/student-profile.php"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Profile </span> </a>
                 <a href="../pages/student-home.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="../pages/5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+                <a href="../pages/student-attendance.php"> <i class="fa-solid fa-qrcode"></i> <span class="label"> Scan QR </span> </a>
+                <a href="../pages/5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
             </div>
             <div class="logout">
                 <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
@@ -97,8 +98,8 @@ error_log("Student Course: " . $student_course);
                             $stmt->bind_param("sssss", $search_param, $search_param, $search_param, $search_param, $student_course);
                         } else {
                             $query = "SELECT * FROM event_table 
-                                     WHERE organization = ? OR organization = 'All Courses'
-                                     ORDER BY number DESC";
+                                        WHERE organization = ? OR organization = 'All Courses'
+                                        ORDER BY number DESC";
                             $stmt = $conn->prepare($query);
                             $stmt->bind_param("s", $student_course);
                         }
@@ -109,27 +110,35 @@ error_log("Student Course: " . $student_course);
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
-                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+                                $dateTimeStart = (new DateTime($row['event_start']))->format('H:i');
                                 
                                 echo "<div class='event-box-details'>";
                                 echo "  <div class='floating-card'>";
                                 echo "      <div class='event-date'>";
-                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' alt='Event Background' class='eventbg' />";
-                                echo "          <p class='day'>" .$dateOnly. "</p>";
-                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
+                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' onerror=\"this.src='../images-icon/plm_courtyard.png'\" alt='Event Background' class='eventbg' />";
+                                echo "          <div class='date-overlay'>";
+                                echo "              <p class='day'>" . $dateOnly . "</p>";
+                                echo "              <p class='time'>" . $dateTimeStart . "</p>";
+                                echo "          </div>";
                                 echo "      </div>";
                                 echo "      <div class='event-description'>";
-                                echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
-                                echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                                echo "          <h3>" . htmlspecialchars($row['event_title']) . "</h3>";
+                                echo "          <p>" . htmlspecialchars($row['event_description']) . "</p>";
                                 echo "      </div>";
                                 echo "      <div class='status'>";
-                                echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
+                                echo "          <p>Status: <b>" . htmlspecialchars($row['event_status']) . "</b></p>";
+                                echo "          <p>Event Code: <b>" . htmlspecialchars($row['event_code']) . "</b></p>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "  <div class='even-more-details'>";
                                 echo "      <div class='event-box-row'>";
-                                echo "          <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
-                                echo "          <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                                echo "          <p>Location: <b>" . htmlspecialchars($row['event_location']) . "</b></p>";
+                                echo "          <p>Organization: <b>" . htmlspecialchars($row['organization']) . "</b></p>";
+                                echo "      </div>";
+                                echo "      <div class='event-actions'>";
+                                echo "          <a href='event-survey.php?event=" . $row['number'] . "' class='survey-btn'>";
+                                echo "              <i class='fas fa-star'></i> Rate Event";
+                                echo "          </a>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "</div>";

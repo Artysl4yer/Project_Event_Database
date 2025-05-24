@@ -29,8 +29,13 @@
                     </div>
 
                     <div class="input-box">
-                        <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="Name" required>
+                        <label for="firstname">First Name:</label>
+                        <input type="text" id="firstname" name="FirstName" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" id="lastname" name="LastName" required>
                     </div>
 
                     <div class="input-box">

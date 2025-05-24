@@ -15,7 +15,7 @@ set_error_handler('handleError');
 try {
     if (isset($_POST['register']) && ($_POST['register'] === '1' || $_POST['register'] === 'Register')) {
         // Validate required fields
-        $required_fields = ['name', 'student_id', 'email', 'password'];
+        $required_fields = ['firstname', 'lastname', 'student_id', 'email', 'password'];
         foreach ($required_fields as $field) {
             if (!isset($_POST[$field]) || empty($_POST[$field])) {
                 echo json_encode(['success' => false, 'message' => 'All fields are required.']);
@@ -23,7 +23,8 @@ try {
             }
         }
 
-        $name = $_POST['name'];
+        // Combine first and last name
+        $name = trim($_POST['firstname']) . ' ' . trim($_POST['lastname']);
         $student_id = str_replace('-', '', $_POST['student_id']);
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);

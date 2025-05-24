@@ -73,14 +73,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $value = $_POST['value'] ?? '';
 
     // Basic validation for allowed fields to update
-    $allowed_fields = ['student_id', 'name', 'email', 'course', 'year', 'password'];
+    $allowed_fields = ['student_id', 'firstname', 'lastname', 'email', 'course', 'year', 'password'];
     if (in_array($field, $allowed_fields)) {
         if ($field === 'password') {
             $value = password_hash($value, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $value, $student_id);
+            $stmt->execute();
+        } else if ($field === 'firstname' || $field === 'lastname') {
+            // Get current name parts
+            $stmt = $conn->prepare("SELECT name FROM users WHERE student_id = ?");
+            $stmt->bind_param("s", $student_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user_data = $result->fetch_assoc();
+            $name_parts = explode(' ', $user_data['name'], 2);
+            
+            // Update the appropriate part
+            if ($field === 'firstname') {
+                $new_name = $value . ' ' . ($name_parts[1] ?? '');
+            } else {
+                $new_name = ($name_parts[0] ?? '') . ' ' . $value;
+            }
+            
+            $stmt = $conn->prepare("UPDATE users SET name = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $new_name, $student_id);
+            $stmt->execute();
+        } else {
+            $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
+            $stmt->bind_param("ss", $value, $student_id);
+            $stmt->execute();
         }
-        $stmt = $conn->prepare("UPDATE users SET $field = ? WHERE student_id = ?");
-        $stmt->bind_param("ss", $value, $student_id);
-        $stmt->execute();
 
         // Refresh $user data after update
         $stmt = $conn->prepare("SELECT * FROM users WHERE student_id = ?");
@@ -114,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="menu-items">
             <a href="../pages/student-profile.php" class="active"><i class="fa-regular fa-circle-user"></i><span class="label"> Profile </span></a>
             <a href="../pages/student-home.php" class="active"><i class="fa-solid fa-home"></i><span class="label"> Home </span></a>
+            <a href="../pages/student-attendance.php"> <i class="fa-solid fa-qrcode"></i> <span class="label"> Scan QR </span> </a>
             <a href="../pages/5_About.php" class="active"><i class="fa-solid fa-circle-info"></i><span class="label"> About </span></a>
         </div>
         <div class="logout">
@@ -152,10 +176,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </span>
             </div>
             <div class="detail-row">
-                <span>Name</span>
+                <span>First Name</span>
                 <span class="value">
-                    <?= htmlspecialchars($user['name']) ?>
-                    <a href="javascript:void(0)" onclick="openModal('name', '<?= htmlspecialchars(addslashes($user['name'])) ?>')">
+                    <?php 
+                    $name_parts = explode(' ', $user['name'], 2);
+                    $firstname = $name_parts[0] ?? '';
+                    echo htmlspecialchars($firstname);
+                    ?>
+                    <a href="javascript:void(0)" onclick="openModal('firstname', '<?= htmlspecialchars(addslashes($firstname)) ?>')">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </span>
+            </div>
+            <div class="detail-row">
+                <span>Last Name</span>
+                <span class="value">
+                    <?php 
+                    $lastname = $name_parts[1] ?? '';
+                    echo htmlspecialchars($lastname);
+                    ?>
+                    <a href="javascript:void(0)" onclick="openModal('lastname', '<?= htmlspecialchars(addslashes($lastname)) ?>')">
                         <i class="fas fa-edit"></i> Edit
                     </a>
                 </span>
@@ -208,29 +248,132 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Edit Modal -->
     <div id="edit-profile" class="modal">
         <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
             <h4>Edit <span id="modalFieldName"></span></h4>
             <form id="editForm" method="POST" action="">
                 <input type="hidden" name="field" id="fieldInput">
-                <div id="valueInputContainer">
+                <div id="valueInputContainer" class="form-group">
                     <input type="text" name="value" id="valueInput" required>
                 </div>
+                <div id="password-confirm-container" style="display: none;" class="form-group">
+                    <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password">
+                    <span id="password-match" class="validation-message"></span>
+                </div>
                 <div class="button-group">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary" id="saveButton">Save Changes</button>
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .validation-message {
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .validation-message.error {
+        color: #dc3545;
+    }
+
+    .validation-message.success {
+        color: #28a745;
+    }
+    </style>
+
     <script>
     function openModal(field, currentValue) {
-        document.getElementById('modalFieldName').innerText = field.replace('_', ' ').charAt(0).toUpperCase() + field.slice(1);
+        const fieldDisplayNames = {
+            'student_id': 'Student ID',
+            'firstname': 'First Name',
+            'lastname': 'Last Name',
+            'email': 'Email',
+            'course': 'Course',
+            'year': 'Year Level',
+            'password': 'Password'
+        };
+        
+        document.getElementById('modalFieldName').innerText = fieldDisplayNames[field] || field.replace('_', ' ').charAt(0).toUpperCase() + field.slice(1);
         document.getElementById('fieldInput').value = field;
-        
         const valueInputContainer = document.getElementById('valueInputContainer');
+        const passwordConfirmContainer = document.getElementById('password-confirm-container');
         
+        // Reset form
+        document.getElementById('editForm').reset();
+        passwordConfirmContainer.style.display = 'none';
+        
+        // Configure input based on field type
         if(field === 'course') {
-            // Create select element for courses
             const selectHtml = `
                 <select name="value" id="valueInput" required class="form-select">
                     <option value="">Select a Course</option>
@@ -241,9 +384,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             `;
             valueInputContainer.innerHTML = selectHtml;
+        } else if(field === 'year') {
+            const selectHtml = `
+                <select name="value" id="valueInput" required class="form-select">
+                    <option value="">Select Year Level</option>
+                    <option value="1" ${currentValue === '1' ? 'selected' : ''}>1st Year</option>
+                    <option value="2" ${currentValue === '2' ? 'selected' : ''}>2nd Year</option>
+                    <option value="3" ${currentValue === '3' ? 'selected' : ''}>3rd Year</option>
+                    <option value="4" ${currentValue === '4' ? 'selected' : ''}>4th Year</option>
+                </select>
+            `;
+            valueInputContainer.innerHTML = selectHtml;
         } else if(field === 'password') {
-            valueInputContainer.innerHTML = '<input type="password" name="value" id="valueInput" required>';
-            document.getElementById('valueInput').value = '';
+            valueInputContainer.innerHTML = '<input type="password" name="value" id="valueInput" placeholder="New Password" required>';
+            passwordConfirmContainer.style.display = 'block';
+            
+            // Add password validation
+            const passwordInput = document.getElementById('valueInput');
+            const confirmInput = document.getElementById('confirmPassword');
+            const saveButton = document.getElementById('saveButton');
+            
+            function validatePasswords() {
+                const passwordMatch = document.getElementById('password-match');
+                if(confirmInput.value && passwordInput.value !== confirmInput.value) {
+                    passwordMatch.textContent = 'Passwords do not match';
+                    passwordMatch.className = 'validation-message error';
+                    saveButton.disabled = true;
+                } else if(confirmInput.value) {
+                    passwordMatch.textContent = 'Passwords match';
+                    passwordMatch.className = 'validation-message success';
+                    saveButton.disabled = false;
+                } else {
+                    passwordMatch.textContent = '';
+                    saveButton.disabled = false;
+                }
+            }
+            
+            passwordInput.addEventListener('input', validatePasswords);
+            confirmInput.addEventListener('input', validatePasswords);
+        } else if(field === 'email') {
+            valueInputContainer.innerHTML = '<input type="email" name="value" id="valueInput" required>';
+            document.getElementById('valueInput').value = currentValue;
         } else {
             valueInputContainer.innerHTML = '<input type="text" name="value" id="valueInput" required>';
             document.getElementById('valueInput').value = currentValue;
@@ -254,6 +435,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     function closeModal() {
         document.getElementById('edit-profile').style.display = 'none';
+        // Reset validation messages
+        const validationMessages = document.getElementsByClassName('validation-message');
+        Array.from(validationMessages).forEach(msg => msg.textContent = '');
     }
 
     function uploadProfileImage(input) {
@@ -272,6 +456,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         }
     }
+
+    // Form validation before submit
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+        const field = document.getElementById('fieldInput').value;
+        const value = document.getElementById('valueInput').value;
+        
+        if(field === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(value)) {
+                e.preventDefault();
+                alert('Please enter a valid email address');
+                return;
+            }
+        } else if(field === 'student_id') {
+            const studentIdRegex = /^\d{8}$/;
+            if(!studentIdRegex.test(value)) {
+                e.preventDefault();
+                alert('Student ID must be 8 digits');
+                return;
+            }
+        }
+    });
     </script>
 </body>
 </html>
