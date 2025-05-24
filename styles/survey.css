@@ -1,0 +1,268 @@
+.main-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.survey-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.event-info {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.event-info h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.event-description {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.survey-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.rating-group {
+    display: grid;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.rating-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.rating-item:hover {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rating-item label {
+    display: block;
+    color: #495057;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    cursor: pointer;
+    font-size: 24px;
+    color: #ddd;
+    transition: all 0.2s ease;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffc107;
+}
+
+.star-rating label.hover {
+    color: #ffc107;
+}
+
+.feedback-group {
+    margin-bottom: 30px;
+}
+
+.feedback-group label {
+    display: block;
+    color: #495057;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.feedback-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.feedback-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.submit-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
+    min-width: 200px;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.survey-submitted {
+    text-align: center;
+    padding: 30px;
+}
+
+.success-message {
+    margin-bottom: 30px;
+}
+
+.success-message i {
+    font-size: 48px;
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.success-message h3 {
+    color: #28a745;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.previous-responses {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.rating-summary {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.stars i {
+    color: #ddd;
+    font-size: 18px;
+}
+
+.stars i.active {
+    color: #ffc107;
+}
+
+.feedback-text {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.feedback-text h4 {
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.feedback-text p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.error-message {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message p {
+    color: #dc3545;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.rating-item.error {
+    border: 2px solid #dc3545;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 10px;
+    }
+
+    .survey-container {
+        padding: 20px;
+    }
+
+    .rating-group {
+        gap: 15px;
+    }
+
+    .star-rating label {
+        font-size: 20px;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+} 
