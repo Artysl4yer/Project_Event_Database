@@ -28,3 +28,12 @@ foreach ($tables as $table) {
     }
 }
 
+// Add file column if it doesn't exist
+$check_column = $conn->query("SHOW COLUMNS FROM event_table LIKE 'file'");
+if ($check_column->num_rows == 0) {
+    $alter_query = "ALTER TABLE event_table ADD COLUMN file VARCHAR(255) DEFAULT '../images-icon/plm_courtyard.png'";
+    if (!$conn->query($alter_query)) {
+        die("Error adding file column: " . $conn->error);
+    }
+}
+

@@ -7,8 +7,8 @@ if (!isset($_GET['id'])) {
 
 $event_id = $_GET['id'];
 
-// Get event details including event_code
-$stmt = $conn->prepare("SELECT number, event_title, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status, event_code FROM event_table WHERE number = ?");
+// Get event details including event_code and file
+$stmt = $conn->prepare("SELECT number, event_title, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status, event_code, file FROM event_table WHERE number = ?");
 $stmt->bind_param("i", $event_id);
 $stmt->execute();
 $result = $stmt->get_result();
