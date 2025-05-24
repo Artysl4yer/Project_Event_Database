@@ -24,6 +24,6 @@ if (isset($_COOKIE)) {
 }
 
 // Redirect to login page
-header("Location: ../pages/1_Login.php");
+header("Location: ../pages/Login_v1.php");
 exit();
 ?>

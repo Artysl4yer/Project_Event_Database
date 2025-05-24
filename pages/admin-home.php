@@ -2,11 +2,6 @@
 session_start();
 include '../php/conn.php';
 
-// Check student id and email
-if (!isset($_SESSION['email']) || !isset($_SESSION['student_id'])) {
-    header("Location: ../pages/1_Login.php");
-    exit();
-}
 
 include '../php/conn.php';
 
@@ -56,6 +51,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
+// Check email, student_id, and role
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+
+// Allowed roles
+$allowed_roles = ['student', 'coordinator', 'admin'];
+
+if (!in_array($_SESSION['role'], $allowed_roles)) {
+    header("Location: ../pages/Login_v1.php");
+    exit();
+}
+
 // Get any error messages
 $error_msg = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 unset($_SESSION['error']); // Clear the error message after getting it
@@ -79,15 +88,12 @@ unset($_SESSION['error']); // Clear the error message after getting it
     </div>
             <div class="tab-container">
                 <div class="menu-items">
-            <a href="admin-home.php" class="active"> <i class="fa-solid fa-users-gear"></i> <span class="label"> User Management </span> </a>
-            <a href="4_Event.php"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-            <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-            <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-            <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
-            <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+                    <a href="admin-home.php" class="active"> <i class="fa-solid fa-users-gear"></i> <span class="label">User Manage</span> </a>
+                    <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
                 </div>
                 <div class="logout">
-            <a href="../php/1logout.php"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
+            <a href="../php/1logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+
         </div>
     </div>
 
