@@ -1,0 +1,1115 @@
+[23-May-2025 19:47:49 Europe/Berlin] Raw POST data: event_id=47&qr_data%5Bfull_name%5D=MADI%2C+JAMERONE+O.&qr_data%5Bstudent_id%5D=23-00239&qr_data%5Bcourse%5D=BSIT
+[23-May-2025 19:47:49 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 47
+    [qr_data] => Array
+        (
+            [full_name] => MADI, JAMERONE O.
+            [student_id] => 23-00239
+            [course] => BSIT
+        )
+
+)
+
+[23-May-2025 19:47:49 Europe/Berlin] PHP Warning:  Array to string conversion in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 49
+[23-May-2025 19:47:49 Europe/Berlin] Processing attendance for event 47 with data: Array
+[23-May-2025 19:47:49 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: trim(): Argument #1 ($string) must be of type string, array given in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php:52
+Stack trace:
+#0 D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php(52): trim(Array)
+#1 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 52
+[23-May-2025 19:47:53 Europe/Berlin] Raw POST data: event_id=47&qr_data%5Bfull_name%5D=MADI%2C+JAMERONE+O.&qr_data%5Bstudent_id%5D=23-00239&qr_data%5Bcourse%5D=BSIT
+[23-May-2025 19:47:53 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 47
+    [qr_data] => Array
+        (
+            [full_name] => MADI, JAMERONE O.
+            [student_id] => 23-00239
+            [course] => BSIT
+        )
+
+)
+
+[23-May-2025 19:47:53 Europe/Berlin] PHP Warning:  Array to string conversion in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 49
+[23-May-2025 19:47:53 Europe/Berlin] Processing attendance for event 47 with data: Array
+[23-May-2025 19:47:53 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: trim(): Argument #1 ($string) must be of type string, array given in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php:52
+Stack trace:
+#0 D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php(52): trim(Array)
+#1 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 52
+[23-May-2025 19:48:06 Europe/Berlin] Raw POST data: event_id=47&qr_data%5Bfull_name%5D=MADI%2C+JAMERONE+O.&qr_data%5Bstudent_id%5D=23-00239&qr_data%5Bcourse%5D=BSIT
+[23-May-2025 19:48:06 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 47
+    [qr_data] => Array
+        (
+            [full_name] => MADI, JAMERONE O.
+            [student_id] => 23-00239
+            [course] => BSIT
+        )
+
+)
+
+[23-May-2025 19:48:06 Europe/Berlin] PHP Warning:  Array to string conversion in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 49
+[23-May-2025 19:48:06 Europe/Berlin] Processing attendance for event 47 with data: Array
+[23-May-2025 19:48:06 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: trim(): Argument #1 ($string) must be of type string, array given in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php:52
+Stack trace:
+#0 D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php(52): trim(Array)
+#1 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\php\process_attendance.php on line 52
+[23-May-2025 19:50:09 Europe/Berlin] Raw POST data: event_id=46&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:50:09 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 46
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:50:09 Europe/Berlin] Processing attendance for event 46 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:50:09 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:50:12 Europe/Berlin] Raw POST data: event_id=46&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:50:12 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 46
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:50:12 Europe/Berlin] Processing attendance for event 46 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:50:12 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:50:50 Europe/Berlin] Raw POST data: event_id=48&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:50:50 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 48
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:50:50 Europe/Berlin] Processing attendance for event 48 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:50:50 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:51:04 Europe/Berlin] Raw POST data: event_id=48&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:51:04 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 48
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:51:04 Europe/Berlin] Processing attendance for event 48 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:51:04 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:52:19 Europe/Berlin] Raw POST data: event_id=48&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:52:19 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 48
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:52:19 Europe/Berlin] Processing attendance for event 48 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:52:19 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:53:03 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:53:03 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:53:03 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:53:03 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:53:17 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:53:17 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:53:17 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:53:17 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:57:51 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:57:51 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:57:51 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:57:51 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:58:03 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:58:03 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:58:03 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:58:03 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:59:31 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:59:31 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:59:31 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:59:31 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:59:31 Europe/Berlin] Started transaction
+[23-May-2025 19:59:50 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:59:50 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:59:50 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:59:50 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:59:50 Europe/Berlin] Started transaction
+[23-May-2025 19:59:53 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 19:59:53 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 19:59:53 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 19:59:53 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 19:59:53 Europe/Berlin] Started transaction
+[23-May-2025 20:03:36 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:03:36 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:03:36 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:03:36 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:03:36 Europe/Berlin] Started transaction
+[23-May-2025 20:04:00 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:04:00 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:04:00 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:04:00 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:04:00 Europe/Berlin] Started transaction
+[23-May-2025 20:04:13 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:04:13 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:04:13 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:04:13 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:04:13 Europe/Berlin] Started transaction
+[23-May-2025 20:04:24 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:04:24 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:04:24 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:04:24 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:04:24 Europe/Berlin] Started transaction
+[23-May-2025 20:11:19 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:11:19 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:11:19 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:11:19 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:11:19 Europe/Berlin] Started transaction
+[23-May-2025 20:11:30 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:11:30 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:11:30 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:11:30 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:11:30 Europe/Berlin] Started transaction
+[23-May-2025 20:13:13 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:13:13 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:13:13 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:13:13 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:13:13 Europe/Berlin] Started transaction
+[23-May-2025 20:13:33 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:13:33 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:13:33 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:13:33 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:13:33 Europe/Berlin] Started transaction
+[23-May-2025 20:15:40 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:15:40 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:15:40 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:15:40 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:15:40 Europe/Berlin] Started transaction
+[23-May-2025 20:15:53 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:15:53 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:15:53 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:15:53 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:15:53 Europe/Berlin] Started transaction
+[23-May-2025 20:17:58 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:17:58 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:17:58 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:17:58 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:17:58 Europe/Berlin] Started transaction
+[23-May-2025 20:18:19 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:18:19 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:18:19 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:18:19 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:18:19 Europe/Berlin] Started transaction
+[23-May-2025 20:18:57 Europe/Berlin] Raw POST data: event_id=50&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:18:57 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 50
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:18:57 Europe/Berlin] Processing attendance for event 50 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:18:57 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:18:57 Europe/Berlin] Started transaction
+[23-May-2025 20:20:28 Europe/Berlin] Raw POST data: event_id=49&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:20:28 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:20:28 Europe/Berlin] Processing attendance for event 49 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:20:28 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:20:28 Europe/Berlin] Started transaction
+[23-May-2025 20:22:50 Europe/Berlin] Raw POST data: event_id=50&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[23-May-2025 20:22:50 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 50
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[23-May-2025 20:22:50 Europe/Berlin] Processing attendance for event 50 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[23-May-2025 20:22:50 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[23-May-2025 20:22:50 Europe/Berlin] Started transaction
+[23-May-2025 20:24:03 Europe/Berlin] Raw POST data: event_id=49&qr_data=BOLOTAOLO%2C+LARK+L.%0A23-00992%0ABSIT
+[23-May-2025 20:24:03 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 49
+    [qr_data] => BOLOTAOLO, LARK L.
+23-00992
+BSIT
+)
+
+[23-May-2025 20:24:03 Europe/Berlin] Processing attendance for event 49 with data: BOLOTAOLO, LARK L.
+23-00992
+BSIT
+[23-May-2025 20:24:03 Europe/Berlin] Parsed data - Name: BOLOTAOLO, LARK L., ID: 23-00992, Course: BSIT
+[23-May-2025 20:24:03 Europe/Berlin] Started transaction
+[24-May-2025 04:46:06 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 04:46:06 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 04:46:06 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 04:46:06 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 04:46:06 Europe/Berlin] Started transaction
+[24-May-2025 06:26:45 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 06:26:45 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 06:26:45 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 06:26:45 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 06:26:45 Europe/Berlin] Started transaction
+[24-May-2025 06:48:05 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 06:48:05 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 06:48:05 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 06:48:05 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 06:48:05 Europe/Berlin] Started transaction
+[24-May-2025 06:48:29 Europe/Berlin] Raw POST data: event_id=53&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 06:48:29 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 53
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 06:48:29 Europe/Berlin] Processing attendance for event 53 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 06:48:29 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 06:48:29 Europe/Berlin] Started transaction
+[24-May-2025 06:59:54 Europe/Berlin] Raw POST data: event_id=54&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 06:59:54 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 54
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 06:59:54 Europe/Berlin] Processing attendance for event 54 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 06:59:54 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 06:59:54 Europe/Berlin] Started transaction
+[24-May-2025 07:03:01 Europe/Berlin] Raw POST data: event_id=57&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:03:01 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 57
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:03:01 Europe/Berlin] Processing attendance for event 57 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:03:01 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:03:01 Europe/Berlin] Started transaction
+[24-May-2025 07:12:07 Europe/Berlin] Raw POST data: event_id=57&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:12:07 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 57
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:12:07 Europe/Berlin] Processing attendance for event 57 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:12:07 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:12:07 Europe/Berlin] Started transaction
+[24-May-2025 07:14:39 Europe/Berlin] Raw POST data: event_id=61&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:14:39 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 61
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:14:39 Europe/Berlin] Processing attendance for event 61 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:14:39 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:14:39 Europe/Berlin] Started transaction
+[24-May-2025 07:15:14 Europe/Berlin] Raw POST data: event_id=61&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 07:15:14 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 61
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 07:15:14 Europe/Berlin] Processing attendance for event 61 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 07:15:14 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 07:15:15 Europe/Berlin] Started transaction
+[24-May-2025 07:16:20 Europe/Berlin] Raw POST data: event_id=61&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:16:20 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 61
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:16:20 Europe/Berlin] Processing attendance for event 61 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:16:20 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:16:20 Europe/Berlin] Started transaction
+[24-May-2025 07:18:29 Europe/Berlin] Raw POST data: event_id=61&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 07:18:29 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 61
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 07:18:29 Europe/Berlin] Processing attendance for event 61 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 07:18:29 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 07:18:29 Europe/Berlin] Started transaction
+[24-May-2025 07:24:00 Europe/Berlin] Raw POST data: event_id=58&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 07:24:00 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 58
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 07:24:00 Europe/Berlin] Processing attendance for event 58 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 07:24:00 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 07:24:00 Europe/Berlin] Started transaction
+[24-May-2025 07:31:59 Europe/Berlin] Raw POST data: event_id=62&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 07:31:59 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 62
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 07:31:59 Europe/Berlin] Processing attendance for event 62 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 07:31:59 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 07:31:59 Europe/Berlin] Started transaction
+[24-May-2025 07:32:05 Europe/Berlin] Raw POST data: event_id=62&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:32:05 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 62
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:32:05 Europe/Berlin] Processing attendance for event 62 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:32:05 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:32:05 Europe/Berlin] Started transaction
+[24-May-2025 07:32:15 Europe/Berlin] Raw POST data: event_id=62&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 07:32:15 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 62
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 07:32:15 Europe/Berlin] Processing attendance for event 62 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 07:32:15 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 07:32:15 Europe/Berlin] Started transaction
+[24-May-2025 07:36:35 Europe/Berlin] Raw POST data: event_id=62&qr_data=PASION%2C+AHRON+JOHN+T.%0A23-00148%0ABSIT
+[24-May-2025 07:36:35 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 62
+    [qr_data] => PASION, AHRON JOHN T.
+23-00148
+BSIT
+)
+
+[24-May-2025 07:36:35 Europe/Berlin] Processing attendance for event 62 with data: PASION, AHRON JOHN T.
+23-00148
+BSIT
+[24-May-2025 07:36:35 Europe/Berlin] Parsed data - Name: PASION, AHRON JOHN T., ID: 23-00148, Course: BSIT
+[24-May-2025 07:36:35 Europe/Berlin] Started transaction
+[24-May-2025 07:37:38 Europe/Berlin] Raw POST data: event_id=63&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 07:37:38 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 63
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 07:37:38 Europe/Berlin] Processing attendance for event 63 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 07:37:38 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 07:37:39 Europe/Berlin] Started transaction
+[24-May-2025 07:37:49 Europe/Berlin] Raw POST data: event_id=63&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 07:37:49 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 63
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 07:37:49 Europe/Berlin] Processing attendance for event 63 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 07:37:49 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 07:37:49 Europe/Berlin] Started transaction
+[24-May-2025 07:37:57 Europe/Berlin] Raw POST data: event_id=63&qr_data=PASION%2C+AHRON+JOHN+T.%0A23-00148%0ABSIT
+[24-May-2025 07:37:57 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 63
+    [qr_data] => PASION, AHRON JOHN T.
+23-00148
+BSIT
+)
+
+[24-May-2025 07:37:57 Europe/Berlin] Processing attendance for event 63 with data: PASION, AHRON JOHN T.
+23-00148
+BSIT
+[24-May-2025 07:37:57 Europe/Berlin] Parsed data - Name: PASION, AHRON JOHN T., ID: 23-00148, Course: BSIT
+[24-May-2025 07:37:57 Europe/Berlin] Started transaction
+[24-May-2025 07:38:09 Europe/Berlin] Raw POST data: event_id=63&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 07:38:09 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 63
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 07:38:09 Europe/Berlin] Processing attendance for event 63 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 07:38:09 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 07:38:09 Europe/Berlin] Started transaction
+[24-May-2025 07:42:49 Europe/Berlin] Raw POST data: event_id=64&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 07:42:49 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 64
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 07:42:49 Europe/Berlin] Processing attendance for event 64 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 07:42:49 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 07:42:49 Europe/Berlin] Started transaction
+[24-May-2025 07:42:57 Europe/Berlin] Raw POST data: event_id=64&qr_data=PASION%2C+AHRON+JOHN+T.%0A23-00148%0ABSIT
+[24-May-2025 07:42:57 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 64
+    [qr_data] => PASION, AHRON JOHN T.
+23-00148
+BSIT
+)
+
+[24-May-2025 07:42:57 Europe/Berlin] Processing attendance for event 64 with data: PASION, AHRON JOHN T.
+23-00148
+BSIT
+[24-May-2025 07:42:57 Europe/Berlin] Parsed data - Name: PASION, AHRON JOHN T., ID: 23-00148, Course: BSIT
+[24-May-2025 07:42:57 Europe/Berlin] Started transaction
+[24-May-2025 07:43:05 Europe/Berlin] Raw POST data: event_id=64&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 07:43:05 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 64
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 07:43:05 Europe/Berlin] Processing attendance for event 64 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 07:43:05 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 07:43:05 Europe/Berlin] Started transaction
+[24-May-2025 07:44:09 Europe/Berlin] Raw POST data: event_id=64&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 07:44:09 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 64
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 07:44:09 Europe/Berlin] Processing attendance for event 64 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 07:44:09 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 07:44:09 Europe/Berlin] Started transaction
+[24-May-2025 08:07:52 Europe/Berlin] Raw POST data: event_id=66&qr_data=PASION%2C+AHRON+JOHN+T.%0A23-00148%0ABSIT
+[24-May-2025 08:07:52 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 66
+    [qr_data] => PASION, AHRON JOHN T.
+23-00148
+BSIT
+)
+
+[24-May-2025 08:07:52 Europe/Berlin] Processing attendance for event 66 with data: PASION, AHRON JOHN T.
+23-00148
+BSIT
+[24-May-2025 08:07:52 Europe/Berlin] Parsed data - Name: PASION, AHRON JOHN T., ID: 23-00148, Course: BSIT
+[24-May-2025 08:07:52 Europe/Berlin] Started transaction
+[24-May-2025 08:10:12 Europe/Berlin] Raw POST data: event_id=66&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 08:10:12 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 66
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 08:10:12 Europe/Berlin] Processing attendance for event 66 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 08:10:12 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 08:10:12 Europe/Berlin] Started transaction
+[24-May-2025 08:12:49 Europe/Berlin] Raw POST data: event_id=67&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 08:12:49 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 67
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 08:12:49 Europe/Berlin] Processing attendance for event 67 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 08:12:49 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 08:12:49 Europe/Berlin] Started transaction
+[24-May-2025 08:28:18 Europe/Berlin] Raw POST data: event_id=68&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[24-May-2025 08:28:18 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 68
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[24-May-2025 08:28:18 Europe/Berlin] Processing attendance for event 68 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[24-May-2025 08:28:18 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[24-May-2025 08:28:18 Europe/Berlin] Started transaction
+[24-May-2025 08:28:31 Europe/Berlin] Raw POST data: event_id=68&qr_data=ALAY%2C+DARRYL+JOHN+D.%0A23-01108%0ABSIT
+[24-May-2025 08:28:31 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 68
+    [qr_data] => ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+)
+
+[24-May-2025 08:28:31 Europe/Berlin] Processing attendance for event 68 with data: ALAY, DARRYL JOHN D.
+23-01108
+BSIT
+[24-May-2025 08:28:31 Europe/Berlin] Parsed data - Name: ALAY, DARRYL JOHN D., ID: 23-01108, Course: BSIT
+[24-May-2025 08:28:31 Europe/Berlin] Started transaction
+[24-May-2025 08:30:22 Europe/Berlin] Raw POST data: event_id=68&qr_data=CAJURAO%2C+ALEXANDER+JR%0A23-00228%0ABSIT
+[24-May-2025 08:30:22 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 68
+    [qr_data] => CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+)
+
+[24-May-2025 08:30:22 Europe/Berlin] Processing attendance for event 68 with data: CAJURAO, ALEXANDER JR
+23-00228
+BSIT
+[24-May-2025 08:30:22 Europe/Berlin] Parsed data - Name: CAJURAO, ALEXANDER JR, ID: 23-00228, Course: BSIT
+[24-May-2025 08:30:22 Europe/Berlin] Started transaction
+[24-May-2025 08:46:26 Europe/Berlin] Raw POST data: event_id=70&qr_data=JUMAO-AS%2C+SAMANTHA+O.%0A23-00268%0ABSIT
+[24-May-2025 08:46:26 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 70
+    [qr_data] => JUMAO-AS, SAMANTHA O.
+23-00268
+BSIT
+)
+
+[24-May-2025 08:46:26 Europe/Berlin] Processing attendance for event 70 with data: JUMAO-AS, SAMANTHA O.
+23-00268
+BSIT
+[24-May-2025 08:46:26 Europe/Berlin] Parsed data - Name: JUMAO-AS, SAMANTHA O., ID: 23-00268, Course: BSIT
+[24-May-2025 08:46:26 Europe/Berlin] Started transaction
+[26-May-2025 10:25:38 Europe/Berlin] Raw POST data: event_id=76&qr_data=BOLOTAOLO%2C+LARK+L.%0A23-00992%0ABSIT
+[26-May-2025 10:25:38 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 76
+    [qr_data] => BOLOTAOLO, LARK L.
+23-00992
+BSIT
+)
+
+[26-May-2025 10:25:38 Europe/Berlin] Processing attendance for event 76 with data: BOLOTAOLO, LARK L.
+23-00992
+BSIT
+[26-May-2025 10:25:38 Europe/Berlin] Parsed data - Name: BOLOTAOLO, LARK L., ID: 23-00992, Course: BSIT
+[26-May-2025 16:25:38 Asia/Manila] Started transaction
+[26-May-2025 10:33:24 Europe/Berlin] Raw POST data: event_id=76&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:33:24 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 76
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:33:24 Europe/Berlin] Processing attendance for event 76 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:33:24 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:33:24 Asia/Manila] Started transaction
+[26-May-2025 10:45:49 Europe/Berlin] Raw POST data: event_id=77&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:45:49 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 77
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:45:49 Europe/Berlin] Processing attendance for event 77 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:45:49 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:45:49 Asia/Manila] Started transaction
+[26-May-2025 10:48:37 Europe/Berlin] Raw POST data: event_id=78&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:48:37 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 78
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:48:37 Europe/Berlin] Processing attendance for event 78 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:48:37 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:48:37 Asia/Manila] Started transaction
+[26-May-2025 10:50:21 Europe/Berlin] Raw POST data: event_id=79&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:50:21 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 79
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:50:21 Europe/Berlin] Processing attendance for event 79 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:50:21 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:50:22 Asia/Manila] Started transaction
+[26-May-2025 10:53:25 Europe/Berlin] Raw POST data: event_id=79&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:53:25 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 79
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:53:25 Europe/Berlin] Processing attendance for event 79 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:53:25 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:53:25 Asia/Manila] Started transaction
+[26-May-2025 10:53:56 Europe/Berlin] Raw POST data: event_id=80&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:53:56 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 80
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:53:56 Europe/Berlin] Processing attendance for event 80 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:53:56 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:53:56 Asia/Manila] Started transaction
+[26-May-2025 10:57:54 Europe/Berlin] Raw POST data: event_id=81&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 10:57:54 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 81
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 10:57:54 Europe/Berlin] Processing attendance for event 81 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 10:57:54 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 16:57:54 Asia/Manila] Started transaction
+[26-May-2025 11:02:08 Europe/Berlin] Raw POST data: event_id=81&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 11:02:08 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 81
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 11:02:08 Europe/Berlin] Processing attendance for event 81 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 11:02:08 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 11:02:08 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 11:02:08 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 11:02:08 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 11:02:08 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 17:02:08 Asia/Manila] Started transaction
+[26-May-2025 11:04:51 Europe/Berlin] Raw POST data: event_id=82&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 11:04:51 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 82
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 11:04:51 Europe/Berlin] Processing attendance for event 82 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 11:04:51 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 11:04:51 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 11:04:51 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 11:04:51 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 11:04:51 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 17:04:51 Asia/Manila] Started transaction
+[26-May-2025 11:05:33 Europe/Berlin] Raw POST data: event_id=83&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 11:05:33 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 83
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 11:05:33 Europe/Berlin] Processing attendance for event 83 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 11:05:33 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 11:05:33 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 11:05:33 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 11:05:33 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 11:05:33 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 17:05:33 Asia/Manila] Started transaction
+[26-May-2025 11:06:03 Europe/Berlin] Raw POST data: event_id=84&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 11:06:03 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 84
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 11:06:03 Europe/Berlin] Processing attendance for event 84 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 11:06:03 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 11:06:03 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 11:06:03 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 11:06:03 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 11:06:03 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 17:06:03 Asia/Manila] Started transaction
+[26-May-2025 12:33:45 Europe/Berlin] Raw POST data: event_id=87&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 12:33:45 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 87
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 12:33:45 Europe/Berlin] Processing attendance for event 87 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 12:33:45 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 12:33:45 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 12:33:45 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 12:33:45 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 12:33:45 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 18:33:45 Asia/Manila] Started transaction
+[26-May-2025 14:39:45 Europe/Berlin] Raw POST data: event_id=88&qr_data=MADI%2C+JAMERONE+O.%0A23-00239%0ABSIT
+[26-May-2025 14:39:45 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 88
+    [qr_data] => MADI, JAMERONE O.
+23-00239
+BSIT
+)
+
+[26-May-2025 14:39:45 Europe/Berlin] Processing attendance for event 88 with data: MADI, JAMERONE O.
+23-00239
+BSIT
+[26-May-2025 14:39:45 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 14:39:45 Europe/Berlin] DEBUG - Full name: 'MADI, JAMERONE O.'
+[26-May-2025 14:39:45 Europe/Berlin] DEBUG - Student ID: '23-00239'
+[26-May-2025 14:39:45 Europe/Berlin] DEBUG - Course: 'BSIT'
+[26-May-2025 14:39:45 Europe/Berlin] Parsed data - Name: MADI, JAMERONE O., ID: 23-00239, Course: BSIT
+[26-May-2025 20:39:45 Asia/Manila] Started transaction
+[26-May-2025 14:40:02 Europe/Berlin] Raw POST data: event_id=88&qr_data=BERNAL%2C+GISELLE+G.%0A23-00662%0ABSBA
+[26-May-2025 14:40:02 Europe/Berlin] POST variables: Array
+(
+    [event_id] => 88
+    [qr_data] => BERNAL, GISELLE G.
+23-00662
+BSBA
+)
+
+[26-May-2025 14:40:02 Europe/Berlin] Processing attendance for event 88 with data: BERNAL, GISELLE G.
+23-00662
+BSBA
+[26-May-2025 14:40:02 Europe/Berlin] DEBUG - QR Code parsing:
+[26-May-2025 14:40:02 Europe/Berlin] DEBUG - Full name: 'BERNAL, GISELLE G.'
+[26-May-2025 14:40:02 Europe/Berlin] DEBUG - Student ID: '23-00662'
+[26-May-2025 14:40:02 Europe/Berlin] DEBUG - Course: 'BSBA'
+[26-May-2025 14:40:02 Europe/Berlin] Parsed data - Name: BERNAL, GISELLE G., ID: 23-00662, Course: BSBA
+[26-May-2025 20:40:02 Asia/Manila] Started transaction

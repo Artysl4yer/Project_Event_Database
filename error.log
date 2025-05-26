@@ -1,0 +1,196 @@
+[24-May-2025 10:20:29 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 29
+[24-May-2025 10:20:29 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 30
+[24-May-2025 10:20:29 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 31
+[24-May-2025 10:20:29 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:42
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 42
+[24-May-2025 10:21:40 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 29
+[24-May-2025 10:21:40 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 30
+[24-May-2025 10:21:40 Asia/Manila] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in D:\Project\Project_Event_Database\Project_Event_Database\config.php on line 31
+[24-May-2025 10:21:40 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:42
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 42
+[24-May-2025 10:24:56 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:42
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 42
+[24-May-2025 10:26:24 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:63
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 63
+[24-May-2025 10:29:02 Asia/Manila] Session data: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 1111111
+    [email] => lark@gmail.com
+    [role] => coordinator
+    [client_id] => 20
+)
+
+[24-May-2025 10:29:02 Asia/Manila] Config path: D:\Project\Project_Event_Database\Project_Event_Database\pages/../config.php
+[24-May-2025 10:29:02 Asia/Manila] Database connection: OK
+[24-May-2025 10:29:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:64
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 64
+[24-May-2025 10:31:02 Asia/Manila] Database connection successful
+[24-May-2025 10:31:02 Asia/Manila] Event table query successful
+[24-May-2025 10:31:02 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:80
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 80
+[24-May-2025 10:31:13 Asia/Manila] Database connection successful
+[24-May-2025 10:31:13 Asia/Manila] Event table query successful
+[24-May-2025 10:31:13 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:80
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 80
+[24-May-2025 10:32:45 Asia/Manila] Database connection successful
+[24-May-2025 10:32:45 Asia/Manila] Event table query successful
+[24-May-2025 10:32:45 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:80
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 80
+[24-May-2025 10:33:23 Asia/Manila] Database connection successful
+[24-May-2025 10:33:23 Asia/Manila] Event table query successful
+[24-May-2025 10:33:23 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:80
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 80
+[24-May-2025 10:34:03 Asia/Manila] Database connection successful
+[24-May-2025 10:34:03 Asia/Manila] Event table query successful
+[24-May-2025 10:34:03 Asia/Manila] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_URL" in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php:80
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 80
+[24-May-2025 10:35:24 Asia/Manila] Database connection successful
+[24-May-2025 10:35:24 Asia/Manila] Event table query successful
+[24-May-2025 10:35:46 Asia/Manila] Database connection successful
+[24-May-2025 10:35:46 Asia/Manila] Event table query successful
+[24-May-2025 10:38:10 Asia/Manila] Database connection successful
+[24-May-2025 10:38:10 Asia/Manila] Event table query successful
+[24-May-2025 10:43:27 Asia/Manila] Database connection successful
+[24-May-2025 10:43:27 Asia/Manila] Event table query successful
+[24-May-2025 10:43:27 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:25:10 Asia/Manila] Database connection successful
+[24-May-2025 12:25:10 Asia/Manila] Event table query successful
+[24-May-2025 12:25:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:25:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:25:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:17 Asia/Manila] Database connection successful
+[24-May-2025 12:27:17 Asia/Manila] Event table query successful
+[24-May-2025 12:27:17 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:17 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:17 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:54 Asia/Manila] Database connection successful
+[24-May-2025 12:27:54 Asia/Manila] Event table query successful
+[24-May-2025 12:27:54 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:54 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:27:54 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:46:46 Asia/Manila] Database connection successful
+[24-May-2025 12:46:46 Asia/Manila] Event table query successful
+[24-May-2025 12:46:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:46:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 12:46:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:38:44 Asia/Manila] Database connection successful
+[24-May-2025 13:38:44 Asia/Manila] Event table query successful
+[24-May-2025 13:38:44 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:38:44 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:38:44 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:40:11 Asia/Manila] Database connection successful
+[24-May-2025 13:40:11 Asia/Manila] Event table query successful
+[24-May-2025 13:40:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:40:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 13:40:11 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:33 Asia/Manila] Database connection successful
+[24-May-2025 14:05:33 Asia/Manila] Event table query successful
+[24-May-2025 14:05:33 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:33 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:33 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:50 Asia/Manila] Database connection successful
+[24-May-2025 14:05:50 Asia/Manila] Event table query successful
+[24-May-2025 14:05:50 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:50 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:05:50 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:08 Asia/Manila] Database connection successful
+[24-May-2025 14:20:08 Asia/Manila] Event table query successful
+[24-May-2025 14:20:08 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:08 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:08 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:31 Asia/Manila] Database connection successful
+[24-May-2025 14:20:31 Asia/Manila] Event table query successful
+[24-May-2025 14:20:31 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:31 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:20:31 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:23:24 Asia/Manila] Database connection successful
+[24-May-2025 14:23:24 Asia/Manila] Event table query successful
+[24-May-2025 14:23:24 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:23:24 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:23:24 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:26:49 Asia/Manila] Database connection successful
+[24-May-2025 14:26:49 Asia/Manila] Event table query successful
+[24-May-2025 14:26:49 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:26:49 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:26:49 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:35:25 Asia/Manila] Database connection successful
+[24-May-2025 14:35:25 Asia/Manila] Event table query successful
+[24-May-2025 14:35:25 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:35:25 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:35:25 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:36:26 Asia/Manila] Database connection successful
+[24-May-2025 14:36:26 Asia/Manila] Event table query successful
+[24-May-2025 14:36:26 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:36:26 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:36:26 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:41:01 Asia/Manila] Database connection successful
+[24-May-2025 14:41:01 Asia/Manila] Event table query successful
+[24-May-2025 14:41:01 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:41:01 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:41:01 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:42:05 Asia/Manila] Database connection successful
+[24-May-2025 14:42:05 Asia/Manila] Event table query successful
+[24-May-2025 14:42:05 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:42:05 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 14:42:05 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 15:12:57 Asia/Manila] Database connection successful
+[24-May-2025 15:12:57 Asia/Manila] Event table query successful
+[24-May-2025 15:12:57 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 15:12:57 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[24-May-2025 15:12:57 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:21:46 Asia/Manila] Database connection successful
+[26-May-2025 11:21:46 Asia/Manila] Event table query successful
+[26-May-2025 11:21:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:21:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:21:46 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:22:10 Asia/Manila] Database connection successful
+[26-May-2025 11:22:10 Asia/Manila] Event table query successful
+[26-May-2025 11:22:10 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:22:10 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 11:22:10 Asia/Manila] PHP Deprecated:  DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in D:\Project\Project_Event_Database\Project_Event_Database\pages\4_Event.php on line 165
+[26-May-2025 12:13:44 Asia/Manila] Database connection successful
+[26-May-2025 12:13:44 Asia/Manila] Event table query successful
+[26-May-2025 12:13:44 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 3
+[26-May-2025 12:13:44 Asia/Manila] PHP Warning:  Constant DB_USER already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 4
+[26-May-2025 12:13:44 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 5
+[26-May-2025 12:13:44 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 6
+[26-May-2025 12:13:44 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 10
+[26-May-2025 16:11:54 Asia/Manila] Database connection successful
+[26-May-2025 16:11:54 Asia/Manila] Event table query successful
+[26-May-2025 16:11:54 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 3
+[26-May-2025 16:11:54 Asia/Manila] PHP Warning:  Constant DB_USER already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 4
+[26-May-2025 16:11:54 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 5
+[26-May-2025 16:11:54 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 6
+[26-May-2025 16:11:54 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 10
+[26-May-2025 16:12:35 Asia/Manila] Database connection successful
+[26-May-2025 16:12:35 Asia/Manila] Event table query successful
+[26-May-2025 16:12:35 Asia/Manila] PHP Warning:  Constant DB_HOST already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 3
+[26-May-2025 16:12:35 Asia/Manila] PHP Warning:  Constant DB_USER already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 4
+[26-May-2025 16:12:35 Asia/Manila] PHP Warning:  Constant DB_PASS already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 5
+[26-May-2025 16:12:35 Asia/Manila] PHP Warning:  Constant DB_NAME already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 6
+[26-May-2025 16:12:35 Asia/Manila] PHP Warning:  Constant SITE_URL already defined in D:\Project\Project_Event_Database\Project_Event_Database\php\config.php on line 10
+[26-May-2025 16:13:13 Asia/Manila] Database connection successful
+[26-May-2025 16:13:13 Asia/Manila] Event table query successful
+[26-May-2025 16:21:30 Asia/Manila] Database connection successful
+[26-May-2025 16:21:30 Asia/Manila] Event table query successful
