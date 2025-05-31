@@ -1,55 +1,30 @@
 <?php
 session_start();
-include '../php/conn.php';
-
-// Check if user is logged in and has appropriate role
-if (!isset($_SESSION['email'], $_SESSION['role']) || !in_array($_SESSION['role'], ['admin', 'coordinator'])) {
-    header("Location: ../pages/1_Login.php");
+$role = $_SESSION['role'] ?? null;
+$page = basename($_SERVER['PHP_SELF']);
+$coordinator_allowed = [
+    '4_Event.php',
+    '5_About.php',
+    '6_NewEvent.php',
+    '8_archive.php',
+    '11_Attendance.php'
+];
+if (!$role) {
+    header("Location: 1_Login.php");
     exit();
 }
-
-// Get event details
-$event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
-$event_title = isset($_GET['event_title']) ? $_GET['event_title'] : null;
-
-if ($event_id) {
-    $sql = "SELECT * FROM event_table WHERE number = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $event_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $event = $result->fetch_assoc();
-        
-        // Format dates properly
-        $start_date = !empty($event['date_start']) ? date('F j, Y g:i A', strtotime($event['date_start'])) : 'Not set';
-        $end_date = !empty($event['date_end']) ? date('F j, Y g:i A', strtotime($event['date_end'])) : 'Not set';
-        
-        // Check if event is ongoing
-        $current_time = new DateTime('now', new DateTimeZone('Asia/Manila'));
-        $event_start = new DateTime($event['date_start'], new DateTimeZone('Asia/Manila'));
-        $event_end = new DateTime($event['date_end'], new DateTimeZone('Asia/Manila'));
-        
-        $is_ongoing = $current_time >= $event_start && $current_time <= $event_end;
-        $is_finished = $current_time > $event_end;
-        
-        // Update event status if needed
-        if ($is_ongoing && $event['event_status'] !== 'ongoing') {
-            $update_sql = "UPDATE event_table SET event_status = 'ongoing' WHERE number = ?";
-            $update_stmt = $conn->prepare($update_sql);
-            $update_stmt->bind_param("i", $event_id);
-            $update_stmt->execute();
-            $event['event_status'] = 'ongoing';
-        } elseif ($is_finished && $event['event_status'] !== 'completed') {
-            $update_sql = "UPDATE event_table SET event_status = 'completed' WHERE number = ?";
-            $update_stmt = $conn->prepare($update_sql);
-            $update_stmt->bind_param("i", $event_id);
-            $update_stmt->execute();
-            $event['event_status'] = 'completed';
-        }
+if ($role === 'admin') {
+    // allow
+} elseif ($role === 'coordinator') {
+    if (!in_array($page, $coordinator_allowed)) {
+        header("Location: 4_Event.php");
+        exit();
     }
+} else {
+    header("Location: 1_Login.php");
+    exit();
 }
+date_default_timezone_set('Asia/Manila'); // Set to your local timezone
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,11 +53,71 @@ if ($event_id) {
                 padding: 20px;
                 border: 2px solid #e0e0e0;
                 border-radius: 10px;
+                background: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-            #reader {
+            .manual-section h3 {
+                margin-bottom: 18px;
+                font-size: 1.2em;
+                font-weight: 600;
+            }
+            .manual-section form {
                 width: 100%;
                 max-width: 400px;
                 margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .form-group {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 0;
+            }
+            .form-group label {
+                font-weight: 500;
+                margin-bottom: 2px;
+            }
+            .form-group input,
+            .form-group select {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px 12px;
+                border: 1.5px solid #bdbdbd;
+                border-radius: 5px;
+                font-size: 1em;
+                background: #f9f9f9;
+                transition: border 0.2s;
+            }
+            .form-group input:focus,
+            .form-group select:focus {
+                border: 1.5px solid #4CAF50;
+                outline: none;
+                background: #fff;
+            }
+            .submit-btn, .generate-id-btn {
+                width: 80%;
+                min-width: 160px;
+                max-width: 250px;
+                align-self: center;
+                background: #4CAF50;
+                color: white;
+                padding: 12px 0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1.1em;
+                font-weight: 600;
+                margin-top: 8px;
+                transition: background 0.2s;
+            }
+            .submit-btn:hover, .generate-id-btn:hover {
+                background: #388e3c;
             }
             .preview-box {
                 display: none;
@@ -114,32 +149,6 @@ if ($event_id) {
                 background: #f8d7da;
                 color: #721c24;
                 border: 1px solid #f5c6cb;
-            }
-            .form-group {
-                margin-bottom: 15px;
-            }
-            .form-group label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-            }
-            .form-group input {
-                width: 100%;
-                padding: 8px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
-            .submit-btn {
-                background: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                width: 100%;
-            }
-            .submit-btn:hover {
-                background: #45a049;
             }
             .event-status {
                 margin: 20px 0;
@@ -201,6 +210,22 @@ if ($event_id) {
                 opacity: 0.6;
                 pointer-events: none;
             }
+            @media (max-width: 900px) {
+                .attendance-container {
+                    flex-direction: column;
+                }
+                .manual-section form {
+                    max-width: 100%;
+                }
+            }
+            @media (max-width: 700px) {
+                .manual-section form {
+                    gap: 12px;
+                }
+                .manual-section {
+                    padding: 10px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -209,44 +234,104 @@ if ($event_id) {
         </div>
         <div class="tab-container">
             <div class="menu-items">
-                <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
-                <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
-                <a href="10_Admin.php" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
-                <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
-                <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="admin-home.php" class="active"> <i class="fa-solid fa-users-gear"></i> <span class="label">User Manage</span> </a>
+                <a href="4_Event.php"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+                <a href="6_NewEvent.php"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+                <a href="7_StudentTable.php"> <i class="fa-solid fa-address-card"></i> <span class="label"> Students </span> </a>
+                <a href="guest-table.php"> <i class="fa-solid fa-users"></i> <span class="label"> Guests </span> </a>
+                <a href="5_About.php"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+                <a href="8_archive.php"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
             </div>
             <div class="logout">
-                <a href="../php/1logout.php" onclick="return confirm('Are you sure you want to logout?');"> <i class="fa-solid fa-right-from-bracket"></i> <span class="label"> Logout </span> </a>
+                <a href="../php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
             </div>
         </div>
         <div class="main-container">
             <?php
-                $event_number = $event['number'];
-                $is_registration_open = $event['registration_status'] === 'open';
+                include '../php/conn.php';
+                require_once '../php/update_event_status.php';
+                updateEventStatuses($conn);
+                $event_id = isset($_GET['event']) ? $_GET['event'] : null;
+                $event_title = isset($_GET['event_title']) ? urldecode($_GET['event_title']) : null;
+
+                if ($event_id !== null) {
+                    $event_query = "SELECT *, 
+                        TIMESTAMPDIFF(MINUTE, NOW(), event_start) as minutes_until_start,
+                        TIMESTAMPDIFF(MINUTE, NOW(), event_end) as minutes_until_end
+                        FROM event_table WHERE number = ?";
+                    $stmt = $conn->prepare($event_query);
+                    $stmt->bind_param("i", $event_id);
+                } else if ($event_title !== null) {
+                    $event_query = "SELECT *, 
+                        TIMESTAMPDIFF(MINUTE, NOW(), event_start) as minutes_until_start,
+                        TIMESTAMPDIFF(MINUTE, NOW(), event_end) as minutes_until_end
+                        FROM event_table WHERE event_title = ?";
+                    $stmt = $conn->prepare($event_query);
+                    $stmt->bind_param("s", $event_title);
+                } else {
+                    echo "<div class='error-message'>No event selected or event not found.</div>";
+                    exit;
+                }
+
+                $stmt->execute();
+                $event_result = $stmt->get_result();
+                $event_row = $event_result->fetch_assoc();
+
+                if (!$event_row) {
+                    echo "<div class='error-message'>No event selected or event not found.</div>";
+                    exit;
+                }
+
+                $event_number = $event_row['number'];
+                $now = new DateTime('now', new DateTimeZone('Asia/Manila'));
+                $registration_deadline = new DateTime($event_row['registration_deadline'], new DateTimeZone('Asia/Manila'));
+                $is_registration_open = strtolower(trim($event_row['registration_status'])) === 'open'
+                    && $now <= $registration_deadline;
                 $can_control_registration = isset($_SESSION['client_id']) && 
                     ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'coordinator');
+
+                $eventStart = new DateTime($event_row['event_start'], new DateTimeZone('Asia/Manila'));
+                $eventEnd = new DateTime($event_row['event_end'], new DateTimeZone('Asia/Manila'));
+                $canMarkAttendance = $is_registration_open
+                    && in_array($event_row['event_status'], ['scheduled', 'ongoing'])
+                    && $now >= $eventStart && $now <= $eventEnd;
             ?>
             <div class="attendance-top">
                 <div class="event-title">
-                    <h2>Event: <?php echo htmlspecialchars($event['event_title']); ?></h2>
+                    <h2>Event: <?php echo htmlspecialchars($event_row['event_title']); ?></h2>
                 </div>
                 
                 <div class="event-status">
                     <div>
-                        <span class="status-badge status-<?php echo $event['event_status']; ?>">
-                            <?php echo ucfirst($event['event_status']); ?>
+                        <span class="status-badge status-<?php echo $event_row['event_status']; ?>">
+                            <?php echo ucfirst($event_row['event_status']); ?>
                         </span>
-                        <span class="registration-status registration-<?php echo $event['registration_status']; ?>">
-                            Registration <?php echo ucfirst($event['registration_status']); ?>
+                        <span class="registration-status registration-<?php echo isset($event_row['registration_status']) && $event_row['registration_status'] ? $event_row['registration_status'] : 'unknown'; ?>">
+                            Registration <?php echo isset($event_row['registration_status']) && $event_row['registration_status'] ? ucfirst($event_row['registration_status']) : 'Unknown'; ?>
                         </span>
                     </div>
                     
                     <div class="event-time">
-                        <p>Start: <?php echo date('F j, Y g:i A', strtotime($event['date_start'])); ?></p>
-                        <p>End: <?php echo date('F j, Y g:i A', strtotime($event['date_end'])); ?></p>
-                        <?php if ($event['registration_deadline']): ?>
-                            <p>Registration Deadline: <?php echo date('F j, Y g:i A', strtotime($event['registration_deadline'])); ?></p>
-                        <?php endif; ?>
+                        <p>Start: 
+                        <?php
+                        if (!empty($event_row['event_start'])) {
+                            $start_time = new DateTime($event_row['event_start'], new DateTimeZone('Asia/Manila'));
+                            echo $start_time->format('F j, Y g:i A');
+                        } else {
+                            echo 'N/A';
+                        }
+                        ?>
+                        </p>
+                        <p>Registration Deadline: 
+                        <?php
+                        if (!empty($event_row['registration_deadline'])) {
+                            $deadline = new DateTime($event_row['registration_deadline'], new DateTimeZone('Asia/Manila'));
+                            echo $deadline->format('F j, Y g:i A');
+                        } else {
+                            echo 'N/A';
+                        }
+                        ?>
+                        </p>
                     </div>
                     
                     <?php if ($can_control_registration): ?>
@@ -264,7 +349,22 @@ if ($event_id) {
                     <?php endif; ?>
                 </div>
                 
-                <div class="attendance-container <?php echo !$is_registration_open ? 'disabled-section' : ''; ?>">
+                <div class="attendance-container <?php echo !$canMarkAttendance ? 'disabled-section' : ''; ?>">
+                    <?php if (!$canMarkAttendance): ?>
+                        <div class="error-message">
+                            <?php if (!$is_registration_open): ?>
+                                Registration is closed for this event.
+                            <?php elseif (!in_array($event_row['event_status'], ['scheduled', 'ongoing'])): ?>
+                                Attendance is not allowed. Event status: <?php echo htmlspecialchars($event_row['event_status']); ?>
+                            <?php elseif ($now < $eventStart): ?>
+                                Attendance is not allowed before the event starts.
+                            <?php elseif ($now > $eventEnd): ?>
+                                Attendance is not allowed after the event ends.
+                            <?php else: ?>
+                                Attendance is not allowed at this time.
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
                     <div class="scanner-section">
                         <h3><i class="fas fa-qrcode"></i> Scan QR Code</h3>
                         <div id="reader"></div>
@@ -290,6 +390,52 @@ if ($event_id) {
                             <button type="submit" class="submit-btn">Mark Attendance</button>
                         </form>
                     </div>
+
+                    <?php if ($event_row['organization'] === 'Open for All'): ?>
+                    <div class="manual-section">
+                        <h3><i class="fas fa-user-plus"></i> Register Guest</h3>
+                        <form id="guestForm">
+                            <div class="form-group">
+                                <label for="guestID">ID</label>
+                                <input type="text" id="guestID" name="ID" readonly required>
+                                <button type="button" class="generate-id-btn" onclick="generateGuestID()">Generate ID</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestFirstName">First Name</label>
+                                <input type="text" id="guestFirstName" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestLastName">Last Name</label>
+                                <input type="text" id="guestLastName" name="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestEmail">Email</label>
+                                <input type="email" id="guestEmail" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="guestGender">Gender</label>
+                                <select id="guestGender" name="Gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestAge">Age</label>
+                                <input type="number" id="guestAge" name="Age" min="1" max="120" required>
+                            </div>
+                            <button type="submit" class="submit-btn">Register & Mark Attendance</button>
+                        </form>
+                    </div>
+                    <script>
+                    function generateGuestID() {
+                        // Example: GUEST-XXXXX
+                        const id = 'GUEST-' + Math.floor(10000 + Math.random() * 90000);
+                        document.getElementById('guestID').value = id;
+                    }
+                    </script>
+                    <?php endif; ?>
+                    <?php endif; ?>
                 </div>
 
                 <div class="message" id="message"></div>
@@ -372,7 +518,7 @@ if ($event_id) {
 
             // Check Student Function
             function checkStudent(studentId) {
-                fetch(`../php/check_student.php?student_id=${studentId}`)
+                fetch(`../php/check_students.php?student_id=${studentId}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
@@ -401,11 +547,12 @@ if ($event_id) {
             // Process Attendance Function
             async function processAttendance(qrData) {
                 try {
-                    // Get event ID from PHP variable
-                    const eventId = <?php echo json_encode($event_id); ?>;
+                    // Get event ID from URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const eventId = urlParams.get('event');
                     
                     if (!eventId) {
-                        throw new Error('Event ID not found');
+                        throw new Error('Event ID not found in URL');
                     }
 
                     // Disable the scan button to prevent multiple submissions
@@ -533,25 +680,113 @@ if ($event_id) {
                 checkStudent(studentId);
             });
 
-            function toggleRegistration(status) {
+            function toggleRegistration(newStatus) {
+                // Use $event_row['number'] as it's reliably the event's primary key
+                const currentEventId = <?php echo json_encode($event_row['number']); ?>;
+
                 $.ajax({
                     url: '../php/update_registration_status.php',
                     method: 'POST',
                     data: {
-                        event_id: <?php echo $event_id; ?>,
-                        status: status
+                        event_id: currentEventId,
+                        status: newStatus
                     },
                     dataType: 'json',
                     success: function(response) {
                         showMessage(response.message, response.success);
                         if (response.success) {
-                            // Reload the page to update the status
+                            const attendanceContainer = document.querySelector('.attendance-container');
+                            const registrationStatusSpan = document.querySelector('.registration-status');
+                            const controlButtonContainer = document.querySelector('.control-buttons');
+
+                            if (newStatus === 'closed') {
+                                if (attendanceContainer) {
+                                    attendanceContainer.classList.add('disabled-section');
+                                }
+                                if (registrationStatusSpan) {
+                                    registrationStatusSpan.textContent = 'Registration Closed';
+                                    registrationStatusSpan.className = 'registration-status registration-closed';
+                                }
+                                if (controlButtonContainer) {
+                                    controlButtonContainer.innerHTML = `
+                                        <button class="control-btn open-registration" onclick="toggleRegistration('open')">
+                                            Open Registration
+                                        </button>
+                                    `;
+                                }
+                            } else { // newStatus === 'open'
+                                // For 'open', optimistically update text and button.
+                                // The 'disabled-section' removal is best handled by PHP on reload,
+                                // as $canMarkAttendance depends on multiple server-side conditions (event time, etc.).
+                                if (registrationStatusSpan) {
+                                    registrationStatusSpan.textContent = 'Registration Open';
+                                    registrationStatusSpan.className = 'registration-status registration-open';
+                                }
+                                if (controlButtonContainer) {
+                                    controlButtonContainer.innerHTML = `
+                                        <button class="control-btn close-registration" onclick="toggleRegistration('closed')">
+                                            Close Registration
+                                        </button>
+                                    `;
+                                }
+                            }
+                            // Reload the page to fully update based on PHP logic and ensure consistency
                             setTimeout(() => location.reload(), 1500);
                         }
                     },
                     error: function(xhr, status, error) {
                         showMessage('Error updating registration status: ' + error, false);
                     }
+                });
+            }
+
+            // Guest Registration Modal
+            function showGuestSuccessModal(guest) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guest Registered!',
+                    html: `<b>Name:</b> ${guest.first_name} ${guest.last_name}<br>` +
+                          `<b>ID:</b> ${guest.ID}<br>` +
+                          `<b>Email:</b> ${guest.email || 'N/A'}<br>` +
+                          `<b>Gender:</b> ${guest.Gender}<br>` +
+                          `<b>Age:</b> ${guest.Age}`,
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            }
+
+            // Modify guest form submit handler to show modal
+            const guestForm = document.getElementById('guestForm');
+            if (guestForm) {
+                guestForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    formData.append('event_id', <?= json_encode($event_row['number']) ?>);
+                    fetch('../php/register_guest.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show modal with guest details
+                            showGuestSuccessModal({
+                                first_name: document.getElementById('guestFirstName').value,
+                                last_name: document.getElementById('guestLastName').value,
+                                ID: document.getElementById('guestID').value,
+                                email: document.getElementById('guestEmail').value,
+                                Gender: document.getElementById('guestGender').value,
+                                Age: document.getElementById('guestAge').value
+                            });
+                            this.reset();
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: data.message || 'Guest registration failed.'
+                            });
+                        }
+                    });
                 });
             }
         </script>

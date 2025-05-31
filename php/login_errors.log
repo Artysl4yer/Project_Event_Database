@@ -354,3 +354,3001 @@
 
 [24-May-2025 06:25:08 Europe/Berlin] Redirecting to: ../pages/4_Event.php
 >>>>>>> e9fd5f301756a02e89a858c3f0be1961d09c72d0
+[24-May-2025 07:20:32 Europe/Berlin] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:20:32 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:20:32 Europe/Berlin] Processing login for identifier: 2312121
+[24-May-2025 07:20:32 Europe/Berlin] Query returned 1 rows
+[24-May-2025 07:20:32 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 07:20:32 Europe/Berlin] Password verified successfully
+[24-May-2025 07:20:32 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => coordinator
+    [client_id] => 8
+)
+
+[24-May-2025 07:20:32 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[24-May-2025 07:26:50 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:26:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function sendResponse() in C:\HTML src\src\Project_Event_Database\php\login_register.php:20
+Stack trace:
+#0 [internal function]: {closure}(Object(mysqli_sql_exception))
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\login_register.php on line 20
+[24-May-2025 07:26:55 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:26:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function sendResponse() in C:\HTML src\src\Project_Event_Database\php\login_register.php:20
+Stack trace:
+#0 [internal function]: {closure}(Object(mysqli_sql_exception))
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\login_register.php on line 20
+[24-May-2025 07:27:51 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:27:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function sendResponse() in C:\HTML src\src\Project_Event_Database\php\login_register.php:20
+Stack trace:
+#0 [internal function]: {closure}(Object(mysqli_sql_exception))
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\login_register.php on line 20
+[24-May-2025 07:28:28 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:28:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function sendResponse() in C:\HTML src\src\Project_Event_Database\php\login_register.php:20
+Stack trace:
+#0 [internal function]: {closure}(Object(mysqli_sql_exception))
+#1 {main}
+  thrown in C:\HTML src\src\Project_Event_Database\php\login_register.php on line 20
+[24-May-2025 07:29:17 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:30:02 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+[24-May-2025 07:42:49 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+Stack trace: #0 C:\HTML src\src\Project_Event_Database\php\conn.php(12): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\php\login_register.php(42): require_once('C:\\HTML src\\src...')
+#2 {main}
+[24-May-2025 07:44:25 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+Stack trace: #0 C:\HTML src\src\Project_Event_Database\php\conn.php(12): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\php\login_register.php(42): require_once('C:\\HTML src\\src...')
+#2 {main}
+[24-May-2025 07:47:10 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+Stack trace: #0 C:\HTML src\src\Project_Event_Database\php\conn.php(12): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\php\login_register.php(42): require_once('C:\\HTML src\\src...')
+#2 {main}
+[24-May-2025 07:47:39 Europe/Berlin] Uncaught Exception: Unknown database 'event_database'
+Stack trace: #0 C:\HTML src\src\Project_Event_Database\php\conn.php(12): mysqli->__construct('localhost', 'root', Object(SensitiveParameterValue), 'event_database')
+#1 C:\HTML src\src\Project_Event_Database\php\login_register.php(42): require_once('C:\\HTML src\\src...')
+#2 {main}
+[24-May-2025 07:51:26 Europe/Berlin] Login/Register request received: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:51:26 Europe/Berlin] Login attempt - POST data: Array
+(
+    [identifier] => 23-12121
+    [password] => dar
+    [login] => 1
+)
+
+[24-May-2025 07:51:26 Europe/Berlin] Processing login for identifier: 2312121
+[24-May-2025 07:51:26 Europe/Berlin] Query returned 1 rows
+[24-May-2025 07:51:26 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[24-May-2025 07:51:26 Europe/Berlin] Password verified successfully
+[24-May-2025 07:51:26 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => coordinator
+    [client_id] => 8
+)
+
+[24-May-2025 07:51:26 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[27-May-2025 17:56:15 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[27-May-2025 17:56:15 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[27-May-2025 17:56:15 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[27-May-2025 17:56:15 Europe/Berlin] Query returned 1 rows
+[27-May-2025 17:56:15 Europe/Berlin] Found user: Array
+(
+    [id] => 10
+    [name] => Lark L. Bolotoalo
+    [student_id] => 2311889
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$kSnuC2nAQETgeH/nlMNizOr88KHIHh9w4nLh4nU9HNy6/lW1aAUiO
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[27-May-2025 17:56:15 Europe/Berlin] Password verification failed
+[27-May-2025 17:56:15 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:45 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:45 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:45 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:45 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:45 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:51 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:51 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:51 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:51 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:51 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:51 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:51 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:51 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:51 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:51 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:52 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:52 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:52 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:52 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:52 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:52 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:58:52 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 17:58:52 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 17:58:52 Europe/Berlin] Query returned 0 rows
+[27-May-2025 17:58:52 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 17:59:08 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 2301108
+    [password] => dar
+)
+
+[27-May-2025 17:59:08 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 2301108
+    [password] => dar
+)
+
+[27-May-2025 17:59:08 Europe/Berlin] Processing login for identifier: 2301108
+[27-May-2025 17:59:08 Europe/Berlin] Query returned 1 rows
+[27-May-2025 17:59:08 Europe/Berlin] Found user: Array
+(
+    [id] => 6
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [password] => $2y$10$CWBSMFQM4yo2mCuUJ0YA0Og0Iky7Xdv8IxY5LqYHCLFdY61dwEa0i
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[27-May-2025 17:59:08 Europe/Berlin] Password verified successfully
+[27-May-2025 17:59:08 Europe/Berlin] Session variables set: Array
+(
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [role] => coordinator
+    [client_id] => 6
+)
+
+[27-May-2025 17:59:08 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[27-May-2025 18:20:26 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 18:20:26 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[27-May-2025 18:20:26 Europe/Berlin] Processing login for identifier: 23-12121
+[27-May-2025 18:20:26 Europe/Berlin] Query returned 0 rows
+[27-May-2025 18:20:26 Europe/Berlin] Login failed - Invalid credentials
+[27-May-2025 18:20:45 Europe/Berlin] Login/Register request received: Array
+(
+    [register] => 1
+    [firstname] => Lark
+    [lastname] => Bolotaolo
+    [student_id] => 23-00992
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[27-May-2025 18:21:04 Europe/Berlin] Login/Register request received: Array
+(
+    [register] => 1
+    [firstname] => Lark
+    [lastname] => Bolotaolo
+    [student_id] => 23-00992
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[27-May-2025 18:21:12 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:21:12 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:21:12 Europe/Berlin] Processing login for identifier: 23-00992
+[27-May-2025 18:21:12 Europe/Berlin] Query returned 1 rows
+[27-May-2025 18:21:12 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => 
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[27-May-2025 18:21:12 Europe/Berlin] Password verified successfully
+[27-May-2025 18:21:12 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => 
+    [client_id] => 11
+)
+
+[27-May-2025 18:21:12 Europe/Berlin] Redirecting to: ../pages/student-home.php
+[27-May-2025 18:21:48 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:21:48 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:21:48 Europe/Berlin] Processing login for identifier: 23-00992
+[27-May-2025 18:21:48 Europe/Berlin] Query returned 1 rows
+[27-May-2025 18:21:48 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[27-May-2025 18:21:49 Europe/Berlin] Password verified successfully
+[27-May-2025 18:21:49 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[27-May-2025 18:21:49 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[27-May-2025 18:26:12 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:26:12 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[27-May-2025 18:26:12 Europe/Berlin] Processing login for identifier: 23-00992
+[27-May-2025 18:26:12 Europe/Berlin] Query returned 1 rows
+[27-May-2025 18:26:12 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[27-May-2025 18:26:12 Europe/Berlin] Password verified successfully
+[27-May-2025 18:26:12 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[27-May-2025 18:26:12 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 07:58:38 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[28-May-2025 07:58:38 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[28-May-2025 07:58:38 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 07:58:38 Europe/Berlin] Query returned 1 rows
+[28-May-2025 07:58:38 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 07:58:38 Europe/Berlin] Password verification failed
+[28-May-2025 07:58:38 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 07:59:01 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:01 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:01 Europe/Berlin] Processing login for identifier: darryl@gmail.com
+[28-May-2025 07:59:01 Europe/Berlin] Query returned 1 rows
+[28-May-2025 07:59:01 Europe/Berlin] Found user: Array
+(
+    [id] => 6
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [password] => $2y$10$CWBSMFQM4yo2mCuUJ0YA0Og0Iky7Xdv8IxY5LqYHCLFdY61dwEa0i
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 07:59:01 Europe/Berlin] Password verified successfully
+[28-May-2025 07:59:01 Europe/Berlin] Session variables set: Array
+(
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [role] => coordinator
+    [client_id] => 6
+)
+
+[28-May-2025 07:59:01 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 07:59:28 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:28 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:28 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[28-May-2025 07:59:28 Europe/Berlin] Query returned 1 rows
+[28-May-2025 07:59:28 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 07:59:28 Europe/Berlin] Password verification failed
+[28-May-2025 07:59:28 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 07:59:29 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:29 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 07:59:29 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[28-May-2025 07:59:29 Europe/Berlin] Query returned 1 rows
+[28-May-2025 07:59:29 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 07:59:30 Europe/Berlin] Password verification failed
+[28-May-2025 07:59:30 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 07:59:46 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[28-May-2025 07:59:46 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[28-May-2025 07:59:46 Europe/Berlin] Processing login for identifier: 12-3456
+[28-May-2025 07:59:46 Europe/Berlin] Query returned 0 rows
+[28-May-2025 07:59:46 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 07:59:52 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[28-May-2025 07:59:52 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[28-May-2025 07:59:52 Europe/Berlin] Processing login for identifier: 12-3456
+[28-May-2025 07:59:52 Europe/Berlin] Query returned 0 rows
+[28-May-2025 07:59:52 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:00:09 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[28-May-2025 08:00:09 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[28-May-2025 08:00:09 Europe/Berlin] Processing login for identifier: darryl@gmail.com
+[28-May-2025 08:00:09 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:00:09 Europe/Berlin] Found user: Array
+(
+    [id] => 6
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [password] => $2y$10$CWBSMFQM4yo2mCuUJ0YA0Og0Iky7Xdv8IxY5LqYHCLFdY61dwEa0i
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:00:09 Europe/Berlin] Password verified successfully
+[28-May-2025 08:00:09 Europe/Berlin] Session variables set: Array
+(
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [role] => admin
+    [client_id] => 6
+)
+
+[28-May-2025 08:00:09 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 08:02:13 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[28-May-2025 08:02:13 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[28-May-2025 08:02:13 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:02:13 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:02:13 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:02:13 Europe/Berlin] Password verified successfully
+[28-May-2025 08:02:13 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[28-May-2025 08:02:13 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 08:14:01 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 12345
+)
+
+[28-May-2025 08:14:01 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 12345
+)
+
+[28-May-2025 08:14:01 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:14:01 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:14:01 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:14:01 Europe/Berlin] Password verification failed
+[28-May-2025 08:14:01 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:14:03 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 12345
+)
+
+[28-May-2025 08:14:03 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 12345
+)
+
+[28-May-2025 08:14:03 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:14:03 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:14:03 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:14:03 Europe/Berlin] Password verification failed
+[28-May-2025 08:14:03 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:14:16 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123456
+)
+
+[28-May-2025 08:14:16 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123456
+)
+
+[28-May-2025 08:14:16 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:14:16 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:14:16 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:14:16 Europe/Berlin] Password verification failed
+[28-May-2025 08:14:16 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:14:21 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123456
+)
+
+[28-May-2025 08:14:21 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123456
+)
+
+[28-May-2025 08:14:21 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:14:21 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:14:21 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:14:21 Europe/Berlin] Password verification failed
+[28-May-2025 08:14:21 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:14:35 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[28-May-2025 08:14:35 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[28-May-2025 08:14:35 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[28-May-2025 08:14:35 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:14:35 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:14:35 Europe/Berlin] Password verified successfully
+[28-May-2025 08:14:35 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[28-May-2025 08:14:35 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 08:18:22 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 08:18:22 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[28-May-2025 08:18:22 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[28-May-2025 08:18:22 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:18:22 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:18:22 Europe/Berlin] Password verification failed
+[28-May-2025 08:18:22 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 08:18:41 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:18:41 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:18:41 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 08:18:41 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:18:41 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:18:42 Europe/Berlin] Password verified successfully
+[28-May-2025 08:18:42 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[28-May-2025 08:18:42 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 08:22:46 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:22:46 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:22:46 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 08:22:46 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:22:46 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:22:46 Europe/Berlin] Password verified successfully
+[28-May-2025 08:22:46 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[28-May-2025 08:22:46 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 08:26:26 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:26:26 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 08:26:26 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 08:26:26 Europe/Berlin] Query returned 1 rows
+[28-May-2025 08:26:26 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 08:26:26 Europe/Berlin] Password verified successfully
+[28-May-2025 08:26:26 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[28-May-2025 08:26:26 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 09:35:01 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 09:35:01 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 09:35:01 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 09:35:02 Europe/Berlin] Query returned 1 rows
+[28-May-2025 09:35:02 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 09:35:02 Europe/Berlin] Password verified successfully
+[28-May-2025 09:35:02 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[28-May-2025 09:35:02 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 09:36:14 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar\
+)
+
+[28-May-2025 09:36:14 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar\
+)
+
+[28-May-2025 09:36:14 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 09:36:14 Europe/Berlin] Query returned 1 rows
+[28-May-2025 09:36:14 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 09:36:14 Europe/Berlin] Password verification failed
+[28-May-2025 09:36:14 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 09:36:15 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar\
+)
+
+[28-May-2025 09:36:15 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar\
+)
+
+[28-May-2025 09:36:15 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 09:36:15 Europe/Berlin] Query returned 1 rows
+[28-May-2025 09:36:15 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 09:36:15 Europe/Berlin] Password verification failed
+[28-May-2025 09:36:15 Europe/Berlin] Login failed - Invalid credentials
+[28-May-2025 09:36:17 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 09:36:17 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[28-May-2025 09:36:17 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[28-May-2025 09:36:17 Europe/Berlin] Query returned 1 rows
+[28-May-2025 09:36:17 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 09:36:17 Europe/Berlin] Password verified successfully
+[28-May-2025 09:36:17 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[28-May-2025 09:36:17 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[28-May-2025 13:32:41 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[28-May-2025 13:32:41 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[28-May-2025 13:32:41 Europe/Berlin] Processing login for identifier: 23-12121
+[28-May-2025 13:32:41 Europe/Berlin] Query returned 1 rows
+[28-May-2025 13:32:41 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 13:32:41 Europe/Berlin] Password verified successfully
+[28-May-2025 13:32:41 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[28-May-2025 13:32:41 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 13:34:38 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[28-May-2025 13:34:38 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[28-May-2025 13:34:38 Europe/Berlin] Processing login for identifier: 23-00992
+[28-May-2025 13:34:38 Europe/Berlin] Query returned 1 rows
+[28-May-2025 13:34:38 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 13:34:38 Europe/Berlin] Password verified successfully
+[28-May-2025 13:34:38 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[28-May-2025 13:34:38 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[28-May-2025 13:41:26 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[28-May-2025 13:41:26 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[28-May-2025 13:41:26 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[28-May-2025 13:41:26 Europe/Berlin] Query returned 1 rows
+[28-May-2025 13:41:26 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[28-May-2025 13:41:27 Europe/Berlin] Password verified successfully
+[28-May-2025 13:41:27 Europe/Berlin] Session variables set: Array
+(
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [role] => admin
+    [client_id] => 7
+)
+
+[28-May-2025 13:41:27 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:13:58 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 08:13:58 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 08:13:58 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 08:13:58 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:13:58 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:13:58 Europe/Berlin] Password verified successfully
+[29-May-2025 08:13:58 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 08:13:58 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 08:22:45 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:45 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:45 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:45 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:45 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:53 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:53 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:53 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:53 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:53 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:53 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:53 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:53 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:53 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:53 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 08:22:53 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:53 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:53 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:56 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:56 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:56 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:56 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:56 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:56 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:22:56 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 08:22:56 Europe/Berlin] Processing login for identifier: larkbolotaolo@gmail.com
+[29-May-2025 08:22:56 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:22:56 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:23:02 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => dar
+)
+
+[29-May-2025 08:23:02 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => dar
+)
+
+[29-May-2025 08:23:02 Europe/Berlin] Processing login for identifier: 23-00992
+[29-May-2025 08:23:02 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:23:02 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:23:02 Europe/Berlin] Password verification failed
+[29-May-2025 08:23:02 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:23:06 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[29-May-2025 08:23:06 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[29-May-2025 08:23:06 Europe/Berlin] Processing login for identifier: 23-00992
+[29-May-2025 08:23:06 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:23:06 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:23:06 Europe/Berlin] Password verified successfully
+[29-May-2025 08:23:06 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 08:23:06 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 08:24:00 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[29-May-2025 08:24:00 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[29-May-2025 08:24:00 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 08:24:00 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:24:00 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:24:00 Europe/Berlin] Password verification failed
+[29-May-2025 08:24:00 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:24:02 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 08:24:02 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 08:24:02 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 08:24:02 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:24:02 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:24:03 Europe/Berlin] Password verified successfully
+[29-May-2025 08:24:03 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 08:24:03 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 08:24:40 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => 123
+)
+
+[29-May-2025 08:24:40 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => 123
+)
+
+[29-May-2025 08:24:40 Europe/Berlin] Processing login for identifier: 12-3456
+[29-May-2025 08:24:40 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:24:40 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:24:43 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[29-May-2025 08:24:43 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 12-3456
+    [password] => dar
+)
+
+[29-May-2025 08:24:43 Europe/Berlin] Processing login for identifier: 12-3456
+[29-May-2025 08:24:43 Europe/Berlin] Query returned 0 rows
+[29-May-2025 08:24:43 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:24:52 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:24:52 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:24:52 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:24:52 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:24:52 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:24:52 Europe/Berlin] Password verified successfully
+[29-May-2025 08:24:52 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:24:52 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:25:31 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 08:25:31 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 08:25:31 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:25:31 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:25:31 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:25:31 Europe/Berlin] Password verification failed
+[29-May-2025 08:25:31 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:25:33 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:25:33 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:25:33 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:25:33 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:25:33 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:25:34 Europe/Berlin] Password verified successfully
+[29-May-2025 08:25:34 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:25:34 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:27:29 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 08:27:29 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 08:27:29 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:27:29 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:27:29 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:27:29 Europe/Berlin] Password verification failed
+[29-May-2025 08:27:29 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 08:27:32 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:27:32 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:27:32 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:27:32 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:27:32 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:27:32 Europe/Berlin] Password verified successfully
+[29-May-2025 08:27:32 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:27:32 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:28:09 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:28:09 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:28:09 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:28:09 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:28:09 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:28:09 Europe/Berlin] Password verified successfully
+[29-May-2025 08:28:09 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:28:09 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:30:40 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:30:40 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:30:40 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:30:40 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:30:40 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:30:40 Europe/Berlin] Password verified successfully
+[29-May-2025 08:30:40 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:30:40 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 08:32:44 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:32:44 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 08:32:44 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 08:32:44 Europe/Berlin] Query returned 1 rows
+[29-May-2025 08:32:44 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 08:32:45 Europe/Berlin] Password verified successfully
+[29-May-2025 08:32:45 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 08:32:45 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 09:00:23 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 09:00:23 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 09:00:23 Europe/Berlin] Processing login for identifier: darryl@gmail.com
+[29-May-2025 09:00:23 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:00:23 Europe/Berlin] Found user: Array
+(
+    [id] => 6
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [password] => $2y$10$CWBSMFQM4yo2mCuUJ0YA0Og0Iky7Xdv8IxY5LqYHCLFdY61dwEa0i
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:00:23 Europe/Berlin] Password verified successfully
+[29-May-2025 09:00:23 Europe/Berlin] Session variables set: Array
+(
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [role] => admin
+    [client_id] => 6
+)
+
+[29-May-2025 09:00:23 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 09:09:18 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[29-May-2025 09:09:18 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => dar
+)
+
+[29-May-2025 09:09:18 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 09:09:18 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:09:18 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:09:18 Europe/Berlin] Password verification failed
+[29-May-2025 09:09:18 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 09:09:22 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 09:09:22 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 09:09:22 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 09:09:22 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:09:22 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:09:22 Europe/Berlin] Password verified successfully
+[29-May-2025 09:09:22 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 09:09:22 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 09:26:29 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[29-May-2025 09:26:29 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-00992
+    [password] => 123
+)
+
+[29-May-2025 09:26:29 Europe/Berlin] Processing login for identifier: 23-00992
+[29-May-2025 09:26:29 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:26:29 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:26:29 Europe/Berlin] Password verified successfully
+[29-May-2025 09:26:29 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 09:26:29 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 09:26:54 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:26:54 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:26:54 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[29-May-2025 09:26:54 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:26:54 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:26:54 Europe/Berlin] Password verified successfully
+[29-May-2025 09:26:54 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 09:26:54 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 09:29:19 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:19 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:19 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[29-May-2025 09:29:19 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:29:19 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:29:19 Europe/Berlin] Password verified successfully
+[29-May-2025 09:29:19 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 09:29:19 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 09:29:46 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:46 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:46 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 09:29:46 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:29:46 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:29:46 Europe/Berlin] Password verification failed
+[29-May-2025 09:29:46 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 09:29:46 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:46 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 09:29:46 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 09:29:46 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:29:46 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:29:47 Europe/Berlin] Password verification failed
+[29-May-2025 09:29:47 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 09:29:49 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 09:29:49 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 09:29:49 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 09:29:49 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:29:49 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:29:49 Europe/Berlin] Password verified successfully
+[29-May-2025 09:29:49 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 09:29:49 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 09:33:37 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:33:37 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[29-May-2025 09:33:37 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[29-May-2025 09:33:37 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:33:37 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:33:38 Europe/Berlin] Password verified successfully
+[29-May-2025 09:33:38 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 09:33:38 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 09:49:14 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[29-May-2025 09:49:14 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => dar
+)
+
+[29-May-2025 09:49:14 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[29-May-2025 09:49:14 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:49:14 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:49:14 Europe/Berlin] Password verification failed
+[29-May-2025 09:49:14 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 09:49:17 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[29-May-2025 09:49:17 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[29-May-2025 09:49:17 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[29-May-2025 09:49:17 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:49:17 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Password verified successfully
+[29-May-2025 09:49:18 Europe/Berlin] Session variables set: Array
+(
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [role] => admin
+    [client_id] => 7
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 09:49:18 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[29-May-2025 09:49:18 Europe/Berlin] Query returned 1 rows
+[29-May-2025 09:49:18 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Password verified successfully
+[29-May-2025 09:49:18 Europe/Berlin] Session variables set: Array
+(
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [role] => admin
+    [client_id] => 7
+)
+
+[29-May-2025 09:49:18 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 10:18:12 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 10:18:12 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => darryl@gmail.com
+    [password] => dar
+)
+
+[29-May-2025 10:18:12 Europe/Berlin] Processing login for identifier: darryl@gmail.com
+[29-May-2025 10:18:12 Europe/Berlin] Query returned 1 rows
+[29-May-2025 10:18:12 Europe/Berlin] Found user: Array
+(
+    [id] => 6
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [password] => $2y$10$CWBSMFQM4yo2mCuUJ0YA0Og0Iky7Xdv8IxY5LqYHCLFdY61dwEa0i
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 10:18:12 Europe/Berlin] Password verified successfully
+[29-May-2025 10:18:12 Europe/Berlin] Session variables set: Array
+(
+    [name] => Darryl Pogi
+    [student_id] => 2301108
+    [email] => darryl@gmail.com
+    [role] => admin
+    [client_id] => 6
+)
+
+[29-May-2025 10:18:12 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[29-May-2025 10:29:37 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => alexander_Cajurao@plpasig.edu.ph
+    [password] => 123
+)
+
+[29-May-2025 10:29:37 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => alexander_Cajurao@plpasig.edu.ph
+    [password] => 123
+)
+
+[29-May-2025 10:29:37 Europe/Berlin] Processing login for identifier: alexander_Cajurao@plpasig.edu.ph
+[29-May-2025 10:29:37 Europe/Berlin] Query returned 1 rows
+[29-May-2025 10:29:37 Europe/Berlin] Found user: Array
+(
+    [id] => 12
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => alexander_Cajurao@plpasig.edu.ph
+    [password] => $2y$10$vAgUcpE3BTuBDzUShuZJc.ZLOyPZQ4UPqsXPqmo6AcNA.TWpqY3n2
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 10:29:37 Europe/Berlin] Password verified successfully
+[29-May-2025 10:29:37 Europe/Berlin] Session variables set: Array
+(
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => alexander_Cajurao@plpasig.edu.ph
+    [role] => coordinator
+    [client_id] => 12
+)
+
+[29-May-2025 10:29:37 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 10:35:58 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 10:35:58 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => 23-12121
+    [password] => 123
+)
+
+[29-May-2025 10:35:58 Europe/Berlin] Processing login for identifier: 23-12121
+[29-May-2025 10:35:58 Europe/Berlin] Query returned 1 rows
+[29-May-2025 10:35:58 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 10:35:58 Europe/Berlin] Password verified successfully
+[29-May-2025 10:35:58 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[29-May-2025 10:35:58 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[29-May-2025 10:36:19 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 10:36:19 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[29-May-2025 10:36:19 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 10:36:19 Europe/Berlin] Query returned 2 rows
+[29-May-2025 10:36:19 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 10:36:19 Europe/Berlin] Password verification failed
+[29-May-2025 10:36:19 Europe/Berlin] Login failed - Invalid credentials
+[29-May-2025 10:36:24 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 10:36:24 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[29-May-2025 10:36:24 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[29-May-2025 10:36:24 Europe/Berlin] Query returned 2 rows
+[29-May-2025 10:36:24 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[29-May-2025 10:36:24 Europe/Berlin] Password verified successfully
+[29-May-2025 10:36:24 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[29-May-2025 10:36:24 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[30-May-2025 09:45:58 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[30-May-2025 09:45:58 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[30-May-2025 09:45:58 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[30-May-2025 09:45:58 Europe/Berlin] Query returned 2 rows
+[30-May-2025 09:45:58 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 09:45:58 Europe/Berlin] Password verified successfully
+[30-May-2025 09:45:58 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[30-May-2025 09:45:58 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[30-May-2025 09:46:30 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[30-May-2025 09:46:30 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => 123
+)
+
+[30-May-2025 09:46:30 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[30-May-2025 09:46:30 Europe/Berlin] Query returned 2 rows
+[30-May-2025 09:46:30 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 09:46:30 Europe/Berlin] Password verification failed
+[30-May-2025 09:46:30 Europe/Berlin] Login failed - Invalid credentials
+[30-May-2025 09:46:32 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[30-May-2025 09:46:32 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => demohow995@cetnob.com
+    [password] => dar
+)
+
+[30-May-2025 09:46:32 Europe/Berlin] Processing login for identifier: demohow995@cetnob.com
+[30-May-2025 09:46:32 Europe/Berlin] Query returned 2 rows
+[30-May-2025 09:46:32 Europe/Berlin] Found user: Array
+(
+    [id] => 8
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [password] => $2y$10$83E4vPRHQ4jaPin9ALqTS.HksHn2bfaZTGfj9q.dx.eBTt1fNSiby
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 09:46:32 Europe/Berlin] Password verified successfully
+[30-May-2025 09:46:32 Europe/Berlin] Session variables set: Array
+(
+    [name] => dawefsr
+    [student_id] => 2312121
+    [email] => demohow995@cetnob.com
+    [role] => admin
+    [client_id] => 8
+)
+
+[30-May-2025 09:46:32 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[30-May-2025 12:28:51 Europe/Berlin] Login/Register request received: Array
+(
+    [register] => 1
+    [firstname] => Alexander
+    [lastname] => Cajurao
+    [student_id] => 23-00228
+    [email] => alexandercajurao@gmail.com
+    [password] => 123
+)
+
+[30-May-2025 12:28:55 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[30-May-2025 12:28:55 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => CZVgGqRr4WbKeeX
+)
+
+[30-May-2025 12:28:55 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[30-May-2025 12:28:55 Europe/Berlin] Query returned 2 rows
+[30-May-2025 12:28:55 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 12:28:55 Europe/Berlin] Password verification failed
+[30-May-2025 12:28:55 Europe/Berlin] Login failed - Invalid credentials
+[30-May-2025 12:29:03 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[30-May-2025 12:29:03 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[30-May-2025 12:29:03 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[30-May-2025 12:29:03 Europe/Berlin] Query returned 2 rows
+[30-May-2025 12:29:03 Europe/Berlin] Found user: Array
+(
+    [id] => 11
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [password] => $2y$10$.XdSLMBv48kOtbe5.orRTOZQylGzbKKdqCZkZPkcIa.WmkJsSO80y
+    [role] => coordinator
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 12:29:03 Europe/Berlin] Password verified successfully
+[30-May-2025 12:29:03 Europe/Berlin] Session variables set: Array
+(
+    [name] => Lark Bolotaolo
+    [student_id] => 23
+    [email] => larkbolotaolo1415@gmail.com
+    [role] => coordinator
+    [client_id] => 11
+)
+
+[30-May-2025 12:29:03 Europe/Berlin] Redirecting to: ../pages/4_Event.php
+[30-May-2025 13:36:15 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[30-May-2025 13:36:15 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => wewefa1474@betzenn.com
+    [password] => 123
+)
+
+[30-May-2025 13:36:15 Europe/Berlin] Processing login for identifier: wewefa1474@betzenn.com
+[30-May-2025 13:36:15 Europe/Berlin] Query returned 2 rows
+[30-May-2025 13:36:15 Europe/Berlin] Found user: Array
+(
+    [id] => 7
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [password] => $2y$10$qQjHmLIuBR3thpnzVyRnzOAbdMvE5j.btpAY9clJnBOM9J.uhFGHq
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[30-May-2025 13:36:15 Europe/Berlin] Password verified successfully
+[30-May-2025 13:36:15 Europe/Berlin] Session variables set: Array
+(
+    [name] => Sushdfsgdrthyj
+    [student_id] => 123456
+    [email] => wewefa1474@betzenn.com
+    [role] => admin
+    [client_id] => 7
+)
+
+[30-May-2025 13:36:15 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[31-May-2025 13:31:24 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => akiegamer101@gmail.com
+    [password] => dar
+)
+
+[31-May-2025 13:31:24 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => akiegamer101@gmail.com
+    [password] => dar
+)
+
+[31-May-2025 13:31:24 Europe/Berlin] Processing login for identifier: akiegamer101@gmail.com
+[31-May-2025 13:31:24 Europe/Berlin] Query returned 1 rows
+[31-May-2025 13:31:24 Europe/Berlin] Found user: Array
+(
+    [id] => 15
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [password] => $2y$10$qYPAnlMv/yuJgHtjQi1bu..gdqtWV3a2OUNx9cofhr35bHw/H7PmO
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[31-May-2025 13:31:24 Europe/Berlin] Password verification failed
+[31-May-2025 13:31:24 Europe/Berlin] Login failed - Invalid credentials
+[31-May-2025 13:31:26 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => akiegamer101@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 13:31:26 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => akiegamer101@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 13:31:26 Europe/Berlin] Processing login for identifier: akiegamer101@gmail.com
+[31-May-2025 13:31:26 Europe/Berlin] Query returned 1 rows
+[31-May-2025 13:31:26 Europe/Berlin] Found user: Array
+(
+    [id] => 15
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [password] => $2y$10$qYPAnlMv/yuJgHtjQi1bu..gdqtWV3a2OUNx9cofhr35bHw/H7PmO
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[31-May-2025 13:31:26 Europe/Berlin] Password verified successfully
+[31-May-2025 13:31:26 Europe/Berlin] Session variables set: Array
+(
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [role] => admin
+    [client_id] => 15
+)
+
+[31-May-2025 13:31:26 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[31-May-2025 13:33:58 Europe/Berlin] Login/Register request received: Array
+(
+    [register] => 1
+    [firstname] => Lark
+    [lastname] => Bolotaolo
+    [student_id] => 23-00992
+    [email] => artysl4yer@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 13:34:14 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => artysl4yer@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 13:34:14 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => artysl4yer@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 13:34:14 Europe/Berlin] Processing login for identifier: artysl4yer@gmail.com
+[31-May-2025 13:34:14 Europe/Berlin] Query returned 2 rows
+[31-May-2025 13:34:14 Europe/Berlin] Found user: Array
+(
+    [id] => 15
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [password] => $2y$10$qYPAnlMv/yuJgHtjQi1bu..gdqtWV3a2OUNx9cofhr35bHw/H7PmO
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[31-May-2025 13:34:14 Europe/Berlin] Password verified successfully
+[31-May-2025 13:34:14 Europe/Berlin] Session variables set: Array
+(
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [role] => admin
+    [client_id] => 15
+)
+
+[31-May-2025 13:34:14 Europe/Berlin] Redirecting to: ../pages/admin-home.php
+[31-May-2025 14:58:12 Europe/Berlin] Login/Register request received: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 14:58:12 Europe/Berlin] Login attempt - POST data: Array
+(
+    [login] => 1
+    [identifier] => larkbolotaolo1415@gmail.com
+    [password] => 123
+)
+
+[31-May-2025 14:58:12 Europe/Berlin] Processing login for identifier: larkbolotaolo1415@gmail.com
+[31-May-2025 14:58:12 Europe/Berlin] Query returned 1 rows
+[31-May-2025 14:58:12 Europe/Berlin] Found user: Array
+(
+    [id] => 15
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [password] => $2y$10$qYPAnlMv/yuJgHtjQi1bu..gdqtWV3a2OUNx9cofhr35bHw/H7PmO
+    [role] => admin
+    [image] => 
+    [course] => 
+    [year] => 0
+)
+
+[31-May-2025 14:58:12 Europe/Berlin] Password verified successfully
+[31-May-2025 14:58:12 Europe/Berlin] Session variables set: Array
+(
+    [name] => Alex Cajurao
+    [student_id] => 0
+    [email] => akiegamer101@gmail.com
+    [role] => admin
+    [client_id] => 15
+)
+
+[31-May-2025 14:58:12 Europe/Berlin] Redirecting to: ../pages/admin-home.php

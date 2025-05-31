@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['email']) && !isset($_SESSION['client_id'])) {
+    header('Location: 1_Login.php');
+    exit();
+}
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

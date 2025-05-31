@@ -46,8 +46,8 @@ error_log("Raw POST data: " . file_get_contents('php://input'));
 error_log("POST variables: " . print_r($_POST, true));
 
 // Check session and required parameters
-if (!isset($_SESSION['client_id'])) {
-    error_log("Session error: client_id not set");
+if (!isset($_SESSION['email'])) {
+    error_log("Session error: email not set");
     sendResponse(false, 'Please log in to continue');
 }
 
@@ -72,6 +72,12 @@ $full_name = trim($lines[0]);
 $student_id = trim($lines[1]);
 $course = trim($lines[2]);
 
+// Debug logging for QR code parsing
+error_log("DEBUG - QR Code parsing:");
+error_log("DEBUG - Full name: '$full_name'");
+error_log("DEBUG - Student ID: '$student_id'");
+error_log("DEBUG - Course: '$course'");
+
 // Remove parentheses from student ID if present
 $student_id = trim($student_id, '()');
 
@@ -94,6 +100,25 @@ try {
     $conn->begin_transaction();
     error_log("Started transaction");
 
+    // Get user ID from session email
+    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    if (!$stmt) {
+        throw new Exception("Failed to prepare user query: " . $conn->error);
+    }
+    
+    $stmt->bind_param("s", $_SESSION['email']);
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to execute user query: " . $stmt->error);
+    }
+    
+    $result = $stmt->get_result();
+    if ($result->num_rows === 0) {
+        throw new Exception('User not found');
+    }
+    
+    $user = $result->fetch_assoc();
+    $user_id = $user['id'];
+
     // First, update event statuses based on current time
     require_once 'update_event_status.php';
     $status_updated = updateEventStatuses($conn);
@@ -102,7 +127,7 @@ try {
     }
 
     // Check if event exists and is active
-    $stmt = $conn->prepare("SELECT number, event_title, event_status, registration_status, event_start, event_end FROM event_table WHERE number = ?");
+    $stmt = $conn->prepare("SELECT number, event_title, event_status, registration_status, event_start, event_end, organization FROM event_table WHERE number = ?");
     if (!$stmt) {
         throw new Exception("Failed to prepare event query: " . $conn->error);
     }
@@ -119,7 +144,7 @@ try {
     }
     
     $event = $result->fetch_assoc();
-    error_log("Found event: " . print_r($event, true));
+    error_log("DEBUG - Full event data: " . print_r($event, true));
     
     // Check if event is in a valid state for attendance
     if (!in_array($event['event_status'], ['scheduled', 'ongoing'])) {
@@ -131,6 +156,18 @@ try {
     if ($event['registration_status'] !== 'open') {
         error_log("Registration is closed for event: " . $event_id);
         throw new Exception('Registration is closed for this event');
+    }
+
+    // Debug logging for course restriction check
+    error_log("DEBUG - Organization from database: '" . $event['organization'] . "'");
+    error_log("DEBUG - Student course: '" . $course . "'");
+    error_log("DEBUG - Available organizations: " . print_r($COURSE_RESTRICTIONS, true));
+
+    // Check course restrictions
+    require_once 'course_restrictions.php';
+    if (!isCourseAllowed($event['organization'], $course)) {
+        error_log("Course restriction check failed: Course '$course' not allowed for organization '{$event['organization']}'");
+        throw new Exception("This event is restricted to specific courses. Your course ($course) is not eligible for this event.");
     }
 
     // Check if current time is within event time range
@@ -159,31 +196,43 @@ try {
     
     error_log("Time check passed: Current time is within event time range");
 
-    // Check if student exists
-    $stmt = $conn->prepare("SELECT full_name, course FROM student_info WHERE student_id = ?");
+    // Check if student exists in student_table and has a course (section)
+    $stmt = $conn->prepare("SELECT first_name, last_name, Course FROM student_table WHERE ID = ? AND Course != '' AND Course IS NOT NULL");
     if (!$stmt) {
         throw new Exception("Failed to prepare student query: " . $conn->error);
     }
-    
     $stmt->bind_param("s", $student_id);
     if (!$stmt->execute()) {
         throw new Exception("Failed to execute student query: " . $stmt->error);
     }
-    
     $result = $stmt->get_result();
-
     if ($result->num_rows === 0) {
-        error_log("Adding new student: $student_id");
-        // Add new student
-        $stmt = $conn->prepare("INSERT INTO student_info (student_id, full_name, course) VALUES (?, ?, ?)");
-        if (!$stmt) {
+        // Student not found, insert if QR has valid ID and course
+        // Parse name from QR: expected format 'LASTNAME, FIRSTNAME'
+        $name_parts = explode(',', $full_name);
+        $last_name = isset($name_parts[0]) ? trim($name_parts[0]) : '';
+        $first_name = isset($name_parts[1]) ? trim($name_parts[1]) : '';
+        if ($last_name === '' || $first_name === '' || trim($course) === '') {
+            error_log("Invalid QR data for new student insert: $full_name, $student_id, $course");
+            throw new Exception('Student not found and QR code does not have valid name and course.');
+        }
+        $insert_stmt = $conn->prepare("INSERT INTO student_table (ID, first_name, last_name, Course) VALUES (?, ?, ?, ?)");
+        if (!$insert_stmt) {
             throw new Exception("Failed to prepare student insert: " . $conn->error);
         }
-        
-        $stmt->bind_param("sss", $student_id, $full_name, $course);
-        if (!$stmt->execute()) {
-            error_log("Error adding student: " . $conn->error);
-            throw new Exception('Error adding student: ' . $conn->error);
+        $insert_stmt->bind_param("ssss", $student_id, $first_name, $last_name, $course);
+        if (!$insert_stmt->execute()) {
+            error_log("Error inserting new student: " . $conn->error);
+            throw new Exception('Error inserting new student: ' . $conn->error);
+        }
+        $display_name = $last_name . ', ' . $first_name;
+        $student_course = $course;
+    } else {
+        $student = $result->fetch_assoc();
+        $display_name = $student['last_name'] . ', ' . $student['first_name'];
+        $student_course = $student['Course'];
+        if (strcasecmp(trim($student_course), trim($course)) !== 0) {
+            throw new Exception('Course in QR does not match student record.');
         }
     }
 
@@ -209,7 +258,7 @@ try {
         throw new Exception("Failed to prepare attendance insert: " . $conn->error);
     }
     
-    $stmt->bind_param("isi", $event_id, $student_id, $_SESSION['client_id']);
+    $stmt->bind_param("isi", $event_id, $student_id, $user_id);
     if (!$stmt->execute()) {
         error_log("Error registering attendance: " . $conn->error);
         throw new Exception('Error registering attendance: ' . $conn->error);
@@ -217,7 +266,7 @@ try {
 
     // Commit transaction
     $conn->commit();
-    error_log("Successfully registered attendance for $full_name");
+    error_log("Successfully registered attendance for $display_name");
     
     // Close database resources
     if ($stmt) {
@@ -225,7 +274,7 @@ try {
     }
     
     // Send success response
-    sendResponse(true, "Attendance registered for $full_name ($course) in event: " . $event['event_title']);
+    sendResponse(true, "Attendance registered for $display_name ($student_course) in event: " . $event['event_title']);
 
 } catch (Exception $e) {
     // Rollback transaction on error

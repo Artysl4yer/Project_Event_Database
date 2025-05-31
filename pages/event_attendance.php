@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['email']) && !isset($_SESSION['client_id'])) {
+    header('Location: 1_Login.php');
+    exit();
+}
 include '../php/conn.php';
 
 // Check if user is logged in

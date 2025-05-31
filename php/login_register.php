@@ -2,42 +2,44 @@
 // Prevent any output before headers
 ob_start();
 
-// Disable error display but enable logging
+// Set error reporting once at the start
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', dirname(__FILE__) . '/login_errors.log');
-
-// Set error handler
-set_error_handler(function($errno, $errstr, $errfile, $errline) {
-    error_log("PHP Error [$errno]: $errstr in $errfile on line $errline");
-    return true;
-});
-
-// Set exception handler
-set_exception_handler(function($e) {
-    error_log("Uncaught Exception: " . $e->getMessage());
-    sendResponse(false, "An unexpected error occurred: " . $e->getMessage());
-});
-
-session_start();
-require_once '../php/conn.php';
-
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
+ini_set('display_errors', 0);  // Don't display errors to user
+ini_set('log_errors', 1);      // Log errors to file
 ini_set('error_log', dirname(__FILE__) . '/login_errors.log');
 
 // Set header to return JSON
 header('Content-Type: application/json');
 
-// Error handler to catch PHP errors and return them as JSON
-function handleError($errno, $errstr, $errfile, $errline) {
-    error_log("PHP Error [$errno]: $errstr in $errfile on line $errline");
-    echo json_encode(['success' => false, 'message' => 'PHP Error: ' . $errstr]);
+// Function to send JSON response
+function sendResponse($success, $message, $redirect = '') {
+    if (ob_get_length()) ob_clean(); // Clear any output buffers
+    echo json_encode([
+        'success' => $success,
+        'message' => $message,
+        'redirect' => $redirect
+    ]);
     exit();
 }
+
+// Set error handler
+set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    error_log("PHP Error [$errno]: $errstr in $errfile on line $errline");
+    if (ob_get_length()) ob_clean();
+    sendResponse(false, "An error occurred. Please try again.");
+    return true;
+});
+
+// Set exception handler
+set_exception_handler(function($e) {
+    error_log("Uncaught Exception: " . $e->getMessage() . "\nStack trace: " . $e->getTraceAsString());
+    if (ob_get_length()) ob_clean();
+    sendResponse(false, "An unexpected error occurred. Please try again.");
+});
+
+// Start session and include database connection
+session_start();
+require_once '../php/conn.php';
 
 try {
     // Log the request
@@ -54,7 +56,7 @@ try {
 
         // Combine first and last name
         $name = trim($_POST['firstname']) . ' ' . trim($_POST['lastname']);
-        $student_id = str_replace('-', '', $_POST['student_id']);
+        $student_id = $_POST['student_id'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -111,7 +113,7 @@ try {
             sendResponse(false, 'Both identifier and password are required.');
         }
 
-        $identifier = str_replace('-', '', $_POST['identifier']);
+        $identifier = $_POST['identifier'];
         $password = $_POST['password'];
 
         error_log("Processing login for identifier: $identifier");
@@ -119,23 +121,20 @@ try {
         // Check database connection
         if ($conn->connect_error) {
             error_log("Database connection failed: " . $conn->connect_error);
-            echo json_encode(['success' => false, 'message' => 'Database connection failed. Please try again later.']);
-            exit();
+            sendResponse(false, 'Database connection failed. Please try again later.');
         }
 
         // Check student_id or email
         $stmt = $conn->prepare("SELECT * FROM users WHERE student_id = ? OR email = ?");
         if (!$stmt) {
             error_log("Failed to prepare login query: " . $conn->error);
-            echo json_encode(['success' => false, 'message' => 'An error occurred during login. Please try again.']);
-            exit();
+            sendResponse(false, 'An error occurred during login. Please try again.');
         }
 
         $stmt->bind_param("ss", $identifier, $identifier);
         if (!$stmt->execute()) {
             error_log("Failed to execute login query: " . $stmt->error);
-            echo json_encode(['success' => false, 'message' => 'Login query failed. Please try again.']);
-            exit();
+            sendResponse(false, 'Login query failed. Please try again.');
         }
 
         $result = $stmt->get_result();
@@ -173,22 +172,20 @@ try {
                 }
                 
                 error_log("Redirecting to: $redirect");
-                echo json_encode(['success' => true, 'redirect' => $redirect]);
-                exit();
+                sendResponse(true, 'Login successful', $redirect);
             } else {
                 error_log("Password verification failed");
             }
         }
 
         error_log("Login failed - Invalid credentials");
-        echo json_encode(['success' => false, 'message' => 'Invalid Student ID/Email or password.']);
-        exit();
+        sendResponse(false, 'Invalid Student ID/Email or password.');
     }
 
     // If no valid action was specified
     sendResponse(false, 'Invalid request');
 } catch (Exception $e) {
     error_log("Exception during login: " . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'An error occurred: ' . $e->getMessage()]);
+    sendResponse(false, 'An error occurred. Please try again.');
 }
 ?>

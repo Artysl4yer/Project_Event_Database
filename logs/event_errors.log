@@ -1,0 +1,55 @@
+[2025-05-24 12:52:30] Error creating event: Unknown column 'max_participants' in 'field list'
+[2025-05-24 12:53:39] Error creating event: Unknown column 'created_by' in 'field list'
+[24-May-2025 12:57:08 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 67
+[24-May-2025 12:57:08 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 68
+[24-May-2025 12:57:08 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 69
+[24-May-2025 12:57:08 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[2025-05-24 12:57:08] Event created successfully. ID: 54
+[24-May-2025 12:57:24 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 67
+[24-May-2025 12:57:24 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 68
+[24-May-2025 12:57:24 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 69
+[24-May-2025 12:57:24 Asia/Manila] PHP Notice:  Only variables should be passed by reference in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[2025-05-24 12:57:24] Error creating event: Duplicate entry '39TP5108' for key 'event_code_unique'
+[2025-05-24 13:00:52] Event created successfully. ID: 56
+[2025-05-24 13:02:29] Event created successfully. ID: 57
+[2025-05-24 13:12:41] Event created successfully. ID: 58
+[2025-05-24 13:12:44] Error creating event: Duplicate entry '39AC2713' for key 'event_code_unique'
+[2025-05-24 13:12:48] Error creating event: Duplicate entry '39AC2713' for key 'event_code_unique'
+[2025-05-24 13:14:26] Event created successfully. ID: 61
+[2025-05-24 13:31:46] Event created successfully. ID: 62
+[2025-05-24 13:37:24] Event created successfully. ID: 63
+[2025-05-24 13:41:53] Event created successfully. ID: 64
+[2025-05-24 13:49:21] Event created successfully. ID: 65
+[2025-05-24 14:07:29] Event created successfully. ID: 66
+[2025-05-24 14:12:36] Event created successfully. ID: 67
+[2025-05-24 14:27:42] Event created successfully. ID: 68
+[2025-05-24 14:33:13] Event created successfully. ID: 69
+[2025-05-24 14:46:10] Event created successfully. ID: 70
+[2025-05-24 15:17:29] Event created successfully. ID: 71
+[2025-05-24 15:20:03] Event created successfully. ID: 72
+[2025-05-26 11:29:42] Missing required field: organization
+[2025-05-26 11:31:36] Event created successfully. ID: 73
+[26-May-2025 11:35:21 Asia/Manila] PHP Warning:  Undefined variable $conn in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[26-May-2025 11:35:21 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php:70
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[26-May-2025 11:35:37 Asia/Manila] PHP Warning:  Undefined variable $conn in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[26-May-2025 11:35:37 Asia/Manila] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php:70
+Stack trace:
+#0 {main}
+  thrown in D:\Project\Project_Event_Database\Project_Event_Database\php\create_event.php on line 70
+[2025-05-26 11:36:52] Event created successfully. ID: 74
+[2025-05-26 16:25:14] Event created successfully. ID: 76
+[2025-05-26 16:45:34] Event created successfully. ID: 77
+[2025-05-26 16:48:23] Event created successfully. ID: 78
+[2025-05-26 16:50:08] Event created successfully. ID: 79
+[2025-05-26 16:53:46] Event created successfully. ID: 80
+[2025-05-26 16:57:39] Event created successfully. ID: 81
+[2025-05-26 17:04:39] Event created successfully. ID: 82
+[2025-05-26 17:05:21] Event created successfully. ID: 83
+[2025-05-26 17:05:52] Event created successfully. ID: 84
+[2025-05-26 17:39:14] Event created successfully. ID: 85
+[2025-05-26 17:51:07] Event created successfully. ID: 86
+[2025-05-26 18:33:30] Event created successfully. ID: 87
+[2025-05-26 20:39:28] Event created successfully. ID: 88

@@ -1,3 +1,15 @@
+// Add a simple CodeGenerator to prevent errors
+window.CodeGenerator = {
+    generateEventCode: function(length = 8) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+        for (let i = 0; i < length; i++) {
+            code += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return code;
+    }
+};
+
 // Event Modal and Form Handling
 document.addEventListener('DOMContentLoaded', function() {
     // Set initial event code
@@ -26,14 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (result.error) {
                         alert(result.message || 'Error saving event');
                     } else {
-                        // Redirect on success without showing error
-                        window.location.href = '6_NewEvent.php?success=true';
+                        // Redirect without success parameter
+                        window.location.href = '6_NewEvent.php';
                         return;
                     }
                 } else {
                     // Handle regular form response
                     if (response.ok) {
-                        window.location.href = '6_NewEvent.php?success=true';
+                        window.location.href = '6_NewEvent.php';
                         return;
                     }
                 }
@@ -46,11 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal functions
     window.openModal = function() {
-        document.getElementById('eventModal').style.display = 'block';
+        console.log('openModal called');
+        const modal = document.getElementById('eventModal');
+        console.log('eventModal element:', modal);
+        modal.style.display = 'block';
         // Reset form and generate new code when opening modal
         if (!window.isEditing) {
-            form.reset();
-            if (codeField) {
+            const form = document.getElementById('eventForm');
+            const codeField = document.getElementById('codeField');
+            if (form) form.reset();
+            if (codeField && typeof CodeGenerator !== 'undefined') {
                 codeField.value = CodeGenerator.generateEventCode();
             }
         }
@@ -67,14 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = 'none';
         }
     };
-
-    // Show success message if present in URL
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        alert('Event saved successfully!');
-        // Remove the success parameter from URL
-        window.history.replaceState({}, document.title, '6_NewEvent.php');
-    }
 });
 
 // File upload handling
@@ -95,5 +104,26 @@ function handleFileSelect(input) {
     } else {
         previewImg.src = '../images-icon/plm_courtyard.png';
         preview.style.border = '2px dashed #ddd';
+    }
+}
+
+// Image preview handling
+function handleImageSelect(input) {
+    const preview = document.getElementById('previewImg');
+    const imageName = document.getElementById('imageName');
+    
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(file);
+        imageName.textContent = file.name;
+    } else {
+        preview.src = '../images-icon/plm_courtyard.png';
+        imageName.textContent = 'No file chosen';
     }
 } 

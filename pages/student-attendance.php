@@ -1,8 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['email']) && !isset($_SESSION['client_id'])) {
+    header('Location: 1_Login.php');
+    exit();
+}
 
 // Check if user is logged in and is a student
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role']) || $_SESSION['role'] !== 'student') {
+if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role']) || $_SESSION['role'] !== 'coordinator') {
     header("Location: ../pages/1_Login.php");
     exit();
 }

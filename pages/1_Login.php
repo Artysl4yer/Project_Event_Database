@@ -1,19 +1,46 @@
 <?php
 session_start();
+include '../php/conn.php';
 
-$errors = [
-    'login' => $_SESSION['login_error'] ?? '',
-    'register' => $_SESSION['register_error'] ?? ''
-];
-$active_form = $_SESSION['active_form'] ?? 'login';
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-function showError($error) {
-    return !empty($error) ? "<p class='error-message'>{$error}</p>" : "";
+    if ($username && $password) {
+        $stmt = $conn->prepare('SELECT * FROM users WHERE student_id = ? OR email = ?');
+        $stmt->bind_param('ss', $username, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['client_id'] = $user['id'];
+            $_SESSION['name'] = $user['name'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+                echo json_encode(['success' => true, 'redirect' => '4_Event.php']);
+                exit();
+            } else {
+                header('Location: 4_Event.php');
+                exit();
+            }
+        } else {
+            $error = 'Invalid username or password.';
+            if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+                echo json_encode(['success' => false, 'message' => $error]);
+                exit();
+            }
+        }
+    } else {
+        $error = 'Please enter both username and password.';
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+            echo json_encode(['success' => false, 'message' => $error]);
+            exit();
+        }
+    }
 }
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,99 +73,85 @@ function showError($error) {
             color: #2e7d32;
             border: 1px solid #a5d6a7;
         }
-        .error-message {
-            color: #c62828;
-            margin: 5px 0;
+        .login-container {
+            position: relative;
         }
-
-        /* Loading Screen Styles */
-        .loading-screen {
-            position: fixed;
+        .loginpage {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(46, 125, 50, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            flex-direction: column;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            background: green;
+            padding: 50px;
+            overflow-y: auto;
         }
-
-        .loading-content {
-            text-align: center;
-            color: white;
+        .registration-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1;
+            background: white;
+            padding: 50px;
+            overflow-y: auto;
         }
-
-        .loading-logo {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
-        }
-
-        .loading-text {
-            font-size: 24px;
-            margin-top: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #104911;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .loginpage.active,
+        .registration-box.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loading-content">
-            <img src="../images-icon/plplogo.png" alt="PLP Logo" class="loading-logo">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Logging in...</div>
-        </div>
-    </div>
-
     <div class="title-container">
         <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
-    </div>
+    </div><!--
+    <div class="tab-container">
+        <div class="menu-items">
+            <a href="4_Event.php" class="active"> <i class="fa-solid fa-home"></i> <span class="label"> Home </span> </a>
+            <a href="6_NewEvent.php" class="active"> <i class="fa-solid fa-calendar"></i> <span class="label"> Events </span> </a>
+            <a href="" class="active"> <i class="fa-regular fa-circle-user"></i> <span class="label"> Admins </span> </a>
+            <a href="7_StudentTable.php" class="active"> <i class="fa-solid fa-address-card"></i> <span class="label"> Participants </span> </a>
+            <a href="5_About.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> About </span> </a>
+            <a href="8_archive.php" class="active"> <i class="fa-solid fa-bars"></i> <span class="label"> Logs </span> </a>
+            <a href="1_Login.php" class="active"> <i class="fa-solid fa-circle-info"></i> <span class="label"> Login </span> </a>
+        </div>
+        <div class="logout">
+            <a href="../php/logout.php"> <i class="fa-solid fa-gear"></i> <span class="label"> Logout </span> </a>
+        </div>
+    </div>-->
+
     
     <div class="login-container">
-        <div class="loginpage active">
+        <!--<div class="university-info active">
+            <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
+            <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations.</p>
+            <p>The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan in Article III, Sections 447-455, 469 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
+            
+        </div>-->
+
+        <!--<div class="action-links">
+                <a href="#" class="action-link register-link">New Client Register<i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="action-link login-link">Login <i class="fas fa-arrow-right"></i></a>
+            </div>-->
+
+    <div class="loginpage active">
             <h1>Welcome to PLP's <br> Event Management System</h1>
-            <form id="loginForm" action="../php/login_register.php" method="POST">
-                <?= showError($errors['login']); ?>
+            <!--<h2>Enter your credentials to continue</h2>-->
+            <form id="loginForm" method="POST">
                 <div class="input-field">
-                    <label for="identifier">Student ID or Email</label>
-                    <input type="text" id="identifier" name="identifier" placeholder="Student ID (XX-XXXXX) or Email" required>
+                    <label for="login-identifier">ID or Email</label>
+                    <input type="text" id="login-identifier" name="identifier" placeholder="Student ID or Email" required>
                 </div>
             
                 <div class="input-field">
@@ -147,11 +160,12 @@ function showError($error) {
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Password
+                    <input type="checkbox" onclick="showPass('login-password')"> Show Password
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="login-btn" name="login" value="1">Log in</button>
+                    <!--<button type="button" class="back-btn">Back</button>-->
+                    <button type="submit" class="login-btn">Log in</button>
                 </div>
                 <div id="loginMessage" class="message"></div>
             </form>
@@ -161,218 +175,187 @@ function showError($error) {
             </div>
         </div>  
 
-        <div class="registration-box hidden">
-            <h2>Create Your Account</h2>
-            <p class="subtitle">Fill in your details to register</p>
+        <div class="registration-box">
+            <h2>Registration Form</h2>
+            <p class="subtitle">Please fill in the fields below</p>
 
-            <form id="registrationForm" action="../php/login_register.php" method="POST">
-                <?= showError($errors['register']); ?>
+            <form id="registrationForm">
                 <div class="input-field">
-                    <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                    <label for="reg-firstname">First Name</label>
+                    <input type="text" id="reg-firstname" name="firstname" placeholder="First Name" required/>
                 </div>
 
                 <div class="input-field">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+                    <label for="reg-lastname">Last Name</label>
+                    <input type="text" id="reg-lastname" name="lastname" placeholder="Last Name" required/>
                 </div>
 
                 <div class="input-field">
-                    <label for="student_id">Student ID</label>
-                    <input type="text" id="student_id" name="student_id" maxlength="8" 
-                    pattern="\d{2}-\d{5}" 
-                    title="Please enter a valid Student ID in XX-XXXXX format" 
-                    placeholder="Student ID (XX-XXXXX)" 
-                    required>
+                    <label for="reg-studentid">ID</label>
+                    <input type="text" id="reg-studentid" name="student_id" placeholder="e.g., 23-00992" pattern="[0-9]{2}-[0-9]{5}" maxlength="8" required/>
                 </div>
 
                 <div class="input-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" name="email" placeholder="Email" required/>
                 </div>
 
                 <div class="input-field">
                     <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" name="password" placeholder="Password" required>
+                    <input type="password" id="reg-password" name="password" placeholder="Password" required/>
                 </div>
 
                 <div class="input-field">
-                    <label for="role">Role</label>
-                    <select id="role" name="role" required>
-                        <option value="student">Student</option>
-                        <option value="coordinator">Event Coordinator</option>
-                    </select>
+                    <label for="reg-confirm-password">Confirm Password</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" placeholder="Confirm Password" required/>
                 </div>
 
                 <div class="show-pass">
-                    <input type="checkbox" onclick="showPass()"> Show Passwords
+                    <input type="checkbox" onclick="showPass('reg-password');showPass('reg-confirm-password')"> Show Passwords
                 </div>
 
                 <div class="button-group">
-                    <button type="button" class="back-btn">Back to Login</button>
-                    <button type="submit" class="register-btn" name="register" value="1">Create Account</button>
+                    <button type="button" class="back-btn">Back</button>
+                    <button type="submit" class="register-btn">Register</button>
                 </div>
                 <div id="registerMessage" class="message"></div>
             </form>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../Javascript/show-password.js"></script>
     <script>
+    // Toggle between login and registration
     $(document).ready(function() {
-        // Format student ID input
-        function formatStudentId(input) {
-            // Remove any non-digit characters
-            let value = input.value.replace(/\D/g, '');
-            
-            // Ensure maximum of 7 digits
-            if (value.length > 7) {
-                value = value.substr(0, 7);
-            }
-            
-            // Format as XX-XXXXX
-            if (value.length > 2) {
-                value = value.substr(0, 2) + '-' + value.substr(2);
-            }
-            
-            input.value = value;
-        }
-
-        // Apply formatting to student ID fields
-        $('#student_id, #identifier').on('input', function() {
-            formatStudentId(this);
-        });
-
-        // Toggle between login and registration forms
         $('.register-link').click(function(e) {
             e.preventDefault();
-            $('.loginpage').removeClass('active').addClass('hidden');
-            $('.registration-box').removeClass('hidden').addClass('active');
+            $('.loginpage').removeClass('active');
+            $('.registration-box').addClass('active');
+        });
+        $('.back-btn').click(function() {
+            $('.registration-box').removeClass('active');
+            $('.loginpage').addClass('active');
         });
 
-        $('.back-btn').click(function(e) {
-            e.preventDefault();
-            $('.registration-box').removeClass('active').addClass('hidden');
-            $('.loginpage').removeClass('hidden').addClass('active');
-        });
-
-        // Show/hide password
-        $('.show-pass input').change(function() {
-            var passwordField = $(this).closest('form').find('input[type="password"]');
-            passwordField.attr('type', this.checked ? 'text' : 'password');
-        });
-
-        // Handle login form submission
+        // Login AJAX
         $('#loginForm').on('submit', function(e) {
             e.preventDefault();
-            
-            var formData = $(this).serialize();
-            formData += '&login=1';
-            
-            $('.loading-screen').css('display', 'flex').hide().fadeIn(300);
-            
+            $('#loginMessage').removeClass('error success').text('');
+            var identifier = $('#login-identifier').val().trim();
+            var password = $('#login-password').val();
+            if (!identifier || !password) {
+                $('#loginMessage').addClass('error').text('Please enter both Student ID/Email and password.');
+                return;
+            }
             $.ajax({
-                type: 'POST',
                 url: '../php/login_register.php',
-                data: formData,
+                method: 'POST',
+                data: { login: 1, identifier: identifier, password: password },
                 dataType: 'json',
-                success: function(response) {
-                    try {
-                        console.log('Login response:', response);
-                        if (response.success) {
-                            setTimeout(function() {
-                                $('.loading-screen').fadeOut(300, function() {
-                                    if (response.redirect) {
-                                        console.log('Redirecting to:', response.redirect);
-                                        window.location.href = response.redirect;
-                                    } else {
-                                        console.error('No redirect URL provided');
-                                        $('#loginMessage')
-                                            .removeClass('success')
-                                            .addClass('error')
-                                            .text('Error: No redirect URL provided')
-                                            .show();
-                                    }
-                                });
-                            }, 2000);
-                        } else {
-                            $('.loading-screen').fadeOut(300);
-                            $('#loginMessage')
-                                .removeClass('success')
-                                .addClass('error')
-                                .text(response.message)
-                                .show();
-                        }
-                    } catch (e) {
-                        $('.loading-screen').fadeOut(300);
-                        $('#loginMessage')
-                            .removeClass('success')
-                            .addClass('error')
-                            .text('An unexpected error occurred. Please try again.')
-                            .show();
+                success: function(res) {
+                    if (res.success) {
+                        $('#loginMessage').removeClass('error').addClass('success').text('Login successful! Redirecting...');
+                        setTimeout(function() { window.location.href = res.redirect || '4_Event.php'; }, 1200);
+                    } else {
+                        $('#loginMessage').removeClass('success').addClass('error').text(res.message || 'Login failed.');
                     }
                 },
-                error: function(xhr, status, error) {
-                    $('.loading-screen').fadeOut(300);
-                    $('#loginMessage')
-                        .removeClass('success')
-                        .addClass('error')
-                        .text('Server error: ' + (error || 'Unknown error occurred'))
-                        .show();
+                error: function() {
+                    $('#loginMessage').removeClass('success').addClass('error').text('An error occurred. Please try again.');
                 }
             });
         });
 
-        // Handle registration form submission
+        // Registration AJAX with validation
         $('#registrationForm').on('submit', function(e) {
             e.preventDefault();
-            
-            var formData = $(this).serialize();
-            formData += '&register=1';
-            
+            $('#registerMessage').removeClass('error success').text('');
+            var firstname = $('#reg-firstname').val().trim();
+            var lastname = $('#reg-lastname').val().trim();
+            var student_id = $('#reg-studentid').val().trim();
+            var email = $('#reg-email').val().trim();
+            var password = $('#reg-password').val();
+            var confirm_password = $('#reg-confirm-password').val();
+            // Validate required fields
+            if (!firstname || !lastname || !student_id || !email || !password || !confirm_password) {
+                $('#registerMessage').addClass('error').text('All fields are required.');
+                return;
+            }
+            // Validate student ID format
+            if (!/^\d{2}-\d{5}$/.test(student_id)) {
+                $('#registerMessage').addClass('error').text('Student ID must be in format 23-00992.');
+                return;
+            }
+            // Validate email format
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                $('#registerMessage').addClass('error').text('Please enter a valid email address.');
+                return;
+            }
+            // Validate password match
+            if (password !== confirm_password) {
+                $('#registerMessage').addClass('error').text('Passwords do not match.');
+                return;
+            }
+            // Submit via AJAX
             $.ajax({
-                type: 'POST',
                 url: '../php/login_register.php',
-                data: formData,
+                method: 'POST',
+                data: {
+                    register: 1,
+                    firstname: firstname,
+                    lastname: lastname,
+                    student_id: student_id,
+                    email: email,
+                    password: password
+                },
                 dataType: 'json',
-                success: function(response) {
-                    try {
-                        if (response.success) {
-                            $('#registerMessage')
-                                .removeClass('error')
-                                .addClass('success')
-                                .text(response.message)
-                                .show();
-                            
-                            setTimeout(function() {
-                                window.location.href = '1_Login.php';
-                            }, 2000);
-                        } else {
-                            $('#registerMessage')
-                                .removeClass('success')
-                                .addClass('error')
-                                .text(response.message)
-                                .show();
-                        }
-                    } catch (e) {
-                        $('#registerMessage')
-                            .removeClass('success')
-                            .addClass('error')
-                            .text('An unexpected error occurred. Please try again.')
-                            .show();
+                success: function(res) {
+                    if (res.success) {
+                        $('#registerMessage').removeClass('error').addClass('success').text('Registration successful! Please login.');
+                        setTimeout(function() {
+                            $('.registration-box').removeClass('active');
+                            $('.loginpage').addClass('active');
+                            $('#registrationForm')[0].reset();
+                        }, 1500);
+                    } else {
+                        $('#registerMessage').removeClass('success').addClass('error').text(res.message || 'Registration failed.');
                     }
                 },
-                error: function(xhr, status, error) {
-                    $('#registerMessage')
-                        .removeClass('success')
-                        .addClass('error')
-                        .text('Server error: ' + (error || 'Unknown error occurred'))
-                        .show();
+                error: function() {
+                    $('#registerMessage').removeClass('success').addClass('error').text('An error occurred. Please try again.');
                 }
             });
         });
-    });
-    </script>
-</body>
-</html>
 
-<?php session_unset(); ?> 
+        // Auto-insert dash in Student ID for registration
+        $('#reg-studentid').on('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '-' + value.substring(2, 7);
+            }
+            this.value = value;
+        });
+        // Auto-insert dash in Student ID for login (only if input is all digits and not an email)
+        $('#login-identifier').on('input', function(e) {
+            // Only auto-format if input is all digits (no non-digit except dash)
+            let raw = this.value.replace(/-/g, '');
+            if (/^\d+$/.test(raw) && raw.length > 2) {
+                let value = raw.substring(0, 2) + '-' + raw.substring(2, 7);
+                this.value = value;
+            }
+            // If input contains any non-digit (like @), do not auto-format
+        });
+    });
+    // Show/hide password utility
+    function showPass(id) {
+        var input = document.getElementById(id);
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
+    }
+    </script>
+    </body>
+</html>

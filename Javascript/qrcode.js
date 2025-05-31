@@ -34,10 +34,15 @@ function generateQRCode(eventCode) {
     const container = document.getElementById('qrcode-container');
     const qrcodeDiv = document.getElementById('qrcode');
     qrcodeDiv.innerHTML = '';
-    const registrationUrl = `${window.location.origin}/Project_Event_Database/pages/register_participant.php?code=${eventCode}`;
+    
+    // Get the event ID from the data attribute
+    const eventId = document.querySelector('[data-event-id]').dataset.eventId;
+    
+    // Create a registration code format that includes both event ID and code
+    const qrData = `REG:${eventId}:${eventCode}`;
     
     qrcode = new QRCode(qrcodeDiv, {
-        text: registrationUrl,
+        text: qrData,
         width: 256,
         height: 256,
         colorDark: "#000000",

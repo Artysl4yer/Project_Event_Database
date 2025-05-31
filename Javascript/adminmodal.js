@@ -19,6 +19,8 @@ window.onclick = function(event) {
     }
 }
 
+// Dropdown functionality has been moved to event-dropdown.js
+
 // AJAX form submission
 document.addEventListener('DOMContentLoaded', function () {
     const adminForm = document.getElementById('adminForm');
@@ -51,29 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             messageDiv.innerHTML = 'An error occurred';
             messageDiv.className = 'message error';
-        });
-    });
-
-    // Dropdown functionality
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const menu = this.nextElementSibling;
-
-            // Close all other dropdowns
-            document.querySelectorAll('.dropdown-menu').forEach(m => {
-                if (m !== menu) m.classList.remove('show');
-            });
-
-            // Toggle current dropdown
-            menu.classList.toggle('show');
-        });
-    });
-
-    // Close dropdown when clicking elsewhere
-    document.addEventListener('click', function () {
-        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-            menu.classList.remove('show');
         });
     });
 });

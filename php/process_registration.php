@@ -1,63 +1,99 @@
 <?php
-include 'conn.php';
-
-// Set header to return JSON
+session_start();
 header('Content-Type: application/json');
 
+// Include database connection
+require_once 'conn.php';
+
+// Get form data
+$registration_type = $_POST['registration_type'] ?? '';
+$event_id = $_POST['event_id'] ?? '';
+$event_code = $_POST['event_code'] ?? '';
+
+// Validate required fields
+if (!$event_id || !$event_code) {
+    echo json_encode(['success' => false, 'message' => 'Missing event information']);
+    exit;
+}
+
 try {
-    // Get form data
-    $event_id = $_POST['event_id'] ?? '';
-    $event_code = $_POST['event_code'] ?? '';
-    $student_id = $_POST['ID'] ?? '';
-    $firstname = $_POST['FirstName'] ?? '';
-    $lastname = $_POST['LastName'] ?? '';
-    $name = trim($firstname) . ' ' . trim($lastname);
-    $course = $_POST['Course'] ?? '';
-    $section = $_POST['Section'] ?? '';
-    $gender = $_POST['Gender'] ?? '';
-    $age = $_POST['Age'] ?? '';
-    $year = $_POST['Year'] ?? '';
-    $dept = $_POST['Dept'] ?? '';
-
-    // Validate required fields
-    if (empty($event_id) || empty($event_code) || empty($student_id) || empty($firstname) || empty($lastname)) {
-        throw new Exception('All fields are required');
-    }
-
-    // Verify event exists and code matches
-    $stmt = $conn->prepare("SELECT number FROM event_table WHERE number = ? AND event_code = ?");
-    $stmt->bind_param("is", $event_id, $event_code);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0) {
-        throw new Exception('Invalid event or event code');
-    }
-
-    // Check if student is already registered for this event
-    $stmt = $conn->prepare("SELECT ID FROM participants_table WHERE ID = ? AND number = ?");
-    $stmt->bind_param("si", $student_id, $event_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        throw new Exception('You are already registered for this event');
-    }
-
-    // Insert participant
-    $stmt = $conn->prepare("INSERT INTO participants_table (ID, Name, Course, Section, Gender, Age, Year, Dept, number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssi", $student_id, $name, $course, $section, $gender, $age, $year, $dept, $event_id);
-
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Registration successful']);
+    // Start transaction
+    $conn->begin_transaction();
+    
+    if ($registration_type === 'student') {
+        // Validate student fields
+        $student_id = $_POST['student_id'] ?? '';
+        $student_name = $_POST['student_name'] ?? '';
+        $student_course = $_POST['student_course'] ?? '';
+        $student_section = $_POST['student_section'] ?? '';
+        $student_gender = $_POST['student_gender'] ?? '';
+        
+        if (!$student_id || !$student_name || !$student_course || !$student_section || !$student_gender) {
+            throw new Exception('Please fill in all required fields');
+        }
+        
+        // Insert student registration
+        $stmt = $conn->prepare("INSERT INTO participant_table (event_id, student_id, full_name, course, section, gender) VALUES (?, ?, ?, ?, ?, ?)");
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement: " . $conn->error);
+        }
+        
+        $stmt->bind_param("isssss", 
+            $event_id,
+            $student_id,
+            $student_name,
+            $student_course,
+            $student_section,
+            $student_gender
+        );
+        
     } else {
-        throw new Exception('Failed to save registration: ' . $conn->error);
+        // Validate guest fields
+        $guest_name = $_POST['guest_name'] ?? '';
+        $guest_email = $_POST['guest_email'] ?? '';
+        $guest_contact = $_POST['guest_contact'] ?? '';
+        $guest_org = $_POST['guest_org'] ?? '';
+        $guest_position = $_POST['guest_position'] ?? '';
+        
+        if (!$guest_name || !$guest_email || !$guest_contact) {
+            throw new Exception('Please fill in all required fields');
+        }
+        
+        // Insert guest registration
+        $stmt = $conn->prepare("INSERT INTO guest_info (event_id, full_name, email, contact_number, organization, position) VALUES (?, ?, ?, ?, ?, ?)");
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement: " . $conn->error);
+        }
+        
+        $stmt->bind_param("isssss", 
+            $event_id,
+            $guest_name,
+            $guest_email,
+            $guest_contact,
+            $guest_org,
+            $guest_position
+        );
     }
-
+    
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to register: " . $stmt->error);
+    }
+    
+    // Commit transaction
+    $conn->commit();
+    
+    echo json_encode(['success' => true, 'message' => 'Registration successful']);
+    
 } catch (Exception $e) {
+    // Rollback transaction on error
+    $conn->rollback();
+    error_log("Error in process_registration.php: " . $e->getMessage());
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
-$stmt->close();
+// Close the database connection
+if (isset($stmt)) {
+    $stmt->close();
+}
 $conn->close();
 ?> 

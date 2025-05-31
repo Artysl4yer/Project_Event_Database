@@ -1,4 +1,30 @@
-
+<?php
+session_start();
+$role = $_SESSION['role'] ?? null;
+$page = basename($_SERVER['PHP_SELF']);
+$coordinator_allowed = [
+    '4_Event.php',
+    '5_About.php',
+    '6_NewEvent.php',
+    '8_archive.php',
+    '11_Attendance.php'
+];
+if (!$role) {
+    header("Location: 1_Login.php");
+    exit();
+}
+if ($role === 'admin') {
+    // allow
+} elseif ($role === 'coordinator') {
+    if (!in_array($page, $coordinator_allowed)) {
+        header("Location: 4_Event.php");
+        exit();
+    }
+} else {
+    header("Location: 1_Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,38 +33,35 @@
         <link rel="stylesheet" href="/styles/style1.css">
         <script src="https://kit.fontawesome.com/d78dc5f742.js" crossorigin="anonymous"></script>
         <style>
-            .back-button {
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                background-color: #104911;
-                color: white;
+            .go-back-btn {
+                background: #17692d;
+                color: #fff;
                 border: none;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
+                border-radius: 6px;
+                padding: 10px 24px;
+                font-size: 1rem;
+                font-weight: 500;
                 cursor: pointer;
-                display: flex;
+                margin-right: 18px;
+                transition: background 0.2s, box-shadow 0.2s;
+                box-shadow: 0 2px 8px rgba(23,105,45,0.08);
+                display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                transition: all 0.3s ease;
-                z-index: 1000;
+                gap: 8px;
             }
-
-            .back-button:hover {
-                background-color: #0d3a0d;
-                transform: scale(1.1);
+            .go-back-btn:hover {
+                background: #145c26;
+                box-shadow: 0 4px 16px rgba(23,105,45,0.15);
             }
         </style>
     </head>
     <body>
-        <button class="back-button" onclick="history.back()">
-            <i class="fas fa-arrow-left"></i>
-        </button>
-        <div class="title-container">
+       <div class="title-container">
+            <button class="go-back-btn" onclick="history.back()"><i class="fa fa-arrow-left"></i> Go Back</button>
+
             <img src="../images-icon/plplogo.png"> <h1> Pamantasan ng Lungsod ng Pasig </h1>
         </div>
+
         <div class="Top">
             <img src="/images-icon/plm_courtyard.png" alt="plpback" height="100">
             <h1>About</h1>
@@ -88,6 +111,69 @@
                 <!-- Wag tanggalin -->
             </div>
         </div>
+        <!--
+        <div class="member-list">
+            <div class="mtitle">
+                <h1>Team Members</h1>
+            </div>
+    <p>A dedicated team of PLP students and staff collaboratively manages the Event<br> Attendance System to ensure smooth and efficient event tracking.</p>
+
+            <div class="memberli">
+                <div class="member">
+                    <div class="mem-img">
+                        <img src="/images-icon/members-img/lark.jpg" alt="member"> 
+                    </div>
+                    <div class="member-info">
+                        <h2>Lark</h2>
+                        <h3>Role</h3>
+                    </div>
+                    
+                </div>
+
+                <div class="member">
+                    <div class="mem-img">
+                        <img src="/images-icon/members-img/madi.jpg" alt="member"> 
+                    </div>
+                    <div class="member-info">
+                        <h2>Madi</h2>
+                        <h3>Role</h3>
+                    </div>
+                    
+                </div>
+
+                <div class="member">
+                    <div class="mem-img">
+                        <img src="/images-icon/members-img/darryl.jpg" alt="member"> 
+                    </div>
+                    <div class="member-info">
+                        <h2>Darryl</h2>
+                        <h3>Role</h3>
+                    </div>
+                    
+                </div>
+
+                <div class="member">
+                    <div class="mem-img">
+                        <img src="/images-icon/members-img/alex.jpg" alt="member"> 
+                    </div>
+                    <div class="member-info">
+                        <h2>Alex</h2>
+                        <h3>Role</h3>
+                    </div>
+                    
+                </div>
+
+                <div class="member">
+                    <div class="mem-img">
+                        <img src="/images-icon/members-img/pasion.jpg" alt="member"> 
+                    </div>
+                    <div class="member-info">
+                        <h2>Pasion</h2>
+                        <h3>Role</h3>
+                    </div>
+                    
+                </div>
+                -->
     <script src="../Javascript/dynamic.js"></script>
     </body>
 </html>

@@ -1,28 +1,45 @@
 <?php
-include 'conn.php';
-
-if (!isset($_GET['id'])) {
-    die(json_encode(['error' => 'No event ID provided']));
-}
-
-$event_id = $_GET['id'];
-
-// Get event details including event_code and file
-$stmt = $conn->prepare("SELECT number, event_title, event_location, date_start, event_start, date_end, event_end, event_description, organization, event_status, event_code, file FROM event_table WHERE number = ?");
-$stmt->bind_param("i", $event_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    die(json_encode(['error' => 'Event not found']));
-}
-
-$event = $result->fetch_assoc();
-
-// Return event details as JSON
 header('Content-Type: application/json');
-echo json_encode($event);
+include '../php/conn.php';
 
-$stmt->close();
-$conn->close();
+$response = ['success' => false, 'message' => 'Unknown error'];
+
+try {
+    if (!isset($_GET['event_id'])) {
+        throw new Exception('Event ID is required');
+    }
+    
+    $event_id = intval($_GET['event_id']);
+    $type = $_GET['type'] ?? 'active';
+    
+    // Determine which table to query
+    $table = $type === 'archive' ? 'archive_table' : 'event_table';
+    
+    // Get event details
+    $query = "SELECT * FROM {$table} WHERE number = ?";
+    $stmt = $conn->prepare($query);
+    if (!$stmt) throw new Exception('Prepare failed: ' . $conn->error);
+    
+    $stmt->bind_param("i", $event_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $event = $result->fetch_assoc();
+    
+    if (!$event) {
+        throw new Exception('Event not found');
+    }
+    
+    $response = [
+        'success' => true,
+        'event' => $event
+    ];
+    
+} catch (Exception $e) {
+    $response = ['success' => false, 'message' => $e->getMessage()];
+} finally {
+    if (isset($stmt)) $stmt->close();
+    $conn->close();
+}
+
+echo json_encode($response);
 ?> 

@@ -16,94 +16,844 @@
     color: white;
 }
 
-.org-dropdown {
-    width: 100%;
-    margin-top: 5px;
-    position: relative;
+/* Dropdown Styles */
+.dropdown-wrapper {
+    position: static;
+    width: 32px;
+    margin: 0 auto;
 }
 
-.org-options {
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.dropdown-toggle {
+    background: none;
+    border: none;
     padding: 4px;
-    max-height: 150px;
-    overflow-y: auto;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.org-option {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 2px 4px;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
     transition: background-color 0.2s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-height: 24px;
 }
 
-.org-option:hover {
+.dropdown-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.dropdown-toggle i {
+    font-size: 14px;
+    color: #666;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 8px;
+    top: auto;
+    background: #fff;
+    min-width: 160px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    border: 1px solid #eee;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+    margin-top: 0;
+    padding: 4px 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Table cell dropdown specific styles */
+.event-display-table td.dropdown-wrapper {
+    position: relative;
+    padding: 4px;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    text-align: center;
+}
+
+/* Ensure dropdown content is above everything */
+.dropdown-menu button,
+.dropdown-menu form button {
+    position: relative;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown-menu button:hover,
+.dropdown-menu form button:hover {
     background-color: #f5f5f5;
 }
 
-.org-option input[type="checkbox"] {
-    margin: 0 6px 0 0;
-    cursor: pointer;
-    flex: 0 0 auto;
-    width: 14px;
-    height: 14px;
+.dropdown-menu button i,
+.dropdown-menu form button i {
+    width: 16px;
+    text-align: center;
+    color: inherit;
 }
 
-.org-option label {
-    cursor: pointer;
-    font-size: 13px;
-    color: #333;
+.dropdown-menu form {
     margin: 0;
     padding: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2;
 }
 
-#other-org {
-    margin-top: 8px;
+/* Dropdown Button Colors */
+.dropdown-menu .dropdown-edit-btn {
+    color: #3284ed;
+}
+
+.dropdown-menu .dropdown-edit-btn:hover {
+    background-color: rgba(50, 132, 237, 0.1);
+}
+
+.dropdown-menu .dropdown-attendance-btn {
+    color: #2c3e50;
+}
+
+.dropdown-menu .dropdown-attendance-btn:hover {
+    background-color: rgba(44, 62, 80, 0.1);
+}
+
+.dropdown-menu .dropdown-qr-btn {
+    color: #27ae60;
+}
+
+.dropdown-menu .dropdown-qr-btn:hover {
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+.dropdown-menu .dropdown-unarchive-btn {
+    color: #f39c12;
+}
+
+.dropdown-menu .dropdown-unarchive-btn:hover {
+    background-color: rgba(243, 156, 18, 0.1);
+}
+
+.dropdown-menu .delete-btn {
+    color: #e74c3c;
+}
+
+.dropdown-menu .delete-btn:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Add divider between items */
+.dropdown-menu button:not(:last-child),
+.dropdown-menu form:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+/* Style for the ellipsis icon */
+.fa-ellipsis-v {
+    font-size: 16px;
+}
+
+/* Keep Add Event button styles separate */
+.btn-import {
+    background-color: #104911;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.btn-import:hover {
+    background-color: #0d3a0e;
+}
+
+.btn-import i {
+    font-size: 14px;
+}
+
+.btn-import span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 6px 8px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 3% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #104911;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.close-modal:hover {
+    color: #104911;
+}
+
+/* Form Grid Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Full width items */
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Form Styles Update */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    display: none;
-    font-size: 13px;
-    height: 30px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s;
 }
 
-#other-org:focus {
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
     border-color: #104911;
     outline: none;
     box-shadow: 0 0 0 2px rgba(16, 73, 17, 0.1);
 }
 
-#other-org.active {
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Image Upload Section Update */
+.image-upload-container {
+    grid-column: 1 / -1;
+    border: 2px dashed #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #fafafa;
+}
+
+.image-preview {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    margin: 0 auto 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-btn {
+    background-color: #104911;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.upload-btn:hover {
+    background-color: #0d3a0e;
+}
+
+#imageName {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Form Actions Update */
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-submit,
+.btn-cancel {
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-submit {
+    background-color: #104911;
+    color: white;
+    border: none;
+}
+
+.btn-submit:hover {
+    background-color: #0d3a0e;
+}
+
+.btn-cancel {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e5e5;
+}
+
+/* QR Modal Specific Styles */
+#qrModal .modal-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+#qrcode-container {
+    padding: 20px;
+}
+
+#qrcode {
+    margin: 0 auto;
+    padding: 10px;
+    background: white;
+    display: inline-block;
+}
+
+.btn-download {
+    background-color: #104911;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.btn-download:hover {
+    background-color: #0d3a0e;
+}
+
+/* Responsive Design Update */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+}
+
+/* Add specific styles for each modal */
+#addEventModal,
+#editEventModal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+#addEventModal .modal-content,
+#editEventModal .modal-content {
+    max-width: 800px;
+    margin: 3% auto;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #104911;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.close-modal:hover {
+    color: #104911;
+}
+
+/* Form Grid Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Full width items */
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
     display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
 }
 
-/* Scrollbar styling for the dropdown */
-.org-options::-webkit-scrollbar {
-    width: 6px;
-}
-
-.org-options::-webkit-scrollbar-track {
-    background: #f1f1f1;
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s;
 }
 
-.org-options::-webkit-scrollbar-thumb {
-    background: #888;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #104911;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 73, 17, 0.1);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-submit,
+.btn-cancel {
+    padding: 8px 20px;
     border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
 }
 
-.org-options::-webkit-scrollbar-thumb:hover {
-    background: #666;
+.btn-submit {
+    background-color: #104911;
+    color: white;
+    border: none;
+}
+
+.btn-submit:hover {
+    background-color: #0d3a0e;
+}
+
+.btn-cancel {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e5e5;
+}
+
+/* Add any specific styles for add vs edit modals */
+#addEventModal .modal-header h2 {
+    color: #104911;
+}
+
+#editEventModal .modal-header h2 {
+    color: #104911;
+}
+
+.event-display-table th[data-sort] {
+    cursor: pointer;
+    position: relative;
+    padding-right: 25px;
+}
+
+.event-display-table th[data-sort]:hover {
+    background-color: #f0f0f0;
+}
+
+.event-display-table th[data-sort].sorted-asc::after,
+.event-display-table th[data-sort].sorted-desc::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.event-display-table th[data-sort].sorted-asc::after {
+    border-bottom: 5px solid #17692d;
+}
+
+.event-display-table th[data-sort].sorted-desc::after {
+    border-top: 5px solid #17692d;
+}
+
+/* Custom class for SweetAlert to appear on top of other modals */
+.swal-on-top-custom-modal {
+    z-index: 1500 !important;
+}
+
+/* Container Styles */
+.event-table-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Table Base Styles */
+.event-display-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 4px;
+    overflow: visible;
+    margin-top: 16px;
+    table-layout: fixed;
+}
+
+.event-display-table th,
+.event-display-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Ensure table cells with dropdowns don't clip the dropdown menu */
+.event-display-table td.dropdown-wrapper {
+    overflow: visible;
+    position: relative;
+    padding: 0;
+}
+
+.event-display-table td.dropdown-wrapper .dropdown-toggle {
+    width: 100%;
+    height: 100%;
+    padding: 8px 12px;
+}
+
+/* Ensure dropdown menus appear above other table elements */
+.event-display-table td.dropdown-wrapper .dropdown-menu {
+    z-index: 1000;
+}
+
+/* Column specific widths - adjusted for better visibility */
+.event-display-table th:nth-child(1), /* Number */
+.event-display-table td:nth-child(1) {
+    width: 3%;
+}
+
+.event-display-table th:nth-child(2), /* Title */
+.event-display-table td:nth-child(2) {
+    width: 8%;
+}
+
+.event-display-table th:nth-child(3), /* Event Code */
+.event-display-table td:nth-child(3) {
+    width: 8%;
+}
+
+.event-display-table th:nth-child(4), /* Start */
+.event-display-table td:nth-child(4),
+.event-display-table th:nth-child(5), /* End */
+.event-display-table td:nth-child(5) {
+    width: 12%;
+    min-width: 140px;
+}
+
+.event-display-table th:nth-child(6), /* Location */
+.event-display-table td:nth-child(6) {
+    width: 8%;
+}
+
+.event-display-table th:nth-child(7), /* Description */
+.event-display-table td:nth-child(7) {
+    width: 15%;
+}
+
+.event-display-table th:nth-child(8), /* Organization */
+.event-display-table td:nth-child(8) {
+    width: 12%;
+}
+
+.event-display-table th:nth-child(9), /* Status */
+.event-display-table td:nth-child(9) {
+    width: 8%;
+}
+
+.event-display-table th:nth-child(10), /* Actions */
+.event-display-table td:nth-child(10) {
+    width: 5%;
+    text-align: center;
+}
+
+/* Special handling for description column */
+.event-display-table td[data-label="Description"] {
+    position: relative;
+}
+
+.event-display-table td[data-label="Description"]:hover {
+    position: relative;
+    overflow: visible;
+    white-space: normal;
+    z-index: 1;
+}
+
+.event-display-table td[data-label="Description"]:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: white;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 200px;
+    max-width: 400px;
+    white-space: normal;
+    word-wrap: break-word;
+    z-index: 2;
+}
+
+/* Table Header - Simplified without search */
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.filter-btn {
+    padding: 6px 12px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: #f5f5f5;
+}
+
+.filter-btn.active {
+    background: #104911;
+    color: white;
+    border-color: #104911;
+}
+
+/* Responsive adjustments - simplified */
+@media (max-width: 768px) {
+    .filter-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-buttons {
+        padding-bottom: 4px;
+    }
+}
+
+/* Status styling improvements */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    width: auto;
+    min-width: 80px;
+}
+
+/* Actions column improvements */
+
+/* Make sure text doesn't wrap in these columns */
+.event-display-table td[data-label="Organization"],
+.event-display-table td[data-label="Status"] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 16px;
+}
+
+/* Ensure the table doesn't overflow on smaller screens */
+@media (max-width: 1200px) {
+    .event-table-section {
+        max-width: 100%;
+        margin: 0;
+        padding: 12px;
+        overflow-x: auto;
+    }
+
+    .event-display-table {
+        min-width: 1000px; /* Ensure minimum width for readability */
+    }
 }
 

@@ -304,8 +304,9 @@
     /* Dropdown Styles */
     /* Dropdown Container */
     .dropdown-wrapper {
-       
-       
+        position: relative;
+        
+        margin-bottom: 100px ;
     }
 
     /* Three-dot button */
@@ -334,11 +335,11 @@
         position: absolute;
         right: 0;
         top: 100%;
-        background: white;
-        min-width: 180px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        min-width: 200px;
+        box-shadow: 0 4px 12px #d0d0d0;
         border-radius: 8px;
-        z-index: 1000;
+        z-index: 2000;
         margin-top: 8px;
         border: 1px solid #eee;
         padding: 4px 0;
@@ -377,6 +378,7 @@
         transition: all 0.2s ease;
         margin: 0;
         box-sizing: border-box;
+        white-space: nowrap;
     }
 
     .dropdown-menu form {
@@ -388,9 +390,14 @@
         display: block;
     }
 
-    .dropdown-menu form button {
+    .dropdown-menu .delete-btn {
         color: #e74c3c;
-        justify-content: flex-start;
+        width: 100%;
+        text-align: left;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .dropdown-menu button i,
@@ -398,43 +405,49 @@
         width: 16px;
         text-align: center;
         font-size: 14px;
-        color: #666;
+        color: inherit;
     }
 
     .dropdown-menu button:hover,
     .dropdown-menu form button:hover {
         background-color: rgba(16, 73, 17, 0.05);
-        color: #104911;
-    }
-
-    .dropdown-menu button:hover i,
-    .dropdown-menu form button:hover i {
-        color: #104911;
     }
 
     /* Dropdown Button Colors */
-    .dropdown-menu button:nth-child(1) {
+    .dropdown-menu .dropdown-edit-btn {
         color: #3284ed;
     }
 
-    .dropdown-menu button:nth-child(1):hover {
+    .dropdown-menu .dropdown-edit-btn:hover {
         background-color: rgba(50, 132, 237, 0.1);
     }
 
-    .dropdown-menu form button {
-        color: #e74c3c;
-    }
-
-    .dropdown-menu form button:hover {
-        background-color: rgba(231, 76, 60, 0.1);
-    }
-
-    .dropdown-menu button:nth-child(3) {
+    .dropdown-menu .dropdown-attendance-btn {
         color: #2c3e50;
     }
 
-    .dropdown-menu button:nth-child(3):hover {
+    .dropdown-menu .dropdown-attendance-btn:hover {
         background-color: rgba(44, 62, 80, 0.1);
+    }
+
+    .dropdown-menu .dropdown-qr-btn {
+        color: #27ae60;
+    }
+
+    .dropdown-menu .dropdown-qr-btn:hover {
+        background-color: rgba(39, 174, 96, 0.1);
+    }
+
+    .dropdown-menu .dropdown-unarchive-btn {
+        color: #f39c12;
+    }
+
+    .dropdown-menu .dropdown-unarchive-btn:hover {
+        background-color: rgba(243, 156, 18, 0.1);
+    }
+
+    .dropdown-menu .delete-btn:hover {
+        background-color: rgba(231, 76, 60, 0.1);
     }
 
     /* Add divider between items */

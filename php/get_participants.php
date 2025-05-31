@@ -1,84 +1,66 @@
 <?php
+session_start();
 header('Content-Type: application/json');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-include 'conn.php';
+// Include database connection
+require_once 'conn.php';
 
-if ($conn === false) {
-    die(json_encode(['error' => 'Database connection failed']));
+// Check if event_id is provided
+if (!isset($_POST['event_id'])) {
+    echo json_encode(['success' => false, 'message' => 'Event ID is required']);
+    exit;
 }
 
-// Get event ID from query parameter
-$event_id = isset($_GET['event_id']) ? intval($_GET['event_id']) : 0;
-
-if ($event_id <= 0) {
-    die(json_encode(['error' => 'Invalid event ID']));
-}
+$event_id = $_POST['event_id'];
 
 try {
-    // First check if event_id column exists
-    $check_column = $conn->query("SHOW COLUMNS FROM participants_table LIKE 'event_id'");
-    $has_event_id = $check_column && $check_column->num_rows > 0;
-
-    // Query to get participants for the specific event
-    if ($has_event_id) {
-        $query = "SELECT 
-            p.ID,
-            p.Name,
-            p.Course,
-            p.Section,
-            p.Gender,
-            p.Age,
-            p.Year,
-            p.Dept,
-            p.registration_date
-        FROM participants_table p
-        WHERE p.event_id = ?
-        ORDER BY p.registration_date DESC";
-    } else {
-        // Fallback to using number column if event_id doesn't exist
-        $query = "SELECT 
-            p.ID,
-            p.Name,
-            p.Course,
-            p.Section,
-            p.Gender,
-            p.Age,
-            p.Year,
-            p.Dept,
-            p.registration_date
-        FROM participants_table p
-        WHERE p.number = ?
-        ORDER BY p.registration_date DESC";
-    }
-
-    $stmt = $conn->prepare($query);
+    // Get attendees for the event with detailed student info
+    $sql = "SELECT ea.id AS attendance_id, ea.student_id, ea.registered_by, ea.attendance_time, s.ID, s.first_name, s.last_name, s.Course, s.Section, s.Gender, s.Age, s.Year, s.Dept
+            FROM event_attendance ea
+            JOIN student_table s ON ea.student_id = s.ID
+            WHERE ea.event_id = ?
+            ORDER BY ea.attendance_time DESC";
+    $stmt = $conn->prepare($sql);
     if (!$stmt) {
-        throw new Exception("Prepare failed: " . $conn->error);
+        throw new Exception("Failed to prepare statement: " . $conn->error);
     }
-
     $stmt->bind_param("i", $event_id);
     if (!$stmt->execute()) {
-        throw new Exception("Execute failed: " . $stmt->error);
+        throw new Exception("Failed to execute query: " . $stmt->error);
     }
-
     $result = $stmt->get_result();
     $participants = [];
-
     while ($row = $result->fetch_assoc()) {
-        $participants[] = $row;
+        $participants[] = [
+            'attendance_id' => $row['attendance_id'],
+            'student_id' => $row['student_id'],
+            'registered_by' => $row['registered_by'],
+            'attendance_time' => $row['attendance_time'],
+            'ID' => $row['ID'],
+            'first_name' => $row['first_name'],
+            'last_name' => $row['last_name'],
+            'Course' => $row['Course'],
+            'Section' => $row['Section'],
+            'Gender' => $row['Gender'],
+            'Age' => $row['Age'],
+            'Year' => $row['Year'],
+            'Dept' => $row['Dept']
+        ];
     }
-
-    echo json_encode($participants);
-
+    echo json_encode([
+        'success' => true,
+        'participants' => $participants
+    ]);
 } catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
-} finally {
-    if (isset($stmt)) {
-        $stmt->close();
-    }
-    $conn->close();
+    error_log("Error in get_participants.php: " . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error fetching participants'
+    ]);
 }
+// Close statement and connection
+if (isset($stmt)) {
+    $stmt->close();
+}
+$conn->close();
 ?> 

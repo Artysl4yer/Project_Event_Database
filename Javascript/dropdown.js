@@ -1,38 +1,51 @@
-    document.addEventListener('DOMContentLoaded', function() {
-    initializeDropdowns();
-    setupEditButtons();
-    });
+// This file is deprecated. All dropdown functionality has been moved to event-dropdown.js
 
-    function initializeDropdowns() {
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle dropdown toggles
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const menu = this.nextElementSibling;
+            e.preventDefault(); // Prevent default
+            e.stopPropagation(); // Stop bubbling
             
-            // Close all other dropdowns
-            document.querySelectorAll('.dropdown-menu').forEach(m => {
-                if (m !== menu) m.classList.remove('show');
+            // Close all other dropdowns first
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                if (menu !== this.nextElementSibling) {
+                    menu.classList.remove('show');
+                }
             });
             
-            // Toggle current dropdown
-            menu.classList.toggle('show');
+            // Toggle this dropdown
+            const dropdownMenu = this.nextElementSibling;
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('show');
+            }
         });
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        closeAllDropdowns();
+    document.addEventListener('click', function(e) {
+        // Don't close if clicking inside a dropdown menu
+        if (!e.target.closest('.dropdown-menu') && !e.target.matches('.dropdown-toggle')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        }
     });
 
-    // Prevent dropdown from closing when clicking inside menu items
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.addEventListener('click', function(e) {
-            e.stopPropagation();
+    // Optional: close dropdowns on scroll or resize
+    window.addEventListener('scroll', closeAllDropdowns);
+    window.addEventListener('resize', closeAllDropdowns);
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
         });
-    });
     }
+});
 
-    function handleDropdownClick(event) {
+function handleDropdownClick(event) {
     if (event.target.classList.contains('dropdown-toggle')) {
         event.preventDefault();
         event.stopPropagation();
@@ -48,46 +61,40 @@
     if (!event.target.closest('.dropdown-wrapper')) {
         closeAllDropdowns();
     }
-    }
+}
 
-    function toggleDropdown(number) {
+function toggleDropdown(number) {
     const dropdown = document.getElementById('dropdown' + number);
     if (!dropdown) return;
 
     closeAllDropdowns();
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     positionDropdown(dropdown);
-    }
+}
 
-    function positionDropdown(dropdown) {
+function positionDropdown(dropdown) {
     const rect = dropdown.getBoundingClientRect();
     if (rect.right > window.innerWidth) {
         dropdown.style.left = 'auto';
         dropdown.style.right = '0';
     }
-    }
+}
 
-    function closeAllDropdowns() {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.classList.remove('show');
-    });
-    }
-
-    function editEvent(number) {
+function editEvent(number) {
     closeAllDropdowns();
     openModal(number);
-    }
+}
 
-    function deleteEvent(number) {
+function deleteEvent(number) {
     closeAllDropdowns();
     if (confirm(`Are you sure you want to delete event #${number}?`)) {
         fetch(`../php/delete_event.php?id=${number}`, { method: 'DELETE' })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-            document.querySelector(`tr[data-event-id="${number}"]`).remove();
+                document.querySelector(`tr[data-event-id="${number}"]`).remove();
             } else {
-            alert('Error: ' + data.message);
+                alert('Error: ' + data.message);
             }
         })
         .catch(error => {
@@ -95,9 +102,9 @@
             alert('Delete failed');
         });
     }
-    }
+}
 
-    function openModal(eventId = null) {
+function openModal(eventId = null) {
     const modal = document.getElementById('importModal');
     modal.style.display = "block";
 
@@ -121,50 +128,50 @@
         document.querySelector('[name="code"]').value = '';
     }
     populateCodeField();
-    }
+}
 
-    function closeImportModal() {
+function closeImportModal() {
     document.getElementById('importModal').style.display = "none";
-    }
+}
 
-    function openRegistration(eventId) {
+function openRegistration(eventId) {
     document.getElementById('importRegistration').style.display = "block";
-    }
+}
 
-    function setupEditButtons() {
+function setupEditButtons() {
     document.querySelectorAll('.edit-btn').forEach(button => {
         button.addEventListener('click', function() {
-        openModal(button.dataset.eventId);
+            openModal(button.dataset.eventId);
         });
     });
-    }
+}
 
-    function populateCodeField() {
+function populateCodeField() {
     const codeField = document.getElementById('codeField');
     if (codeField && !codeField.value) {
         codeField.value = generateCode(12);
     }
-    }
+}
 
-    function generateCode(length = 12) {
+function generateCode(length = 12) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let code = '';
     for (let i = 0; i < length; i++) {
         code += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return code;
-    }
+}
 
-    window.addEventListener('resize', function() {
+window.addEventListener('resize', function() {
     document.querySelectorAll('.dropdown-menu').forEach(menu => {
         if (menu.style.display === 'block') {
-        positionDropdown(menu);
+            positionDropdown(menu);
         }
     });
-    });
+});
 
-    document.addEventListener('click', function(event) {
+document.addEventListener('click', function(event) {
     const modal = document.getElementById('importModal');
     if (event.target === modal) closeImportModal();
-    });
+});
     

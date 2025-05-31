@@ -1,4 +1,31 @@
-/* Admin Page Specific Styles */
+/* Admin Modal Styles */
+.admin-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.admin-modal.show {
+    display: block;
+}
+
+.admin-modal-content {
+    background-color: white;
+    margin: 2% auto;
+    width: 95%;
+    max-width: 1000px; /* Increased max-width */
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Form Styles */
 .form-group {
     margin-bottom: 25px;
 }
@@ -45,6 +72,34 @@
 
 .submit-btn:hover {
     background: #0d3a0d;
+}
+
+/* Header Styles */
+.admin-modal-content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-modal-content .header h3 {
+    font-size: 28px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.close-admin {
+    font-size: 32px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.close-admin:hover {
+    color: #104911;
 }
 
 /* Password Section */
@@ -124,7 +179,149 @@
     font-size: 18px;
 }
 
-/* Event Box Styles */
+/* Participants Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 90vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.participants-container {
+    padding: 25px;
+    min-height: 400px;
+}
+
+.participants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.participants-table th,
+.participants-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.participants-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+}
+
+.participants-summary {
+    text-align: right;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Form Button Styles */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn, .exit-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left:5vh;
+    width: 930px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.exit-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.exit-btn:hover {
+    background-color: #da190b;
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Event List Container Styles */
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Event Card Styles */
+.event-box-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    width: 100%;
+    min-height: 400px;
+}
+
+.floating-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-date {
+    position: relative;
+    height: 140px;
+    overflow: hidden;
+}
+
 .eventbg {
     width: 100%;
     height: 100%;
@@ -141,6 +338,7 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     margin: 0;
 }
+
 
 .day {
     top: 20px;
@@ -226,5 +424,233 @@
     font-size: 16px;
 }
 
+.even-more-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
 
+.event-box-row {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.event-box-row p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+/* Remove table styles */
+.event-display-table {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .event-list {
+        grid-template-columns: 1fr;
+        max-width: 800px;
+    }
+}
+
+/*landingpage
+            /* Additional styles for the movie-style layout */
+            .movie-section {
+                padding: 20px;
+                margin: 20px 0;
+                background-color: #f8f9fa;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: #333;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            
+            .movie-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .movie-card {
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+            
+            .movie-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .movie-poster {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+            }
+            
+            .movie-info {
+                padding: 15px;
+            }
+            
+            .movie-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            
+            .movie-date {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 10px;
+            }
+            
+            .buy-ticket-btn {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                background: #104911;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+                text-align: center;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin: 8px;
+            }
+            
+            .buy-ticket-btn:hover {
+                background: #128514;
+            }
+            
+            /* Modal for event description */
+            .event-modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.8);
+            }
+            
+            .event-modal-content {
+                background-color: #fefefe;
+                margin: 5% auto;
+                padding: 20px;
+                border-radius: 8px;
+                width: 80%;
+                max-width: 800px;
+                position: relative;
+            }
+            
+            .close-modal {
+                position: absolute;
+                right: 20px;
+                top: 10px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+            }
+            
+            .close-modal:hover {
+                color: #333;
+            }
+            
+            .event-modal-poster {
+                width: 100%;
+                max-height: 400px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin-bottom: 20px;
+            }
+            
+            .event-modal-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+                color: #333;
+            }
+            
+            .event-modal-details {
+                display: flex;
+                margin-bottom: 15px;
+                font-size: 16px;
+                color: #666;
+            }
+            
+            .event-modal-date {
+                margin-right: 20px;
+            }
+            
+            .event-modal-location {
+                margin-right: 20px;
+            }
+            
+            .event-modal-description {
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+            
+            .event-modal-actions {
+                display: flex;
+                justify-content: space-between;
+            }
+
+.search-bar-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky ;
+}
+
+.search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    background: #104911;
+    background-color: #fff;
+}
+
+.search-btn {
+    padding: 15px 20px;
+    font-size: 14px;
+    background: #104911 ;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.search-btn:hover {
+        background: #104911;
+}

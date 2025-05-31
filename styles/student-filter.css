@@ -1,0 +1,48 @@
+.course-filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.course-select {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    min-width: 200px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.course-select.show {
+    display: block;
+}
+
+.course-select option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.course-select option:hover {
+    background-color: #f5f5f5;
+}
+
+#courseFilterBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#courseFilterBtn i {
+    font-size: 14px;
+}
+
+#courseFilterBtn.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+} 

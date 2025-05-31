@@ -61,35 +61,85 @@ try {
     $event = $result->fetch_assoc();
 
     // Check if event is in a valid state for registration changes
-    if (in_array($event['event_status'], ['completed', 'cancelled', 'archived'])) {
+    // Allow admin to modify registration for any event status
+    // Restrict coordinators from modifying completed/cancelled/archived events
+    if ($_SESSION['role'] !== 'admin' && in_array($event['event_status'], ['completed', 'cancelled', 'archived'])) {
         throw new Exception('Cannot modify registration for ' . $event['event_status'] . ' events');
     }
 
-    // Update registration status
-    $stmt = $conn->prepare("
-        UPDATE event_table 
-        SET registration_status = ?,
-            last_status_update = CURRENT_TIMESTAMP
-        WHERE number = ?
-    ");
-    $stmt->bind_param("si", $status, $event_id);
-    
-    if (!$stmt->execute()) {
-        throw new Exception('Error updating registration status');
-    }
+    // If admin is opening registration for a completed event, reset the event status and attendance
+    if ($_SESSION['role'] === 'admin' && $status === 'open' && $event['event_status'] === 'completed') {
+        // Reset event status to scheduled in event_table
+        $stmt = $conn->prepare("
+            UPDATE event_table 
+            SET event_status = 'scheduled',
+                registration_status = ?,
+                last_status_update = CURRENT_TIMESTAMP
+            WHERE number = ?
+        ");
+        $stmt->bind_param("si", $status, $event_id);
+        if (!$stmt->execute()) {
+            throw new Exception('Error updating event status');
+        }
 
-    // Log the status change
-    $stmt = $conn->prepare("
-        INSERT INTO event_logs (
-            event_id, 
-            action, 
-            details, 
-            performed_by
-        ) VALUES (?, 'registration_status_change', ?, ?)
-    ");
-    $details = "Registration status changed to " . $status;
-    $stmt->bind_param("isi", $event_id, $details, $_SESSION['client_id']);
-    $stmt->execute();
+        // Reset event status to scheduled in archive_table as well
+        $stmt = $conn->prepare("
+            UPDATE archive_table 
+            SET event_status = 'scheduled',
+                registration_status = ?,
+                last_status_update = CURRENT_TIMESTAMP
+            WHERE number = ?
+        ");
+        $stmt->bind_param("si", $status, $event_id);
+        $stmt->execute();
+
+        // Clear attendance records for this event
+        $stmt = $conn->prepare("DELETE FROM event_attendance WHERE event_id = ?");
+        $stmt->bind_param("i", $event_id);
+        if (!$stmt->execute()) {
+            throw new Exception('Error clearing attendance records');
+        }
+
+        // Log the status change with additional details
+        $stmt = $conn->prepare("
+            INSERT INTO event_logs (
+                event_id, 
+                action, 
+                performed_by,
+                action_time 
+            ) VALUES (?, 'event_reset_and_registration_open', ?, CURRENT_TIMESTAMP)
+        ");
+        $details = "Event reset to scheduled and registration opened by admin";
+        $stmt->bind_param("is", $event_id, $_SESSION['client_id']);
+        $stmt->execute();
+
+    } else {
+        // Normal registration status update
+        $stmt = $conn->prepare("
+            UPDATE event_table 
+            SET registration_status = ?,
+                last_status_update = CURRENT_TIMESTAMP
+            WHERE number = ?
+        ");
+        $stmt->bind_param("si", $status, $event_id);
+        
+        if (!$stmt->execute()) {
+            throw new Exception('Error updating registration status');
+        }
+
+        // Log the status change
+        $stmt = $conn->prepare("
+            INSERT INTO event_logs (
+                event_id, 
+                action, 
+                performed_by,
+                action_time 
+            ) VALUES (?, 'registration_status_change', ?, CURRENT_TIMESTAMP)
+        ");
+        $details = "Registration status changed to " . $status;
+        $stmt->bind_param("is", $event_id, $_SESSION['client_id']);
+        $stmt->execute();
+    }
 
     // Commit transaction
     $conn->commit();

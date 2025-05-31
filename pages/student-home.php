@@ -8,8 +8,8 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once '../php/conn.php';
 
 // Check if user is logged in
-if (!isset($_SESSION['email'], $_SESSION['student_id'], $_SESSION['role'])) {
-    header("Location: 1_Login.php");
+if (!isset($_SESSION['email']) && !isset($_SESSION['client_id'])) {
+    header('Location: 1_Login.php');
     exit();
 }
 
@@ -27,16 +27,11 @@ $stmt->bind_param("s", $student_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
-<<<<<<< HEAD
-$student_course = $user['course'] ?? '';
-=======
 $student_course = $user['course'];
 
 // Add debug logging
 error_log("Student ID: " . $student_id);
 error_log("Student Course: " . $student_course);
-?>
->>>>>>> 8e1b8c5 (Version 1.24.4)
 
 // Close the first statement
 $stmt->close();
@@ -55,10 +50,12 @@ ini_set('display_errors', 1);
         <link rel="stylesheet" href="../styles/style1.css">
         <link rel="stylesheet" href="../styles/style11.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../styles/search.css">
         <script>
             // Add base URL to JavaScript
             const BASE_URL = '<?php echo SITE_URL; ?>';
         </script>
+        <script src="../Javascript/search.js"></script>
     </head>
     <body>
         <div class="title-container">
@@ -96,10 +93,8 @@ ini_set('display_errors', 1);
                         <p>Event List</p>
                         
                         <div class="search-container">
-                            <form class="example" action="student-home.php" method="GET">
-                                <label for="search"></label>
-                                <input type="text" id="search" name="search" placeholder="Search events..." 
-                                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                            <form class="search-form" action="" method="GET">
+                                <input type="text" id="search" name="search" placeholder="Search events..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -112,9 +107,9 @@ ini_set('display_errors', 1);
                         if (!empty($search)) {
                             $query = "SELECT *, 
                                     CASE 
-                                        WHEN file IS NULL OR file = '' OR file = 'null' 
+                                        WHEN event_image IS NULL OR event_image = '' OR event_image = 'null' 
                                         THEN '../images-icon/plm_courtyard.png'
-                                        ELSE file 
+                                        ELSE event_image 
                                     END as event_image 
                                     FROM event_table 
                                     WHERE (event_title LIKE ? 
@@ -129,9 +124,9 @@ ini_set('display_errors', 1);
                         } else {
                             $query = "SELECT *, 
                                     CASE 
-                                        WHEN file IS NULL OR file = '' OR file = 'null' 
+                                        WHEN event_image IS NULL OR event_image = '' OR event_image = 'null' 
                                         THEN '../images-icon/plm_courtyard.png'
-                                        ELSE file 
+                                        ELSE event_image 
                                     END as event_image 
                                     FROM event_table 
                                     WHERE organization = ? OR organization = 'All Courses'
@@ -145,81 +140,43 @@ ini_set('display_errors', 1);
 
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-<<<<<<< HEAD
-                                try {
-                                    $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
-                                    $dateTimeStart = (new DateTime($row['event_start']))->format('H:i');
-                                    
-                                    echo "<div class='event-box-details'>";
-                                    echo "  <div class='floating-card'>";
-                                    // Event Image and Date
-                                    echo "      <div class='event-date'>";
-                                    echo "          <img src='" . ($row['file'] ? '../' . htmlspecialchars($row['file']) : '../images-icon/plm_courtyard.png') . "' alt='" . htmlspecialchars($row['event_title']) . "' class='eventbg' />";
-                                    echo "          <div class='date-overlay'>";
-                                    echo "              <p class='day'>" . $dateOnly . "</p>";
-                                    echo "              <p class='time'>" . $dateTimeStart . "</p>";
-                                    echo "          </div>";
-                                    echo "      </div>";
-                                    
-                                    // Event Title and Description
-                                    echo "      <div class='event-description'>";
-                                    echo "          <h3>" . htmlspecialchars($row['event_title']) . "</h3>";
-                                    echo "          <p>" . htmlspecialchars($row['event_description']) . "</p>";
-                                    echo "      </div>";
-                                    
-                                    // Event Status and Code
-                                    echo "      <div class='status'>";
-                                    echo "          <p><i class='fas fa-info-circle'></i> Status: <b>" . htmlspecialchars($row['event_status']) . "</b></p>";
-                                    echo "          <p><i class='fas fa-qrcode'></i> Event Code: <b>" . htmlspecialchars($row['event_code']) . "</b></p>";
-                                    echo "      </div>";
-                                    
-                                    // Event Location and Organization
-                                    echo "      <div class='even-more-details'>";
-                                    echo "          <div class='event-box-row'>";
-                                    echo "              <p><i class='fas fa-map-marker-alt'></i> Location: <b>" . htmlspecialchars($row['event_location']) . "</b></p>";
-                                    echo "              <p><i class='fas fa-building'></i> Organization: <b>" . htmlspecialchars($row['organization']) . "</b></p>";
-                                    echo "          </div>";
-                                    echo "      </div>";
-                                    
-                                    // Action Button
-                                    echo "      <div class='event-actions'>";
-                                    echo "          <button onclick='window.location.href=\"student-attendance.php?event=" . $row['number'] . "\"' class='action-btn'>";
-                                    echo "              <i class='fas fa-qrcode'></i> Scan QR Code";
-                                    echo "          </button>";
-                                    echo "      </div>";
-                                    echo "  </div>";
-                                    echo "</div>";
-                                } catch (Exception $e) {
-                                    error_log("Error processing event row: " . $e->getMessage());
-                                    continue;
-                                }
-=======
                                 $dateOnly = (new DateTime($row['date_start']))->format('Y-m-d');
-                                $dateTimeStart = (new DateTime($row['event_start']))->format('Y-m-d H:i');
+                                $dateTimeStart = (new DateTime($row['event_start']))->format('H:i');
                                 
                                 echo "<div class='event-box-details'>";
                                 echo "  <div class='floating-card'>";
                                 echo "      <div class='event-date'>";
-                                echo "          <img src='../" . htmlspecialchars($row['file']) . "' alt='Event Background' class='eventbg' />";
-                                echo "          <p class='day'>" .$dateOnly. "</p>";
-                                echo "          <p class='time'>" .$dateTimeStart. "</p>";
+                                echo "          <img src='" . ($row['event_image'] ? '../' . htmlspecialchars($row['event_image']) : '../images-icon/plm_courtyard.png') . "' alt='" . htmlspecialchars($row['event_title']) . "' class='eventbg' />";
+                                echo "          <div class='date-overlay'>";
+                                echo "              <p class='day'>" . $dateOnly . "</p>";
+                                echo "              <p class='time'>" . $dateTimeStart . "</p>";
+                                echo "          </div>";
                                 echo "      </div>";
+                                
                                 echo "      <div class='event-description'>";
-                                echo "          <h3>" .htmlspecialchars($row['event_title']). "</h3>";
-                                echo "          <p>" .htmlspecialchars($row['event_description'])."</p>";
+                                echo "          <h3>" . htmlspecialchars($row['event_title']) . "</h3>";
+                                echo "          <p>" . htmlspecialchars($row['event_description']) . "</p>";
                                 echo "      </div>";
+                                
                                 echo "      <div class='status'>";
-                                echo "          <p> Status: <b> " . htmlspecialchars($row['event_status']) . " </b></p>";
+                                echo "          <p><i class='fas fa-info-circle'></i> Status: <b>" . htmlspecialchars($row['event_status']) . "</b></p>";
+                                echo "          <p><i class='fas fa-qrcode'></i> Event Code: <b>" . htmlspecialchars($row['event_code']) . "</b></p>";
                                 echo "      </div>";
-                                echo "  </div>";
-                                echo "  <div class='even-more-details'>";
-                                echo "      <div class='event-box-row'>";
-                                echo "          <p> Location: <b> " .htmlspecialchars($row['event_location']). "</b></p>";
-                                echo "          <p> Organization: <b> " .htmlspecialchars($row['organization']). "</b></p>";
+                                
+                                echo "      <div class='even-more-details'>";
+                                echo "          <div class='event-box-row'>";
+                                echo "              <p><i class='fas fa-map-marker-alt'></i> Location: <b>" . htmlspecialchars($row['event_location']) . "</b></p>";
+                                echo "              <p><i class='fas fa-building'></i> Organization: <b>" . htmlspecialchars($row['organization']) . "</b></p>";
+                                echo "          </div>";
+                                echo "      </div>";
+                                
+                                echo "      <div class='event-actions'>";
+                                echo "          <button onclick='window.location.href=\"student-attendance.php?event=" . $row['number'] . "\"' class='action-btn'>";
+                                echo "              <i class='fas fa-qrcode'></i> Scan QR Code";
+                                echo "          </button>";
                                 echo "      </div>";
                                 echo "  </div>";
                                 echo "</div>";
->>>>>>> 8e1b8c5 (Version 1.24.4)
                             }
                         } else {
                             echo "<div class='no-events'>";

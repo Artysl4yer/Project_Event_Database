@@ -7,8 +7,8 @@ body {
   background: 
     linear-gradient(135deg, rgba(26, 94, 34, 0.6), rgba(160, 131, 14, 0.3)),
     url('../images-icon/plm_courtyard.png') no-repeat center center;
-    background-size: cover;
-    display: flex;
+  background-size: cover;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -89,10 +89,10 @@ body {
 
 
 .loginpage {
+  background: linear-gradient(135deg, #1a5e22 0%, #2e7d32 100%);
   color: white;
   display: flex;
-  flex-direction: column;  background: linear-gradient(135deg, #1a5e22 0%, #2e7d32 100%);
-
+  flex-direction: column;
   justify-content: center;
 }
 

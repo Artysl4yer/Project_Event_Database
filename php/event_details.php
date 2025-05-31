@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-include 'conn.php';
+include '../php/conn.php';
 
 $event_id = isset($_GET['id']) ? $_GET['id'] : null;
 if (!$event_id) {
